@@ -1,35 +1,37 @@
-Quizness — FICTIONAL SAMPLE WEBSITE
+Quizness — STATIC VENTURE PROPOSAL
 
-Open index.html directly in Chrome or Firefox. No installation is required.
-If XAMPP Apache is running, visit http://localhost/Quizness/ instead.
+Open index.html in a browser, or use http://localhost/Quizness/ when XAMPP
+Apache is running. No installation or build is required.
 
-Files: index.html, styles.css, assets/tiger-pixel.svg, assets/tiger.svg.
+Six pages follow a single proposal journey:
+1. index.html — hero, value proposition, problem, intended users, why now.
+2. experience.html — workflow, static quiz, contribution and review loop.
+3. feasibility.html — concept, feasibility, evidence, assumptions, pilot.
+4. business-model.html — classification, value creation/delivery/capture,
+   model comparison, and economic assumptions.
+5. industry.html — product directions, three named competitors and one
+   substitute, and all five competitive forces with questions.
+6. team.html — sample team, sources, and investor-oriented pilot ask.
 
-This sample uses the supplied palette:
-#7A4E9D, #C9B6E4, #1B4332, #40916C, #EFE6DD.
-The purple tiger is an original SVG illustration created for this sample.
+All pages share styles.css, active navigation, footer links, and previous/
+next links. Original mascot artwork is in mascot/tiger-pixel.svg and
+mascot/tiger.svg. The supplied purple, green, and cream palette remains.
 
-The attached PDF is a COMP1170 assessment brief, not a specific business
-write-up. Quizness is an assumed working concept inspired by the workspace
-name: a course-based peer quiz platform. It is not a verified original
-business name or a validated business opportunity.
+The venture is fictional. Team names, price, course identity, pilot targets,
+and decision thresholds are illustrative. No interviews, pilot results,
+investor commitments, or demand validation are claimed. External feature
+descriptions and the learning rationale have linked sources. Competitive
+judgements are analysis, not validated findings.
 
-All team identities, interview figures, pilot targets, pricing, course
-identities, and competitor ratings are fictional or hypothetical and marked
-on the page. No research interviews were conducted. No real textbook or
-external research citations are claimed. The reference section explains
-what real research must replace these placeholders.
+The user-supplied seven-section assessment table guides the site. Original
+project notes reference COMP1170, Barringer & Ireland Chapters 2–5, and
+Robbins technical guidance. Assigned texts and editions were not supplied.
+Verify the concept-level model comparison against the assigned case and
+add full bibliographic/page references before submission. Replace the
+illustrative team members with the actual team.
 
-The quiz section is a static HTML preview with a sample answer and
-explanation. The page uses HTML, CSS, and SVG only, with no JavaScript.
-Navigation links and expandable sections use native HTML features.
-There are no accounts, payments, sharing services, databases, or submissions.
+The quiz is a static HTML preview. Accounts, contributions, tutor review,
+payments, storage, and submissions are proposed features. Native links work
+without JavaScript; no backend or database is required.
 
-This is a design and static prototype sample, not an assessment-ready proposal.
-Use it as a reference and replace it with your team's own work, validated
-evidence, citations, and course analysis as appropriate.
-
-Mascot variants:
-- assets/tiger-pixel.svg: pixel-art version used on the page.
-- assets/tiger.svg: preserved original smooth illustration.
-Both are original SVG assets. No JavaScript is used.
+preview-desktop.png predates this restructuring and is not a current preview.
