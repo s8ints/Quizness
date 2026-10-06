@@ -491,11 +491,62 @@ summary > span { float: right; }
 .source-list a, .insight a, .section-heading a, .evidence-card a, td a, th a { text-underline-offset: 3px; }
 .forces-grid p + p { margin-top: 10px; }
 
+/* Shared product-prototype layouts and controls */
+.dashboard-grid, .support-grid, .quest-layout { display: grid; gap: 24px; align-items: start; }
+.dashboard-grid { grid-template-columns: 1.2fr 1fr .85fr; }
+.support-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.quest-layout { grid-template-columns: .8fr 1.4fr; }
+.dashboard-grid > *, .support-grid > *, .quest-layout > * { min-width: 0; }
+.product-card { padding: 28px; border: 1px solid var(--line); border-radius: 12px; background: white; }
+.product-card p, .product-card li { font-size: 14px; color: var(--muted); }
+.featured-course, .wallet-card { background: #c9b6e425; border-color: var(--lavender); }
+.product-card h3 { font-size: 22px; }
+.product-card .button { margin-top: 12px; }
+.help-prompt .text-link { display: block; margin-top: 18px; }
+.journey { display: flex; flex-wrap: wrap; gap: 12px 20px; list-style: none; padding: 0; margin: 30px 0; }
+.journey a { display: flex; align-items: center; gap: 8px; font-size: 12px; text-decoration: none; }
+.journey span, .quest-map li > span { display: grid; place-items: center; border-radius: 50%; width: 28px; height: 28px; background: var(--cream); flex-shrink: 0; }
+.journey .current span, .quest-map .current > span { background: var(--purple); color: white; }
+.topic-progress { margin: 18px 0; }
+.topic-progress label { display: block; font-size: 13px; }
+.topic-progress strong { float: right; }
+progress { display: block; appearance: none; width: 100%; height: 8px; border: 0; border-radius: 8px; overflow: hidden; margin-top: 8px; background: var(--cream); color: var(--green); }
+progress::-webkit-progress-bar { background: var(--cream); }
+progress::-webkit-progress-value { background: var(--green); border-radius: 8px; }
+progress::-moz-progress-bar { background: var(--green); border-radius: 8px; }
+.study-stats, .tutor-profile { display: flex; gap: 22px; margin-bottom: 24px; }
+.study-stats span { flex: 1; font-size: 12px; color: var(--muted); }
+.study-stats strong { display: block; font-size: 34px; line-height: 1.3; color: var(--purple); }
+.tutor-profile { align-items: center; gap: 15px; }
+.tutor-profile h3, .tutor-profile p { margin-bottom: 0; }
+.quest-map h2 { font-size: 30px; }
+.quest-map ol { list-style: none; padding: 0; margin: 28px 0; }
+.quest-map li { display: flex; align-items: center; gap: 12px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.quest-map small { display: block; margin-top: 3px; }
+.game-card h2 { font-size: clamp(28px, 3.2vw, 40px); }
+.tree-board { padding: 24px; margin-block: 24px; border-radius: 10px; background: var(--forest); color: white; text-align: center; }
+.tree-node { display: inline-grid; place-items: center; border: 2px solid var(--lavender); width: 48px; height: 48px; border-radius: 50%; }
+.tree-branches { display: flex; justify-content: space-around; max-width: 240px; margin: 24px auto 0; position: relative; }
+.tree-branches:before { content: ''; position: absolute; top: -13px; left: 25%; width: 50%; height: 12px; border: 1px solid var(--lavender); border-bottom: 0; }
+.tree-board .tree-seed { color: var(--cream); margin: 22px 0 0; }
+.quest-choice { border: 1px solid var(--line); border-radius: 7px; margin-bottom: 12px; padding: 0 16px; }
+.quest-choice summary { font-size: 14px; padding-block: 14px; }
+.quest-choice .feedback { margin-top: 4px; }
+.quest-choice .button { margin-bottom: 18px; }
+.plain-list { padding-left: 20px; }
+.plain-list li { margin-bottom: 10px; }
+.proposal-nav { position: relative; }
+.proposal-nav summary { padding: 7px 0; }
+.proposal-nav > div { position: absolute; top: 100%; right: 0; z-index: 5; min-width: 185px; padding: 10px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px #1b433218; }
+.proposal-nav a { display: block; }
+
 /* Responsive layouts and motion preferences */
 @media (min-width: 1450px) {
   .hero { padding-block: 90px 80px; }
 }
 @media (max-width: 1000px) {
+  .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-grid > :last-child { grid-column: 1 / -1; }
   .wrap { width: calc(100% - 56px); }
   .site-header nav { font-size: 11px; max-width: 550px; }
   .hero { gap: 15px; }
@@ -516,6 +567,14 @@ summary > span { float: right; }
   .site-header { align-items: flex-start; }
 }
 @media (max-width: 700px) {
+  .dashboard-grid, .support-grid, .quest-layout { grid-template-columns: 1fr; }
+  .product-card { padding: 20px; }
+  .quest-map ol { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+  .quest-map li { align-items: flex-start; font-size: 12px; }
+  .quest-map small { font-size: 10px; }
+  .journey { gap: 12px; }
+  .journey a { font-size: 11px; }
+  .journey span { width: 24px; height: 24px; }
   .wrap { width: calc(100% - 36px); }
   .demo-banner {
     font-size: 9px;
