@@ -19,7 +19,7 @@ From this repository, run `npm install`, then `npm run dev`. Open `http://127.0.
 ## Connect accounts
 
 1. Create/select the Quizzness Supabase development project.
-2. Apply the migrations in `supabase/migrations/` in numeric order in that project. The profile table enables row-level security, limits authenticated users to their own row, and permits the six original character selections.
+2. Apply the migrations in `supabase/migrations/` in numeric order in that project. The profile table enables row-level security, and limits authenticated users to their own row. Course and character IDs are validated by the app (`src/services/profile.ts`), not by database lists, so adding content needs no migration.
 3. Copy `.env.example` to `.env.local`; set the project URL and **publishable** key. Never use a service-role or secret key in `VITE_` variables.
 4. Configure Supabase Auth Site URL as `http://127.0.0.1:5173` and allow `http://127.0.0.1:5173/auth/callback` and `http://127.0.0.1:5173/auth/reset` as redirect URLs. Add the production origin only once hosting is selected.
 5. Restart Vite. Verify signup/email confirmation, login, profile persistence across refresh, password recovery, logout, and cross-account row-access rejection before calling Phase 1 complete.
