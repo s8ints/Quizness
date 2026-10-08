@@ -15,6 +15,7 @@ describe("student foundation routes", () => {
     expect(
       await screen.findByRole("heading", { name: "Follow your curiosity." }),
     ).toHaveFocus();
+    expect(document.title).toBe("Follow your curiosity. · Quizzness");
   });
   it("labels the preview and includes non-programming courses", async () => {
     open("/preview");

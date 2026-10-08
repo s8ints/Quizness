@@ -18,7 +18,8 @@ export function Hub() {
           <div>
             <p className="eyebrow">My student room</p>
             <h1>
-              Hey, {profile.first_name || "Explorer"}.<span>Welcome home.</span>
+              Hey, {profile.first_name || "Explorer"}.{" "}
+              <span>Welcome home.</span>
             </h1>
           </div>
           <div className="room-progress">

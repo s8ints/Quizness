@@ -178,9 +178,15 @@ export function AuthScreen({
                   name="password"
                   minLength={8}
                   autoComplete={signup ? "new-password" : "current-password"}
+                  aria-describedby={signup ? "password-hint" : undefined}
                   required
                 />
               </label>
+            )}
+            {signup && (
+              <p id="password-hint" className="muted">
+                At least 8 characters.
+              </p>
             )}
             <p role="alert">{error}</p>
             <p role="status">{notice}</p>
@@ -290,9 +296,13 @@ export function AuthCallback({ reset = false }: { reset?: boolean }) {
               name="password"
               minLength={8}
               autoComplete="new-password"
+              aria-describedby="new-password-hint"
               required
             />
           </label>
+          <p id="new-password-hint" className="muted">
+            At least 8 characters.
+          </p>
           <button className="button" disabled={savingPassword}>
             {savingPassword ? "Updating…" : "Update password"}
           </button>

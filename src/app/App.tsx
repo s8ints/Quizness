@@ -24,6 +24,10 @@ function RouteFocus() {
         return;
       previous = heading;
       previousText = heading.textContent ?? "";
+      // Each screen gets a distinct tab title from its visible heading.
+      document.title = `${previousText.trim()} · Quizzness`;
+      // Never pull focus away from a field the student is typing in.
+      if (document.activeElement?.matches("input, textarea, select")) return;
       heading.tabIndex = -1;
       heading.focus();
     };

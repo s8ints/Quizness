@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { vi, test, expect } from "vitest";
-import { AuthCallback } from "./Auth";
+import { AuthCallback, AuthScreen } from "./Auth";
 import userEvent from "@testing-library/user-event";
 
 const exchange = vi.hoisted(() => vi.fn(async () => ({ error: null })));
@@ -44,6 +44,7 @@ test("password update failure keeps the form available for retry", async () => {
     </MemoryRouter>,
   );
   const field = await screen.findByLabelText("New password");
+  expect(field).toHaveAccessibleDescription("At least 8 characters.");
   await userEvent.type(field, "new-password");
   await userEvent.click(
     screen.getByRole("button", { name: "Update password" }),
@@ -54,4 +55,15 @@ test("password update failure keeps the form available for retry", async () => {
   expect(screen.getByLabelText("New password")).toBeInTheDocument();
   expect(screen.getByRole("button", { name: "Update password" })).toBeEnabled();
   recovery.user = null;
+});
+
+test("signup explains the password rule to assistive technology", async () => {
+  render(
+    <MemoryRouter>
+      <AuthScreen signup />
+    </MemoryRouter>,
+  );
+  expect(await screen.findByLabelText("Password")).toHaveAccessibleDescription(
+    "At least 8 characters.",
+  );
 });
