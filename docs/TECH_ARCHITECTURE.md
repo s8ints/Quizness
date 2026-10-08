@@ -12,9 +12,9 @@ Begin with a small typed renderer/evaluator registry for implemented types. Do n
 
 Latest provider decision: Supabase Auth + Postgres. Use Supabase Storage for profile pictures if that capability is included, and ship fixed artwork in the app build. Cloudflare R2 remains a future heavy-upload option. The unresolved-provider statements retained below are superseded; routing/build tooling, hosting configuration, and actual Supabase project credentials still require implementation/configuration. Store file references/metadata in Postgres, not binaries.
 
-Selected: TypeScript + React + Tailwind/custom CSS; CSS for interface motion and Phaser for later character/game scenes. There is no application, installed dependency set, auth provider, or database yet.
+Selected: TypeScript + React + Tailwind/custom CSS; CSS for interface motion and Phaser for later character/game scenes. Vite + React Router and Supabase Auth/Postgres are installed and integrated; deployment and live project verification remain open.
 
-Unresolved before integration: Vite SPA versus a React application framework, router, established authentication provider, profile/database persistence, deployment target, session strategy, verification/recovery flow, and data access rules. The new brief requires these decisions earlier; it does not name a provider. Record a concrete choice and rationale in DECISIONS.md before implementing it. A framework/provider comparison is a separate decision task; no services are provisioned by this documentation change.
+> Historical (resolved — see above): Unresolved before integration: Vite SPA versus a React application framework, router, established authentication provider, profile/database persistence, deployment target, session strategy, verification/recovery flow, and data access rules. The new brief requires these decisions earlier; it does not name a provider. Record a concrete choice and rationale in DECISIONS.md before implementing it. A framework/provider comparison is a separate decision task; no services are provisioned by this documentation change.
 
 ## Phase 1 boundaries
 
@@ -60,7 +60,7 @@ Implementation status (2026-10-08): the approved Phase 1 plan uses Vite + React 
 
 ## Confirmed stack
 
-TypeScript + React + Tailwind CSS with custom CSS, and Phaser for character animation and game scenes. This explicit stack decision takes precedence over tentative technology alternatives in the supplied product notes below. No dependencies or application code exist yet; build tooling and backend providers are undecided.
+TypeScript + React + Tailwind CSS with custom CSS, and Phaser for character animation and game scenes. This explicit stack decision takes precedence over tentative technology alternatives in the supplied product notes below. Build tooling (Vite + React Router) and backend (Supabase) are now selected and implemented; see the implementation status above.
 
 React owns accessible learning controls. A reusable TypeScript session controller owns answer evaluation, progress, XP, and transitions. Phaser receives presentation events and must not maintain a competing score. CSS handles interface motion; no extra animation library is required initially.
 

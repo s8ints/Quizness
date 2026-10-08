@@ -1,5 +1,11 @@
 # Decisions log
 
+## 2026-10-08 — Documentation cleanup and app-side content IDs
+
+Outdated "provider unresolved", "no code exists yet" and "Phase 1 = gameplay slice" statements are corrected or marked `> Historical:` in place; no source text is deleted. Current status: Phase 1 is the student foundation built with Vite + React Router + Tailwind/custom CSS; Supabase Auth/Postgres is integrated in code but not live-verified; gameplay is Phase 2 and bosses/connected progression Phase 3.
+
+Course and character IDs are validated in application code (src/services/profile.ts) rather than as hard-coded database CHECK lists. Migration 003 drops those two constraints so adding a course or character never needs a schema change. Text-length checks and row-level security are unchanged. Chosen by the user before any live migration.
+
 ## 2026-10-08 — Pixel visual language across the whole interface
 
 The user clarified that the mismatch extends beyond the navigation layout. The latest implementation uses locally bundled Pixelify Sans display/controls, consistent hard-edged pixel frames, the original palette and a dark-green game shell for the room. Labelled top navigation returns in that same visual language, removing duplicate lower shortcuts. A new coarser room environment is saved as student-room-pixel-v2.png; earlier scenery is preserved. Original mascot and characters remain unchanged. This supersedes the prior rounded room-control and Courier fallback treatments. These changes remain a version for the user to assess, not an assertion of final visual approval.
@@ -40,11 +46,15 @@ The user authorised the implementation plan by asking to continue. Vite, React R
 
 **Confirmed now:** Landing, signup/login/basic established authentication, onboarding, player hub, courses/overview, profile/avatar presentation, settings, and responsive navigation. Mock learning data is permitted with clear labels. Real authentication is required for completion; mock progress does not imply real earned XP/mastery.
 
-**Unresolved:** Application build tooling/router, auth provider, database/profile persistence provider, deployment, provider-specific session/verification/recovery rules. React/TypeScript/Tailwind and later Phaser are retained. No backend vendor or Next.js migration has been selected. Choose and record these decisions before integration.
+**Resolved since (see "Student foundation implementation" and "Selected backend and asset storage" above):** Vite + React Router and Supabase Auth/Postgres. Deployment remains unselected beyond the Vercel reference.
+
+> Historical: **Unresolved at the time:** Application build tooling/router, auth provider, database/profile persistence provider, deployment, provider-specific session/verification/recovery rules. React/TypeScript/Tailwind and later Phaser are retained. No backend vendor or Next.js migration has been selected. Choose and record these decisions before integration.
 
 **Historical treatment:** Existing game specifications remain Phase 2 references. Their localStorage/reward rules are proposals; platform account data requires its own access-controlled persistence. STUDENT_EXPERIENCE.md and the current ROADMAP.md/TECH_ARCHITECTURE.md summaries define active scope. No game code or service provisioning is performed by this documentation update.
 
 ## 2026-10-08 — Expanded game-design direction (current)
+
+> Historical: the student-first scope above moved this gameplay slice to Phase 2/3. Its design content remains the reference for those phases.
 
 **Status:** Supplied as the new design brief. Phase 1 now includes a course map, missions, code-output/code-choice alongside multiple choice, one visible avatar, a boss encounter, XP/levels, concept evidence, and localStorage persistence. This supersedes the earlier session-only milestone, true/false demo proposal, and memory-only progress plan. It authorises documenting the expanded design here; application implementation has not begun.
 
@@ -62,11 +72,11 @@ Record confirmed decisions separately from proposals. Dates below are the dates 
 
 ## 2026-10-08 — Separate real product and school prototype
 
-**Status:** Confirmed. The real product lives in `quizzness-game`; the COMP1170 prototype remains separate and untouched. This prevents product expansion from changing assessment work. A local Git repository exists; there are no commits or remote repository created by this work.
+**Status:** Confirmed. The real product lives in `quizzness-game`; the COMP1170 prototype remains separate and untouched. This prevents product expansion from changing assessment work. A local Git repository exists; the first commit was made on the local `jolicia` branch on 2026-10-08. No remote repository has been created.
 
 ## 2026-10-08 — Frontend and game stack
 
-**Status:** Confirmed by the user's stack instruction. Use TypeScript, React, Tailwind CSS plus custom CSS, and Phaser. React handles the learning interface; CSS handles interface motion; Phaser handles sprite animation and game scenes. Alternatives in the supplied notes, including Next.js and CSS Modules, remain historical possibilities rather than selected tools. Build tooling is still undecided.
+**Status:** Confirmed by the user's stack instruction. Use TypeScript, React, Tailwind CSS plus custom CSS, and Phaser. React handles the learning interface; CSS handles interface motion; Phaser handles sprite animation and game scenes. Alternatives in the supplied notes, including Next.js and CSS Modules, remain historical possibilities rather than selected tools. Build tooling was later resolved as Vite + React Router.
 
 ## 2026-10-08 — Core before platform expansion
 

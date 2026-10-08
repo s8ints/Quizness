@@ -1,14 +1,18 @@
 ## Current phase assignment
 
+Phase 1: brand/mascot + student foundation (accounts, onboarding, hub, courses, profile/settings), built and awaiting live Supabase verification. Phase 2: worlds/maps/missions/ActivityRenderer. Phase 3: bosses + connected XP/progression. Phase 4: adaptive mastery/review. Phase 5: expanded subjects/content. Phase 6: tutoring/social. Wherever this document says "Phase 1" for maps, missions, bosses, XP or localStorage, read it as Phase 2/3.
+
 ## Product identity clarification
 
 Quizzness is a general tertiary-level learning game engine. Its hierarchy is Course → Topic/Area → Mission → Interactive Activity → Checkpoint → Boss. Activity types and boss encounters adapt to the learning task: a debugging battle, a multi-stage workplace crisis, or connected mathematical problems are equally valid. A boss is a meaningful academic checkpoint, not necessarily a monster with HP. Computer Science examples in the source are demonstrations only.
 
 Use ActivityRenderer as the general engine term. Game identity, structured course paths, short interactive tasks, feedback, and motivation are inspiration principles from Codédex, Boot.dev, Coddy, and Duolingo; create original Quizzness systems and visuals. Phase 1 remains the student foundation.
 
-The latest student-first brief supersedes earlier Phase 1 assignments in this document. Phase 1 builds real signup/login, onboarding, player hub, courses, profile/settings, and responsive navigation using labelled mock learning previews. Gameplay, missions, questions, bosses, and earning XP move to Phase 2; shared account-backed progression connects in Phase 3; deeper adaptation follows in Phase 4. Existing game mechanics and numeric rules remain proposals for those later phases. See STUDENT_EXPERIENCE.md, ROADMAP.md, and DECISIONS.md. The selected React/TypeScript/Tailwind/Phaser stack is retained; auth and database providers are unresolved.
+The latest student-first brief supersedes earlier Phase 1 assignments in this document. Phase 1 builds real signup/login, onboarding, player hub, courses, profile/settings, and responsive navigation using labelled mock learning previews. Gameplay, missions, questions, bosses, and earning XP move to Phase 2; shared account-backed progression connects in Phase 3; deeper adaptation follows in Phase 4. Existing game mechanics and numeric rules remain proposals for those later phases. See STUDENT_EXPERIENCE.md, ROADMAP.md, and DECISIONS.md. The selected React/TypeScript/Tailwind/Phaser stack is retained. Current status: Vite + React Router are in use, and Supabase Auth/Postgres is selected and integrated in code but not yet verified against a live project.
 
 # Quizzness game design — current direction
+
+> Historical: the next three paragraphs predate the student-first update; their "Phase 1" gameplay slice is now Phase 2/3 (see "Current phase assignment" above).
 
 The latest supplied Game Design Document below defines the expanded Phase 1: Course → Map → Missions → Interactive Questions → XP → Boss → Results → Saved Progress. It supersedes the earlier session-only milestone. Implement incrementally; this documentation update does not start application development.
 
@@ -2203,6 +2207,10 @@ local storage
 Once the gameplay works, introduce backend persistence.
 
 ---
+
+# Gameplay vertical slice (now Phase 2/3)
+
+> Historical numbering: sections 76–92 were written when Phase 1 meant the gameplay slice. Their content now guides Phase 2 (map, missions, activities) and Phase 3 (boss, XP/progression). "No user accounts" in §89 is superseded: accounts were built in Phase 1. Original headings are kept for traceability.
 
 # 76. Phase 1 Goal
 

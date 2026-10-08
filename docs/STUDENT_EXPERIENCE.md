@@ -4,7 +4,7 @@ Quizzness serves tertiary learners across subjects. Onboarding study interests, 
 
 ## Current scope
 
-Phase 1 builds the student-facing foundation: public welcome, real signup/login, onboarding, a player hub, course presentation, profile/settings, avatar presentation, and responsive navigation. Gameplay begins in Phase 2. The frontend remains TypeScript + React + Tailwind/custom CSS; Phaser is reserved for character/game scenes when needed. Authentication and persistence providers must be selected before their integration; none is selected or installed yet.
+Phase 1 builds the student-facing foundation: public welcome, real signup/login, onboarding, a player hub, course presentation, profile/settings, avatar presentation, and responsive navigation. Gameplay begins in Phase 2. The frontend remains TypeScript + React + Tailwind/custom CSS; Phaser is reserved for character/game scenes when needed. Supabase Auth/Postgres is selected and integrated in code; live project verification is pending.
 
 ## Journey and routes
 
