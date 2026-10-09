@@ -1,0 +1,247 @@
+{
+  "frameWidth": 64,
+  "frameHeight": 136,
+  "scaleNote": "Draw at whole-number scales only (x1, x2, x3) with pixelated rendering.",
+  "characters": {
+    "fern": {
+      "name": "Flower",
+      "animations": {
+        "idle": {
+          "file": "fern-idle.png",
+          "frames": 2,
+          "fps": 1.5
+        },
+        "walk-down": {
+          "file": "fern-walk-down.png",
+          "frames": 8,
+          "fps": 10
+        },
+        "walk-left": {
+          "file": "fern-walk-left.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-right": {
+          "file": "fern-walk-right.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-up": {
+          "file": "fern-walk-down.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        }
+      },
+      "shadow": {
+        "day": "fern-shadow-day.png",
+        "night": "fern-shadow-night.png",
+        "frames": 8,
+        "note": "Separate layer drawn under the character; sync its frame with the walk frame."
+      }
+    },
+    "sun": {
+      "name": "Hoodie",
+      "animations": {
+        "idle": {
+          "file": "sun-idle.png",
+          "frames": 2,
+          "fps": 1.5
+        },
+        "walk-down": {
+          "file": "sun-walk-down.png",
+          "frames": 8,
+          "fps": 10
+        },
+        "walk-left": {
+          "file": "sun-walk-left.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-right": {
+          "file": "sun-walk-right.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-up": {
+          "file": "sun-walk-down.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        }
+      },
+      "shadow": {
+        "day": "sun-shadow-day.png",
+        "night": "sun-shadow-night.png",
+        "frames": 8,
+        "note": "Separate layer drawn under the character; sync its frame with the walk frame."
+      }
+    },
+    "sky": {
+      "name": "Bow",
+      "animations": {
+        "idle": {
+          "file": "sky-idle.png",
+          "frames": 2,
+          "fps": 1.5
+        },
+        "walk-down": {
+          "file": "sky-walk-down.png",
+          "frames": 8,
+          "fps": 10
+        },
+        "walk-left": {
+          "file": "sky-walk-left.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-right": {
+          "file": "sky-walk-right.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-up": {
+          "file": "sky-walk-down.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        }
+      },
+      "shadow": {
+        "day": "sky-shadow-day.png",
+        "night": "sky-shadow-night.png",
+        "frames": 8,
+        "note": "Separate layer drawn under the character; sync its frame with the walk frame."
+      }
+    },
+    "headphones": {
+      "name": "Headphones",
+      "animations": {
+        "idle": {
+          "file": "headphones-idle.png",
+          "frames": 2,
+          "fps": 1.5
+        },
+        "walk-down": {
+          "file": "headphones-walk-down.png",
+          "frames": 8,
+          "fps": 10
+        },
+        "walk-left": {
+          "file": "headphones-walk-left.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-right": {
+          "file": "headphones-walk-right.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-up": {
+          "file": "headphones-walk-down.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        }
+      },
+      "shadow": {
+        "day": "headphones-shadow-day.png",
+        "night": "headphones-shadow-night.png",
+        "frames": 8,
+        "note": "Separate layer drawn under the character; sync its frame with the walk frame."
+      }
+    },
+    "books": {
+      "name": "Books",
+      "animations": {
+        "idle": {
+          "file": "books-idle.png",
+          "frames": 2,
+          "fps": 1.5
+        },
+        "walk-down": {
+          "file": "books-walk-down.png",
+          "frames": 8,
+          "fps": 10
+        },
+        "walk-left": {
+          "file": "books-walk-left.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-right": {
+          "file": "books-walk-right.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-up": {
+          "file": "books-walk-down.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        }
+      },
+      "shadow": {
+        "day": "books-shadow-day.png",
+        "night": "books-shadow-night.png",
+        "frames": 8,
+        "note": "Separate layer drawn under the character; sync its frame with the walk frame."
+      }
+    },
+    "glasses": {
+      "name": "Glasses",
+      "animations": {
+        "idle": {
+          "file": "glasses-idle.png",
+          "frames": 2,
+          "fps": 1.5
+        },
+        "walk-down": {
+          "file": "glasses-walk-down.png",
+          "frames": 8,
+          "fps": 10
+        },
+        "walk-left": {
+          "file": "glasses-walk-left.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-right": {
+          "file": "glasses-walk-right.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        },
+        "walk-up": {
+          "file": "glasses-walk-down.png",
+          "frames": 8,
+          "fps": 10,
+          "stopgap": true
+        }
+      },
+      "shadow": {
+        "day": "glasses-shadow-day.png",
+        "night": "glasses-shadow-night.png",
+        "frames": 8,
+        "note": "Separate layer drawn under the character; sync its frame with the walk frame."
+      }
+    }
+  },
+  "notes": [
+    "Generated by scripts/make-student-sprites.cjs from the original sheet; only existing pixels are moved.",
+    "Front view only. walk-left/right lean the front view toward the direction of travel and walk-up reuses walk-down: stopgaps until side/back views are drawn.",
+    "Idle is the original pose with a slow 1px breathing dip.",
+    "Day/night: show shadow-day or shadow-night (or none) depending on the area's lighting. How day/night is decided is still an open design question."
+  ]
+}

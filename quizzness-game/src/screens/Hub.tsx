@@ -60,6 +60,9 @@ export function Hub() {
           Room illustration · movement coming later
         </span>
       </section>
+      <Link className="button room-explore-link" to={`${base}/room`}>
+        Walk around your room →
+      </Link>
       <section className="hub-status" aria-labelledby="hub-status-title">
         <h2 id="hub-status-title" className="hub-section-title">
           Your status
@@ -83,8 +86,7 @@ export function Hub() {
               <>
                 <p className="status-value">No XP yet</p>
                 <p className="status-note">
-                  Earning XP arrives with your first missions in a later
-                  update.
+                  Earning XP arrives with your first missions in a later update.
                 </p>
               </>
             )}
@@ -97,7 +99,10 @@ export function Hub() {
                 <p className="status-note">
                   {next.code} · {getWorld(next.worldId)?.name}
                 </p>
-                <Link className="button small" to={`${base}/courses/${next.id}`}>
+                <Link
+                  className="button small"
+                  to={`${base}/courses/${next.id}`}
+                >
                   Open course →
                 </Link>
               </>
@@ -144,7 +149,12 @@ export function Hub() {
         {selected.length ? (
           <div className="course-card-grid">
             {selected.map((course) => (
-              <CourseCard key={course.id} course={course} base={base} selected />
+              <CourseCard
+                key={course.id}
+                course={course}
+                base={base}
+                selected
+              />
             ))}
           </div>
         ) : (

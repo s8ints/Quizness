@@ -5,7 +5,9 @@ export function AppShell() {
   const { profile, preview } = useStudent();
   const base = preview ? "/preview" : "";
   const { pathname } = useLocation();
-  const inRoom = pathname === "/preview" || pathname === "/dashboard";
+  const inRoom = ["/preview", "/dashboard", "/preview/room", "/room"].includes(
+    pathname,
+  );
   return (
     <div
       className={`app${profile.reduced_motion ? " reduce-motion" : ""}${inRoom ? " room-shell" : ""}`}

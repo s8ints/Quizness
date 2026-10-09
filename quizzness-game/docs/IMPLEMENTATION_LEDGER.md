@@ -75,3 +75,21 @@ Font roles via src/styles/refresh.css (Silkscreen, Pixelify Sans, Nunito; @fonts
 User provisioned the Supabase dev project and applied migrations 001–004. User-confirmed live: signup, confirmation email, login, onboarding, refresh persistence, profile save. Pending: logout, password recovery, cross-account RLS check. Added: "Check your inbox" panel with resend (replaces the weak signup notice), error panels, study-mode choice cards, grouped university dropdown with Other (src/data/institutions.ts, src/components/InstitutionField.tsx, also on Profile), readable form styles, pixel "q" favicon, palette theme-color. Fixed header overflow at 1024–1200px (nav wrap now ≤1080px, level tag hidden ≤1200px; e2e checks 820/1024/1100). Vitest excludes the loose e2e/ copy and blanks Supabase env. Verification: 43 unit tests, 5 browser tests, build. The folder is no longer a git repository (removed at the user's request), so these changes are uncommitted files.
 
 Phase 1 complete (2026-10-08): user confirmed logout, password recovery and second-account data isolation on the live dev project. Confirmation is the user's manual test; no automated live RLS query was run.
+
+## Phase 2 Part 1 — room movement proof, 2026-10-09
+
+User authorised starting Part 1. Implemented /room and /preview/room, linked by Walk around your room from the existing hub. Phaser is lazy-loaded only for the movement view. Pure TypeScript room definitions and foot collision handle normalised movement, furniture sliding, bounds and capped frame time. React owns focus-scoped WASD/arrows, E interaction, touch joystick, pause, free Panthy welcome and semantic destination navigation. Existing dashboard/account/profile flows and original assets are retained.
+
+Task 1: movement tests observed RED (missing room module) → GREEN, six tests. Sandbox filesystem denial was resolved by running the same test with normal local permissions, not by altering the project tests. Phaser install likewise needed normal network access; install completed, audit reported zero vulnerabilities.
+
+Ruling: Part 1 uses a code-drawn pixel tile-layout prototype and unmodified original still-pose avatar/Panthy artwork, explicitly labelled. It does not claim directional walking frames or final approved map art. Matching directional frames and final environment art remain the next asset milestone. Cost if wrong: replace prototype scene art after visual review; original assets remain intact.
+
+Ruling: add a separate movement view rather than overwrite the existing approved hub. This keeps the working foundation usable while the new map presentation is reviewed. Campus doorway currently opens the existing campus page; connected walkable campus/region/course/topic areas belong to the next slice. No missions, rewards, payment, AI, or cloud gameplay schema added.
+
+Ruling: user removed Git; no repository/worktree/commit was created. Plan and evidence remain in docs/superpowers/plans/2026-10-09-phase2-room-proof.md and this ledger rather than Git-based skill scripts.
+
+Final review: fresh room_review agent inspected movement, inputs, cleanup, failure fallback and accessibility. Important finding reproduced: a keyboard-focused room blurred on joystick press and cancelled the first drag. Browser regression observed RED → prevent default focus transfer and clear keyboard input → GREEN. Repeat-mount coverage now uses SPA navigation out and browser back, not a full page reload. No other important findings reported.
+
+Final verification: npm run test passes 49/49 across 11 files; npm run build succeeds; npm run test:e2e passes 7/7. Browser coverage includes movement, pause, walls, Panthy help, destinations, SPA remount/single canvas, mobile joystick release after keyboard focus, small-screen overflow and failed-asset navigation fallback, plus all existing foundation flows. Desktop/mobile room screenshots generated and inspected in docs/previews/room-movement*.png.
+
+Build limitation: Phaser's lazy scene chunk is about 1.21 MB (334 KB gzip); Vite reports a chunk-size warning, not a build failure. Initial pages do not load that scene chunk. Final map art and directional walk animation have not been approved or implemented; this is the first playable movement proof, not completion of all Phase 2 maps.
