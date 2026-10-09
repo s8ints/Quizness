@@ -159,6 +159,17 @@ test("mobile routes have no horizontal overflow and private routes guard access"
       ),
     ).toBe(true);
   }
+  // Mid widths: the five-link header must still fit.
+  await page.setViewportSize({ width: 820, height: 900 });
+  for (const route of ["/preview", "/preview/courses", "/preview/campus"]) {
+    await page.goto(route);
+    await expect(page.locator("h1")).toBeVisible();
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    ).toBe(true);
+  }
   await page.goto("/dashboard");
   await expect(page).toHaveURL(/\/login$/);
   await expect(
