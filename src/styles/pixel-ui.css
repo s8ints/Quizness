@@ -287,6 +287,19 @@ h3,
   border: 2px solid var(--color-primary);
   box-shadow: 3px 3px 0 var(--color-primary);
 }
+/* Mid widths: five nav links no longer fit beside the brand and profile, so nav takes its own row. */
+@media (max-width: 1000px) {
+  .app-header {
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    row-gap: 8px;
+  }
+  .app-header nav { order: 3; width: 100%; justify-content: space-between; }
+  .room-shell > .app-header { grid-template-columns: 1fr auto; }
+  .room-shell .app-header nav { grid-column: 1/-1; grid-row: 2; justify-content: space-between; }
+}
 @media (max-width: 760px) {
   .app-header nav { gap: 3px; justify-content: space-between; min-width: 0; }
   .app-header nav a { font-size: .85rem; padding: 7px 5px; white-space: normal; text-align: center; }
