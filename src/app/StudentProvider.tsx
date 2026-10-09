@@ -35,7 +35,10 @@ export function StudentProvider({
       ? {
           ...emptyProfile("preview"),
           first_name: "Explorer",
-          selected_courses: ["mathematics", "biology", "business", "computing"],
+          study_field: "Mathematics",
+          major_id: "mathematics",
+          year_of_study: "Year 2",
+          selected_courses: ["qz-math-101", "qz-bio-101"],
           onboarding_completed_at: "preview",
         }
       : emptyProfile(user?.id ?? ""),

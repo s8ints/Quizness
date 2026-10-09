@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useStudent } from "../app/StudentProvider";
 import { courses } from "../data/courses";
+import { homeWorldFor } from "../data/majors";
+import { campus, getWorld } from "../data/worlds";
 import { Avatar } from "../components/Avatar";
 import { Mascot } from "../components/Mascot";
 
@@ -11,6 +13,7 @@ export function Hub() {
     profile.selected_courses.includes(course.id),
   );
   const next = selected[0];
+  const home = homeWorldFor(profile.major_id);
   return (
     <div className="student-room-hub">
       <section className="room-scene" aria-label="Your cosy student room">
@@ -77,8 +80,12 @@ export function Hub() {
           </h2>
           <p>
             {next
-              ? `Next up: ${next.area}. Take one idea at a time.`
-              : "Choose a subject to give your learning journey a place to begin."}
+              ? `Next up: ${next.title}. Take one idea at a time.`
+              : "Choose a course to give your learning journey a place to begin."}
+          </p>
+          <p className="room-home-world">
+            Home world: <strong>{home?.name ?? campus.name}</strong> ·{" "}
+            <Link to={`${base}/campus`}>Visit campus →</Link>
           </p>
         </div>
         {selected.length ? (
@@ -86,11 +93,13 @@ export function Hub() {
             {selected.map((course) => (
               <Link key={course.id} to={`${base}/courses/${course.id}`}>
                 <span className="room-book-symbol" aria-hidden="true">
-                  {course.symbol}
+                  {getWorld(course.worldId)?.symbol}
                 </span>
                 <div>
-                  <h3>{course.subject}</h3>
-                  <p>{course.area}</p>
+                  <h3>{course.title}</h3>
+                  <p>
+                    {course.code} · {getWorld(course.worldId)?.name}
+                  </p>
                 </div>
                 <span aria-hidden="true">→</span>
               </Link>

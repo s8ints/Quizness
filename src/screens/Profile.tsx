@@ -5,6 +5,9 @@ import { useAuth } from "../auth/AuthProvider";
 import { Avatar, avatars } from "../components/Avatar";
 import { learningGoals } from "../data/courses";
 import { Mascot } from "../components/Mascot";
+import { MajorFields } from "../components/MajorFields";
+import { homeWorldFor } from "../data/majors";
+import { campus } from "../data/worlds";
 export function Profile() {
   const { profile, update, preview } = useStudent();
   const [draft, setDraft] = useState(profile);
@@ -69,17 +72,13 @@ export function Profile() {
               />
             </label>
           </div>
-          <label>
-            What are you studying?
-            <input
-              maxLength={120}
-              value={draft.study_field}
-              onChange={(e) =>
-                setDraft({ ...draft, study_field: e.target.value })
-              }
-              placeholder="Any subject you’re curious about"
-            />
-          </label>
+          <MajorFields
+            value={draft}
+            onChange={(fields) => setDraft({ ...draft, ...fields })}
+          />
+          <p className="muted">
+            Home world: {homeWorldFor(draft.major_id)?.name ?? campus.name}
+          </p>
           <label>
             Institution (optional)
             <input

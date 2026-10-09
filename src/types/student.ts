@@ -1,18 +1,11 @@
-export type Course = {
-  id: string;
-  title: string;
-  subject: string;
-  description: string;
-  area: string;
-  accent: string;
-  symbol: string;
-  topics: string[];
-};
 export type StudentProfile = {
   user_id: string;
   first_name: string;
   last_name: string;
+  // Display label for the major; holds the student's own text when major_id is "other".
   study_field: string;
+  major_id: string;
+  year_of_study: string;
   institution: string;
   goals: string[];
   avatar_id: string;
@@ -25,6 +18,8 @@ export const emptyProfile = (userId: string): StudentProfile => ({
   first_name: "",
   last_name: "",
   study_field: "",
+  major_id: "",
+  year_of_study: "",
   institution: "",
   goals: [],
   avatar_id: "fern",

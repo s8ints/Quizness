@@ -8,6 +8,7 @@ import { Hub } from "../screens/Hub";
 import { Worlds, CourseOverview } from "../screens/Worlds";
 import { Profile, Settings } from "../screens/Profile";
 import { Onboarding } from "../screens/Onboarding";
+import { Campus } from "../screens/Campus";
 import { AuthScreen, AuthCallback } from "../screens/Auth";
 function RouteFocus() {
   const location = useLocation();
@@ -64,6 +65,7 @@ export function App() {
           <Route index element={<Hub />} />
           <Route path="courses" element={<Worlds />} />
           <Route path="courses/:courseId" element={<CourseOverview />} />
+          <Route path="campus" element={<Campus />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
           <Route path="onboarding" element={<Onboarding />} />
@@ -78,6 +80,7 @@ export function App() {
           <Route path="/dashboard" element={<Hub />} />
           <Route path="/courses" element={<Worlds />} />
           <Route path="/courses/:courseId" element={<CourseOverview />} />
+          <Route path="/campus" element={<Campus />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/onboarding" element={<Onboarding />} />

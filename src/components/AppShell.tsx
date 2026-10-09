@@ -30,6 +30,7 @@ export function AppShell() {
               Home base
             </NavLink>
             <NavLink to={`${base}/courses`}>Your worlds</NavLink>
+            <NavLink to={`${base}/campus`}>Campus</NavLink>
             <NavLink to={`${base}/profile`}>Your character</NavLink>
             <NavLink to={`${base}/settings`}>
               {inRoom ? "Room settings" : "Settings"}

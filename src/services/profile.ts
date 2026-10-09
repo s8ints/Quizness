@@ -1,5 +1,6 @@
 import { supabase } from "../auth/client";
 import { courses, learningGoals } from "../data/courses";
+import { getMajor, yearOptions } from "../data/majors";
 import { avatars } from "../components/Avatar";
 import type { StudentProfile } from "../types/student";
 export function validateProfile(profile: StudentProfile) {
@@ -12,6 +13,10 @@ export function validateProfile(profile: StudentProfile) {
     profile.institution.length > 160
   )
     throw new Error("Please shorten the profile fields.");
+  if (profile.major_id && !getMajor(profile.major_id))
+    throw new Error("Choose an available major.");
+  if (profile.year_of_study && !yearOptions.includes(profile.year_of_study))
+    throw new Error("Choose a listed year of study.");
   if (profile.goals.some((goal) => !learningGoals.includes(goal)))
     throw new Error("Choose from the listed learning goals.");
   if (

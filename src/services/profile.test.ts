@@ -17,7 +17,7 @@ describe("profile validation", () => {
       validateProfile({
         ...emptyProfile("u"),
         first_name: "Alex",
-        selected_courses: ["biology", "mathematics"],
+        selected_courses: ["qz-bio-101", "qz-law-101"],
         institution: "",
       }).institution,
     ).toBe(""));
@@ -37,4 +37,17 @@ describe("profile validation", () => {
         goals: ["Prepare for tests", "made up"],
       }),
     ).toThrow("learning goals"));
+});
+describe("major and year validation", () => {
+  const base = { ...emptyProfile("u"), first_name: "Alex" };
+  it("rejects an unknown major", () =>
+    expect(() => validateProfile({ ...base, major_id: "astrology" })).toThrow(
+      "available major",
+    ));
+  it("rejects an unlisted year but allows leaving it blank", () => {
+    expect(() =>
+      validateProfile({ ...base, year_of_study: "Year 9" }),
+    ).toThrow("year of study");
+    expect(validateProfile({ ...base, year_of_study: "" }).year_of_study).toBe("");
+  });
 });

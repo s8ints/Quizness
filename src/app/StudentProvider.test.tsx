@@ -82,7 +82,7 @@ test("overlapping profile and course saves preserve both accepted changes", asyn
   let second!: Promise<void>;
   act(() => {
     first = student.update({ ...initial, first_name: "New name" });
-    second = student.update({ ...initial, selected_courses: ["biology"] });
+    second = student.update({ ...initial, selected_courses: ["qz-bio-101"] });
   });
   await waitFor(() => expect(mocks.save).toHaveBeenCalled());
   await act(async () => {
@@ -90,7 +90,7 @@ test("overlapping profile and course saves preserve both accepted changes", asyn
     await Promise.all([first, second]);
   });
   expect(student.profile.first_name).toBe("New name");
-  expect(student.profile.selected_courses).toEqual(["biology"]);
+  expect(student.profile.selected_courses).toEqual(["qz-bio-101"]);
 });
 
 test("failed saves retain the prior profile and a subsequent retry can succeed", async () => {

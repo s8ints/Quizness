@@ -1,56 +1,99 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useStudent } from "../app/StudentProvider";
-import { courses, getCourse } from "../data/courses";
-import type { Course } from "../types/student";
+import { coursesInWorld, getCourse } from "../data/courses";
+import { homeWorldFor } from "../data/majors";
+import { campus, getWorld, worlds } from "../data/worlds";
+import type { Course, World } from "../types/content";
 import { Mascot } from "../components/Mascot";
 export function CourseCard({ course, base }: { course: Course; base: string }) {
+  const world = getWorld(course.worldId);
   return (
     <Link
-      className={`world-card ${course.accent}`}
+      className={`world-card ${world?.accent ?? ""}`}
       to={`${base}/courses/${course.id}`}
     >
       <div className="world-card-top">
-        <span className="world-symbol">{course.symbol}</span>
+        <span className="world-symbol">{world?.symbol}</span>
         <span className="card-arrow">↗</span>
       </div>
-      <span className="eyebrow">{course.area}</span>
-      <h3>{course.subject}</h3>
+      <span className="eyebrow">{course.code} · Sample course</span>
+      <h3>{course.title}</h3>
       <p>{course.description}</p>
       <span className="card-foot">
-        Explore world <span>→</span>
+        Open course <span>→</span>
       </span>
     </Link>
+  );
+}
+function WorldSection({
+  world,
+  label,
+}: {
+  world: World;
+  label?: string;
+}) {
+  const { profile, preview } = useStudent();
+  const base = preview ? "/preview" : "";
+  return (
+    <section aria-labelledby={`world-${world.id}`}>
+      <p className="eyebrow">{label ?? world.subject}</p>
+      <h2 id={`world-${world.id}`}>
+        {world.symbol} {world.name}
+      </h2>
+      <p className="muted">{world.description}</p>
+      <div className="world-grid catalogue">
+        {coursesInWorld(world.id).map((course) => (
+          <div key={course.id}>
+            <CourseCard course={course} base={base} />
+            {profile.selected_courses.includes(course.id) && (
+              <span className="selection-note">✓ In your courses</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 export function Worlds() {
   const { profile, preview } = useStudent();
   const base = preview ? "/preview" : "";
+  const home = homeWorldFor(profile.major_id);
   return (
     <div className="page">
       <p className="eyebrow">Your worlds</p>
       <h1>Follow your curiosity.</h1>
       <Mascot
         state="surprised"
-        message="Many subjects, one guild. Where would you like to begin?"
+        message={
+          home
+            ? `${home.name} is your home world. Every other world is open to explore too.`
+            : `Your own world is being prepared. Start from ${campus.name}, and explore any world you like.`
+        }
         compact
       />
-      <p className="lead">
-        One engine. Many subjects. Find a world that speaks to you.
-      </p>
       <p className="muted">
         Sample course catalogue · playable activities are coming later.
       </p>
-      <div className="world-grid catalogue">
-        {courses.map((course) => (
-          <div key={course.id}>
-            <CourseCard course={course} base={base} />
-            {profile.selected_courses.includes(course.id) && (
-              <span className="selection-note">✓ In your worlds</span>
-            )}
-          </div>
+      {home && (
+        <WorldSection
+          world={home}
+          label={`Your home world · ${home.subject}`}
+        />
+      )}
+      {worlds
+        .filter((world) => world.id !== home?.id)
+        .map((world) => (
+          <WorldSection key={world.id} world={world} />
         ))}
-      </div>
+      <section className="course-start" aria-labelledby="campus-link-title">
+        <p className="eyebrow">Shared school hub</p>
+        <h2 id="campus-link-title">{campus.name}</h2>
+        <p>Where every major meets. Visit your school campus.</p>
+        <Link className="button secondary" to={`${base}/campus`}>
+          Visit campus →
+        </Link>
+      </section>
     </div>
   );
 }
@@ -65,7 +108,7 @@ export function CourseOverview() {
   if (!course)
     return (
       <div className="page empty-panel">
-        <h1>World not found</h1>
+        <h1>Course not found</h1>
         <Mascot state="help" compact />
         <p>That course isn’t in the current catalogue.</p>
         <Link className="button" to={`${base}/courses`}>
@@ -73,6 +116,7 @@ export function CourseOverview() {
         </Link>
       </div>
     );
+  const world = getWorld(course.worldId);
   const selected = profile.selected_courses.includes(course.id);
   async function toggle() {
     setBusy(true);
@@ -100,17 +144,19 @@ export function CourseOverview() {
       <Link className="text-link" to={`${base}/courses`}>
         ← Your worlds
       </Link>
-      <div className={`course-hero ${course.accent}`}>
-        <span className="world-symbol big">{course.symbol}</span>
+      <div className={`course-hero ${world?.accent ?? ""}`}>
+        <span className="world-symbol big">{world?.symbol}</span>
         <div>
-          <p className="eyebrow">{course.subject}</p>
-          <h1>{course.area}</h1>
+          <p className="eyebrow">
+            {course.code} · Sample course · {world?.name}
+          </p>
+          <h1>{course.title}</h1>
           <p className="lead">{course.description}</p>
         </div>
       </div>
       <Mascot
         state="thinking"
-        message={`We’ll explore ${course.subject} one idea at a time. This is a preview of the journey ahead.`}
+        message={`We’ll explore ${course.title} one idea at a time. This is a preview of the journey ahead.`}
         compact
       />
       <div className="course-layout">
@@ -121,11 +167,11 @@ export function CourseOverview() {
           </p>
           <ol className="topic-list">
             {course.topics.map((topic, i) => (
-              <li key={topic}>
+              <li key={topic.id}>
                 <span>{String(i + 1).padStart(2, "0")}</span>
                 <div>
-                  <h3>{topic}</h3>
-                  <p>Learning area preview</p>
+                  <h3>{topic.title}</h3>
+                  <p>Learning path preview</p>
                 </div>
                 <span aria-label="Upcoming">◌</span>
               </li>
@@ -134,14 +180,14 @@ export function CourseOverview() {
         </section>
         <aside className="course-start">
           <p className="eyebrow">A place to begin</p>
-          <h2>{course.title}</h2>
-          <p>Choose this world to keep it close in your home base.</p>
+          <h2>{world?.name}</h2>
+          <p>Add this course to keep it close in your home base.</p>
           <button className="button" disabled={busy} onClick={toggle}>
             {busy
               ? "Saving…"
               : selected
-                ? "Remove from my worlds"
-                : "Add to my worlds"}
+                ? "Remove from my courses"
+                : "Add to my courses"}
           </button>
           <button
             className="button secondary"

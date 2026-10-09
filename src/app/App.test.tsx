@@ -23,16 +23,17 @@ describe("student foundation routes", () => {
       await screen.findByText(/sample data · edits reset/i),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Mathematics" }),
+      screen.getByRole("heading", { name: "Algebra Foundations" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Biology" }),
+      screen.getByRole("heading", { name: "Cell Biology" }),
     ).toBeInTheDocument();
+    expect(screen.getByText("Pattern Valley")).toBeInTheDocument();
   });
   it("recovers from an unknown course", async () => {
     open("/preview/courses/missing");
     expect(
-      await screen.findByRole("heading", { name: "World not found" }),
+      await screen.findByRole("heading", { name: "Course not found" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "Back to courses" }),
@@ -58,5 +59,35 @@ describe("preview settings", () => {
     expect(
       await screen.findByText(/this preview doesn’t use any account/i),
     ).toBeInTheDocument();
+  });
+});
+describe("worlds and campus", () => {
+  it("lists the home world first, then every other world", async () => {
+    open("/preview/courses");
+    const worldHeadings = (await screen.findAllByRole("heading", { level: 2 }))
+      .map((heading) => heading.textContent);
+    expect(worldHeadings[0]).toContain("Pattern Valley");
+    expect(worldHeadings.join(" ")).toContain("Justice Quarter");
+    expect(screen.getByText(/Your home world · Mathematics/)).toBeInTheDocument();
+  });
+  it("shows the shared campus and labels social features as coming later", async () => {
+    open("/preview/campus");
+    expect(
+      await screen.findByRole("heading", { name: "Quizzness Campus" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/market and exploring are\s+coming later/)).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Travel to Pattern Valley →" }),
+    ).toHaveAttribute("href", "/preview/courses");
+  });
+});
+describe("profile major picker", () => {
+  it("uses the shared major picker and shows the home world", async () => {
+    open("/preview/profile");
+    const major = await screen.findByRole("combobox", {
+      name: "What are you studying?",
+    });
+    expect(major).toHaveValue("mathematics");
+    expect(screen.getByText("Home world: Pattern Valley")).toBeInTheDocument();
   });
 });

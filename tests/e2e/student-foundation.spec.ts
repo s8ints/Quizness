@@ -47,7 +47,8 @@ test("original identity is shared across the student journey", async ({
     "/preview/onboarding",
     "/preview/profile",
     "/preview/settings",
-    "/preview/courses/biology",
+    "/preview/courses/qz-bio-101",
+    "/preview/campus",
   ]) {
     await page.goto(route);
     await expect(page.getByRole("img", { name: /Panthy/ })).toBeVisible();
@@ -76,15 +77,15 @@ test("preview journey, course selection, profile, settings and refresh", async (
     .getByRole("link", { name: "Continue journey →", exact: true })
     .click();
   await expect(
-    page.getByRole("heading", { name: "Pattern Valley" }),
+    page.getByRole("heading", { name: "Algebra Foundations" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Continue learning →" }).click();
   await expect(
     page.getByText("Your adventure is being prepared."),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Remove from my worlds" }).click();
+  await page.getByRole("button", { name: "Remove from my courses" }).click();
   await expect(
-    page.getByRole("button", { name: "Add to my worlds" }),
+    page.getByRole("button", { name: "Add to my courses" }),
   ).toBeVisible();
   await page.getByRole("link", { name: "Your character", exact: true }).click();
   await page.getByLabel("First name", { exact: true }).fill("Sam");
@@ -95,7 +96,7 @@ test("preview journey, course selection, profile, settings and refresh", async (
   await page.getByRole("link", { name: "Home base" }).click();
   await expect(page.getByRole("heading", { name: /Hey, Sam/ })).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Mathematics", exact: true }),
+    page.getByRole("heading", { name: "Algebra Foundations", exact: true }),
   ).toHaveCount(0);
   await page.getByRole("link", { name: "Room settings", exact: true }).click();
   await page.getByLabel("Reduce interface motion").check();
@@ -106,7 +107,7 @@ test("preview journey, course selection, profile, settings and refresh", async (
     page.getByRole("heading", { name: /Hey, Explorer/ }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Mathematics", exact: true }),
+    page.getByRole("heading", { name: "Algebra Foundations", exact: true }),
   ).toBeVisible();
   expect(errors).toEqual([]);
 });
@@ -119,11 +120,19 @@ test("onboarding accepts a non-computing independent learner", async ({
   await page.getByRole("button", { name: "Continue →" }).click();
   await expect(page.getByLabel("I’m learning independently")).toBeChecked();
   await page.getByRole("button", { name: "Continue →" }).click();
+  await expect(
+    page.getByText(/Your home world is Justice Quarter/),
+  ).toBeVisible();
   await page.getByLabel("Prepare for tests").check();
+  await page.getByLabel(/QZ-LAW 101/).check();
   await page.getByRole("button", { name: "Continue →" }).click();
   await page.getByRole("button", { name: /Hoodie/ }).click();
   await page.getByRole("button", { name: "Enter my home base →" }).click();
   await expect(page.getByRole("heading", { name: /Hey, Rae/ })).toBeVisible();
+  await expect(page.getByText("Justice Quarter", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Legal Systems & Method" }),
+  ).toBeVisible();
 });
 test("mobile routes have no horizontal overflow and private routes guard access", async ({
   page,
@@ -134,7 +143,8 @@ test("mobile routes have no horizontal overflow and private routes guard access"
     "/",
     "/preview",
     "/preview/courses",
-    "/preview/courses/biology",
+    "/preview/courses/qz-bio-101",
+    "/preview/campus",
     "/preview/profile",
     "/preview/settings",
     "/preview/onboarding",
@@ -156,6 +166,6 @@ test("mobile routes have no horizontal overflow and private routes guard access"
   ).toBeDisabled();
   await page.goto("/preview/courses/missing");
   await expect(
-    page.getByRole("heading", { name: "World not found" }),
+    page.getByRole("heading", { name: "Course not found" }),
   ).toBeVisible();
 });
