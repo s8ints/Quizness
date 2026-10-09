@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quizzness | Practice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main">Skip to content</a>
+  <header>
+    <p><strong><a href="index.html">Quizzness</a></strong> | COMP1170 Group Proposal</p>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a> |
+      <a href="experience.html" aria-current="page">Practice</a> |
+      <a href="tutoring.html">Peer tutoring</a> |
+      <a href="feasibility.html">Feasibility</a> |
+      <a href="business-model.html">Business model</a> |
+      <a href="industry.html">Industry and competitors</a> |
+      <a href="team.html">Team and sources</a>
+    </nav>
+  </header>
+  <main id="main">
+
+    <h1>Code Kingdom: programming practice</h1>
+    <p>This is a sample of how a course activity could work. Read the explanation, try a question and use the feedback to decide what to practise next.</p>
+
+    <section id="learn">
+      <h2>Binary search trees</h2>
+      <p>In a binary search tree, smaller values go in the left subtree and larger values go in the right subtree. To insert a value, start at the root and compare it with each node until you reach an empty position.</p>
+      <p>For this example, the root is 50. Its left child is 30 and its right child is 70.</p>
+      <p><a href="#prototype">Try the question below</a></p>
+    </section>
+
+    <section id="experience">
+      <h2>Course topics</h2>
+      <p>We would organise the course into small activities. These are our planned areas for Code Kingdom:</p>
+      <ol>
+        <li>Variable Woods: values and types</li>
+        <li>Logic Ruins: conditions</li>
+        <li>Loop Gate: iteration</li>
+        <li>Tree Garden: binary search trees (sample below)</li>
+        <li>Function Mountain: functions</li>
+        <li>Final challenge: questions from different topics</li>
+      </ol>
+    </section>
+
+    <section id="prototype">
+      <h2>Practice question</h2>
+      <p>Where should <strong>20</strong> go in this tree?</p>
+      <pre aria-label="Binary search tree with root 50, left child 30 and right child 70.">    50
+   /  \
+  30  70</pre>
+      <p>Click an answer to read its explanation.</p>
+      <details>
+        <summary>As the left child of 30</summary>
+        <p><strong>Correct.</strong> 20 is smaller than 50, so go left to 30. It is also smaller than 30, so it becomes the left child of 30.</p>
+        <p><a href="#progress">View the sample progress report</a></p>
+      </details>
+      <details>
+        <summary>As the right child of 30</summary>
+        <p>Try again. A right child would need to be larger than 30, but 20 is smaller.</p>
+      </details>
+      <details>
+        <summary>As the left child of 70</summary>
+        <p>Start at 50. Since 20 is smaller than 50, it belongs in the left subtree. You should go through 30 rather than 70.</p>
+      </details>
+      <p>The answers open using HTML. This example does not record your attempt or change a score.</p>
+    </section>
+
+    <section id="progress">
+      <h2>Sample progress report</h2>
+      <p>These example scores show what a report from several activities could look like. They are not results from the question above.</p>
+      <table>
+        <caption>Example topic scores</caption>
+        <thead><tr><th scope="col">Topic</th><th scope="col">Score</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Binary tree concepts</th><td>80%</td></tr>
+          <tr><th scope="row">Insertion</th><td>100%</td></tr>
+          <tr><th scope="row">Traversal</th><td>60%</td></tr>
+          <tr><th scope="row">Deletion</th><td>40%</td></tr>
+        </tbody>
+      </table>
+      <p>Deletion is the lowest score in this example. The student could practise it again or ask a tutor to explain it.</p>
+      <p><a href="tutoring.html#booking">See the peer-tutoring example</a> | <a href="#prototype">Try the practice question again</a></p>
+    </section>
+
+    <section>
+      <h2>Adding more activities</h2>
+      <p>We plan to use question and game templates. A lecturer or approved creator would add course material, and a coordinator would check the questions and explanations before students use them.</p>
+      <p>The full service would need accounts and progress tracking. Those features are not part of this website yet.</p>
+    </section>
+  </main>
+  <footer>
+    <p>Quizzness Over Pleasure | Group project prototype, &copy; 2026</p>
+    <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
+  </footer>
+</body>
+</html>
