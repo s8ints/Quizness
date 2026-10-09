@@ -1,0 +1,75 @@
+import type { Course } from "../types/content";
+// Sample catalogue. "QZ-" codes are fictional, not real university courses.
+const course = (
+  id: string,
+  code: string,
+  title: string,
+  worldId: string,
+  description: string,
+  topics: string[],
+): Course => ({
+  id,
+  code,
+  title,
+  worldId,
+  description,
+  topics: topics.map((topic, index) => ({
+    id: `${id}-topic-${index + 1}`,
+    title: topic,
+  })),
+});
+export const courses: Course[] = [
+  course("qz-math-101", "QZ-MATH 101", "Algebra Foundations", "mathematics",
+    "Build confidence with expressions, equations, and functions.",
+    ["Expressions & equations", "Linear functions", "Applied problems"]),
+  course("qz-math-102", "QZ-MATH 102", "Introductory Statistics", "mathematics",
+    "Describe data and reason about uncertainty.",
+    ["Describing data", "Probability basics", "Drawing conclusions"]),
+  course("qz-bus-101", "QZ-BUS 101", "Principles of Management", "business",
+    "Understand how organisations plan, decide, and lead.",
+    ["Planning & decisions", "Organising teams", "Leading people"]),
+  course("qz-acc-101", "QZ-ACC 101", "Financial Accounting Basics", "business",
+    "Read and record the financial story of an organisation.",
+    ["The accounting equation", "Recording transactions", "Financial statements"]),
+  course("qz-bio-101", "QZ-BIO 101", "Cell Biology", "biology",
+    "Explore the structures and processes inside living cells.",
+    ["Cells & structures", "Cell processes", "Systems & connections"]),
+  course("qz-chem-101", "QZ-CHEM 101", "General Chemistry", "biology",
+    "See how atoms, bonds, and reactions shape matter.",
+    ["Atoms & elements", "Chemical bonds", "Reactions"]),
+  course("qz-comp-101", "QZ-COMP 101", "Programming Fundamentals", "computing",
+    "Practise the thinking behind programs.",
+    ["Variables & values", "Conditions & loops", "Problem solving"]),
+  course("qz-comp-102", "QZ-COMP 102", "Data Structures", "computing",
+    "Organise information so programs stay fast and clear.",
+    ["Lists & arrays", "Stacks & queues", "Searching & sorting"]),
+  course("qz-psy-101", "QZ-PSY 101", "Introduction to Psychology", "psychology",
+    "Meet the big ideas behind mind and behaviour.",
+    ["Research methods", "Memory & learning", "Social behaviour"]),
+  course("qz-psy-102", "QZ-PSY 102", "Developmental Psychology", "psychology",
+    "Follow how people grow and change across a lifetime.",
+    ["Early development", "Adolescence", "Adulthood"]),
+  course("qz-law-101", "QZ-LAW 101", "Legal Systems & Method", "law",
+    "Learn how laws are made, read, and applied.",
+    ["Sources of law", "Reading cases", "Legal reasoning"]),
+  course("qz-law-102", "QZ-LAW 102", "Contract Law Basics", "law",
+    "Understand what makes an agreement binding.",
+    ["Offer & acceptance", "Consideration", "Breach & remedies"]),
+  course("qz-hist-101", "QZ-HIST 101", "Caribbean History", "humanities",
+    "Trace the people and events that shaped the region.",
+    ["Early societies", "Colonial era", "Independence movements"]),
+  course("qz-lang-101", "QZ-LANG 101", "Academic Writing", "humanities",
+    "Shape clear arguments in written English.",
+    ["Building an argument", "Using sources", "Revising your work"]),
+];
+export const getCourse = (id: string) =>
+  courses.find((course) => course.id === id);
+export const coursesInWorld = (worldId: string) =>
+  courses.filter((course) => course.worldId === worldId);
+export const learningGoals = [
+  "Understand difficult concepts",
+  "Prepare for tests",
+  "Practise regularly",
+  "Track my progress",
+  "Enjoy studying more",
+];
