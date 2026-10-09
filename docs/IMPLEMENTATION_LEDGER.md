@@ -61,3 +61,7 @@ Pixel verification: unit suite 19/19 and production build pass. Browser tests ex
 ## Review follow-up — 2026-10-08
 
 First commit made on local branch `jolicia` (no remote). Stale "provider unresolved"/"Phase 1 = gameplay" doc statements corrected or marked Historical in place. Migration 003 drops the hard-coded course/avatar CHECK lists (app-side validation remains); not applied live. Further commits on this branch cover accessibility, image weight and small bugs.
+
+## Majors, worlds, courses and campus — 2026-10-08
+
+Content split into src/data/worlds.ts, majors.ts and courses.ts (types in src/types/content.ts). Majors map to seven worlds (three new, provisional names) or to Quizzness Campus. Onboarding/profile share MajorFields with optional year of study; onboarding lists home-world courses first. New /campus page. Migration 004 (not applied live). A mid-width header overflow caused by the fifth nav link was found in manual browser checks and fixed; an 820px e2e check now guards it. Verification: 36 unit tests, 5 browser tests, production build.

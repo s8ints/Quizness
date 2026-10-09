@@ -13,9 +13,10 @@ Phase 1 builds the student-facing foundation: public welcome, real signup/login,
 | `/` | Explain Quizzness and offer signup/login | Public |
 | `/signup` | First name, last name, email, password | Public |
 | `/login` | Sign in and access recovery | Public |
-| `/onboarding` | Study interests, optional institution, goals, avatar | Signed in |
+| `/onboarding` | Major (sets home world), optional year of study, optional institution, goals, courses this semester, avatar | Signed in |
 | `/dashboard` | Continue Journey, progression preview, worlds, goals, avatar | Signed in and onboarded |
-| `/courses` | Selected/enrolled courses and discovery/empty state | Signed in and onboarded |
+| `/courses` | Worlds: home world first, then every other world's sample courses | Signed in and onboarded |
+| `/campus` | Shared school hub (presentation only; social features later) | Signed in and onboarded |
 | `/courses/:courseId` | Course overview and future learning entry | Signed in and onboarded |
 | `/profile` | Basic student identity and avatar | Signed in and onboarded |
 | `/settings` | Profile/preferences and logout | Signed in and onboarded |

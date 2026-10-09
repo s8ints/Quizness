@@ -1,5 +1,9 @@
 # Decisions log
 
+## 2026-10-08 — Majors set a home world; courses are separate; campus hub
+
+Following the original requirements: a student's major sets their home world, and courses (chosen separately, from any world) are learning paths inside worlds. Related majors share a world (Accounting → Enterprise Quarter; Chemistry → Living Grove, now labelled "Life sciences"; History and Languages → Story Harbour). Three new worlds were added with **provisional** names: Mindscape Gardens (Psychology), Justice Quarter (Law), Story Harbour (History & Languages). "Other" majors start at Quizzness Campus, the shared school hub every student can visit, until their own world exists. The campus page is presentation only; meeting classmates, the market and exploring are later work. Year of study is an optional list. Sample courses use fictional `QZ-` codes. Migration 004 adds `major_id` and `year_of_study` (length checks only). No movement, spawn positions or per-school campuses are implemented.
+
 ## 2026-10-08 — Documentation cleanup and app-side content IDs
 
 Outdated "provider unresolved", "no code exists yet" and "Phase 1 = gameplay slice" statements are corrected or marked `> Historical:` in place; no source text is deleted. Current status: Phase 1 is the student foundation built with Vite + React Router + Tailwind/custom CSS; Supabase Auth/Postgres is integrated in code but not live-verified; gameplay is Phase 2 and bosses/connected progression Phase 3.

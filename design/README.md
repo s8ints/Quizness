@@ -10,6 +10,10 @@ Room shell refinement: the user identified the boxed logo, large separate greeti
 
 The original identity is a Phase 1 requirement. Do not replace, remove, redesign or genericize Panthy, the supplied characters, campus artwork or approved palette. Inspect the original references before changing UI. Product category remains adaptive tertiary learning across subjects.
 
+## Worlds and campus
+
+Seven worlds use the existing accent classes and text symbols; none has world artwork yet. Mindscape Gardens, Justice Quarter and Story Harbour are provisional names. The campus page reuses the unchanged quizzness-campus.png as the shared school hub.
+
 ## Colours
 
 | Token | Exact approved value |

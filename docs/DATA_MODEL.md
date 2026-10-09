@@ -15,9 +15,11 @@ Keep current single-concept/binary choice records as limited demo proposals. Do 
 | Record | Fields and owner |
 | --- | --- |
 | Auth identity | Provider-managed user ID, email, verification/session state; no password stored by app |
-| Student profile | userId, firstName, lastName, studyField, institution? or independent-learning choice, goalIds, avatarId, onboardingCompletedAt? |
+| Student profile | userId, firstName, lastName, studyField (display label), majorId, yearOfStudy?, institution? or independent-learning choice, goalIds, avatarId, onboardingCompletedAt? |
 | Preferences | userId, reduced-motion override if offered, other implemented settings only |
-| Course catalogue | id, code?, title, description, theme metadata; initial authored sample catalogue |
+| World | id, name, subject, description, accent, symbol (src/data/worlds.ts); the campus hub is separate |
+| Major | id, label, worldId; the home world, or the campus when none exists yet (src/data/majors.ts) |
+| Course catalogue | id, code, title, worldId, description, topics {id, title}; sample `QZ-` courses (src/data/courses.ts) |
 | Course selection | userId, courseId; separate a personal selection from official institutional enrollment |
 | Learning preview | Explicit fixture source marker, sample XP/level/progress/goals; excluded from real earned-progress records |
 
