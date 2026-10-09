@@ -41,8 +41,15 @@ export function Room() {
     let game: { destroy: (removeCanvas: boolean) => void } | undefined;
     setReady(false);
     setError(false);
-    import("../game/createRoomGame")
-      .then(({ createRoomGame }) => {
+    Promise.all([
+      import("../game/createRoomGame"),
+      fetch("/sprites/students/students.json").then((response) => {
+        if (!response.ok)
+          throw new Error("Student animation manifest could not load");
+        return response.json();
+      }),
+    ])
+      .then(([{ createRoomGame }, manifest]) => {
         if (cancelled || !host.current) return;
         game = createRoomGame(
           host.current,
@@ -72,6 +79,8 @@ export function Room() {
           () => {
             if (!cancelled) setError(true);
           },
+          manifest,
+          profile.reduced_motion,
         );
       })
       .catch(() => {
@@ -93,7 +102,7 @@ export function Room() {
       window.removeEventListener("blur", clear);
       document.removeEventListener("visibilitychange", clear);
     };
-  }, [profile.avatar_id, retry]);
+  }, [profile.avatar_id, profile.reduced_motion, retry]);
   return (
     <div className="exploration-page">
       <div className="exploration-heading">
@@ -124,6 +133,8 @@ export function Room() {
           data-ready={ready && !error}
           data-player-x={snapshot.x.toFixed(1)}
           data-player-y={snapshot.y.toFixed(1)}
+          data-animation={snapshot.animation}
+          data-frame={snapshot.frame}
           onBlur={stop}
           onKeyDown={(event) => {
             if (event.altKey || event.ctrlKey || event.metaKey) return;
@@ -301,9 +312,9 @@ export function Room() {
         </nav>
       </details>
       <p className="prototype-note">
-        Movement prototype · original still-pose character artwork. Directional
-        walking frames and final room art are the next asset milestone. Campus
-        opens the existing campus page for now.
+        Movement prototype · supplied student idle and walk animations. Side and
+        upward views use the supplied temporary frames; final room art is still
+        pending. Campus opens the existing campus page for now.
       </p>
     </div>
   );

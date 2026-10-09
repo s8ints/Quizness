@@ -1,5 +1,18 @@
 import { test, expect } from "@playwright/test";
 
+test("reduced motion keeps student frames still while movement remains available",async({page})=>{
+  await page.emulateMedia({reducedMotion:"reduce"});
+  await page.goto("/preview/room");
+  const room=page.getByRole("group",{name:"Walkable student room",exact:true});
+  await expect(room).toHaveAttribute("data-ready","true",{timeout:15000});
+  await room.focus();await page.keyboard.down("ArrowLeft");
+  await expect(room).toHaveAttribute("data-animation","walk-left");
+  await expect.poll(async()=>Number(await room.getAttribute("data-player-x"))).toBeLessThan(300);
+  await expect(room).toHaveAttribute("data-frame","0");
+  await page.keyboard.up("ArrowLeft");
+  await expect(room).toHaveAttribute("data-animation","idle");
+});
+
 test("room movement, wall collision, focus, destinations and repeat mounting", async ({
   page,
 }) => {
@@ -14,8 +27,13 @@ test("room movement, wall collision, focus, destinations and repeat mounting", a
   await expect(page.locator("canvas")).toHaveCount(1);
   await room.focus();
   await page.keyboard.down("ArrowRight");
+  await expect(room).toHaveAttribute("data-animation", "walk-right");
+  await expect
+    .poll(async () => Number(await room.getAttribute("data-frame")))
+    .toBeGreaterThan(0);
   await page.waitForTimeout(350);
   await page.keyboard.up("ArrowRight");
+  await expect(room).toHaveAttribute("data-animation", "idle");
   await expect
     .poll(async () => Number(await room.getAttribute("data-player-x")))
     .toBeGreaterThan(340);
@@ -89,7 +107,9 @@ test("room mobile joystick releases, layout fits, and failed assets keep navigat
     path: "docs/previews/room-movement-mobile.png",
     fullPage: true,
   });
-  await page.route("**/brand/student-characters.png", (route) => route.abort());
+  await page.route("**/sprites/students/fern-idle.png", (route) =>
+    route.abort(),
+  );
   await page.reload();
   await expect(
     page.getByText("The room couldn’t load.", { exact: false }),

@@ -1,5 +1,11 @@
 import Phaser from "phaser";
 import {
+  type StudentManifest,
+  studentSprites,
+  animationForMovement,
+  type StudentAnimation,
+} from "./studentAnimation";
+import {
   movePlayer,
   nearDestination,
   room,
@@ -7,7 +13,11 @@ import {
   type Destination,
 } from "./room";
 
-export type RoomSnapshot = Point & { nearby?: Destination };
+export type RoomSnapshot = Point & {
+  nearby?: Destination;
+  animation?: StudentAnimation;
+  frame?: number;
+};
 export function createRoomGame(
   parent: HTMLElement,
   avatarId: string,
@@ -15,15 +25,33 @@ export function createRoomGame(
   onReady: () => void,
   onUpdate: (state: RoomSnapshot) => void,
   onError: () => void,
+  studentManifest: StudentManifest,
+  reducedMotion = false,
 ) {
+  const student = studentSprites(avatarId, studentManifest);
+  const animations = Object.keys(student.animations) as StudentAnimation[];
+  const frameConfig = {
+    frameWidth: studentManifest.frameWidth,
+    frameHeight: studentManifest.frameHeight,
+  };
   class RoomScene extends Phaser.Scene {
-    private player!: Phaser.GameObjects.Image;
-    private shadow!: Phaser.GameObjects.Ellipse;
+    private player!: Phaser.GameObjects.Sprite;
+    private shadow!: Phaser.GameObjects.Image;
     private marker!: Phaser.GameObjects.Rectangle;
     private position = { ...room.spawn };
     private lastReport = 0;
     preload() {
-      this.load.image("students", "/brand/student-characters.png");
+      for (const name of animations)
+        this.load.spritesheet(
+          name,
+          `/sprites/students/${student.animations[name].file}`,
+          frameConfig,
+        );
+      this.load.spritesheet(
+        "student-shadow",
+        `/sprites/students/${student.shadow.day}`,
+        frameConfig,
+      );
       this.load.svg("panthy", "/brand/panthy-pixel.svg", {
         width: 64,
         height: 64,
@@ -31,7 +59,11 @@ export function createRoomGame(
       this.load.once("loaderror", onError);
     }
     create() {
-      if (!this.textures.exists("students") || !this.textures.exists("panthy"))
+      if (
+        animations.some((name) => !this.textures.exists(name)) ||
+        !this.textures.exists("student-shadow") ||
+        !this.textures.exists("panthy")
+      )
         return;
       const g = this.add.graphics();
       const dark = 0x1b4332,
@@ -110,32 +142,22 @@ export function createRoomGame(
       block(280, 378, 80, 6, purple);
       block(284, 360, 72, 18, lavender);
       this.add.image(236, 150, "panthy").setDisplaySize(32, 32).setDepth(150);
-      const texture = this.textures.get("students");
-      const source = texture.getSourceImage() as HTMLImageElement;
-      const ids = ["fern", "sun", "sky", "headphones", "books", "glasses"];
-      const index = Math.max(0, ids.indexOf(avatarId));
-      const fw = Math.floor(source.width / 3),
-        fh = Math.floor(source.height / 2);
-      texture.add(
-        "selected",
-        0,
-        (index % 3) * fw,
-        Math.floor(index / 3) * fh,
-        fw,
-        fh,
-      );
-      this.shadow = this.add.ellipse(
-        this.position.x,
-        this.position.y,
-        24,
-        8,
-        dark,
-        0.22,
-      );
+      for (const name of animations)
+        this.anims.create({
+          key: name,
+          frames: this.anims.generateFrameNumbers(name, {
+            start: 0,
+            end: student.animations[name].frames - 1,
+          }),
+          frameRate: student.animations[name].fps,
+          repeat: -1,
+        });
+      this.shadow = this.add
+        .image(this.position.x, this.position.y, "student-shadow", 0)
+        .setOrigin(0.5, 0.91);
       this.player = this.add
-        .image(this.position.x, this.position.y, "students", "selected")
-        .setOrigin(0.5, 0.95)
-        .setDisplaySize(34, 76);
+        .sprite(this.position.x, this.position.y, "idle", 0)
+        .setOrigin(0.5, 0.91);
       this.marker = this.add
         .rectangle(0, 0, 20, 10, lavender, 0.3)
         .setStrokeStyle(2, purple)
@@ -145,7 +167,18 @@ export function createRoomGame(
     }
     update(time: number, delta: number) {
       if (!this.player) return;
+      const previous = this.position;
       this.position = movePlayer(this.position, getInput(), delta / 1000);
+      const animation = animationForMovement(previous, this.position);
+      if (
+        reducedMotion ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        this.player.anims.stop();
+        this.player.setTexture(animation, 0);
+      } else this.player.play(animation, true);
+      const frame = Number(this.player.frame.name);
+      this.shadow.setFrame(frame % student.shadow.frames);
       this.player
         .setPosition(this.position.x, this.position.y)
         .setDepth(this.position.y);
@@ -156,7 +189,7 @@ export function createRoomGame(
       this.marker.setVisible(!!nearby);
       if (nearby) this.marker.setPosition(nearby.x, nearby.y).setDepth(1);
       if (time - this.lastReport > 80) {
-        onUpdate({ ...this.position, nearby });
+        onUpdate({ ...this.position, nearby, animation, frame });
         this.lastReport = time;
       }
     }

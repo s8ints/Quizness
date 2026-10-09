@@ -86,6 +86,8 @@ Do not reuse the original design's proposed Panthy/refill prices or A–F grade 
 
 ## What to ask next, only if needed
 
+Implementation update, 2026-10-09: the user supplied student animation sheets in public/sprites/students and these are now connected to the walkable room for all six avatar IDs. Do not ask the user to provide sheets already present. Their manifest explicitly marks side/up views as stopgaps; use that metadata when discussing final directional artwork. See the latest animation integration entry in IMPLEMENTATION_LEDGER.md. The original source sheet is still poses, but the separate animation assets now exist.
+
 The approved adjustment document identifies the remaining tuning decisions: Panthy's free-use limit, currency earning rates/prices, related practice sets qualifying for refills, and Speed challenge durations/bonuses. Additional implementation needs include matching walk sprites/map assets, the first animated avatar and eventual real COMP-101 language.
 
 The original character sheet is still poses, not walking animation frames; illustrations are not automatically playable collision maps. Preserve originals and obtain/create matching assets through a separately specified asset workflow. Do not treat planning as proof those assets exist.

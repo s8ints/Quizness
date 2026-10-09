@@ -1,26 +1,47 @@
-Quizzness - COMP1170 Group Proposal
+Quizzness - COMP1170 group proposal website
 
-Open index.html in a browser. No installation is needed.
-The seven pages use basic HTML and a small external stylesheet.
-There is no JavaScript, database or account system.
+Extract the ZIP and open index.html in a browser. No installation needed.
 
-Pages:
-- index.html: concept, problem, users and sample course links
-- experience.html: practice question, feedback and example progress
-- tutoring.html: tutor request examples and GiveBack records
-- feasibility.html: feasibility analysis and pilot plan
-- business-model.html: revenue, costs and model comparison
-- industry.html: competitors and Five Forces
-- team.html: group members, sources and proposed next step
+Files:
+- index.html: complete investor-facing case in seven main sections.
+- experience.html: sample accounting challenge, feedback, retry, progress,
+  fictional tutor and GiveBack Wallet.
+- signup.html: demonstration fields; Continue to Learning Demo is a page link.
+- sources.html: full references, credits and complete aggregate survey results.
+- styles.css: one shared stylesheet using basic textbook techniques.
+- assets/: supplied Quizzness logo and pixel tiger PNGs.
 
-Click the practice answers or session options to open their explanations.
-All scores, tutor details and GiveBack totals are examples. No bookings
-are sent and no progress is saved. GiveBack recognition would require
-a formal university agreement.
+Navigation: Home, Learning Demo, Sign Up, Sources.
+Use ordinary links to move between pages and labelled feedback sections.
+The prototype does not create accounts, save progress or send form data.
+There is no JavaScript, database, matching, booking, verification or payment.
+The signup preview asks for no password or student ID and has no submit button.
+Sample tutors, scores and hours are fictional. GiveBack recognition requires
+formal institutional approval; no partnership is established.
 
-Before submission, the group still needs to add Isaiah's surname,
-member roles, exact textbook references, the assigned course-case
-comparison and evidence about local demand. No pilot results are claimed.
+Technical basis: Learning Web Design, fifth edition, Chapters 4-9 and 11-17.
+Semantic structure, fragment links, images, tables and labels use Chapters 4-9.
+Selectors, colour, fonts, spacing and dimensions use Chapters 11-14.
+Flexible images use Chapter 17, p. 490. Overflow uses Chapter 14, p. 360.
+The layout wraps naturally on narrow screens, with scrollable table wrappers.
+No frameworks, external UI libraries or production backend are included.
 
-The homepage uses mascot/tiger-pixel.svg, an original project asset.
-preview-desktop.png belongs to an older version of the website.
+Sources and survey: references are on sources.html. All 28 supplied response
+rows are used in the aggregate tables. Multiple selections are split by the
+CSV's semicolon delimiter; percentages use 28. Timestamps and individual
+written responses are not published. Stated interest is not observed adoption.
+
+Unresolved: Quizzness is a working name with a possible same-name service
+flagged in the proposal. Confirm Isaiah's surname, proposed team roles,
+logo/tiger/palette attribution and permissions, and survey provenance.
+Every group member must sign the required plagiarism declaration. No
+signatures or institutional approvals have been invented.
+
+The included files are the four requested HTML pages, stylesheet, two used
+PNG assets and this README. The separate game app and older supporting
+pages are not included in the submission ZIP.
+
+Verification: markup, local links, packaged assets, five form labels, seven
+homepage sections and headline survey calculations checked. In-app Chromium
+preview tested at 375px and 1280px, including signup continuation and answer
+links. Separate Chrome and Firefox were not available for this session.

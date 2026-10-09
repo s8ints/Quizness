@@ -93,3 +93,11 @@ Final review: fresh room_review agent inspected movement, inputs, cleanup, failu
 Final verification: npm run test passes 49/49 across 11 files; npm run build succeeds; npm run test:e2e passes 7/7. Browser coverage includes movement, pause, walls, Panthy help, destinations, SPA remount/single canvas, mobile joystick release after keyboard focus, small-screen overflow and failed-asset navigation fallback, plus all existing foundation flows. Desktop/mobile room screenshots generated and inspected in docs/previews/room-movement*.png.
 
 Build limitation: Phaser's lazy scene chunk is about 1.21 MB (334 KB gzip); Vite reports a chunk-size warning, not a build failure. Initial pages do not load that scene chunk. Final map art and directional walk animation have not been approved or implemented; this is the first playable movement proof, not completion of all Phase 2 maps.
+
+## Supplied student animation integration — 2026-10-09
+
+User stated the character animations were present. Located public/sprites/students/students.json and all six students' idle/walk/shadow sheets; inspected the supplied walk sheet and source metadata. Connected selected-avatar sheets to Phaser without changing any supplied PNGs or original art. Frame dimensions 64×136, idle 2 frames/1.5 fps, walk 8 frames/10 fps; frame scaling is 1× in scene coordinates. Shadow frames sync with character frames. Direction follows actual post-collision movement, so blocked movement returns to idle. Profile/system reduced-motion keeps animation frames still while retaining travel.
+
+Manifest is fetched from its public URL (no duplicate metadata file or runtime import from public). Load failures retain semantic destinations/retry. Room copy now acknowledges supplied animation and temporary side/up views. Side/back stopgaps remain as labelled by the asset author; final environment art remains pending.
+
+Animation selector tests observed RED→GREEN. Final checks: 51/51 unit tests, production build passed, 8/8 browser tests. Browser coverage explicitly verifies right-walk frames advance, release returns to idle, reduced-motion frame zero with continued movement, failed sprite navigation fallback and existing room/student flows.

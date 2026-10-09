@@ -3,97 +3,124 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quizzness | Practice</title>
+  <title>Quizzness | Learning Demo</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a href="#main">Skip to content</a>
   <header>
-    <p><strong><a href="index.html">Quizzness</a></strong> | COMP1170 Group Proposal</p>
-    <nav aria-label="Main navigation">
-      <a href="index.html">Home</a> |
-      <a href="experience.html" aria-current="page">Practice</a> |
-      <a href="tutoring.html">Peer tutoring</a> |
-      <a href="feasibility.html">Feasibility</a> |
-      <a href="business-model.html">Business model</a> |
-      <a href="industry.html">Industry and competitors</a> |
-      <a href="team.html">Team and sources</a>
-    </nav>
+    <p><strong>Quizzness</strong> | COMP1170 Group Proposal</p>
+    <nav><a href="index.html">Home</a> | <strong>Learning Demo (current page)</strong> | <a href="signup.html">Sign Up</a> | <a href="sources.html">Sources</a></nav>
   </header>
   <main id="main">
 
-    <h1>Code Kingdom: programming practice</h1>
-    <p>This is a sample of how a course activity could work. Read the explanation, try a question and use the feedback to decide what to practise next.</p>
+    <h1>A learner’s journey through Quizzness</h1>
+    <p>Learn, practise, understand, retry and get help. This accounting example shows the proposed workflow; it does not save answers, award points or send requests.</p>
+    <img src="assets/pixel-tiger.png" alt="The supplied purple pixel tiger holding a green study card." width="140">
+    <p><a href="sources.html#source-artwork">Artwork credit</a>.</p>
+    <nav><a href="#learn">Learn</a> | <a href="#prototype">Practise</a> | <a href="#retry">Retry</a> | <a href="#progress">Progress</a> | <a href="#tutoring">Get help</a> | <a href="#wallet">GiveBack Wallet</a></nav>
 
     <section id="learn">
-      <h2>Binary search trees</h2>
-      <p>In a binary search tree, smaller values go in the left subtree and larger values go in the right subtree. To insert a value, start at the root and compare it with each node until you reach an empty position.</p>
-      <p>For this example, the root is 50. Its left child is 30 and its right child is 70.</p>
-      <p><a href="#prototype">Try the question below</a></p>
-    </section>
-
-    <section id="experience">
-      <h2>Course topics</h2>
-      <p>We would organise the course into small activities. These are our planned areas for Code Kingdom:</p>
-      <ol>
-        <li>Variable Woods: values and types</li>
-        <li>Logic Ruins: conditions</li>
-        <li>Loop Gate: iteration</li>
-        <li>Tree Garden: binary search trees (sample below)</li>
-        <li>Function Mountain: functions</li>
-        <li>Final challenge: questions from different topics</li>
-      </ol>
+      <h2>1. Learn: the accounting equation</h2>
+      <p><strong>Assets = Liabilities + Owner’s equity.</strong> Subtract liabilities from assets to find owner’s equity. For example, assets of BBD 900 and liabilities of BBD 300 give equity of BBD 600.</p>
+      <p>Concept reference: <a href="https://openstax.org/books/principles-financial-accounting/pages/2-3-prepare-an-income-statement-statement-of-owners-equity-and-balance-sheet">OpenStax, Principles of Accounting, section 2.3</a>. The practice numbers and questions below are illustrative examples written for this prototype.</p>
+      <p><a class="action" href="#prototype">Start the practice question</a></p>
     </section>
 
     <section id="prototype">
-      <h2>Practice question</h2>
-      <p>Where should <strong>20</strong> go in this tree?</p>
-      <pre aria-label="Binary search tree with root 50, left child 30 and right child 70.">    50
-   /  \
-  30  70</pre>
-      <p>Click an answer to read its explanation.</p>
-      <details>
-        <summary>As the left child of 30</summary>
-        <p><strong>Correct.</strong> 20 is smaller than 50, so go left to 30. It is also smaller than 30, so it becomes the left child of 30.</p>
-        <p><a href="#progress">View the sample progress report</a></p>
-      </details>
-      <details>
-        <summary>As the right child of 30</summary>
-        <p>Try again. A right child would need to be larger than 30, but 20 is smaller.</p>
-      </details>
-      <details>
-        <summary>As the left child of 70</summary>
-        <p>Start at 50. Since 20 is smaller than 50, it belongs in the left subtree. You should go through 30 rather than 70.</p>
-      </details>
-      <p>The answers open using HTML. This example does not record your attempt or change a score.</p>
+      <h2>2. Practise: balance the books</h2>
+      <p>A small business has assets of BBD 1,200 and liabilities of BBD 450. What is its owner’s equity?</p>
+      <p>Choose an answer link to see its explanation.</p>
+      <ul>
+        <li><a href="#answer-1">BBD 750</a></li>
+        <li><a href="#answer-2">BBD 1,650</a></li>
+        <li><a href="#answer-3">BBD 450</a></li>
+      </ul>
+      <h3 class="positive" id="answer-1">BBD 750: correct</h3>
+      <p>1,200 − 450 = 750. Check it: 450 + 750 = 1,200, so the equation balances.</p>
+      <p><a href="#retry">Try a related question</a>.</p>
+      <h3 id="answer-2">BBD 1,650: try again</h3>
+      <p>This adds liabilities to assets. To find equity, subtract the BBD 450 liability from the BBD 1,200 assets.</p>
+      <p><a href="#prototype">Back to the question</a> | <a href="#learn">Review the explanation</a></p>
+      <h3 id="answer-3">BBD 450: try again</h3>
+      <p>BBD 450 is the liability already given. Owner’s equity is the remaining BBD 750.</p>
+      <p><a href="#prototype">Back to the question</a> | <a href="#tutoring">View peer help</a></p>
+    </section>
+
+    <section id="retry">
+      <h2>3. Retry: apply the same concept</h2>
+      <p>Another business has assets of BBD 800 and owner’s equity of BBD 500. What are its liabilities?</p>
+      <ul>
+        <li><a href="#retry-correct">BBD 300</a></li>
+        <li><a href="#retry-feedback">BBD 1,300</a></li>
+      </ul>
+      <h3 class="positive" id="retry-correct">BBD 300: correct</h3>
+      <p>800 − 500 = 300. Check: 300 + 500 = 800.</p>
+      <p><a href="#progress">View a sample progress report</a>.</p>
+      <h3 id="retry-feedback">BBD 1,300: try again</h3>
+      <p>Adding would make liabilities exceed the assets while equity is positive. Subtract equity from assets: 800 − 500.</p>
+      <p><a href="#retry">Retry the question</a> | <a href="#tutoring">Get peer help</a></p>
     </section>
 
     <section id="progress">
-      <h2>Sample progress report</h2>
-      <p>These example scores show what a report from several activities could look like. They are not results from the question above.</p>
-      <table>
-        <caption>Example topic scores</caption>
-        <thead><tr><th scope="col">Topic</th><th scope="col">Score</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Binary tree concepts</th><td>80%</td></tr>
-          <tr><th scope="row">Insertion</th><td>100%</td></tr>
-          <tr><th scope="row">Traversal</th><td>60%</td></tr>
-          <tr><th scope="row">Deletion</th><td>40%</td></tr>
-        </tbody>
-      </table>
-      <p>Deletion is the lowest score in this example. The student could practise it again or ask a tutor to explain it.</p>
-      <p><a href="tutoring.html#booking">See the peer-tutoring example</a> | <a href="#prototype">Try the practice question again</a></p>
+      <h2>4. Review progress</h2>
+      <p>This is a fictional report from several activities. It does not change when you follow the answer links.</p>
+<div class="table-scroll">
+<table>
+<caption>Illustrative accounting progress</caption>
+<thead><tr><th scope="col">Topic</th><th scope="col">Sample result</th></tr></thead>
+<tbody>
+<tr><th scope="row">Accounting equation</th><td>4 of 5 correct</td></tr>
+<tr><th scope="row">Asset classification</th><td>3 of 5 correct</td></tr>
+<tr><th scope="row">Liability classification</th><td>2 of 5 correct</td></tr>
+</tbody>
+</table>
+</div>      <p>The learner could review liability classification or ask a tutor about it.</p>
+      <p><a href="#tutoring">View the sample accounting tutor</a>.</p>
     </section>
 
-    <section>
-      <h2>Adding more activities</h2>
-      <p>We plan to use question and game templates. A lecturer or approved creator would add course material, and a coordinator would check the questions and explanations before students use them.</p>
-      <p>The full service would need accounts and progress tracking. Those features are not part of this website yet.</p>
+    <section id="tutoring">
+      <h2>5. Get help: a sample tutor</h2>
+      <h3>Marcus Clarke — fictional accounting tutor</h3>
+      <p><strong>Topics:</strong> the accounting equation and classifying assets and liabilities.</p>
+      <p>In the proposed service, an institution-approved reviewer would check subject attainment, a teaching demonstration and a conduct agreement before approving a tutor. Marcus is not a verified real tutor.</p>
+      <h3 id="booking">Example session request</h3>
+      <p>The learner needs help distinguishing liabilities from owner’s equity.</p>
+      <ul>
+        <li><a href="#request-1">15-minute explanation</a></li>
+        <li><a href="#request-2">30-minute worked example</a></li>
+      </ul>
+      <h4 id="request-1">15-minute explanation</h4>
+      <p>Sample request: review the difference between liabilities and equity. A tutor would accept or propose another time.</p>
+      <h4 id="request-2">30-minute worked example</h4>
+      <p>Sample request: practise classifying items and balancing the equation, with time for questions.</p>
+      <p>These links do not send a booking. Approved GiveBack sessions would be free to learners under a funded partner programme.</p>
+      <h3 id="session">After a session</h3>
+      <p>Both participants would confirm the completed time. A coordinator would review eligibility and handle disputes. The learner would return to practice.</p>
+      <p><a href="#retry">Return to the retry activity</a> | <a href="#wallet">View the sample GiveBack record</a></p>
     </section>
+
+    <section id="wallet">
+      <h2>6. GiveBack Wallet</h2>
+      <p>Fictional record for Marcus, separate from the practice activity above:</p>
+<div class="table-scroll">
+<table>
+<caption>Illustrative service-time record</caption>
+<thead><tr><th scope="col">Record</th><th scope="col">Sample value</th></tr></thead>
+<tbody>
+<tr><th scope="row">Previously approved time</th><td>24 hours</td></tr>
+<tr><th scope="row">Latest session pending review</th><td>30 minutes</td></tr>
+<tr><th scope="row">Students helped in approved sessions</th><td>8</td></tr>
+</tbody>
+</table>
+</div>      <p>Pending time stays separate from approved hours. A certificate would report approved time only under the institution’s rules. Paid tutoring would be recorded separately and would not automatically earn service credit.</p>
+      <p><a class="action" href="index.html#next-step">Read the pilot proposal</a></p>
+    </section>
+  
   </main>
   <footer>
-    <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
-    <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
+    <p>Quizzness Over Pleasure | Static school prototype, 2026</p>
+    <p><a href="index.html">Home</a> | <a href="sources.html">Sources and credits</a></p>
   </footer>
 </body>
 </html>

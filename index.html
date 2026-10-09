@@ -9,68 +9,138 @@
 <body>
   <a href="#main">Skip to content</a>
   <header>
-    <p><strong><a href="index.html">Quizzness</a></strong> | COMP1170 Group Proposal</p>
-    <nav aria-label="Main navigation">
-      <a href="index.html" aria-current="page">Home</a> |
-      <a href="experience.html">Practice</a> |
-      <a href="tutoring.html">Peer tutoring</a> |
-      <a href="feasibility.html">Feasibility</a> |
-      <a href="business-model.html">Business model</a> |
-      <a href="industry.html">Industry and competitors</a> |
-      <a href="team.html">Team and sources</a>
-    </nav>
+    <p><strong>Quizzness</strong> | COMP1170 Group Proposal</p>
+    <nav><strong>Home (current page)</strong> | <a href="experience.html">Learning Demo</a> | <a href="signup.html">Sign Up</a> | <a href="sources.html">Sources</a></nav>
   </header>
   <main id="main">
 
-    <h1>Quizzness</h1>
-    <p><strong>Quizzness Over Pleasure</strong></p>
-    <img src="mascot/tiger-pixel.svg" alt="Rory, our purple tiger mascot holding a study card." width="140">
-    <p>Our idea is a website where university students can practise course topics through games and get help from peer tutors when they get stuck.</p>
-    <p><a href="experience.html#learn">Try the sample activity</a></p>
-
-    <section id="opportunity">
-      <h2>The problem</h2>
-      <p>Following an explanation in class and answering a question on your own are different things. We want to help students practise between classes and find someone to explain topics they are struggling with.</p>
-      <p>Study groups and WhatsApp chats can be useful, but our idea puts practice, feedback and peer support in one place. We still need interviews to find out how common these problems are and whether students would use Quizzness.</p>
-      <h3>Who would use it?</h3>
-      <ul>
-        <li><strong>Students:</strong> practise coursework and ask for help with specific topics.</li>
-        <li><strong>Peer tutors:</strong> help other students and record eligible GiveBack time.</li>
-        <li><strong>Universities and colleges:</strong> provide access and oversee course content and tutoring.</li>
-      </ul>
+    <section id="hero">
+      <img src="assets/quizzness-logo.png" alt="Quizzness logo with a student character, books and a graduation cap." width="180">
+      <img src="assets/pixel-tiger.png" alt="The purple pixel tiger, Quizzness’s learning companion." width="100">
+      <h1>Quizzness</h1>
+      <p><strong>Quizzness Over Pleasure</strong></p>
+      <h2>Turn difficult topics into practice you want to return to.</h2>
+      <p>Quizzness is a proposed platform that turns course topics into games and activities, connects learners with screened peer tutors, and records eligible GiveBack hours through an institution-approved programme.</p>
+      <p><a class="action" href="experience.html">Try a Sample Challenge</a></p>
+      <p>A static school prototype: no accounts, saved scores, bookings or payments.</p>
+      <p><a href="#problem">Explore the Proposal</a> | <a href="#problem">Problem</a> | <a href="#feasibility">Feasibility</a> | <a href="#model">Business model</a> | <a href="#competition">Competition</a> | <a href="#team">Team</a></p>
     </section>
 
-    <section id="dashboard">
-      <h2>How it would work</h2>
+    <section id="problem">
+      <h2>The problem and intended users</h2>
+      <p>Our starting segment is tertiary students in Barbados who need help applying course concepts outside class. Mathematics, accounting, languages sciences and computing are possible subjects. CSEC, CAPE and other Caribbean institutions would be later expansion options.</p>
+      <p>In our 28-response survey, 22 respondents (78.6%) reported difficulty understanding topics at least sometimes; 20 (71.4%) sometimes or frequently stopped studying because a topic felt difficult, confusing or boring. <a href="sources.html#source-survey">(Quizzness project team, 2026)</a></p>
+      <ul>
+        <li><strong>Learners:</strong> relevant practice, explanations and help with difficult topics.</li>
+        <li><strong>Peer tutors:</strong> a structured way to support others and record eligible service time.</li>
+        <li><strong>Institutions:</strong> the proposed paying customers, content reviewers and approval partners.</li>
+      </ul>
+      <p>Our hypothesis is that linking practice to peer help saves students effort. The survey does not establish that this workflow is better than existing study groups.</p>
+    </section>
+
+    <section id="product">
+      <h2>The core digital service</h2>
       <ol>
-        <li>Read the course material.</li>
-        <li>Try a game or practice question.</li>
-        <li>Check the feedback.</li>
-        <li>Practise the weak topic or ask a peer tutor for help.</li>
-        <li>Try again.</li>
+        <li>Select a course and review a short topic explanation.</li>
+        <li>Complete a challenge and read feedback on the answer.</li>
+        <li>Retry a related question and review progress.</li>
+        <li>Find a screened tutor for the same topic if help is still needed.</li>
+        <li>Confirm a completed session; a coordinator reviews eligible GiveBack time.</li>
       </ol>
-      <h3>Sample courses</h3>
-      <ul>
-        <li><a href="experience.html">Programming: Code Kingdom</a>. Try our binary search tree question.</li>
-        <li>Mathematics: Puzzle Temple. A planned second course, with no activity built yet.</li>
-      </ul>
-      <p>This prototype shows one practice question and a tutoring example. It does not create accounts, save scores or book sessions.</p>
+      <p><a href="experience.html">Follow an accounting learner through the sample journey</a>.</p>
+      <h3>Participation and scaling</h3>
+      <p>Reusable course activities could serve more learners. More approved tutors could improve subject and time coverage; learners who later demonstrate subject competence could apply to tutor. These are proposed benefits of participation, dependent on quality and availability. Human tutoring and content review still require time and coordination.</p>
+      <h3>Trust and GiveBack</h3>
+      <p>Proposed tutor screening includes subject attainment evidence, a teaching check and a conduct agreement. A coordinator would handle session confirmation and disputes. Hours count toward an institutional requirement only after formal recognition; paid sessions do not automatically earn service credit. A later rollout to minors needs a separate safeguarding process.</p>
     </section>
 
-    <section>
-      <h2>Our proposal</h2>
-      <p>We would start with Programming and Mathematics at one university. The main question is whether linking course practice to peer help gives students a reason to use the website regularly.</p>
-      <ul>
-        <li><a href="feasibility.html">Feasibility and our pilot plan</a></li>
-        <li><a href="business-model.html">How the business would earn money</a></li>
-        <li><a href="industry.html">Industry and competitors</a></li>
-        <li><a href="team.html">Our team, sources and next step</a></li>
-      </ul>
+    <section id="feasibility">
+      <h2>Feasibility and evidence</h2>
+      <p>Following Barringer and Ireland, we separate desirability from demand, and industry appeal from the initial target market. <a href="sources.html#source-entrepreneurship">(Barringer &amp; Ireland, 2019, pp. 110–121)</a></p>
+      <h3>Product/service desirability</h3>
+      <p>26/28 respondents (92.9%) rated identifying weak topics 4 or 5 out of 5. For targeted practice and immediate explanations, 27/28 (96.4%) gave those ratings to each question. Nineteen (67.9%) expressed interest in tutor or peer help. <a href="sources.html#source-survey">(Quizzness project team, 2026)</a></p>
+      <p>Gamification research reports positive learning-related effects with variation across studies; it supports testing the design, not promising higher grades. Peer-tutoring guidance stresses training and structured interaction, largely in school settings. Neither establishes the effectiveness of Quizzness. <a href="sources.html#source-gamification">(Sailer &amp; Homner, 2020)</a> <a href="sources.html#source-peer">(Education Endowment Foundation, n.d.)</a></p>
+      <p>Higher-education research supports exploring game-based engagement, but one longitudinal classroom study found lower motivation and exam scores in its gamified class. Adaptive-learning research supports investigating targeted practice, with implementation and evidence limits. We will test useful feedback rather than assume game elements improve grades. <a href="sources.html#source-subhash">(Subhash &amp; Cudney, 2018)</a> <a href="sources.html#source-hanus">(Hanus &amp; Fox, 2015)</a> <a href="sources.html#source-adaptive">(Du Plooy et al., 2024)</a></p>
+      <h3>Product/service demand</h3>
+      <p>21/28 (75.0%) would definitely or probably practise more with a game-like experience; 24/28 (85.7%) rated likelihood of trying the described platform 4 or 5. Eighteen (64.3%) preferred free access with optional premium features. These are stated intentions, not observed use or willingness to pay a tested price. <a href="sources.html#source-survey">(Quizzness project team, 2026)</a></p>
+      <h3>Industry attractiveness</h3>
+      <p>Quizlet and Kahoot! already offer practice and feedback. Our proposed position combines reviewed course activities with approved peer support. <a href="sources.html#source-quizlet">(Quizlet, n.d.)</a> <a href="sources.html#source-kahoot">(Kahoot!, n.d.)</a> </p><h3>Target-market attractiveness</h3><p>Our initial tertiary segment offers a focused place to test course relevance and peer support. The survey includes 17 bachelor’s students and other education levels; recruitment and location are not documented, so it cannot estimate demand across Barbados. <a href="sources.html#source-survey">(Quizzness project team, 2026)</a></p>
+      <h3>Our judgement</h3>
+      <p>Proceed with a small pilot only after securing a partner, reviewed activities and reliable tutor capacity. Interview institution buyers and tutors, then test two courses. Measure return use, learning checks, tutor attendance, review workload and delivery costs. Institutional demand, educational effectiveness and profitability remain unproven.</p>
+      <p><a href="sources.html#survey">Read the complete aggregate survey results and limitations</a>.</p>
     </section>
+
+    <section id="model">
+      <h2>Business model</h2>
+      <p><strong>Primarily standard:</strong> recurring institution licences, with optional student subscriptions and paid-tutoring commissions as later options. B2B2C describes selling to an institution that provides learner access; it does not establish disruption. <a href="sources.html#source-entrepreneurship">(Barringer &amp; Ireland, 2019, pp. 151–154)</a></p>
+      <ul>
+        <li><strong>Create value:</strong> relevant practice, explanatory feedback and a route to peer help.</li>
+        <li><strong>Deliver value:</strong> reviewed activities, institution partnerships and coordinated tutor access.</li>
+        <li><strong>Capture value:</strong> recurring licence revenue that funds content, hosting, screening and support.</li>
+      </ul>
+      <p>Reviewed question banks, subject expertise and a dependable tutor network are key resources. Content production, development, accessibility, coordination and support are key costs.</p>
+      <h3>Comparison with CoachUp</h3>
+      <p>The textbook’s CoachUp case matches athletes with screened coaches and captures revenue from paid coaching. Quizzness proposes a related matching function for subject support, but institution-funded access and approved volunteer sessions would be its core offer. Commission would apply only to optional paid tutoring. <a href="sources.html#source-entrepreneurship">(Barringer &amp; Ireland, 2019, p. 150)</a></p>
+      <p>Approved GiveBack sessions would remain free to learners under a funded partner programme. Optional paid tutoring would be separate; prices and costs still need testing.</p>
+    </section>
+
+    <section id="competition">
+      <h2>Industry and competition</h2>
+      <p>Current tools show game activities, self-paced practice and reporting as established offerings; research supports testing purposeful game design. These observations do not prove market growth or an unmet market. <a href="sources.html#source-gamification">(Sailer &amp; Homner, 2020)</a> <a href="sources.html#source-quizlet">(Quizlet, n.d.)</a> <a href="sources.html#source-kahoot">(Kahoot!, n.d.)</a></p>
+      <h3>The five competitive forces</h3>
+      <p>Our initial assessment: rivalry and substitutes are high because students have established practice tools and revision materials; new-entry pressure is moderate because simple quizzes are easy to build but trust takes time. Supplier power is moderate to high because tutors and reviewers influence quality and cost. Buyer power is high because institutions control purchases and learners have free alternatives. These are team judgements to test (Barringer &amp; Ireland, 2019, pp. 192–198).</p>
+      <h3>The four questions from Five Forces</h3>
+      <ol>
+        <li><strong>Is entry realistic?</strong> A narrow pilot is plausible; a full rollout depends on procurement, tutor supply and review capacity.</li>
+        <li><strong>Can we reduce forces that suppress profitability?</strong> Reusable activities and partner distribution may reduce costs. Free substitutes and coordination costs remain pressures.</li>
+        <li><strong>Is there a distinctive position?</strong> Reviewed course practice linked to approved peer tutoring and service records is our proposed position. Its value needs testing.</li>
+        <li><strong>Is the model difficult for existing firms to copy?</strong> Not yet demonstrated. Licensing and features are copyable; dependable partnerships and a trusted network could become stronger assets.</li>
+      </ol>
+      <p>Applied from Chapter 5, pp. 200–201. <a href="sources.html#source-entrepreneurship">(Barringer &amp; Ireland, 2019, pp. 200–201)</a> </p>
+<div class="table-scroll">
+<table>
+<caption>Alternatives compared with the proposed Quizzness service</caption>
+<thead><tr><th scope="col">Alternative</th><th scope="col">Practice and feedback</th><th scope="col">Peer help / service records</th><th scope="col">Access model</th></tr></thead>
+<tbody>
+<tr><th scope="row">Quizlet <a href="sources.html#source-quizlet">(Quizlet, n.d.)</a></th><td>Flashcards and graded test practice.</td><td>Approved tutor/hour system not verified in the cited page.</td><td>One free test round; further Test access through Quizlet Plus.</td></tr>
+<tr><th scope="row">Kahoot! <a href="sources.html#source-kahoot">(Kahoot!, n.d.)</a></th><td>Game activities, reports and self-paced assignments.</td><td>Approved tutor/hour system not verified in the cited page.</td><td>Free starting option and paid plans.</td></tr>
+<tr><th scope="row">Informal study groups <a href="sources.html#source-survey">(Quizzness project team, 2026)</a></th><td>Peer questions; explanations vary.</td><td>Peer help; formal records depend on the organiser.</td><td>Depends on the group.</td></tr>
+<tr><th scope="row">Notes and past papers <a href="sources.html#source-survey">(Quizzness project team, 2026)</a></th><td>Course revision; feedback depends on solutions.</td><td>No tutor access built into the material.</td><td>Depends on the material and provider.</td></tr>
+<tr><th scope="row">Quizzness (proposed)</th><td>Reviewed challenges, explanations and retries.</td><td>Screened tutors and partner-approved eligible hours.</td><td>Institution licence proposed; optional premium later.</td></tr>
+</tbody>
+</table>
+</div>      <p>The last row is our proposal, not an operating service. “Not verified” does not mean a competitor lacks a feature. Study groups and revision materials are substitute categories reported in the survey.</p>
+    </section>
+
+    <section id="team">
+      <h2>Our team</h2>
+      <p>Proposed responsibilities, still to be agreed by the group:</p>
+      <ul>
+        <li>Jelani Clarke: venture concept and product journey.</li>
+        <li>Jolicia Williams: research synthesis and proposal editing.</li>
+        <li>Akira Jemmott: survey analysis and validation.</li>
+        <li>Nathaniel Als: HTML/CSS and browser checks.</li>
+        <li>Isaiah (surname to confirm): visual assets and accessibility checks.</li>
+      </ul>
+      <h3 id="next-step">Help pilot Quizzness at your institution</h3>
+      <p>We seek a partner to review two course activity sets, nominate a peer-support coordinator and evaluate a small pilot. Adoption, learning checks and delivery costs would guide the decision to expand.</p>
+      <p><a class="action" href="#partner-information">Help Pilot Quizzness</a></p>
+      <h3 id="partner-information">What a partner would contribute</h3>
+      <ul>
+        <li>Permission to use relevant course material and a subject reviewer.</li>
+        <li>Approved tutors, a coordinator and agreed service-hour rules.</li>
+        <li>A scoped budget and an evaluation plan before a paid rollout.</li>
+      </ul>
+      <p>This is a partner-information preview. No enquiry has been submitted.</p>
+      <p>Our evidence combines the group survey, Barringer and Ireland, and research on gamification, adaptive learning and peer tutoring. <a href="sources.html">Full references, artwork credits and aggregate survey results</a>.</p>
+    </section>
+
+
+  
   </main>
   <footer>
-    <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
-    <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
+    <p>Quizzness Over Pleasure | Static school prototype, 2026</p>
+    <p><a href="index.html">Home</a> | <a href="sources.html">Sources and credits</a></p>
   </footer>
 </body>
 </html>

@@ -1,5 +1,9 @@
 # Quizzness identity system
 
+## Student animation update — 2026-10-09
+
+The user supplied animation assets in public/sprites/students. students.json defines 64×136 frames, two idle frames at 1.5 fps and eight walk frames at 10 fps for all six avatar IDs. The walkable room now loads the selected avatar's supplied sheets, plays walk animation only on actual movement, returns to idle when stopped/blocked and syncs the separate day shadow sheet. Reduced-motion settings use frame zero while movement remains available. Originals and supplied sheets are unchanged. Left/right sheets and the up-to-down fallback are explicitly marked stopgaps in the supplied manifest; final side/back drawings and final room environment art remain separate asset work. Earlier notes about missing animation sheets describe the state before these files were supplied.
+
 Latest visual correction: the user identified the smooth scenery/rounded UI/mixed typography as inconsistent with pixel identity. The interface now bundles Pixelify Sans (400/700) locally for display text and game controls, with readable body text, hard-edged frames and a dark-green room shell. Full labelled navigation is restored in the game-styled header; duplicate room shortcuts are removed. The room backdrop is student-room-pixel-v2.png, a new original ImageGen environment with coarser pixel clusters. The previous room source remains archived unchanged. This supersedes Courier/rounded-control styling notes below, while original mascot/character/palette preservation still applies. Font source/license: https://fontsource.org/fonts/pixelify-sans/about (OFL-1.1).
 
 ## Dashboard direction selected by the user
