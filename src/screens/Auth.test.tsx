@@ -67,3 +67,13 @@ test("signup explains the password rule to assistive technology", async () => {
     "At least 8 characters.",
   );
 });
+
+test("signup treats last name as optional, like the profile", async () => {
+  render(
+    <MemoryRouter>
+      <AuthScreen signup />
+    </MemoryRouter>,
+  );
+  expect(await screen.findByLabelText("Last name")).not.toBeRequired();
+  expect(screen.getByLabelText("First name")).toBeRequired();
+});

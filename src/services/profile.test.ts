@@ -21,4 +21,20 @@ describe("profile validation", () => {
         institution: "",
       }).institution,
     ).toBe(""));
+  it("matches the database limit for the study field", () =>
+    expect(() =>
+      validateProfile({
+        ...emptyProfile("u"),
+        first_name: "Alex",
+        study_field: "x".repeat(121),
+      }),
+    ).toThrow("shorten"));
+  it("rejects learning goals that are not offered", () =>
+    expect(() =>
+      validateProfile({
+        ...emptyProfile("u"),
+        first_name: "Alex",
+        goals: ["Prepare for tests", "made up"],
+      }),
+    ).toThrow("learning goals"));
 });

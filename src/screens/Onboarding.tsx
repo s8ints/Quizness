@@ -22,6 +22,11 @@ export function Onboarding() {
   const [draft, setDraft] = useState(profile);
   const [step, setStep] = useState(0);
   const [independent, setIndependent] = useState(!profile.institution);
+  // Tracks the "Other" choice separately so typed text never hides its own input.
+  const [otherSelected, setOtherSelected] = useState(
+    profile.study_field === "Other" ||
+      (!!profile.study_field && !fields.includes(profile.study_field)),
+  );
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const navigate = useNavigate();
@@ -92,16 +97,15 @@ export function Onboarding() {
             <label>
               What are you studying?
               <select
-                value={
-                  fields.includes(draft.study_field)
-                    ? draft.study_field
-                    : draft.study_field
-                      ? "Other"
-                      : ""
-                }
-                onChange={(e) =>
-                  setDraft({ ...draft, study_field: e.target.value })
-                }
+                value={otherSelected ? "Other" : draft.study_field}
+                onChange={(e) => {
+                  const other = e.target.value === "Other";
+                  setOtherSelected(other);
+                  setDraft({
+                    ...draft,
+                    study_field: other ? "" : e.target.value,
+                  });
+                }}
               >
                 <option value="">Choose a subject</option>
                 {fields.map((field) => (
@@ -109,18 +113,14 @@ export function Onboarding() {
                 ))}
               </select>
             </label>
-            {(draft.study_field === "Other" ||
-              (!fields.includes(draft.study_field) && !!draft.study_field)) && (
+            {otherSelected && (
               <label>
                 Your subject
                 <input
                   maxLength={120}
-                  value={draft.study_field === "Other" ? "" : draft.study_field}
+                  value={draft.study_field}
                   onChange={(e) =>
-                    setDraft({
-                      ...draft,
-                      study_field: e.target.value || "Other",
-                    })
+                    setDraft({ ...draft, study_field: e.target.value })
                   }
                 />
               </label>

@@ -161,7 +161,6 @@ export function AuthScreen({
                     name="last_name"
                     autoComplete="family-name"
                     maxLength={80}
-                    required
                   />
                 </label>
               </div>

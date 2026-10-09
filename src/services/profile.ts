@@ -1,5 +1,5 @@
 import { supabase } from "../auth/client";
-import { courses } from "../data/courses";
+import { courses, learningGoals } from "../data/courses";
 import { avatars } from "../components/Avatar";
 import type { StudentProfile } from "../types/student";
 export function validateProfile(profile: StudentProfile) {
@@ -8,9 +8,12 @@ export function validateProfile(profile: StudentProfile) {
   if (
     profile.first_name.length > 80 ||
     profile.last_name.length > 80 ||
+    profile.study_field.length > 120 ||
     profile.institution.length > 160
   )
     throw new Error("Please shorten the profile fields.");
+  if (profile.goals.some((goal) => !learningGoals.includes(goal)))
+    throw new Error("Choose from the listed learning goals.");
   if (
     profile.selected_courses.some(
       (id) => !courses.some((course) => course.id === id),

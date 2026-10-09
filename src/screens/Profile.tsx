@@ -197,7 +197,7 @@ export function Settings() {
         <h2>{preview ? "You’re exploring a preview." : "Your account"}</h2>
         <p>
           {preview
-            ? "No account is signed in here. Preview changes reset when you refresh."
+            ? "This preview doesn’t use any account. Changes reset when you refresh."
             : "Log out on shared devices to keep your student experience private."}
         </p>
         <button

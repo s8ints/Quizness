@@ -52,3 +52,11 @@ describe("student foundation routes", () => {
     ).toBeInTheDocument();
   });
 });
+describe("preview settings", () => {
+  it("does not claim anything about real sign-in state", async () => {
+    open("/preview/settings");
+    expect(
+      await screen.findByText(/this preview doesn’t use any account/i),
+    ).toBeInTheDocument();
+  });
+});
