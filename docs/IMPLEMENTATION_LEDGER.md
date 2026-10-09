@@ -42,7 +42,7 @@ Final identity verification after input-border correction: npm run test 19/19; n
 
 ## Cosy student room — 2026-10-08
 
-User selected a personal cosy room after rejecting the previous hub composition. Generated a new original room backdrop with ImageGen and copied it into public/brand/student-room.png. Existing character/Panthy art is unchanged and rendered separately. Hub now centres the room, with desk/Continue Journey, bookshelf/course catalogue, wardrobe/profile and a compact course/character/settings toolbar. Course selections and preview labels persist. No room movement, multiplayer or room-editing capability is claimed.
+User selected a personal cosy room after rejecting the previous hub composition. Generated a new original room backdrop with ImageGen and copied it into public/brand/student-room.png (since archived at design/archive/student-room.png). Existing character/Panthy art is unchanged and rendered separately. Hub now centres the room, with desk/Continue Journey, bookshelf/course catalogue, wardrobe/profile and a compact course/character/settings toolbar. Course selections and preview labels persist. No room movement, multiplayer or room-editing capability is claimed.
 
 Visual QA found and fixed a descendant span style that hid the character; existing journey browser test caught a changed accessible link label, which was restored. Desktop/mobile screenshots inspected. Unit suite: 19/19. Added a keyboard room-navigation browser test. Live Supabase setup remains pending.
 
