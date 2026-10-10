@@ -1,0 +1,727 @@
+/*
+  Dashboard refresh (loaded last).
+  Each kind of text gets its own font, like a game UI:
+  - logo + page titles: Silkscreen (chunky pixel)
+  - section titles, buttons, room spots: Pixelify Sans
+  - small labels and pills: Silkscreen caps, spaced out
+  - everything you read: Nunito (friendly, readable)
+  Palette stays the approved five colours.
+*/
+:root {
+  --font-logo: "Silkscreen", "Pixelify Sans", monospace;
+  --font-display: "Pixelify Sans", monospace;
+  --font-label: "Silkscreen", monospace;
+  --font-body: "Nunito", "Trebuchet MS", sans-serif;
+  --shade-primary: color-mix(in srgb, var(--color-primary) 70%, var(--color-text));
+  --shade-text: color-mix(in srgb, var(--color-text) 80%, black);
+  font-family: var(--font-body);
+}
+
+/* ---------- Text roles ---------- */
+body,
+p,
+li,
+label,
+input,
+select,
+textarea,
+.lead,
+.muted,
+.mascot-speech p,
+.app-footer {
+  font-family: var(--font-body);
+}
+p,
+li,
+label,
+.mascot-speech p {
+  font-size: max(1rem, 15px);
+  line-height: 1.55;
+}
+.muted,
+.app-footer,
+figcaption,
+[role="status"] {
+  font-size: 0.875rem;
+}
+h1,
+.landing h1,
+.landing-hero h1 em,
+.room-shell .room-heading h1 {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+h2,
+h3,
+.room-learning h2,
+.mascot-speech strong,
+.room-panthy .mascot-speech strong {
+  font-family: var(--font-display);
+  letter-spacing: 0;
+}
+.eyebrow,
+.landing-hero .eyebrow,
+.room-shell .room-heading .eyebrow,
+.world-card .eyebrow,
+.room-learning .eyebrow,
+.status-label,
+.course-card-label,
+.pill {
+  font-family: var(--font-label);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+}
+.brand,
+.room-shell .brand {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* ---------- Header: light on every page ---------- */
+.preview-banner,
+.room-shell > .preview-banner {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  background: var(--color-secondary);
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-primary);
+}
+.room-shell {
+  background: transparent;
+}
+.room-shell > .app-header,
+.app-header {
+  background: var(--color-background);
+  color: var(--color-text);
+  border-bottom: 2px solid color-mix(in srgb, var(--color-text) 18%, transparent);
+}
+.room-shell .brand {
+  color: var(--color-text);
+}
+.room-shell .brand-mark {
+  display: inline-grid;
+}
+.app-header nav,
+.room-shell .app-header nav {
+  font-family: var(--font-body);
+  gap: 4px;
+}
+.app-header nav a,
+.room-shell .app-header nav a {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text);
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 7px 12px;
+  box-shadow: none;
+  white-space: nowrap;
+}
+.app-header nav a:hover {
+  background: color-mix(in srgb, var(--color-secondary) 45%, transparent);
+}
+.app-header nav a.active,
+.room-shell .app-header nav a.active {
+  background: var(--color-secondary);
+  color: var(--color-text);
+  border-color: var(--color-text);
+  box-shadow: 0 3px 0 var(--color-text);
+}
+.profile-link,
+.room-shell .profile-link {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  border-radius: 6px;
+  padding: 5px 10px;
+  background: var(--color-background);
+}
+.profile-level {
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* ---------- Buttons: chunky with a pressable bottom edge ---------- */
+.button,
+.room-hotspot {
+  font-family: var(--font-display);
+  font-weight: 700;
+  border-radius: 6px;
+  border: 2px solid var(--color-text);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.button {
+  background: var(--color-primary);
+  color: var(--color-background);
+  box-shadow: 0 4px 0 var(--shade-text);
+}
+.button.secondary,
+.room-hotspot {
+  background: var(--color-background);
+  color: var(--color-text);
+  box-shadow: 0 4px 0 var(--color-text);
+}
+.button:hover,
+.room-hotspot:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--shade-text);
+}
+.button:active,
+.room-hotspot:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--shade-text);
+}
+.button:focus-visible,
+.room-hotspot:focus-visible,
+.course-card:focus-visible,
+.app-header a:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.button.small {
+  font-size: 0.95rem;
+  padding: 8px 14px;
+}
+.button[disabled] {
+  opacity: 0.6;
+  transform: none;
+}
+.reduce-motion .button,
+.reduce-motion .room-hotspot,
+.reduce-motion .course-card {
+  transition: none;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .room-hotspot,
+  .course-card {
+    transition: none;
+    transform: none !important;
+  }
+}
+
+/* ---------- Room: art on the cream page, no dark surround ---------- */
+.room-shell .student-room-hub {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 24px 40px;
+}
+.room-shell .room-scene {
+  border: 3px solid var(--color-text);
+  border-radius: 8px;
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--color-text) 35%, transparent);
+}
+.room-shell .room-heading > div:first-child {
+  border: 2px solid var(--color-text);
+  border-radius: 6px;
+  box-shadow: 0 4px 0 var(--color-text);
+}
+.room-shell .room-heading h1 {
+  font-size: 1.5rem;
+}
+.room-shell .room-heading h1 > span {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.room-hotspot {
+  font-size: 1.1rem;
+}
+.room-panthy .mascot-speech {
+  border: 2px solid var(--color-text);
+  border-radius: 6px;
+  box-shadow: 0 4px 0 var(--color-text);
+}
+.room-panthy .mascot-speech strong {
+  font-size: 0.95rem;
+}
+.room-panthy .mascot-speech p {
+  font-size: 0.95rem;
+}
+.room-student > span:not(.student-art) {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.95rem;
+  border-radius: 4px;
+}
+.room-art-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+
+/* ---------- Status row ---------- */
+.hub-section-title {
+  font-size: 1.6rem;
+  margin: 0;
+}
+.hub-status {
+  margin-top: 32px;
+}
+.hub-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 14px;
+}
+.status-card {
+  background: var(--color-background);
+  border: 2px solid var(--color-text);
+  border-radius: 8px;
+  box-shadow: 0 4px 0 var(--color-text);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.status-card p {
+  margin: 0;
+}
+.status-label {
+  color: var(--color-primary);
+}
+.status-value {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.status-note {
+  font-size: 0.95rem;
+}
+.status-note a,
+.text-link {
+  font-weight: 800;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.status-bar {
+  width: 100%;
+  height: 14px;
+  border: 2px solid var(--color-text);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--color-secondary) 40%, var(--color-background));
+  overflow: hidden;
+}
+.status-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+}
+.status-pills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border: 1.5px solid var(--color-text);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-secondary) 45%, var(--color-background));
+  color: var(--color-text);
+  line-height: 1.4;
+}
+.pill-selected {
+  background: var(--color-accent);
+  color: var(--color-background);
+  border-color: var(--color-accent);
+}
+
+/* ---------- Course cards ---------- */
+.hub-courses {
+  margin-top: 36px;
+}
+.hub-courses-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.course-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 16px;
+}
+.course-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  border-radius: 8px;
+  box-shadow: 0 5px 0 var(--color-text);
+  overflow: hidden;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.course-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 var(--color-text);
+}
+.course-card-banner {
+  display: grid;
+  place-items: center;
+  height: 96px;
+  border-bottom: 2px solid var(--color-text);
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-text) 10%, transparent) 2px, transparent 2px),
+    linear-gradient(color-mix(in srgb, var(--color-text) 10%, transparent) 2px, transparent 2px);
+  background-size: 12px 12px;
+}
+.course-card-banner > span {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  font-size: 2.6rem;
+  color: var(--color-text);
+}
+.course-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px 16px;
+}
+.course-card-label {
+  color: var(--color-primary);
+}
+.course-card-title {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin: 0;
+}
+.course-card-text {
+  margin: 0;
+  font-size: 0.95rem;
+}
+.course-card-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+@media (max-width: 860px) {
+  .hub-status-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .room-shell .student-room-hub {
+    padding: 12px 12px 32px;
+  }
+  .app-header nav a,
+  .room-shell .app-header nav a {
+    font-size: 0.85rem;
+    padding: 6px 6px;
+    white-space: normal;
+    text-align: center;
+  }
+  .hub-section-title {
+    font-size: 1.35rem;
+  }
+  /* Keep the room readable without boxes covering each other. */
+  .brand,
+  .room-shell .brand {
+    font-size: 1.25rem;
+  }
+  .profile-level {
+    display: none;
+  }
+  .preview-banner,
+  .room-shell > .preview-banner {
+    font-size: 0.8rem;
+  }
+  .room-shell .room-heading h1 {
+    font-size: 0.95rem;
+  }
+  .room-shell .room-heading h1 > span {
+    font-size: 0.8rem;
+  }
+  .room-shell .room-heading .eyebrow {
+    font-size: 0.75rem;
+  }
+  .room-hotspot {
+    font-size: 0.85rem;
+  }
+  .room-panthy .mascot-speech strong {
+    font-size: 0.75rem;
+  }
+  .room-panthy .mascot-speech p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  .room-art-label {
+    font-size: 0.75rem;
+  }
+}
+
+/* Banner tints, mixed from the approved palette only. */
+.course-card-banner.lime {
+  background-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-background));
+}
+.course-card-banner.peach {
+  background-color: color-mix(in srgb, var(--color-primary) 22%, var(--color-background));
+}
+.course-card-banner.blue {
+  background-color: color-mix(in srgb, var(--color-secondary) 75%, var(--color-background));
+}
+.course-card-banner.purple {
+  background-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-secondary));
+}
+
+/* Small print elsewhere that older, more specific rules shrank below 12px. */
+.landing-hero .muted,
+.topic-list li p {
+  font-size: 0.875rem;
+}
+.avatar-options button {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+section[aria-labelledby^="world-"] {
+  margin-top: 40px;
+}
+/* Silkscreen is wide: keep the landing headline inside narrow phones. */
+@media (max-width: 480px) {
+  .landing h1,
+  .landing-hero h1 em {
+    font-size: 2.1rem;
+  }
+}
+
+/* Auth notices: clear panels with an icon, a heading and next steps. */
+.notice-panel {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 2px solid var(--color-text);
+  border-radius: 8px;
+  box-shadow: 0 4px 0 var(--color-text);
+  padding: 16px 18px;
+  margin: 16px 0;
+  background: var(--color-background);
+}
+.notice-panel.success {
+  border-left: 8px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 10%, var(--color-background));
+}
+.notice-panel.error {
+  border-left: 8px solid var(--color-primary);
+  background: color-mix(in srgb, var(--color-secondary) 45%, var(--color-background));
+  margin: 4px 0 14px;
+  padding: 12px 14px;
+}
+.notice-panel p {
+  margin: 0 0 8px;
+}
+.notice-panel.error p {
+  margin: 0;
+  font-weight: 700;
+}
+.notice-panel h2 {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+}
+.notice-panel h2:focus {
+  outline: none;
+}
+.notice-panel ol {
+  margin: 4px 0 12px;
+  padding-left: 20px;
+}
+.notice-panel li {
+  margin-bottom: 4px;
+}
+.notice-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--color-text);
+  border-radius: 6px;
+  background: var(--color-background);
+  font-family: var(--font-logo);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+.notice-panel.success .notice-icon {
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+.notice-panel.error .notice-icon {
+  background: var(--color-primary);
+  color: var(--color-background);
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+}
+.notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+.notice-actions .text-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.notice-note {
+  margin-top: 10px !important;
+  font-size: 0.9rem;
+}
+
+/* ---------- Forms: readable labels, roomy fields, clear focus ---------- */
+.form-panel label,
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-bottom: 14px;
+}
+.form-panel input:not([type="checkbox"]):not([type="radio"]),
+.form-panel select,
+.auth-form input,
+.auth-form select {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text);
+  background: var(--color-background);
+  border: 2px solid var(--color-text);
+  border-radius: 6px;
+  box-shadow: inset 0 3px 0 color-mix(in srgb, var(--color-text) 10%, transparent);
+  padding: 12px 14px;
+  min-height: 48px;
+  width: 100%;
+}
+.form-panel input::placeholder,
+.auth-form input::placeholder {
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  font-weight: 400;
+}
+.form-panel input:focus-visible,
+.form-panel select:focus-visible,
+.auth-form input:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.form-panel fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 16px;
+}
+.form-panel legend,
+.form-panel h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  padding: 0;
+}
+.form-panel .check-row,
+.auth-form .check-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.form-panel input[type="checkbox"],
+.form-panel input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-primary);
+  flex: none;
+}
+.onboarding .form-panel h1 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1.2;
+}
+
+/* Two big clickable choices (e.g. university vs independent). */
+.choice-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.choice-cards legend {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+}
+.form-panel .choice-card {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  padding: 14px 16px;
+  border: 2px solid var(--color-text);
+  border-radius: 8px;
+  background: var(--color-background);
+  box-shadow: 0 4px 0 var(--color-text);
+  cursor: pointer;
+}
+.form-panel .choice-card:has(input:checked) {
+  background: color-mix(in srgb, var(--color-secondary) 60%, var(--color-background));
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 0 var(--color-primary);
+}
+.form-panel .choice-card:has(input:focus-visible) {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.choice-card input {
+  margin-top: 2px;
+}
+.choice-card span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.choice-card strong {
+  font-weight: 800;
+  font-size: 1rem;
+}
+.choice-card small {
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+@media (max-width: 600px) {
+  .choice-cards {
+    grid-template-columns: 1fr;
+  }
+}
+/* The level tag only fits beside the full nav on wide screens. */
+@media (max-width: 1200px) {
+  .profile-level {
+    display: none;
+  }
+}

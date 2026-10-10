@@ -1,0 +1,497 @@
+/* User-approved palette. Derived surfaces use only these five brand colours. */
+:root {
+  --color-primary: #7a4e9d;
+  --color-secondary: #c9b6e4;
+  --color-accent: #40916c;
+  --color-background: #efe6dd;
+  --color-surface: #efe6dd;
+  --color-text: #1b4332;
+  --color-text-muted: #1b4332;
+  --color-success: #40916c;
+  --color-warning: #c9b6e4;
+  --color-danger: #1b4332;
+  --color-border: #1b4332;
+  --paper: var(--color-background);
+  --ink: var(--color-text);
+  --leaf: var(--color-primary);
+  --muted: var(--color-text-muted);
+  --border: var(--color-border);
+  --font-display: "Courier New", monospace;
+  --font-body: "Trebuchet MS", Verdana, sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+}
+h1,
+h2,
+.brand,
+.eyebrow {
+  font-family: var(--font-display);
+  letter-spacing: -0.035em;
+}
+.brand-mark {
+  background: var(--color-primary);
+  color: var(--color-background);
+  border-radius: 0;
+}
+.brand-dot,
+.hello-star,
+.stage-star,
+.story-star {
+  color: var(--color-primary);
+}
+.button {
+  background: var(--color-primary);
+  color: var(--color-background);
+  border: 2px solid var(--color-text);
+  border-radius: 2px;
+  box-shadow: 4px 4px 0 var(--color-text);
+}
+.button:hover {
+  background: var(--color-text);
+}
+.button.secondary {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+.form-panel,
+.world-card,
+.character-panel,
+.course-start,
+.empty-panel,
+.quest-panel,
+.level-pill,
+.course-hero,
+.topic-list li {
+  border: 2px solid var(--color-text);
+  border-radius: 3px;
+}
+.form-panel,
+.character-panel,
+.quest-panel,
+.course-start {
+  background: color-mix(
+    in srgb,
+    var(--color-secondary) 16%,
+    var(--color-background)
+  );
+}
+.world-card {
+  box-shadow: 4px 4px 0 var(--color-text);
+}
+.world-card:hover {
+  box-shadow: 6px 6px 0 var(--color-primary);
+}
+.sage {
+  background: color-mix(
+    in srgb,
+    var(--color-accent) 18%,
+    var(--color-background)
+  );
+}
+.sand {
+  background: var(--color-background);
+}
+.mist {
+  background: color-mix(
+    in srgb,
+    var(--color-secondary) 40%,
+    var(--color-background)
+  );
+}
+.lilac {
+  background: var(--color-secondary);
+}
+.world-card p,
+.world-card .eyebrow,
+.card-arrow,
+.selection-note,
+.character-panel p,
+.character-panel small,
+.muted-heading,
+.level-pill small,
+.note-panel p,
+.outline-tag,
+.app-footer,
+.auth-story p,
+.journey-progress,
+.course-tag {
+  color: var(--color-text);
+}
+.preview-banner {
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+.progress-track {
+  background: var(--color-secondary);
+  border: 1px solid var(--color-text);
+}
+.progress-track > span {
+  background: var(--color-accent);
+}
+.level-pill > span,
+.quest-icon,
+.note-panel > span {
+  color: var(--color-primary);
+}
+.app-header nav a {
+  color: var(--color-text);
+}
+.app-header nav a.active::after {
+  background: var(--color-primary);
+}
+input,
+select {
+  background: var(--color-background);
+  border: 2px solid var(--color-text);
+  border-radius: 2px;
+}
+.form-panel input:not([type="checkbox"]),
+.form-panel select,
+.auth-form input {
+  border: 2px solid var(--color-text);
+  background: var(--color-background);
+  border-radius: 2px;
+}
+input[type="checkbox"] {
+  accent-color: var(--color-primary);
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline-color: var(--color-primary);
+}
+.student-art {
+  display: inline-block;
+  width: 32px;
+  height: 72px;
+  flex-shrink: 0;
+  background-image: url("/brand/student-characters.png");
+  background-size: 300% 200%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  border-radius: 2px;
+}
+.student-art.large {
+  width: 96px;
+  height: 216px;
+}
+.avatar-stage {
+  height: 235px;
+}
+.avatar-stage .student-art.large {
+  width: 96px;
+  height: 216px;
+  left: 27px;
+}
+.character-picker > .student-art.large {
+  width: 112px;
+  height: 252px;
+}
+.profile-layout > * {
+  min-width: 0;
+}
+.form-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.form-grid > label {
+  min-width: 0;
+}
+.world-card.sage {
+  background: color-mix(
+    in srgb,
+    var(--color-accent) 18%,
+    var(--color-background)
+  );
+}
+.world-card.sand {
+  background: var(--color-background);
+}
+.world-card.mist {
+  background: color-mix(
+    in srgb,
+    var(--color-secondary) 40%,
+    var(--color-background)
+  );
+}
+.world-card.lilac {
+  background: var(--color-secondary);
+}
+.landing h1 {
+  font-size: clamp(2.3rem, 4vw, 3.8rem);
+}
+.landing-hero h1 em {
+  font-family: var(--font-display);
+}
+.avatar-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.avatar-options button {
+  min-width: 0;
+}
+.avatar-options .student-art.large {
+  width: 64px;
+  height: 144px;
+}
+.world-card.lime,
+.course-hero.lime {
+  background: color-mix(
+    in srgb,
+    var(--color-accent) 18%,
+    var(--color-background)
+  );
+}
+.world-card.peach,
+.course-hero.peach {
+  background: var(--color-background);
+}
+.world-card.blue,
+.course-hero.blue {
+  background: color-mix(
+    in srgb,
+    var(--color-secondary) 40%,
+    var(--color-background)
+  );
+}
+.world-card.purple,
+.course-hero.purple {
+  background: var(--color-secondary);
+}
+.avatar-options button {
+  background: var(--color-background);
+  border: 2px solid var(--color-text);
+  border-radius: 2px;
+}
+.avatar-options button[aria-pressed="true"] {
+  background: var(--color-secondary);
+  outline: 3px solid var(--color-primary);
+}
+.avatar-stage {
+  border-color: var(--color-primary);
+}
+.mascot-guide {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 24px 0;
+}
+.mascot-guide img {
+  width: 112px;
+  height: auto;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+.mascot-guide.compact img {
+  width: 64px;
+}
+.mascot-speech {
+  border: 2px solid var(--color-primary);
+  background: var(--color-background);
+  padding: 14px 18px;
+  box-shadow: 4px 4px 0 var(--color-secondary);
+}
+.mascot-speech strong {
+  font: bold 0.75rem var(--font-display);
+}
+.mascot-speech p {
+  margin: 7px 0 0;
+  color: var(--color-text);
+}
+.mascot-welcome img,
+.mascot-happy img {
+  animation: panthy-welcome 3s ease-in-out infinite;
+}
+.mascot-thinking img {
+  animation: panthy-think 4s ease-in-out infinite;
+}
+.mascot-celebrating img {
+  animation: panthy-celebrate 0.65s ease-out 2;
+}
+@keyframes panthy-welcome {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes panthy-think {
+  50% {
+    transform: rotate(-3deg);
+  }
+}
+@keyframes panthy-celebrate {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.campus-hero {
+  margin: 0;
+  border: 3px solid var(--color-text);
+  box-shadow: 8px 8px 0 var(--color-secondary);
+  background: var(--color-secondary);
+}
+.campus-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+.campus-hero figcaption {
+  padding: 14px;
+  font: bold 0.75rem var(--font-display);
+}
+.landing-hero {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+.landing-hero h1 em,
+.auth-story h2 em {
+  color: var(--color-primary);
+  font-style: normal;
+}
+.campus-banner {
+  margin: 0 0 26px;
+  border: 3px solid var(--color-text);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 6px 6px 0 var(--color-secondary);
+}
+.campus-banner img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3.8;
+  object-fit: cover;
+  object-position: 50% 48%;
+  image-rendering: pixelated;
+}
+.campus-banner figcaption {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 8px 12px;
+  background: var(--color-background);
+  border: 2px solid var(--color-text);
+  font: bold 0.8rem var(--font-display);
+}
+.journey-panel {
+  background: var(--color-secondary);
+  border: 2px solid var(--color-text);
+  border-radius: 2px;
+}
+.journey-landscape {
+  background: url("/brand/quizzness-campus.png") center / cover;
+  border-left: 2px solid var(--color-text);
+  opacity: 1;
+}
+.landscape-hill,
+.landscape-route,
+.landscape-sun,
+.landscape-caption {
+  display: none;
+}
+.auth-story {
+  background: var(--color-secondary);
+  border-right: 2px solid var(--color-text);
+}
+.auth-campus {
+  width: 100%;
+  border: 2px solid var(--color-text);
+  image-rendering: pixelated;
+}
+.auth-story .mascot-guide {
+  align-items: flex-start;
+}
+.auth-story .mascot-speech {
+  font-size: 0.85rem;
+}
+.auth-story h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+.setup-notice {
+  background: var(--color-background);
+  border: 2px dashed var(--color-primary);
+}
+@media (max-width: 760px) {
+  .landing-hero {
+    grid-template-columns: 1fr;
+  }
+  .campus-banner img {
+    aspect-ratio: 1.8;
+  }
+  .campus-hero {
+    box-shadow: 4px 4px 0 var(--color-secondary);
+  }
+  .mascot-guide {
+    gap: 10px;
+  }
+  .mascot-guide img {
+    width: 76px;
+  }
+  .mascot-speech {
+    padding: 10px;
+  }
+  .mascot-speech strong {
+    font-size: 0.66rem;
+  }
+  .mascot-speech p {
+    font-size: 0.85rem;
+  }
+  .avatar-options .student-art.large {
+    width: 48px;
+    height: 108px;
+  }
+  .avatar-stage {
+    height: 155px;
+  }
+  .avatar-stage .student-art.large {
+    width: 64px;
+    height: 144px;
+    left: 12px;
+  }
+  .profile-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .journey-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .journey-landscape {
+    display: none;
+  }
+  .journey-copy {
+    width: 100%;
+  }
+  .auth-story {
+    display: block;
+    padding: 20px;
+    border-right: 0;
+    border-bottom: 2px solid var(--color-text);
+  }
+  .auth-story h2,
+  .auth-story > p,
+  .story-star {
+    display: none;
+  }
+  .auth-campus {
+    aspect-ratio: 3;
+    object-fit: cover;
+  }
+  .auth-story .mascot-guide {
+    margin: 14px 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mascot-guide img {
+    animation: none;
+  }
+}
+.reduce-motion .mascot-guide img {
+  animation: none;
+}
+.landing-slogan {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-primary);
+  margin: 4px 0 18px;
+}
