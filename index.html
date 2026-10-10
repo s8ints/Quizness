@@ -1,15 +1,17 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quizzness | Home</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <a href="#main">Skip to content</a>
   <header>
-    <p><strong><a href="index.html">Quizzness</a></strong> | COMP1170 Group Proposal</p>
+    <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="Quizzness logo" width="64"
+          height="64"> QUIZZNESS</a></p>
     <nav aria-label="Main navigation">
       <a href="index.html" aria-current="page">Home</a> |
       <a href="experience.html">Practice</a> |
@@ -22,16 +24,34 @@
   </header>
   <main id="main">
 
-    <h1>Quizzness</h1>
-    <p><strong>Quizzness Over Pleasure</strong></p>
-    <img src="mascot/tiger-pixel.svg" alt="Rory, our purple tiger mascot holding a study card." width="140">
-    <p>Our idea is a website where university students can practise course topics through games and get help from peer tutors when they get stuck.</p>
-    <p><a href="experience.html#learn">Try the sample activity</a></p>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">A proposed course-support platform</p>
+        <h1>Quizzness<br><span class="purple">Over Pleasure.</span></h1>
+        <p class="lead">Practise difficult topics. Understand your mistakes. Find your next step.</p>
+        <p>Quizzness transforms university courses into interactive games and connects students to verified peer tutors
+          who earn give-back hours.</p>
+        <p><a class="button" href="experience.html#learn">Try a Sample Challenge</a> <a href="#opportunity">Explore the
+            proposal</a></p>
+      </div>
+      <div class="hero-image">
+        <img src="mascot/tiger-pixel.svg" alt="Panthy, our purple pixel tiger mascot holding a study card." width="240">
+        <p>Panthy the thinking panther, our proposed learning companion.</p>
+      </div>
+    </section>
 
     <section id="opportunity">
       <h2>The problem</h2>
-      <p>Following an explanation in class and answering a question on your own are different things. We want to help students practise between classes and find someone to explain topics they are struggling with.</p>
-      <p>Study groups and WhatsApp chats can be useful, but our idea puts practice, feedback and peer support in one place. We still need interviews to find out how common these problems are and whether students would use Quizzness.</p>
+      <blockquote>
+        <p>&ldquo;An opportunity is a favorable set of circumstances that creates a need for a new product, service, or
+          business.&rdquo;</p>
+        <p>(Barringer &amp; Ireland, 2019, Ch. 2, p. 72)</p>
+      </blockquote>
+      <p>Following an explanation in class and answering a question on your own are different things. We want to help
+        students practise between classes and find someone to explain topics they are struggling with.</p>
+      <p>Study groups and WhatsApp chats can be useful, but our idea puts practice, feedback and peer support in one
+        place. In our survey of 28 students, 22 (78.6%) said they have difficulty understanding course topics at least
+        sometimes. We still need interviews to find out whether students would keep using Quizzness.</p>
       <h3>Who would use it?</h3>
       <ul>
         <li><strong>Students:</strong> practise coursework and ask for help with specific topics.</li>
@@ -51,15 +71,17 @@
       </ol>
       <h3>Sample courses</h3>
       <ul>
-        <li><a href="experience.html">Programming: Code Kingdom</a>. Try our binary search tree question.</li>
-        <li>Mathematics: Puzzle Temple. A planned second course, with no activity built yet.</li>
+        <li><a href="experience.html">Mathematics: Puzzle Temple</a>. Try our percentages quest.</li>
+        <li>Programming: Code Kingdom. A planned second course, with no activity built yet.</li>
       </ul>
-      <p>This prototype shows one practice question and a tutoring example. It does not create accounts, save scores or book sessions.</p>
+      <p>This prototype shows one practice question and a tutoring example. It does not create accounts, save scores or
+        book sessions.</p>
     </section>
 
     <section>
       <h2>Our proposal</h2>
-      <p>We would start with Programming and Mathematics at one university. The main question is whether linking course practice to peer help gives students a reason to use the website regularly.</p>
+      <p>We would start with Programming and Mathematics at one university. The main question is whether linking course
+        practice to peer help gives students a reason to use the website regularly.</p>
       <ul>
         <li><a href="feasibility.html">Feasibility and our pilot plan</a></li>
         <li><a href="business-model.html">How the business would earn money</a></li>
@@ -73,4 +95,5 @@
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>
 </body>
+
 </html>

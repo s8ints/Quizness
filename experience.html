@@ -1,15 +1,17 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quizzness | Practice</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <a href="#main">Skip to content</a>
   <header>
-    <p><strong><a href="index.html">Quizzness</a></strong> | COMP1170 Group Proposal</p>
+    <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="Quizzness logo" width="64"
+          height="64"> QUIZZNESS</a></p>
     <nav aria-label="Main navigation">
       <a href="index.html">Home</a> |
       <a href="experience.html" aria-current="page">Practice</a> |
@@ -22,73 +24,147 @@
   </header>
   <main id="main">
 
-    <h1>Code Kingdom: programming practice</h1>
-    <p>This is a sample of how a course activity could work. Read the explanation, try a question and use the feedback to decide what to practise next.</p>
+    <h1>Puzzle Temple: maths practice</h1>
+    <p>This is a sample of how a course activity could work. Learn the idea, try a quest and use the feedback to decide
+      what to practise next.</p>
 
     <section id="learn">
-      <h2>Variables and addition</h2>
-      <p>A variable is a name that stores a value. You can use those values in a calculation. The <code>+</code> symbol adds two numbers together.</p>
-      <p>For this example, you have 2 apples and buy 3 more. Add the two numbers to find the total.</p>
-      <p><a href="#prototype">Try the question below</a></p>
-    </section>
-
-    <section id="experience">
-      <h2>Course topics</h2>
-      <p>We would organise the course into small activities. These are our planned areas for Code Kingdom:</p>
-      <ol>
-        <li>Variable Woods: values and types (sample below)</li>
-        <li>Logic Ruins: conditions</li>
-        <li>Loop Gate: iteration</li>
-        <li>Tree Garden: binary search trees</li>
-        <li>Function Mountain: functions</li>
-        <li>Final challenge: questions from different topics</li>
-      </ol>
+      <h2>1. Learn the idea</h2>
+      <p>A percentage means &ldquo;per hundred.&rdquo; To find 20% of an amount, write 20/100 = 0.20 and multiply the
+        amount by 0.20. (OpenStax, 2020, 6.1)</p>
+      <p><strong>Example:</strong> 20% of BBD 40 = 0.20 &times; 40 = BBD 8.</p>
+      <p><a href="#prototype">Try the sample quest below</a></p>
     </section>
 
     <section id="prototype">
-      <h2>Practice question</h2>
-      <p>What value will <strong>total</strong> have?</p>
-      <pre><code>apples = 2
-        more_apples = 3
-        total = apples + more_apples</code></pre>
-      <p>Click an answer to read its explanation.</p>
-      <details>
-        <summary>5 apples</summary>
-        <p><strong>Correct.</strong> Replace the variable names with their values: 2 + 3 = 5. The value of <code>total</code> is 5.</p>
-        <p><a href="#progress">View the sample progress report</a></p>
-      </details>
-      <details>
-        <summary>2 apples</summary>
-        <p>Try again. 2 is the number of apples you started with. Add the 3 new apples to find the total.</p>
-      </details>
-      <details>
-        <summary>3 apples</summary>
-        <p>Try again. 3 is the number of new apples. The total includes the 2 apples you already had as well.</p>
-      </details>
-      <p>The answers open using HTML. This example does not record your attempt or change a score.</p>
+      <h2>2. Your sample quest</h2>
+      <p>What is 20% of BBD 50?</p>
+      <p>Choose an answer link to review its explanation.</p>
+      <ul>
+        <li><a href="#q1-a">A. BBD 5</a></li>
+        <li><a href="#q1-b">B. BBD 10</a></li>
+        <li><a href="#q1-c">C. BBD 20</a></li>
+      </ul>
+
+      <h3 id="q1-a">A. BBD 5: Try again</h3>
+      <p>BBD 5 is 10% of BBD 50, because 0.10 &times; 50 = 5. The question asks for 20%, which is twice that amount.</p>
+      <p><a href="#prototype">Return to the challenge</a> | <a href="#q1-b">Review the worked answer</a></p>
+
+      <h3 id="q1-b">B. BBD 10: Correct</h3>
+      <ol>
+        <li>Convert 20% to a decimal: 20 &divide; 100 = 0.20.</li>
+        <li>Multiply: 0.20 &times; 50 = 10.</li>
+        <li>The answer is BBD 10.</li>
+      </ol>
+      <p>(OpenStax, 2020, &sect;6.1)</p>
+      <p><a href="#practise">Try a related question</a></p>
+
+      <h3 id="q1-c">C. BBD 20: Try again</h3>
+      <p>20% is a proportion, not a fixed currency amount. Multiply 0.20 by the amount given. BBD 20 would be 40% of BBD
+        50.</p>
+      <p><a href="#prototype">Return to the challenge</a> | <a href="#q1-b">Review the worked answer</a></p>
+    </section>
+
+    <section id="practise">
+      <h2>3. Practise the same idea</h2>
+      <p>What is 25% of BBD 80?</p>
+      <ul>
+        <li><a href="#q2-a">A. BBD 10</a></li>
+        <li><a href="#q2-b">B. BBD 20</a></li>
+        <li><a href="#q2-c">C. BBD 25</a></li>
+      </ul>
+
+      <h3 id="q2-a">A. BBD 10: Try again</h3>
+      <p>BBD 10 is one eighth of 80, or 12.5%. For 25%, find one quarter of 80.</p>
+      <p><a href="#practise">Retry</a> | <a href="#q2-b">See the worked answer</a></p>
+
+      <h3 id="q2-b">B. BBD 20: Correct</h3>
+      <p>25 &divide; 100 = 0.25. Then 0.25 &times; 80 = 20. You can also divide 80 by 4 because 25% is one quarter.
+        (OpenStax, 2020, &sect;6.1)</p>
+      <p><a href="#progress">View sample progress</a></p>
+
+      <h3 id="q2-c">C. BBD 25: Try again</h3>
+      <p>The percentage is 25%, not BBD 25. Apply it to the amount: 0.25 &times; 80 = 20.</p>
+      <p><a href="#practise">Retry</a> | <a href="#q2-b">See the worked answer</a></p>
+
+      <p>These links only move to explanations on this page. This example does not record your attempt or change a
+        score.</p>
     </section>
 
     <section id="progress">
       <h2>Sample progress report</h2>
-      <p>These example scores show what a report from several activities could look like. They are not results from the question above.</p>
+      <p>These example scores show what a report from several activities could look like. They are not results from the
+        questions above.</p>
       <table>
         <caption>Example topic scores</caption>
-        <thead><tr><th scope="col">Topic</th><th scope="col">Score</th></tr></thead>
+        <thead>
+          <tr>
+            <th scope="col">Topic</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><th scope="row">Variables</th><td>80%</td></tr>
-          <tr><th scope="row">Addition</th><td>100%</td></tr>
-          <tr><th scope="row">Conditions</th><td>60%</td></tr>
-          <tr><th scope="row">Loops</th><td>40%</td></tr>
+          <tr>
+            <th scope="row">Percentages</th>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <th scope="row">Fractions</th>
+            <td>100%</td>
+          </tr>
+          <tr>
+            <th scope="row">Ratios</th>
+            <td>60%</td>
+          </tr>
+          <tr>
+            <th scope="row">Equations</th>
+            <td>40%</td>
+          </tr>
         </tbody>
       </table>
-      <p>Loops is the topic with the lowest score in this example. The student could practise it again or ask a tutor to explain it.</p>
-      <p><a href="tutoring.html#booking">See the peer-tutoring example</a> | <a href="#prototype">Try the practice question again</a></p>
+      <p>Equations is the topic with the lowest score in this example. The student could practise it again or ask a
+        tutor to explain it.</p>
+      <p><a href="tutoring.html#booking">See the peer-tutoring example</a> | <a href="#prototype">Try the sample quest
+          again</a></p>
+    </section>
+
+    <section id="experience">
+      <h2>Course topics</h2>
+      <p>We would organise each course into small activities. These are our planned areas for Puzzle Temple:</p>
+      <ol>
+        <li>Percent Path: percentages (sample above)</li>
+        <li>Fraction Falls: fractions</li>
+        <li>Ratio Bridge: ratios and proportion</li>
+        <li>Equation Tower: solving equations</li>
+        <li>Final challenge: questions from different topics</li>
+      </ol>
     </section>
 
     <section>
       <h2>Adding more activities</h2>
-      <p>We plan to use question and game templates. A lecturer or approved creator would add course material, and a coordinator would check the questions and explanations before students use them.</p>
-      <p>The full service would need accounts and progress tracking. Those features are not part of this website yet.</p>
+      <p>We plan to use question and game templates. A lecturer or approved creator would add course material, and a
+        coordinator would check the questions and explanations before students use them.</p>
+      <p>Like Duolingo&rsquo;s repeated practice model, Quizzness uses short interactive challenges to reinforce
+        learning. Unlike Quizlet, Quizzness connects weak topics directly to peer tutoring.</p>
+      <h3>How this prototype is built</h3>
+      <p>This page uses plain HTML for its structure and one external CSS file for its appearance.</p>
+      <blockquote>
+        <p>&ldquo;The purpose of HTML is to add meaning and structure to the content.&rdquo;</p>
+        <p>(Robbins, 2018, Ch. 4, p. 59)</p>
+      </blockquote>
+      <blockquote>
+        <p>Style sheets show &ldquo;the power in keeping CSS separate from HTML, and presentation separate from
+          structure.&rdquo;</p>
+        <p>(Robbins, 2018, Ch. 11, p. 240)</p>
+      </blockquote>
+      <p>The pages also adjust to narrow screens using a flexible width, scalable images and a media query.</p>
+      <blockquote>
+        <p>&ldquo;Media queries give us a way to deliver sets of rules only to devices that meet certain criteria, such
+          as width and orientation.&rdquo;</p>
+        <p>(Robbins, 2018, Ch. 17, p. 487)</p>
+      </blockquote>
+      <p>The full service would need accounts and progress tracking. Those features are not part of this website yet.
+      </p>
     </section>
   </main>
   <footer>
@@ -96,4 +172,5 @@
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>
 </body>
+
 </html>
