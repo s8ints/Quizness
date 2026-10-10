@@ -1,67 +1,41 @@
 <!doctype html>
+<!--
+  Web textbook reference: Jennifer Niederst Robbins (2018), Learning Web Design,
+  5th edition, O'Reilly.
+  Chapter 4, "Creating a Simple Page" (p. 49): HTML document structure.
+  Chapter 5, "Marking Up Text" (p. 71): headings, paragraphs and semantic sections.
+  Chapter 6, "Adding Links" (p. 113): local navigation and section anchors.
+  Chapter 8, "Table Markup" (p. 163): pilot table, caption and scoped headers.
+  Page numbers refer to chapter openings in the supplied textbook.
+-->
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quizzness | Feasibility</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Quizzness | Feasibility and evidence</title><link rel="stylesheet" href="styles.css"></head>
 <body>
-  <a href="#main">Skip to content</a>
-  <header>
-    <p><strong><a href="index.html">Quizzness</a></strong> | COMP1170 Group Proposal</p>
-    <nav aria-label="Main navigation">
-      <a href="index.html">Home</a> |
-      <a href="experience.html">Practice</a> |
-      <a href="tutoring.html">Peer tutoring</a> |
-      <a href="feasibility.html" aria-current="page">Feasibility</a> |
-      <a href="business-model.html">Business model</a> |
-      <a href="industry.html">Industry and competitors</a> |
-      <a href="team.html">Team and sources</a>
-    </nav>
-  </header>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><a class="brand" href="index.html">Quizzness<span>Quizzness over pleasure</span></a><nav aria-label="Main navigation"><a href="index.html">Home</a><a href="experience.html">Experience</a><a href="feasibility.html" aria-current="page">Feasibility</a><a href="business-model.html">Business model</a><a href="industry.html">Competition</a><a href="team.html">Team &amp; sources</a></nav></header>
   <main id="main">
-
-    <h1>Feasibility</h1>
-    <section id="feasibility">
-      <h2>Our concept</h2>
-      <p>Quizzness would connect course games, feedback and screened peer tutoring. We would start at one university with Programming and Mathematics, then consider more courses if the pilot works.</p>
-      <h2>Product and service feasibility</h2>
-      <p>Students would get extra practice outside class and a way to ask for help with a specific topic. Our prototype shows the basic journey, but it does not prove that students would return or improve their results.</p>
-      <p>Reusable activity templates could reduce development work. Course review, tutor screening and session coordination would still take time and need university support.</p>
-      <h2>Industry and target-market feasibility</h2>
-      <p>Our first users would be university students and peer tutors. Universities and colleges would be the main paying customers. We need to check their budgets, willingness to participate and rules for GiveBack recognition.</p>
-      <p>Existing study tools show that digital practice is already available. Our proposed difference is the link from a weak course topic to screened peer help. We have not tested whether that difference is enough to attract users.</p>
-      <h2>Evidence so far</h2>
-      <p><a href="https://www.retrievalpractice.org/retrievalpractice/">Retrieval Practice research guidance</a> supports recalling information as a learning strategy. <a href="https://blog.duolingo.com/duolingo-teaching-method/">Duolingo's teaching-method overview</a> provides an example of repeated practice and game elements. Neither source proves demand for Quizzness.</p>
-      <p>We have not completed student interviews or a pilot. Claims about local tutoring demand and university interest still need evidence.</p>
-    </section>
-
-    <section>
-      <h2>Proposed pilot</h2>
-      <p>Our planning targets are a four-week pilot with 50 to 100 students, 10 approved tutors and 20 to 30 activities per course. These numbers are targets, not results.</p>
-      <div class="table-scroll">
-        <table>
-          <caption>What we need to test</caption>
-          <thead><tr><th scope="col">Question</th><th scope="col">Proposed test</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Do students need this?</th><td>Interview 12 learners and 3 tutors about practice and finding help.</td></tr>
-            <tr><th scope="row">Can students follow the website?</th><td>Ask 5 learners to try the practice-to-tutoring journey. Aim for at least 4 to finish without help.</td></tr>
-            <tr><th scope="row">Are the activities useful and correct?</th><td>Have a coordinator review the content and compare separate tasks before and after practice.</td></tr>
-            <tr><th scope="row">Can tutoring be organised?</th><td>Check tutor availability, student feedback and the time needed to manage sessions.</td></tr>
-            <tr><th scope="row">Will students return?</th><td>With consent, record pilot participation. Our initial target is for at least half to return in week two.</td></tr>
-            <tr><th scope="row">Can the programme be funded and recognised?</th><td>Agree costs, responsibilities and GiveBack rules with a university partner.</td></tr>
-          </tbody>
-        </table>
+    <div class="page-intro"><p class="eyebrow">Barringer &amp; Ireland · Chapter 3</p><h1>Promising enough to test.<br>Too early to scale.</h1><p>Our judgement is a conditional go for a small pilot. Demand, learning outcomes and commercial viability remain unverified.</p></div>
+    <section><h2>Concept statement</h2><p>For students who follow lectures but struggle with independent application, Quizzness would convert selected course material into short quiz minigames with explanations and topic-based practice. Our proposed first market is first-year programming and mathematics students at one university. Lecturer-reviewed activities would be delivered through a browser, with paid features considered only after a pilot.</p></section>
+    <section><h2>Product/service feasibility</h2><p>Chapter 3 separates <strong>desirability</strong> from <strong>demand</strong>: an appealing idea still needs evidence that people will use or buy it. <a class="citation" href="team.html#source-text">[1, pp. 110–118]</a></p>
+      <div class="cards two-columns">
+        <article><h3>Desirability: plausible</h3><p>Retrieval-practice research found better comprehension and inference performance than concept mapping in the studied science-learning tasks. This supports practice questions, but does not establish that our minigames improve university results. <a class="citation" href="team.html#source-retrieval">[2]</a></p></article>
+        <article><h3>Demand: not established</h3><p>Quizlet already offers study activities and material-to-question tools. Existing alternatives show an established product category, not demand for Quizzness. We need concept interviews and observed repeat use. <a class="citation" href="team.html#source-quizlet">[3]</a></p></article>
       </div>
-      <h3>Our judgement</h3>
-      <p>A small prototype is achievable. A working service depends on approved content, reliable tutors, university cooperation and enough repeat use to cover its costs. We should test these assumptions before expanding.</p>
-      <p>This analysis uses the product/service and industry/target-market categories from Barringer and Ireland, Chapter 3. The assigned edition and page references still need to be added.</p>
+      <p><strong>Delivery risk:</strong> converting notes into accurate application questions may require substantial lecturer review. If AI is used later, UNESCO’s guidance supports pedagogical validation and attention to privacy. Our proposed response is human review before publishing an activity. <a class="citation" href="team.html#source-unesco">[5]</a></p>
+    </section>
+    <section><h2>Industry/target-market feasibility</h2><p>Chapter 3 asks whether both the industry and the specific target market are attractive. A narrow entry market should be assessed separately from the broader industry. <a class="citation" href="team.html#source-text">[1, pp. 118–122]</a></p><p><strong>Industry:</strong> digital study tools offer a feasible route to a prototype, but Quizlet and Kahoot! already provide independent practice. Our inference is that rivalry and substitutes limit the appeal of a generic quiz product. <a class="citation" href="team.html#source-quizlet">[3]</a> <a class="citation" href="team.html#source-kahoot">[4]</a></p><p><strong>Target market:</strong> one introductory course gives us a proposed route to students and reviewers. Access to that cohort, permission to use material, affordability and willingness to pay are assumptions, not secured commitments. No market-size estimate or student survey is claimed.</p></section>
+    <section id="pilot"><p class="eyebrow">Proposed validation · not completed research</p><h2>A four-week course pilot</h2>
+      <div class="table-scroll" role="region" aria-label="Pilot validation plan" tabindex="0"><table><caption>Assumptions, evidence gaps and proposed decision rules</caption><thead><tr><th scope="col">Assumption</th><th scope="col">Test</th><th scope="col">Planning threshold</th></tr></thead><tbody>
+        <tr><th scope="row">The problem matters</th><td>Interview 12 students and 2 lecturers about recent independent-practice difficulties.</td><td>Identify repeated problems and test whether the concept addresses them.</td></tr>
+        <tr><th scope="row">The journey is clear</th><td>Ask 5 students to choose, answer and review a sample topic.</td><td>At least 4 complete the journey without assistance.</td></tr>
+        <tr><th scope="row">Students return</th><td>Invite 30 consenting students to a four-week pilot.</td><td>At least half return during week two.</td></tr>
+        <tr><th scope="row">Practice helps application</th><td>Compare baseline and follow-up application tasks with a notes-only comparison group.</td><td>Look for improvement beyond the comparison; a small pilot cannot establish a definitive effect.</td></tr>
+        <tr><th scope="row">Delivery can cover its costs</th><td>Record review time and hosting/support costs; interview a potential institutional buyer.</td><td>A realistic funding offer must cover recurring delivery costs before expansion.</td></tr>
+      </tbody></table></div>
+      <p class="small">All participant counts and thresholds are proposed project targets, not industry benchmarks or results.</p>
+      <aside class="note"><h3>Decision</h3><p>Proceed with a limited prototype and course pilot. Revise or stop if repeat use is low, content-review effort is excessive or buyers cannot fund delivery. Do not scale solely because students enjoy the games.</p></aside>
     </section>
   </main>
-  <footer>
-    <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
-    <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
-  </footer>
+  <footer><p><strong>Quizzness over pleasure.</strong> · COMP1170 venture proposal, 2026</p><p><a href="team.html#sources">Sources &amp; asset credits</a> · <a href="business-model.html">Next: business model →</a></p></footer>
 </body>
 </html>

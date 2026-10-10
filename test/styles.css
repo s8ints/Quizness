@@ -13,6 +13,7 @@ body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  word-wrap: break-word;
   color: #28252e;
   background-color: #faf9fc;
 }
@@ -181,4 +182,50 @@ footer {
   padding-top: 12px;
   border-top: 1px solid #bcb3c5;
   font-size: 14px;
+}
+
+/* Robbins, Chapter 9: form controls; Chapters 11-14: selectors and box styling. */
+.signup-demo {
+  position: static;
+  margin: 20px 0;
+  padding: 16px;
+  width: auto;
+  border: 1px solid #bcb3c5;
+  background-color: #eee7f5;
+  color: #28252e;
+}
+
+fieldset {
+  min-width: 0;
+  border: 1px solid #bcb3c5;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+input, select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #73528c;
+  background-color: white;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 1px solid #73528c;
+  background-color: #ffc642;
+  color: #352058;
+  font-size: 16px;
+}
+
+/* The next step appears when the native form closes its dialog. */
+.signup-demo[open] + .signup-next {
+  display: none;
 }
