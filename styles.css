@@ -307,6 +307,43 @@ thead { background-color: #eee7f5; }
 .tutoring-page .wallet-pending { background-color: #eee7f5; }
 .tutoring-page .wallet-note { padding: 16px 20px; border-left: 4px solid #40916c; background-color: #efe6dd; }
 
+/* Supporting assignment pages: semantic sections and tables (Chapters 5-8),
+   existing colours/spacing (11-14), and Grid/Flexbox (16). */
+.supporting-page .supporting-intro {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  grid-gap: 24px;
+  align-items: center;
+}
+.supporting-page .supporting-intro h1 { margin: 8px 0 16px; font-size: 38px; }
+.supporting-page .supporting-intro .lead { margin-bottom: 0; }
+.supporting-page .supporting-intro img { margin: 0 auto; }
+.supporting-page .section-links { margin: 28px 0; }
+.supporting-page .section-links ul { display: flex; flex-wrap: wrap; margin: 0 -4px; padding: 0; list-style: none; }
+.supporting-page .section-links a { display: block; margin: 4px; padding: 10px 14px; border: 1px solid #bcb3c5; background-color: #ffffff; }
+.supporting-page .section-links a:hover { background-color: #eee7f5; }
+.supporting-page .status-note { padding: 20px 24px; border-left: 4px solid #40916c; background-color: #efe6dd; }
+.supporting-page .support-section { margin-top: 32px; padding: 28px; border: 1px solid #d9d2df; background-color: #ffffff; }
+.supporting-page .support-section h2 { margin-top: 0; color: #1b4332; font-size: 26px; }
+.supporting-page .support-section h3 { color: #1b4332; }
+.supporting-page .support-section > p:last-child { margin-bottom: 0; }
+.supporting-page .support-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 16px; margin: 24px 0; }
+.supporting-page .support-card { min-width: 0; padding: 20px; border-top: 3px solid #7a4e9d; background-color: #faf9fc; }
+.supporting-page .support-card h3 { margin-top: 0; }
+.supporting-page .support-card p:last-child { margin-bottom: 0; }
+.supporting-page .team-role { font-weight: bold; color: #573b7a; }
+.supporting-page .content-placeholder { display: block; margin: 16px 0; padding: 16px; border: 1px dashed #7a4e9d; background-color: #eee7f5; font-size: 14px; }
+.supporting-page .placeholder-list { padding-left: 24px; }
+.supporting-page .placeholder-list li { margin: 16px 0; padding: 16px; border: 1px dashed #7a4e9d; background-color: #eee7f5; }
+.supporting-page .launch-stages { padding-left: 24px; }
+.supporting-page .launch-stages li { margin: 20px 0; padding: 16px 20px; border-left: 4px solid #c9b6e4; background-color: #faf9fc; }
+.supporting-page .launch-stages h3 { margin: 0; }
+.supporting-page .launch-stages p { margin: 8px 0 0; }
+.supporting-page .source-list { padding-left: 24px; }
+.supporting-page .source-list li { margin: 18px 0; }
+.supporting-page .table-scroll:focus { outline: 3px solid #573b7a; outline-offset: 4px; }
+.supporting-page .support-source-link { margin-top: 24px; }
+
 /* Responsive layouts and flexible images: Chapter 17. */
 @media (max-width: 1000px) {
   .site-header { flex-direction: column; align-items: flex-start; }
@@ -343,4 +380,11 @@ thead { background-color: #eee7f5; }
   .tutoring-page .tutor-card, .tutoring-page .request-summary, .tutoring-page .request-confirmation { padding: 20px; }
   .tutoring-page fieldset { padding: 16px; }
   .tutoring-page .demo-guide img { width: 64px; margin-right: 16px; }
+  .supporting-page .supporting-intro { grid-template-columns: 1fr; }
+  .supporting-page .supporting-intro h1 { font-size: 32px; }
+  .supporting-page .supporting-intro img { width: 88px; margin: 0; }
+  .supporting-page .support-section { padding: 24px 16px; }
+  .supporting-page .support-grid { grid-template-columns: 1fr; }
+  .supporting-page .support-card { padding: 16px; }
+  .supporting-page .status-note { padding: 16px 20px; }
 }
