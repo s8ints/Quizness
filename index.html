@@ -8,21 +8,24 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-  <header>
-    <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="Quizzness logo" width="64"
+<body class="home-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="" width="64"
           height="64"> QUIZZNESS</a></p>
     <nav aria-label="Main navigation">
-      <a href="index.html" aria-current="page">Home</a> |
-      <a href="experience.html">Practice</a> |
-      <a href="tutoring.html">Peer tutoring</a> |
-      <a href="feasibility.html">Feasibility</a> |
-      <a href="business-model.html">Business model</a> |
-      <a href="industry.html">Industry and competitors</a> |
-      <a href="team.html">Team and sources</a>
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="experience.html">Practice</a></li>
+        <li><a href="tutoring.html">Peer tutoring</a></li>
+        <li><a href="feasibility.html">Feasibility</a></li>
+        <li><a href="business-model.html">Business model</a></li>
+        <li><a href="industry.html">Industry and competitors</a></li>
+        <li><a href="team.html">Team and sources</a></li>
+      </ul>
     </nav>
   </header>
-  <main id="main">
+  <main id="main" tabindex="-1">
 
     <section class="hero">
       <div class="hero-text">
@@ -31,38 +34,42 @@
         <p class="lead">Practise difficult topics. Understand your mistakes. Find your next step.</p>
         <p>Quizzness transforms university courses into interactive games and connects students to verified peer tutors
           who earn give-back hours.</p>
-        <p><a class="button" href="experience.html#learn">Try a Sample Challenge</a> <a href="#opportunity">Explore the
+        <p class="hero-actions"><a class="button" href="experience.html#learn">Try a Sample Challenge</a> <a class="button button-secondary" href="#opportunity">Explore the
             proposal</a></p>
       </div>
-      <div class="hero-image">
+      <figure class="hero-image">
         <img src="mascot/tiger-pixel.svg" alt="Panthy, our purple pixel tiger mascot holding a study card." width="240">
-        <p>Panthy the thinking panther, our proposed learning companion.</p>
-      </div>
+        <figcaption>Panthy the thinking panther, our proposed learning companion.</figcaption>
+      </figure>
     </section>
 
-    <section id="opportunity">
+    <section class="home-section" id="opportunity">
       <h2>The problem</h2>
-      <blockquote>
-        <p>&ldquo;An opportunity is a favorable set of circumstances that creates a need for a new product, service, or
-          business.&rdquo;</p>
-        <p>(Barringer &amp; Ireland, 2019, Ch. 2, p. 72)</p>
-      </blockquote>
-      <p>Following an explanation in class and answering a question on your own are different things. We want to help
-        students practise between classes and find someone to explain topics they are struggling with.</p>
-      <p>Study groups and WhatsApp chats can be useful, but our idea puts practice, feedback and peer support in one
-        place. In our survey of 28 students, 22 (78.6%) said they have difficulty understanding course topics at least
-        sometimes. We still need interviews to find out whether students would keep using Quizzness.</p>
+      <div class="problem-grid">
+        <div>
+          <p>Following an explanation in class and answering a question on your own are different things. We want to help
+            students practise between classes and find someone to explain topics they are struggling with.</p>
+          <p>Study groups and WhatsApp chats can be useful, but our idea puts practice, feedback and peer support in one
+            place. In our survey of 28 students, 22 (78.6%) said they have difficulty understanding course topics at least
+            sometimes. We still need interviews to find out whether students would keep using Quizzness.</p>
+        </div>
+        <blockquote>
+          <p>&ldquo;An opportunity is a favorable set of circumstances that creates a need for a new product, service, or
+            business.&rdquo;</p>
+          <p>(Barringer &amp; Ireland, 2019, Ch. 2, p. 72)</p>
+        </blockquote>
+      </div>
       <h3>Who would use it?</h3>
-      <ul>
+      <ul class="audience-list">
         <li><strong>Students:</strong> practise coursework and ask for help with specific topics.</li>
         <li><strong>Peer tutors:</strong> help other students and record eligible GiveBack time.</li>
         <li><strong>Universities and colleges:</strong> provide access and oversee course content and tutoring.</li>
       </ul>
     </section>
 
-    <section id="dashboard">
+    <section class="home-section journey-panel" id="dashboard">
       <h2>How it would work</h2>
-      <ol>
+      <ol class="journey-steps">
         <li>Read the course material.</li>
         <li>Try a game or practice question.</li>
         <li>Check the feedback.</li>
@@ -70,19 +77,19 @@
         <li>Try again.</li>
       </ol>
       <h3>Sample courses</h3>
-      <ul>
+      <ul class="course-list">
         <li><a href="experience.html">Mathematics: Puzzle Temple</a>. Try our percentages quest.</li>
         <li>Programming: Code Kingdom. A planned second course, with no activity built yet.</li>
       </ul>
-      <p>This prototype shows one practice question and a tutoring example. It does not create accounts, save scores or
+      <p class="prototype-note">This prototype shows two practice questions and a tutoring example. It does not create accounts, save scores or
         book sessions.</p>
     </section>
 
-    <section>
+    <section class="home-section">
       <h2>Our proposal</h2>
       <p>We would start with Programming and Mathematics at one university. The main question is whether linking course
         practice to peer help gives students a reason to use the website regularly.</p>
-      <ul>
+      <ul class="proposal-links">
         <li><a href="feasibility.html">Feasibility and our pilot plan</a></li>
         <li><a href="business-model.html">How the business would earn money</a></li>
         <li><a href="industry.html">Industry and competitors</a></li>
@@ -90,7 +97,7 @@
       </ul>
     </section>
   </main>
-  <footer>
+  <footer class="site-footer">
     <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>
