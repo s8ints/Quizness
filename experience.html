@@ -25,155 +25,132 @@
       </ul>
     </nav>
   </header>
-  <main id="main" tabindex="-1">
+  <main id="main" tabindex="-1" class="experience-page">
+    <p class="eyebrow">Your sample learning space</p>
+    <h1>Find your next learning adventure.</h1>
+    <p class="lead">Choose a world, learn one idea, and practise with Panthy.</p>
+    <p class="prototype-note">Sample student experience. Only Mathematics is playable. Progress lasts for this visit
+      only and resets when you refresh. No account is created and no information is sent.</p>
 
-    <h1>Puzzle Temple: maths practice</h1>
-    <p>This is a sample of how a course activity could work. Learn the idea, try a quest and use the feedback to decide
-      what to practise next.</p>
+    <div class="demo-guide">
+      <img src="mascot/tiger-pixel.svg" alt="Panthy, the purple learning companion holding a study card." width="88" height="84">
+      <p><strong>Panthy's tip:</strong> Mistakes are part of learning. Read the explanation, then give it another try.</p>
+    </div>
 
-    <section id="learn">
-      <h2>1. Learn the idea</h2>
-      <p>A percentage means &ldquo;per hundred.&rdquo; To find 20% of an amount, write 20/100 = 0.20 and multiply the
-        amount by 0.20. (OpenStax, 2020, 6.1)</p>
-      <p><strong>Example:</strong> 20% of BBD 40 = 0.20 &times; 40 = BBD 8.</p>
-      <p><a href="#prototype">Try the sample quest below</a></p>
-    </section>
+    <div class="demo-toolbar" id="progress">
+      <div>
+        <p id="visit-stage"><strong>Current step:</strong> Choose a world</p>
+        <p id="visit-progress" role="status">0 of 2 questions complete this visit.</p>
+      </div>
+      <button type="button" class="button button-secondary" id="reset-demo" disabled>Reset demonstration</button>
+    </div>
+    <noscript>
+      <p class="prototype-note">JavaScript is needed for this interactive demonstration. Enable JavaScript and reload
+        to select Mathematics and answer questions. You can still <a href="tutoring.html">read the peer-tutoring example</a>.</p>
+    </noscript>
 
-    <section id="prototype">
-      <h2>2. Your sample quest</h2>
-      <p>What is 20% of BBD 50?</p>
-      <p>Choose an answer link to review its explanation.</p>
-      <ul>
-        <li><a href="#q1-a">A. BBD 5</a></li>
-        <li><a href="#q1-b">B. BBD 10</a></li>
-        <li><a href="#q1-c">C. BBD 20</a></li>
-      </ul>
+    <!-- Existing home and tutoring links both enter the course-selection journey. -->
+    <div id="prototype">
+    <div id="learn">
+      <section class="demo-screen demo-panel demo-overview" id="course-screen">
+        <h2 tabindex="-1" id="course-title">1. Choose your learning world</h2>
+        <p>Explore our sample course selection. Start with Percent Path in Puzzle Temple.</p>
+        <div class="demo-worlds">
+          <article class="demo-world">
+            <p class="eyebrow">Working demonstration</p>
+            <h3>Mathematics</h3>
+            <p class="demo-world-name">Puzzle Temple</p>
+            <p>Percent Path: a short percentages lesson and two questions using BBD amounts.</p>
+            <button type="button" class="button" id="select-maths" disabled>Select Mathematics</button>
+          </article>
+          <article class="demo-world demo-preview">
+            <p class="eyebrow">Preview only</p>
+            <h3>Programming</h3>
+            <p class="demo-world-name">Code Kingdom</p>
+            <p>A planned second course. No lesson or activity is available in this demonstration.</p>
+            <p><strong>Not playable yet</strong></p>
+          </article>
+        </div>
+      </section>
 
-      <h3 id="q1-a">A. BBD 5: Try again</h3>
-      <p>BBD 5 is 10% of BBD 50, because 0.10 &times; 50 = 5. The question asks for 20%, which is twice that amount.</p>
-      <p><a href="#prototype">Return to the challenge</a> | <a href="#q1-b">Review the worked answer</a></p>
+      <section class="demo-screen demo-panel" id="lesson-screen">
+        <h2 tabindex="-1" id="lesson-title">2. Percent Path: learn the idea</h2>
+        <p class="eyebrow">Mathematics / Puzzle Temple</p>
+        <p>A percentage means &ldquo;per hundred.&rdquo; To find 20% of an amount, write 20/100 = 0.20 and multiply
+          the amount by 0.20.</p>
+        <div class="demo-worked-example">
+          <h3>A worked example</h3>
+          <p><strong>What is 20% of BBD 40?</strong></p>
+          <ol>
+            <li>Convert the percentage: 20 &divide; 100 = 0.20.</li>
+            <li>Multiply: 0.20 &times; 40 = 8.</li>
+            <li>The answer is <strong>BBD 8</strong>.</li>
+          </ol>
+        </div>
+        <p>For 25%, use 25/100 = 0.25. This is the same as one quarter, so you can also divide the amount by 4.</p>
+        <p class="demo-source">Learning source: OpenStax (2020), <cite>Prealgebra 2e</cite>, Section 6.1.
+          <a href="team.html#source-openstax">See the source details</a>.</p>
+        <div class="demo-actions">
+          <button type="button" class="button" id="start-quiz">Start the two-question quest</button>
+          <button type="button" class="button button-secondary" id="back-courses">Back to course selection</button>
+        </div>
+      </section>
 
-      <h3 id="q1-b">B. BBD 10: Correct</h3>
-      <ol>
-        <li>Convert 20% to a decimal: 20 &divide; 100 = 0.20.</li>
-        <li>Multiply: 0.20 &times; 50 = 10.</li>
-        <li>The answer is BBD 10.</li>
-      </ol>
-      <p>(OpenStax, 2020, &sect;6.1)</p>
-      <p><a href="#practise">Try a related question</a></p>
+      <section class="demo-screen demo-panel" id="quiz-screen">
+        <p class="eyebrow">Percent Path / sample quest</p>
+        <h2 tabindex="-1" id="question-title">Question 1 of 2</h2>
+        <p>Choose one answer. You will receive an explanation before moving on.</p>
+        <fieldset class="demo-answers">
+          <legend id="question-text">What is 20% of BBD 50?</legend>
+          <button type="button" class="demo-answer" id="answer-0">A. BBD 5</button>
+          <button type="button" class="demo-answer" id="answer-1">B. BBD 10</button>
+          <button type="button" class="demo-answer" id="answer-2">C. BBD 20</button>
+        </fieldset>
+        <p id="feedback-message" class="demo-feedback" role="status" tabindex="-1">Choose an answer to see feedback.</p>
+        <div class="demo-actions">
+          <button type="button" class="button" id="retry-answer">Try this question again</button>
+          <button type="button" class="button" id="next-question">Continue to question 2</button>
+        </div>
+        <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
+      </section>
 
-      <h3 id="q1-c">C. BBD 20: Try again</h3>
-      <p>20% is a proportion, not a fixed currency amount. Multiply 0.20 by the amount given. BBD 20 would be 40% of BBD
-        50.</p>
-      <p><a href="#prototype">Return to the challenge</a> | <a href="#q1-b">Review the worked answer</a></p>
-    </section>
+      <section class="demo-screen demo-panel" id="complete-screen">
+        <p class="eyebrow">Percent Path / quest complete</p>
+        <h2 tabindex="-1" id="complete-title">You completed the sample quest!</h2>
+        <p>You answered both percentages questions correctly with feedback available along the way.</p>
+        <p><strong>2 of 2 questions complete this visit.</strong> This is demonstration completion, not a course grade
+          or a measure of mastery.</p>
+        <p>You practised converting a percentage to a decimal and multiplying it by an amount. For 25%, you also
+          explored the one-quarter shortcut.</p>
+        <p><a class="button" href="tutoring.html#booking">Explore peer support</a></p>
+        <p>Want another try? Use &ldquo;Reset demonstration&rdquo; above to return to course selection.</p>
+      </section>
+    </div>
+    </div>
 
-    <section id="practise">
-      <h2>3. Practise the same idea</h2>
-      <p>What is 25% of BBD 80?</p>
-      <ul>
-        <li><a href="#q2-a">A. BBD 10</a></li>
-        <li><a href="#q2-b">B. BBD 20</a></li>
-        <li><a href="#q2-c">C. BBD 25</a></li>
-      </ul>
-
-      <h3 id="q2-a">A. BBD 10: Try again</h3>
-      <p>BBD 10 is one eighth of 80, or 12.5%. For 25%, find one quarter of 80.</p>
-      <p><a href="#practise">Retry</a> | <a href="#q2-b">See the worked answer</a></p>
-
-      <h3 id="q2-b">B. BBD 20: Correct</h3>
-      <p>25 &divide; 100 = 0.25. Then 0.25 &times; 80 = 20. You can also divide 80 by 4 because 25% is one quarter.
-        (OpenStax, 2020, &sect;6.1)</p>
-      <p><a href="#progress">View sample progress</a></p>
-
-      <h3 id="q2-c">C. BBD 25: Try again</h3>
-      <p>The percentage is 25%, not BBD 25. Apply it to the amount: 0.25 &times; 80 = 20.</p>
-      <p><a href="#practise">Retry</a> | <a href="#q2-b">See the worked answer</a></p>
-
-      <p>These links only move to explanations on this page. This example does not record your attempt or change a
-        score.</p>
-    </section>
-
-    <section id="progress">
-      <h2>Sample progress report</h2>
-      <p>These example scores show what a report from several activities could look like. They are not results from the
-        questions above.</p>
-      <table>
-        <caption>Example topic scores</caption>
-        <thead>
-          <tr>
-            <th scope="col">Topic</th>
-            <th scope="col">Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Percentages</th>
-            <td>80%</td>
-          </tr>
-          <tr>
-            <th scope="row">Fractions</th>
-            <td>100%</td>
-          </tr>
-          <tr>
-            <th scope="row">Ratios</th>
-            <td>60%</td>
-          </tr>
-          <tr>
-            <th scope="row">Equations</th>
-            <td>40%</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>Equations is the topic with the lowest score in this example. The student could practise it again or ask a
-        tutor to explain it.</p>
-      <p><a href="tutoring.html#booking">See the peer-tutoring example</a> | <a href="#prototype">Try the sample quest
-          again</a></p>
-    </section>
-
-    <section id="experience">
-      <h2>Course topics</h2>
+    <section class="demo-topics" id="experience">
+      <h2>Beyond this sample</h2>
       <p>We would organise each course into small activities. These are our planned areas for Puzzle Temple:</p>
       <ol>
-        <li>Percent Path: percentages (sample above)</li>
-        <li>Fraction Falls: fractions</li>
-        <li>Ratio Bridge: ratios and proportion</li>
-        <li>Equation Tower: solving equations</li>
-        <li>Final challenge: questions from different topics</li>
+        <li>Percent Path: percentages (working sample)</li>
+        <li>Fraction Falls: fractions (preview)</li>
+        <li>Ratio Bridge: ratios and proportion (preview)</li>
+        <li>Equation Tower: solving equations (preview)</li>
+        <li>Final challenge: questions from different topics (preview)</li>
       </ol>
-    </section>
-
-    <section>
-      <h2>Adding more activities</h2>
       <p>We plan to use question and game templates. A lecturer or approved creator would add course material, and a
         coordinator would check the questions and explanations before students use them.</p>
-      <p>Like Duolingo&rsquo;s repeated practice model, Quizzness uses short interactive challenges to reinforce
-        learning. Unlike Quizlet, Quizzness connects weak topics directly to peer tutoring.</p>
-      <h3>How this prototype is built</h3>
-      <p>This page uses plain HTML for its structure and one external CSS file for its appearance.</p>
-      <blockquote>
-        <p>&ldquo;The purpose of HTML is to add meaning and structure to the content.&rdquo;</p>
-        <p>(Robbins, 2018, Ch. 4, p. 59)</p>
-      </blockquote>
-      <blockquote>
-        <p>Style sheets show &ldquo;the power in keeping CSS separate from HTML, and presentation separate from
-          structure.&rdquo;</p>
-        <p>(Robbins, 2018, Ch. 11, p. 240)</p>
-      </blockquote>
-      <p>The pages also adjust to narrow screens using a flexible width, scalable images and a media query.</p>
-      <blockquote>
-        <p>&ldquo;Media queries give us a way to deliver sets of rules only to devices that meet certain criteria, such
-          as width and orientation.&rdquo;</p>
-        <p>(Robbins, 2018, Ch. 17, p. 487)</p>
-      </blockquote>
-      <p>The full service would need accounts and progress tracking. Those features are not part of this website yet.
-      </p>
+      <p>Like Duolingo's repeated practice model, Quizzness uses short interactive challenges to reinforce learning.
+        Unlike Quizlet, Quizzness connects weak topics directly to peer tutoring.</p>
+      <p class="demo-source">This prototype uses HTML, external CSS, and introductory JavaScript. It does not save
+        progress, assess a whole course, or book tutoring sessions.</p>
     </section>
   </main>
   <footer class="site-footer">
     <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>
+  <script src="script.js"></script>
 </body>
 
 </html>

@@ -212,6 +212,68 @@ thead { background-color: #eee7f5; }
 }
 .site-footer p { margin: 6px 20px 6px 0; }
 
+/* Product experience only: Chapters 9, 11-14, 16, and 17.
+   JavaScript changes display to show one learning stage at a time. */
+.experience-page button { font-family: inherit; font-size: 16px; line-height: 1.5; cursor: pointer; }
+.experience-page button:focus, .experience-page [tabindex="-1"]:focus {
+  outline: 3px solid #573b7a;
+  outline-offset: 4px;
+}
+.experience-page button:disabled { cursor: default; }
+.experience-page .button:disabled { background-color: #eee7f5; color: #573b7a; border-color: #bcb3c5; }
+.experience-page .demo-guide {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+}
+.demo-guide img { flex: 0 0 auto; margin-right: 24px; }
+.demo-guide p { max-width: 600px; }
+.experience-page .demo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border: 1px solid #bcb3c5;
+  background-color: #eee7f5;
+}
+.demo-toolbar p { margin: 4px 20px 4px 0; }
+.demo-toolbar button { margin: 8px 0; }
+.experience-page .demo-screen { display: none; }
+.experience-page .demo-overview { display: block; }
+.demo-panel { padding: 32px; border: 1px solid #d9d2df; background-color: #ffffff; }
+.demo-panel h2 { margin-top: 0; color: #1b4332; }
+.demo-worlds { display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 20px; }
+.demo-world { padding: 24px; border: 1px solid #bcb3c5; border-top: 4px solid #7a4e9d; }
+.demo-world h3 { margin-bottom: 0; }
+.demo-world-name { margin-top: 4px; color: #573b7a; font-size: 22px; font-weight: bold; }
+.demo-preview { background-color: #faf9fc; }
+.demo-worked-example { padding: 20px 24px; border-left: 4px solid #40916c; background-color: #efe6dd; }
+.demo-worked-example h3 { margin-top: 0; }
+.demo-source { font-size: 14px; }
+.demo-answers { min-width: 0; margin: 24px 0; padding: 0; border: 0; }
+.demo-answers legend { margin-bottom: 16px; padding: 0; color: #1b4332; font-size: 22px; font-weight: bold; }
+.demo-answer {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 16px 20px;
+  border: 2px solid #bcb3c5;
+  background-color: #ffffff;
+  color: #28252e;
+  text-align: left;
+}
+.demo-answer:hover { border-color: #7a4e9d; background-color: #eee7f5; }
+.demo-answer:disabled { background-color: #faf9fc; border-color: #bcb3c5; color: #28252e; }
+.demo-answer.demo-selected { background-color: #eee7f5; border-color: #573b7a; font-weight: bold; }
+.demo-feedback { padding: 20px; border-left: 4px solid #bcb3c5; background-color: #faf9fc; }
+.demo-correct { border-color: #1b4332; background-color: #efe6dd; }
+.demo-incorrect { border-color: #7a4e9d; background-color: #eee7f5; }
+.demo-actions { display: flex; flex-wrap: wrap; margin: 16px -6px; }
+.demo-actions button { margin: 6px; }
+.experience-page #retry-answer, .experience-page #next-question { display: none; }
+.demo-topics { padding-top: 12px; }
+
 /* Responsive layouts and flexible images: Chapter 17. */
 @media (max-width: 1000px) {
   .site-header { flex-direction: column; align-items: flex-start; }
@@ -238,4 +300,9 @@ thead { background-color: #eee7f5; }
   .journey-panel { padding: 24px 20px; }
   .journey-steps { grid-template-columns: 1fr; }
   th, td { padding: 6px; }
+  .experience-page .demo-panel { padding: 24px 16px; }
+  .experience-page .demo-worlds { grid-template-columns: 1fr; }
+  .experience-page .demo-world { padding: 20px; }
+  .experience-page .demo-guide img { width: 64px; margin-right: 16px; }
+  .experience-page .demo-worked-example { padding: 16px; }
 }
