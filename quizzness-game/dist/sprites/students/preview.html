@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student sprites preview</title>
+    <!-- Review page for the generated student sprites (dev only). Open via the dev server:
+         http://127.0.0.1:5173/sprites/students/preview.html -->
+    <style>
+      body { margin: 0; padding: 24px; font-family: Nunito, "Trebuchet MS", sans-serif; transition: background 0.3s; }
+      body.day { background: #efe6dd; color: #1b4332; }
+      body.night { background: #2a2340; color: #efe6dd; }
+      h1 { font-size: 22px; margin: 0 0 6px; }
+      .controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 12px 0 20px; }
+      button, select { font: 700 15px Nunito, sans-serif; padding: 8px 14px; border: 2px solid #1b4332; border-radius: 6px; background: #7a4e9d; color: #efe6dd; cursor: pointer; box-shadow: 0 4px 0 #1b4332; }
+      select { background: #efe6dd; color: #1b4332; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+      .card { border: 2px solid currentColor; border-radius: 8px; padding: 12px; }
+      .card h2 { font-size: 16px; margin: 0 0 8px; }
+      .row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+      .anim { text-align: center; font-size: 12px; font-weight: 700; }
+      .sprite { position: relative; image-rendering: pixelated; }
+      .sprite > div { position: absolute; inset: 0; background-repeat: no-repeat; image-rendering: pixelated; }
+      .note { max-width: 70ch; }
+    </style>
+  </head>
+  <body class="day">
+    <h1>Student sprites</h1>
+    <p class="note">Generated from the original character sheet (only existing pixels are moved). Left/right/up are stopgaps until side and back views are drawn. Shadows are a separate layer.</p>
+    <div class="controls">
+      <button id="light">Switch to night</button>
+      <label>Scale <select id="scale"><option>1</option><option selected>2</option><option>3</option></select></label>
+    </div>
+    <div class="grid" id="grid"></div>
+    <script>
+      const ANIMS = ["idle", "walk-down", "walk-left", "walk-right"];
+      let manifest, scale = 2, night = false;
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      function render() {
+        const { frameWidth: fw, frameHeight: fh, characters } = manifest;
+        const grid = document.getElementById("grid");
+        grid.innerHTML = "";
+        for (const [id, c] of Object.entries(characters)) {
+          const card = document.createElement("section");
+          card.className = "card";
+          card.innerHTML = `<h2>${c.name} <small>(${id})</small></h2><div class="row"></div>`;
+          for (const name of ANIMS) {
+            const a = c.animations[name];
+            const w = fw * scale, h = fh * scale, sheetW = w * a.frames;
+            const layer = (file) => `<div style="background-image:url(${file});background-size:${sheetW}px ${h}px" data-frames="${a.frames}" data-fps="${a.fps}" data-w="${w}"></div>`;
+            const shadow = name === "idle" ? "" : layer(night ? c.shadow.night : c.shadow.day);
+            card.querySelector(".row").insertAdjacentHTML("beforeend",
+              `<div class="anim"><div class="sprite" style="width:${w}px;height:${h}px">${shadow}${layer(a.file)}</div>${name}${a.stopgap ? " *" : ""}</div>`);
+          }
+          grid.append(card);
+        }
+      }
+      // Step every layer at its own fps, like the game would.
+      let start = performance.now();
+      function tick() {
+        const now = performance.now();
+        document.querySelectorAll(".sprite > div").forEach((el) => {
+          const frames = +el.dataset.frames, fps = +el.dataset.fps, w = +el.dataset.w;
+          const f = reduce ? 0 : Math.floor(((now - start) / 1000) * fps) % frames;
+          el.style.backgroundPosition = `${-f * w}px 0`;
+        });
+      }
+      document.getElementById("light").onclick = (e) => {
+        night = !night;
+        document.body.className = night ? "night" : "day";
+        e.target.textContent = night ? "Switch to day" : "Switch to night";
+        render();
+      };
+      document.getElementById("scale").onchange = (e) => { scale = +e.target.value; render(); };
+      fetch("students.json").then((r) => r.json()).then((m) => { manifest = m; render(); setInterval(tick, 1000 / 30); });
+    </script>
+  </body>
+</html>
