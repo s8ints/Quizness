@@ -1,23 +1,28 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Quizzness, a proposed university learning platform connecting course quests, useful feedback, and peer support.">
   <title>Quizzness | Home</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="home-page">
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
-    <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="" width="64"
-          height="64"> QUIZZNESS</a></p>
-    <nav aria-label="Main navigation">
+    <div class="hp-topbar">
+      <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="" width="64" height="64"> QUIZZNESS</a></p>
+      <nav class="hp-primary-nav" aria-label="Learning navigation">
+        <ul>
+          <li><a href="experience.html">Practice</a></li>
+          <li><a href="tutoring.html">Peer tutoring</a></li>
+          <li><a class="hp-nav-cta" href="#worlds">Explore learning <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+      </nav>
+    </div>
+    <nav class="hp-investor-nav" aria-label="Venture navigation">
       <ul>
         <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="experience.html">Practice</a></li>
-        <li><a href="tutoring.html">Peer tutoring</a></li>
         <li><a href="feasibility.html">Feasibility</a></li>
         <li><a href="business-model.html">Business model</a></li>
         <li><a href="industry.html">Market &amp; Launch</a></li>
@@ -25,75 +30,102 @@
       </ul>
     </nav>
   </header>
-  <main id="main" tabindex="-1">
 
-    <section class="hero">
-      <div class="hero-text">
-        <p class="eyebrow">A proposed course-support platform</p>
-        <h1>Quizzness<br><span class="purple">Over Pleasure.</span></h1>
-        <p class="lead">Practise difficult topics. Understand your mistakes. Find your next step.</p>
-        <p>Quizzness transforms university courses into interactive games and connects students to verified peer tutors
-          who earn give-back hours.</p>
-        <p class="hero-actions"><a class="button" href="experience.html#learn">Try a Sample Challenge</a> <a class="button button-secondary" href="#opportunity">Explore the
-            proposal</a></p>
+  <main id="main" tabindex="-1">
+    <section class="hp-hero" aria-labelledby="home-title">
+      <div class="hp-hero-copy">
+        <p class="hp-kicker"><span aria-hidden="true" class="hp-pixel"></span> A proposed course-support platform</p>
+        <h1 id="home-title">Quizzness<br><span>Over Pleasure.</span></h1>
+        <p class="hp-hero-lead">Practise difficult topics.<br>Understand your mistakes.<br>Find your next step.</p>
+        <p>University coursework, reimagined as short learning quests with useful feedback and a route to screened peer support.</p>
+        <div class="hp-actions">
+          <a class="button hp-button" href="experience.html#learn">Try a sample quest <span aria-hidden="true">&rarr;</span></a>
+          <a class="hp-text-link" href="#opportunity">Discover the opportunity</a>
+        </div>
+        <p class="hp-small">Two sample questions. No account needed.</p>
       </div>
-      <figure class="hero-image">
-        <img src="mascot/tiger-pixel.svg" alt="Panthy, our purple pixel tiger mascot holding a study card." width="240">
-        <figcaption>Panthy the thinking panther, our proposed learning companion.</figcaption>
+      <figure class="hp-scene">
+        <img src="images/panthy-quest.svg" alt="Panthy, our purple pixel learning companion, beside a sample Percent Path quest in Mathematics." width="520" height="420">
+        <figcaption>Meet Panthy, the thinking panther.<br>Your proposed learning companion.</figcaption>
       </figure>
     </section>
 
-    <section class="home-section" id="opportunity">
-      <h2>The problem</h2>
-      <div class="problem-grid">
-        <div>
-          <p>Following an explanation in class and answering a question on your own are different things. We want to help
-            students practise between classes and find someone to explain topics they are struggling with.</p>
-          <p>Study groups and WhatsApp chats can be useful, but our idea puts practice, feedback and peer support in one
-            place. In our survey of 28 students, 22 (78.6%) said they have difficulty understanding course topics at least
-            sometimes. We still need interviews to find out whether students would keep using Quizzness.</p>
-        </div>
-        <blockquote>
-          <p>&ldquo;An opportunity is a favorable set of circumstances that creates a need for a new product, service, or
-            business.&rdquo;</p>
-          <p>(Barringer &amp; Ireland, 2019, Ch. 2, p. 72)</p>
-        </blockquote>
+    <section class="hp-worlds-section" id="worlds" aria-labelledby="worlds-title">
+      <div class="hp-section-heading">
+        <div><p class="hp-kicker">Choose your starting point</p><h2 id="worlds-title">A world of ideas.<br>One quest at a time.</h2></div>
+        <p>Start with our playable Mathematics sample. Programming is part of the proposal, with no activity built yet.</p>
       </div>
-      <h3>Who would use it?</h3>
-      <ul class="audience-list">
-        <li><strong>Students:</strong> practise coursework and ask for help with specific topics.</li>
-        <li><strong>Peer tutors:</strong> help other students and record eligible GiveBack time.</li>
-        <li><strong>Universities and colleges:</strong> provide access and oversee course content and tutoring.</li>
-      </ul>
+      <div class="hp-worlds">
+        <article class="hp-world">
+          <img class="hp-world-art" src="images/puzzle-temple.svg" alt="" width="600" height="165">
+          <div class="hp-world-content">
+            <div class="hp-world-meta"><span>Mathematics</span><span class="hp-state">Playable sample</span></div>
+            <h3>Puzzle Temple</h3>
+            <p>Take the Percent Path: learn the idea, try two questions, and use the feedback to find your next step.</p>
+            <a class="hp-world-link" href="experience.html">Enter Puzzle Temple <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+        <article class="hp-world hp-preview-world">
+          <img class="hp-world-art" src="images/code-kingdom.svg" alt="" width="600" height="165">
+          <div class="hp-world-content">
+            <div class="hp-world-meta"><span>Programming</span><span class="hp-preview-state">Preview only</span></div>
+            <h3>Code Kingdom</h3>
+            <p>A planned second course for a future learning adventure. There is no Programming lesson or activity in this prototype.</p>
+            <p class="hp-coming">A world still to be built</p>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section class="home-section journey-panel" id="dashboard">
-      <h2>How it would work</h2>
-      <ol class="journey-steps">
-        <li>Read the course material.</li>
-        <li>Try a game or practice question.</li>
-        <li>Check the feedback.</li>
-        <li>Practise the weak topic or ask a peer tutor for help.</li>
-        <li>Try again.</li>
+    <section class="hp-journey" id="dashboard" aria-labelledby="journey-title">
+      <p class="hp-kicker">The learning loop</p>
+      <h2 id="journey-title">Every attempt has a next step.</h2>
+      <ol class="hp-journey-list">
+        <li><span class="hp-node" aria-hidden="true">01</span><h3>Learn</h3><p>Read the course material.</p></li>
+        <li><span class="hp-node" aria-hidden="true">02</span><h3>Take a quest</h3><p>Try a game or practice question.</p></li>
+        <li><span class="hp-node" aria-hidden="true">03</span><h3>Reflect</h3><p>Check the feedback.</p></li>
+        <li><span class="hp-node" aria-hidden="true">04</span><h3>Find support</h3><p>Practise the weak topic or ask a peer tutor for help.</p></li>
+        <li><span class="hp-node" aria-hidden="true">05</span><h3>Try again</h3><p>Return to the idea and give it another try.</p></li>
       </ol>
-      <h3>Sample courses</h3>
-      <ul class="course-list">
-        <li><a href="experience.html">Mathematics: Puzzle Temple</a>. Try our percentages quest.</li>
-        <li>Programming: Code Kingdom. A planned second course, with no activity built yet.</li>
-      </ul>
-      <p class="prototype-note">This prototype shows two practice questions and a tutoring example. It does not create accounts, save scores or
-        book sessions.</p>
+      <div class="hp-demo-note"><strong>A demonstration, not a live service.</strong> This prototype shows two practice questions and a tutoring example. It does not create accounts, save scores, or book sessions. GiveBack recognition would require a formal university agreement.</div>
     </section>
 
-    <section class="home-section">
-      <h2>Our proposal</h2>
-      <p>We would start with Programming and Mathematics at one university. The main question is whether linking course
-        practice to peer help gives students a reason to use the website regularly.</p>
-      <ul class="proposal-links">
-        <li><a href="feasibility.html">Feasibility and our pilot plan</a></li>
-        <li><a href="business-model.html">How the business would earn money</a></li>
-        <li><a href="industry.html">Market &amp; Launch</a></li>
-        <li><a href="team.html">Our team, sources and next step</a></li>
+    <section class="hp-opportunity" id="opportunity" aria-labelledby="opportunity-title">
+      <div class="hp-problem-copy">
+        <p class="hp-kicker">The opportunity</p>
+        <h2 id="opportunity-title">Bridge the gap<br>between class and confidence.</h2>
+        <p>Following an explanation in class and answering a question on your own are different things. We want to help students practise between classes and find someone to explain topics they are struggling with.</p>
+        <p>Study groups and WhatsApp chats can be useful, but our idea puts practice, feedback and peer support in one place.</p>
+        <blockquote><p>&ldquo;An opportunity is a favorable set of circumstances that creates a need for a new product, service, or business.&rdquo;</p><p>(Barringer &amp; Ireland, 2019, Ch. 2, p. 72)</p></blockquote>
+      </div>
+      <aside class="hp-research" aria-labelledby="research-title">
+        <p class="hp-kicker">An early signal</p>
+        <h3 id="research-title">22 <span>of 28</span></h3>
+        <p>students in our survey (78.6%) said they have difficulty understanding course topics at least sometimes.</p>
+        <p class="hp-research-limit">A small exploratory survey, not proof of demand. We still need interviews to find out whether students would keep using Quizzness.</p>
+        <a href="feasibility.html#evidence">Explore the evidence <span aria-hidden="true">&rarr;</span></a>
+      </aside>
+      <div class="hp-audience">
+        <h3>Who would use Quizzness?</h3>
+        <dl>
+          <div><dt>Students</dt><dd>Practise coursework and ask for help with specific topics.</dd></div>
+          <div><dt>Peer tutors</dt><dd>Help other students and record eligible GiveBack time.</dd></div>
+          <div><dt>Universities &amp; colleges</dt><dd>Provide access and oversee course content and tutoring.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="hp-proposal" aria-labelledby="proposal-title">
+      <div>
+        <p class="hp-kicker">The venture behind the adventure</p>
+        <h2 id="proposal-title">A focused pilot.<br>A testable proposition.</h2>
+        <p>We would start with Programming and Mathematics at one university. The main question is whether linking course practice to peer help gives students a reason to use the website regularly.</p>
+      </div>
+      <ul class="hp-proposal-links">
+        <li><a href="feasibility.html">Feasibility and our pilot plan <span aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="business-model.html">How the business would earn money <span aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="industry.html">Market &amp; Launch <span aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="team.html">Our team, sources and next step <span aria-hidden="true">&rarr;</span></a></li>
       </ul>
     </section>
   </main>
@@ -102,5 +134,4 @@
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>
 </body>
-
 </html>
