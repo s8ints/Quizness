@@ -9,48 +9,100 @@
 </head>
 
 <body>
-  <header>
-    <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="Quizzness logo" width="64"
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="" width="64"
           height="64"> QUIZZNESS</a></p>
     <nav aria-label="Main navigation">
-      <a href="index.html">Home</a> |
-      <a href="experience.html">Practice</a> |
-      <a href="tutoring.html">Peer tutoring</a> |
-      <a href="feasibility.html">Feasibility</a> |
-      <a href="business-model.html" aria-current="page">Business model</a> |
-      <a href="industry.html">Industry and competitors</a> |
-      <a href="team.html">Team and sources</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html">Practice</a></li>
+        <li><a href="tutoring.html">Peer tutoring</a></li>
+        <li><a href="feasibility.html">Feasibility</a></li>
+        <li><a href="business-model.html" aria-current="page">Business model</a></li>
+        <li><a href="industry.html">Market &amp; Launch</a></li>
+        <li><a href="team.html">About &amp; Team</a></li>
+      </ul>
     </nav>
   </header>
-  <main id="main">
+  <main id="main" tabindex="-1" class="supporting-page">
+    <div class="supporting-intro">
+      <div>
+        <p class="eyebrow">How the proposed venture would sustain its service</p>
+        <h1>Business model</h1>
+        <p class="lead">Institutional licensing would fund the core service; optional revenue streams would need separate validation.</p>
+      </div>
+      <img src="mascot/tiger-pixel.svg" alt="Panthy, Quizzness's purple learning companion." width="112" height="107">
+    </div>
+    <nav class="section-links" aria-label="On this page">
+      <ul>
+        <li><a href="#model">Revenue model</a></li>
+        <li><a href="#value">Value</a></li>
+        <li><a href="#pricing">Pricing gaps</a></li>
+        <li><a href="#costs">Costs</a></li>
+        <li><a href="#sustainability">Sustainability</a></li>
+      </ul>
+    </nav>
+    <p class="status-note"><strong>Proposed model:</strong> there are no confirmed prices, sales, revenues, or financial
+      projections. This prototype does not take payments or provide paid services.</p>
 
-    <h1>Business model</h1>
-    <section id="model">
+    <section class="support-section" id="model">
       <h2>How we would earn money</h2>
       <p>Our main model is B2B2C: a university pays for platform access, and its students use the service. We would
         discuss a licence based on participating students per semester.</p>
-      <ul>
-        <li><strong>Main income:</strong> licences for universities and colleges.</li>
-        <li><strong>Secondary income:</strong> optional student subscriptions for extra activities or features.</li>
-        <li><strong>Later option:</strong> a commission on paid tutoring sessions.</li>
-      </ul>
-      <p>Prices, premium features and commission rates have not been decided. Paid tutoring would be separate from free
-        peer GiveBack sessions.</p>
+      <div class="support-grid">
+        <article class="support-card">
+          <p class="eyebrow">Proposed primary revenue</p>
+          <h3>Institutional licences</h3>
+          <p>Universities and colleges would pay for access to reviewed course activities and a coordinated peer-support
+            service. Pricing, scope, and responsibilities would need agreement with a prospective customer.</p>
+        </article>
+        <article class="support-card">
+          <p class="eyebrow">Optional secondary revenue</p>
+          <h3>Student subscriptions</h3>
+          <p>Optional extra activities or features could be considered later. Premium features, student willingness to
+            pay, and the boundary with institution-funded access have not been decided.</p>
+        </article>
+        <article class="support-card">
+          <p class="eyebrow">Possible later option</p>
+          <h3>Paid tutoring commissions</h3>
+          <p>A commission could be considered for separate paid tutoring sessions. Rates and operating rules are undecided.
+            Paid tutoring would remain separate from free peer GiveBack sessions.</p>
+        </article>
+      </div>
+      <p>Optional subscriptions and commissions should not be counted as assured income when assessing whether an
+        institutional licence could sustain the core service.</p>
+    </section>
+
+    <section class="support-section" id="value">
       <h2>Creating, delivering and capturing value</h2>
       <blockquote>
         <p>&ldquo;A firm&rsquo;s business model is its plan or recipe for how it creates, delivers, and captures value
           for its stakeholders.&rdquo;</p>
         <p>(Barringer &amp; Ireland, 2019, Ch. 4, p. 149)</p>
       </blockquote>
-      <p><strong>Create:</strong> help students practise coursework, understand feedback and find suitable peer help.
-      </p>
-      <p><strong>Deliver:</strong> provide course activities and tutoring access through a university partnership. The
-        university would approve content and oversee tutors.</p>
-      <p><strong>Capture:</strong> earn licence and subscription income to pay for development, hosting, content review
-        and support.</p>
+      <div class="support-grid">
+        <article class="support-card"><h3>Create</h3><p>Help students practise coursework, understand feedback,
+          and find suitable peer help when a topic remains difficult.</p></article>
+        <article class="support-card"><h3>Deliver</h3><p>Provide course activities and tutoring access through a
+          proposed university partnership. Content approval and tutor oversight would need agreed responsibilities.</p></article>
+        <article class="support-card"><h3>Capture</h3><p>Use proposed licence income to support development,
+          hosting, content review, and support, with optional secondary revenue only if validated.</p></article>
+      </div>
     </section>
 
-    <section id="comparison">
+    <section class="support-section" id="pricing">
+      <h2>Pricing still to be confirmed</h2>
+      <p>The group needs cost estimates and conversations with potential institutional buyers before selecting a price.
+        The following are information gaps, not offers.</p>
+      <ul class="placeholder-list">
+        <li><strong>Institutional licence:</strong> [Group to confirm BBD amount, participant basis, semester terms, and included support.]</li>
+        <li><strong>Optional student subscription:</strong> [Group to confirm whether it is needed, the premium features, and any BBD price.]</li>
+        <li><strong>Possible paid-tutoring commission:</strong> [Group to confirm whether it is appropriate and any rate or conditions.]</li>
+      </ul>
+    </section>
+
+    <section class="support-section" id="comparison">
       <h2>Standard or disruptive?</h2>
       <p>We classify Quizzness as a standard licensing and subscription model. The combination of course games and peer
         tutoring is our proposed difference, but we do not have evidence that it would disrupt the market.</p>
@@ -58,32 +110,58 @@
         151&ndash;154).</p>
     </section>
 
-    <section id="duolingo-comparison">
+    <section class="support-section" id="duolingo-comparison">
       <h2>Comparison with Duolingo</h2>
       <p><a href="https://blog.duolingo.com/duolingo-teaching-method/">Duolingo uses interactive lessons, repeated
           practice and game elements</a>. We want to use practice activities for university coursework.</p>
       <p><a href="https://blog.duolingo.com/is-duolingo-free/">Duolingo offers free learning with optional premium
           subscriptions</a>. This is similar to our secondary subscription idea. Our main proposed income would come
         from institutions rather than individual subscriptions.</p>
-      <p>Like Duolingo&rsquo;s freemium model, Quizzness offers free practice but monetizes through premium
-        subscriptions. Unlike Quizlet, which focuses on flashcards, Quizzness integrates peer tutoring and verified
-        give-back hours.</p>
+      <p>Optional student subscriptions are a secondary possibility, not the main funding assumption. Our proposed
+        primary revenue is institutional licensing; a sustainable service cannot be assumed from a freemium comparison alone.</p>
       <p>Quizzness would also connect course feedback to peer tutoring and GiveBack records. We would need to test
-        whether students and universities value that connection.</p>
+        whether students and universities value that connection. Recognised GiveBack time would require a formal university agreement.</p>
+      <p><a href="industry.html#competition">See the wider competitor comparison</a>.</p>
     </section>
 
-    <section>
-      <h2>Costs and risks</h2>
-      <p>Our costs would include building activities, reviewing course content, training tutors, hosting the website and
-        managing sessions. Volunteer tutoring would still need supervision.</p>
-      <p>Before building the full service, we would estimate these costs with a partner and check whether licence income
-        could cover them.</p>
+    <section class="support-section" id="costs">
+      <h2>Main operating costs</h2>
+      <p>Volunteer tutoring would still require supervision. Our proposed costs include building activities, reviewing
+        course content, training tutors, hosting the website, and managing sessions.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Operating cost information gaps table">
+        <table>
+          <caption>Cost areas to estimate before pricing</caption>
+          <thead><tr><th scope="col">Cost area</th><th scope="col">Unconfirmed information</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Development and maintenance</th><td>Work needed for the live service, testing, accessibility, and ongoing fixes. [Group to supply startup and recurring BBD estimates.]</td></tr>
+            <tr><th scope="row">Learning content and review</th><td>Activity creation, subject review, and updates per course. [Group to confirm workload and BBD estimate.]</td></tr>
+            <tr><th scope="row">Tutor training and coordination</th><td>Screening, training, session concerns, and time verification. [Group to confirm people, hours, and BBD estimate.]</td></tr>
+            <tr><th scope="row">Hosting and service support</th><td>Future delivery, administration, and learner support. [Group to confirm ongoing BBD estimate.]</td></tr>
+            <tr><th scope="row">Pilot recruitment and evaluation</th><td>Approved communication, demonstrations, and evaluation workload. [Group to confirm resources and BBD estimate.]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="content-placeholder"><strong>Budget placeholder:</strong> group to prepare a startup-needs estimate,
+        recurring-cost estimate, proposed funding source, and the assumptions behind each figure. No financial forecast is claimed.</p>
+    </section>
+
+    <section class="support-section" id="sustainability">
+      <h2>What would make the business sustainable?</h2>
+      <ol>
+        <li>Estimate the real workload and costs for a limited course offering before agreeing a licence price.</li>
+        <li>Test whether a potential institution values the service enough to fund those costs.</li>
+        <li>Review repeat participation, tutor capacity, content quality, and support workload before renewal or expansion.</li>
+      </ol>
+      <p>Before building the full service, we would estimate these costs with a prospective partner and check whether
+        licence income could cover them. If the model cannot support reliable delivery, the scope or pricing would need revision.</p>
       <p>As Barringer and Ireland (2019, Ch. 3) note, feasibility analysis tests whether a business idea is viable. For
         Quizzness, that depends on content accuracy, tutor quality, institutional support and student retention. These
         are our main risks.</p>
+      <p><a href="feasibility.html#pilot">Explore the pilot evaluation</a> and
+        <a href="industry.html#launch">the proposed route to launch</a>.</p>
     </section>
   </main>
-  <footer>
+  <footer class="site-footer">
     <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>
