@@ -196,7 +196,7 @@ thead { background-color: #eee7f5; }
 
 /* The decorative scene is one local image; its caption remains readable HTML. */
 .home-page .hp-scene { min-width: 0; margin: 0; }
-.home-page .hp-scene img { display: block; width: 100%; }
+.home-page .hp-scene img, .home-page .hp-scene > svg { display: block; width: 100%; height: auto; }
 .home-page .hp-scene figcaption { margin-top: 8px; color: #44216f; font-size: 13px; line-height: 1.5; text-align: center; }
 
 .home-page .hp-worlds-section { margin: 0; padding: 40px; border-radius: 20px; background-color: #44216f; }
@@ -350,14 +350,44 @@ thead { background-color: #eee7f5; }
 .demo-incorrect { border-color: #7a4e9d; background-color: #eee7f5; }
 .demo-actions { display: flex; flex-wrap: wrap; margin: 16px -6px; }
 .demo-actions button { margin: 6px; }
-.experience-page #retry-answer, .experience-page #next-question { display: none; }
 .demo-topics { padding-top: 12px; }
 
+/* Bare-bones game: squared tiles and offset borders echo the pixel artwork. */
+.experience-page .level-path { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0; list-style: none; }
+.experience-page .level-path li { padding: 16px; border: 2px solid #1b4332; background-color: #eee7f5; box-shadow: 3px 3px 0 #c9b6e4; }
+.experience-page .level-path span { display: block; color: #1b4332; }
+.experience-page .game-guide { padding: 16px; border: 2px solid #7a4e9d; background-color: #eee7f5; }
+.experience-page .game-guide p { margin: 0; }
+.experience-page .game-guide img { image-rendering: pixelated; }
+.experience-page .game-arena { border: 2px solid #1b4332; box-shadow: 4px 4px 0 #c9b6e4; }
+.experience-page .matching-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.experience-page .matching-columns fieldset { min-width: 0; }
+.experience-page .matching-columns legend { font-size: 18px; }
+.experience-page .game-tile { display: block; width: 100%; min-height: 54px; margin: 12px 0; padding: 14px; border: 2px solid #1b4332; background-color: #efe6dd; color: #1b4332; box-shadow: 3px 3px 0 #c9b6e4; font-weight: bold; }
+.experience-page .game-tile:hover { background-color: #c9b6e4; }
+.experience-page .game-tile[aria-pressed="true"] { background-color: #7a4e9d; color: #ffffff; }
+.experience-page .game-tile:disabled { box-shadow: none; background-color: #eee7f5; }
+.experience-page .bridge-order { min-height: 64px; padding: 16px 16px 16px 44px; border: 2px dashed #7a4e9d; background-color: #eee7f5; }
+.experience-page .bridge-order li { padding: 8px; color: #1b4332; }
+.experience-page .level-reward { padding: 20px; border: 2px solid #40916c; background-color: #efe6dd; color: #1b4332; font-size: 22px; }
+.experience-page .friends-panel { margin-top: 30px; }
+.experience-page .friend-button { min-height: 44px; padding: 6px 0; border: 0; background: transparent; color: #573b7a; font-weight: bold; text-decoration: underline; }
+.experience-page .leaderboard-you { background-color: #eee7f5; font-weight: bold; }
+.experience-page .friend-details { padding: 20px; border-left: 4px solid #40916c; background-color: #efe6dd; }
+.experience-page .friend-details h3 { margin-top: 0; }
+@media (max-width: 600px) {
+  .experience-page .level-path, .experience-page .matching-columns { grid-template-columns: 1fr; }
+  .experience-page .matching-columns { gap: 0; }
+  .experience-page .matching-columns fieldset { margin: 12px 0; }
+  .experience-page .friends-panel { padding: 24px 12px; }
+  .experience-page .friends-panel th, .experience-page .friends-panel td { padding: 8px 6px; }
+}
+
 /* Peer tutoring only: labelled controls (Chapter 9), styling (11-14), Grid/Flexbox (16). */
-.tutoring-page button, .tutoring-page select { font-family: inherit; font-size: 16px; line-height: 1.5; }
+.tutoring-page button, .tutoring-page select, .tutoring-page input { font-family: inherit; font-size: 16px; line-height: 1.5; }
 .tutoring-page button { cursor: pointer; }
 .tutoring-page button:disabled { cursor: default; background-color: #eee7f5; color: #573b7a; border-color: #bcb3c5; }
-.tutoring-page button:focus, .tutoring-page select:focus, .tutoring-page [tabindex="-1"]:focus {
+.tutoring-page button:focus, .tutoring-page select:focus, .tutoring-page input:focus, .tutoring-page [tabindex="-1"]:focus {
   outline: 3px solid #573b7a;
   outline-offset: 4px;
 }
@@ -373,6 +403,11 @@ thead { background-color: #eee7f5; }
 .tutoring-page .request-fields > div { min-width: 0; }
 .tutoring-page label { display: block; margin-bottom: 8px; font-weight: bold; }
 .tutoring-page select { width: 100%; max-width: 100%; padding: 12px 8px; border: 2px solid #bcb3c5; background-color: #ffffff; color: #28252e; }
+.tutoring-page #tutor-application input[type="text"], .tutoring-page #tutor-application input[type="file"] { width: 100%; min-width: 0; padding: 12px 8px; border: 2px solid #bcb3c5; background-color: #ffffff; color: #28252e; }
+.tutoring-page .subject-options label { display: flex; align-items: center; gap: 12px; min-height: 44px; margin: 0; cursor: pointer; }
+.tutoring-page .subject-options input { flex-shrink: 0; width: 20px; height: 20px; margin: 0; accent-color: #573b7a; }
+.tutoring-page #tutor-application { margin-top: 24px; }
+.tutoring-page .application-field { margin-top: 20px; }
 .tutoring-page select[aria-invalid="true"] { border-color: #573b7a; }
 .tutoring-page #request-message { padding: 12px 16px; background-color: #efe6dd; }
 .tutoring-page .request-summary, .tutoring-page .request-confirmation { display: none; margin-top: 28px; padding: 24px; border-left: 4px solid #7a4e9d; background-color: #eee7f5; }

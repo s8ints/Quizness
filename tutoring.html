@@ -38,6 +38,8 @@
 
     <p class="prototype-note">All tutors, requests, sessions, and wallet records on this page are fictional prototype
       examples. No personal information is collected and no booking is made.</p>
+    <p>Want to help other students? <a href="#become-tutor">Apply to become a peer tutor</a> and work toward
+      school GiveBack hours.</p>
     <div class="demo-guide">
       <img src="mascot/tiger-pixel.svg" alt="Panthy, the purple learning companion holding a study card." width="88" height="84">
       <p><strong>Panthy's tip:</strong> Pick the topic you need help with, then review your sample request before
@@ -79,8 +81,9 @@
               <label for="request-session">Session (required)</label>
               <select id="request-session" required aria-describedby="request-message">
                 <option value="">Choose a session</option>
-                <option value="short">15-minute explanation</option>
-                <option value="worked">30-minute worked example</option>
+                <option value="30-minutes">30 minutes</option>
+                <option value="1-hour">1 hour</option>
+                <option value="2-hours">2 hours</option>
               </select>
             </div>
           </div>
@@ -126,6 +129,82 @@
         <button type="button" class="button button-secondary" id="another-request">Start another demonstration</button>
       </div>
       <p><a href="experience.html#prototype">Back to the learning experience</a></p>
+    </section>
+
+    <section id="become-tutor" class="tutor-panel" aria-labelledby="tutor-application-title">
+      <p class="eyebrow">Help others / GiveBack programme</p>
+      <h2 id="tutor-application-title">Become a peer tutor</h2>
+      <p>Share what you know and support other students. Approved tutoring sessions could count toward your
+        school's GiveBack hours, subject to school approval and programme rules.</p>
+      <p id="application-note" class="prototype-note">This is a prototype application. You can try the form, but
+        your details and files will not be uploaded, sent, or saved. Use sample details and documents.</p>
+
+      <form id="tutor-application" aria-describedby="application-note">
+        <fieldset>
+          <legend>Your details</legend>
+          <label for="tutor-name">Full name (required)</label>
+          <input type="text" id="tutor-name" name="full-name" autocomplete="name" required maxlength="120">
+        </fieldset>
+
+        <fieldset aria-describedby="tutor-subjects-help">
+          <legend>Preferred subjects</legend>
+          <p id="tutor-subjects-help">Select all the subjects you feel comfortable tutoring.</p>
+          <div class="request-fields subject-options">
+            <label for="subject-mathematics"><input type="checkbox" id="subject-mathematics"
+                name="subjects" value="mathematics"> Mathematics</label>
+            <label for="subject-programming"><input type="checkbox" id="subject-programming"
+                name="subjects" value="programming"> Programming</label>
+            <label for="subject-statistics"><input type="checkbox" id="subject-statistics"
+                name="subjects" value="statistics"> Statistics</label>
+            <label for="subject-english"><input type="checkbox" id="subject-english"
+                name="subjects" value="english"> English</label>
+            <label for="subject-accounting"><input type="checkbox" id="subject-accounting"
+                name="subjects" value="accounting"> Accounting</label>
+            <label for="subject-economics"><input type="checkbox" id="subject-economics"
+                name="subjects" value="economics"> Economics</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>CV and recommendations</legend>
+          <p id="application-files-help">Choose a CV and at least two recommendation letters from teachers,
+            lecturers, or other people who can recommend you as a tutor. Accepted file types: PDF, DOC, or DOCX.</p>
+          <div class="application-field">
+            <label for="tutor-cv">CV (required)</label>
+            <input type="file" id="tutor-cv" name="cv" accept=".pdf,.doc,.docx" required
+              aria-describedby="application-files-help">
+          </div>
+          <div class="application-field">
+            <label for="tutor-recommendation-1">Recommendation letter 1 (required)</label>
+            <input type="file" id="tutor-recommendation-1" name="recommendation-1" accept=".pdf,.doc,.docx" required
+              aria-describedby="application-files-help">
+          </div>
+          <div class="application-field">
+            <label for="tutor-recommendation-2">Recommendation letter 2 (required)</label>
+            <input type="file" id="tutor-recommendation-2" name="recommendation-2" accept=".pdf,.doc,.docx" required
+              aria-describedby="application-files-help">
+          </div>
+          <div class="application-field">
+            <label for="tutor-recommendation-3">Recommendation letter 3 (optional)</label>
+            <input type="file" id="tutor-recommendation-3" name="recommendation-3" accept=".pdf,.doc,.docx"
+              aria-describedby="application-files-help">
+          </div>
+        </fieldset>
+
+        <button type="submit" class="button" id="preview-application" disabled>Submit demonstration only</button>
+        <noscript><p class="prototype-note">Enable JavaScript and reload to try the application demonstration. This prototype
+          does not send applications.</p></noscript>
+      </form>
+
+      <div id="application-confirmation" class="request-confirmation">
+        <h3 id="application-confirmation-title" tabindex="-1">Application demonstration complete</h3>
+        <p><strong>Your application has not been sent or saved.</strong> Your name, subject choices, CV, and
+          recommendation letters stay in this demonstration. No tutor application has been created and no
+          GiveBack hours have been added.</p>
+        <p>In the proposed programme, a coordinator would review your application before you could tutor and
+          earn approved GiveBack hours.</p>
+        <button type="button" class="button button-secondary" id="reset-application">Reset application demo</button>
+      </div>
     </section>
 
     <section id="session">
