@@ -1,11 +1,24 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useStudent } from "../app/StudentProvider";
 import { Mascot } from "./Mascot";
+import { MissionPreviewPanel } from "./MissionPreviewPanel";
 import type { Area, AreaDialog, Destination, Point } from "../game/area";
 import type { AreaSnapshot } from "../game/createAreaGame";
+import type { Game } from "phaser";
 import "../styles/exploration.css";
 
+// Data-saver connections and low-memory devices get the lighter version of a place.
+function wantsLiteEffects() {
+  const device = navigator as Navigator & {
+    connection?: { saveData?: boolean };
+    deviceMemory?: number;
+  };
+  return (
+    !!device.connection?.saveData ||
+    (device.deviceMemory !== undefined && device.deviceMemory <= 2)
+  );
+}
 // One walkable place: the game canvas, keyboard and touch controls, and links
 // that work without walking. The room and the campus both use this.
 export function WalkableArea({
@@ -23,6 +36,11 @@ export function WalkableArea({
   const { profile, preview } = useStudent();
   const base = preview ? "/preview" : "";
   const navigate = useNavigate();
+  // Arrive at the door you came through, when this place knows that door.
+  const arrivedFrom = (useLocation().state as { from?: string } | null)?.from;
+  const start = useRef(
+    (arrivedFrom && area.entrances?.[arrivedFrom]) || area.spawn,
+  ).current;
   const host = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const keys = useRef(new Set<string>());
@@ -30,9 +48,10 @@ export function WalkableArea({
   const pausedRef = useRef(false);
   const [paused, setPaused] = useState(false);
   const [ready, setReady] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
   const [retry, setRetry] = useState(0);
-  const [snapshot, setSnapshot] = useState<AreaSnapshot>({ ...area.spawn });
+  const [snapshot, setSnapshot] = useState<AreaSnapshot>({ ...start });
   const [dialog, setDialog] = useState<AreaDialog | null>(null);
   const [stick, setStick] = useState<Point>({ x: 0, y: 0 });
   const pointer = useRef<number | null>(null);
@@ -58,13 +77,16 @@ export function WalkableArea({
     if (destination.dialog) {
       pausedRef.current = true;
       setDialog(destination.dialog);
-    } else if (destination.path) navigate(`${base}${destination.path}`);
+    } else if (destination.path)
+      navigate(`${base}${destination.path}`, { state: { from: area.id } });
   }
   useEffect(() => {
     let cancelled = false;
-    let game: { destroy: (removeCanvas: boolean) => void } | undefined;
+    let game: Game | undefined;
+    let watcher: IntersectionObserver | undefined;
     setReady(false);
     setError(false);
+    setProgress(0);
     Promise.all([
       import("../game/createAreaGame"),
       fetch("/sprites/students/students.json").then((response) => {
@@ -75,11 +97,18 @@ export function WalkableArea({
     ])
       .then(([{ createAreaGame }, manifest]) => {
         if (cancelled || !host.current) return;
-        game = createAreaGame(
+        game = createAreaGame({
           area,
-          host.current,
-          profile.avatar_id,
-          () => {
+          parent: host.current,
+          avatarId: profile.avatar_id,
+          start,
+          manifest,
+          reducedMotion: profile.reduced_motion,
+          lite: wantsLiteEffects(),
+          onProgress: (fraction) => {
+            if (!cancelled) setProgress(fraction);
+          },
+          getInput: () => {
             if (pausedRef.current || document.hidden) return { x: 0, y: 0 };
             const focused = stage.current?.contains(document.activeElement);
             const has = (...codes: string[]) =>
@@ -95,18 +124,31 @@ export function WalkableArea({
                 Number(has("ArrowUp", "KeyW")),
             };
           },
-          () => {
+          onReady: () => {
             if (!cancelled) setReady(true);
           },
-          (state) => {
+          onUpdate: (state) => {
             if (!cancelled) setSnapshot(state);
           },
-          () => {
+          onError: () => {
             if (!cancelled) setError(true);
           },
-          manifest,
-          profile.reduced_motion,
-        );
+        });
+        const running = game;
+        // No need to draw the game while it's scrolled out of view.
+        if (stage.current && "IntersectionObserver" in window) {
+          watcher = new IntersectionObserver(([entry]) => {
+            if (!running.isBooted) return;
+            if (entry.isIntersecting) running.loop.wake();
+            else running.loop.sleep();
+            if (stage.current)
+              stage.current.dataset.sleeping = String(!entry.isIntersecting);
+          });
+          watcher.observe(stage.current);
+        }
+        running.canvas?.addEventListener("webglcontextlost", () => {
+          if (!cancelled) setError(true);
+        });
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -121,6 +163,7 @@ export function WalkableArea({
     document.addEventListener("visibilitychange", clear);
     return () => {
       cancelled = true;
+      watcher?.disconnect();
       keys.current.clear();
       joystick.current = { x: 0, y: 0 };
       game?.destroy(true);
@@ -130,7 +173,12 @@ export function WalkableArea({
   }, [area, profile.avatar_id, profile.reduced_motion, retry]);
   const destinationControl = (d: Destination, className: string, text: string) =>
     d.path && !d.dialog ? (
-      <Link key={d.id} className={className} to={`${base}${d.path}`}>
+      <Link
+        key={d.id}
+        className={className}
+        to={`${base}${d.path}`}
+        state={{ from: area.id }}
+      >
         {text}
       </Link>
     ) : (
@@ -155,7 +203,10 @@ export function WalkableArea({
         <div
           ref={stage}
           className="walkable-stage"
-          style={{ aspectRatio: `${area.width} / ${area.height}` }}
+          style={{
+            aspectRatio: `${area.width} / ${area.height}`,
+            backgroundImage: `url(${area.thumb})`,
+          }}
           tabIndex={0}
           role="group"
           aria-label={label}
@@ -165,6 +216,7 @@ export function WalkableArea({
           data-player-y={snapshot.y.toFixed(1)}
           data-animation={snapshot.animation}
           data-frame={snapshot.frame}
+          data-quality={snapshot.quality}
           onBlur={stop}
           onKeyDown={(event) => {
             if (event.altKey || event.ctrlKey || event.metaKey) return;
@@ -237,9 +289,26 @@ export function WalkableArea({
                 </button>
               </>
             ) : (
-              "Getting things ready…"
+              <>
+                <p>Getting things ready…</p>
+                <div
+                  className="room-progress-bar"
+                  role="progressbar"
+                  aria-label="Loading"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={Math.round(progress * 100)}
+                >
+                  <span style={{ width: `${Math.round(progress * 100)}%` }} />
+                </div>
+              </>
             )}
           </div>
+        )}
+        {paused && !dialog && ready && !error && (
+          <p className="room-paused" role="status">
+            Paused
+          </p>
         )}
         {dialog && (
           <div
@@ -248,7 +317,16 @@ export function WalkableArea({
             aria-modal="false"
             aria-label={dialog.title}
           >
-            <Mascot compact state="welcome" message={dialog.message} />
+            {dialog.missionId ? (
+              <MissionPreviewPanel missionId={dialog.missionId} />
+            ) : dialog.speaker ? (
+              <div className="room-speech">
+                <strong>{dialog.speaker}</strong>
+                <p>{dialog.message}</p>
+              </div>
+            ) : (
+              <Mascot compact state="welcome" message={dialog.message} />
+            )}
             <button
               className="button"
               autoFocus

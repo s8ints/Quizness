@@ -2,6 +2,8 @@
 
 Recorded: 2026-10-09. This is a contextual summary and decision trail, not a verbatim transcript. The user asked that this planning conversation be saved in docs so Claude can use it when asking follow-up questions. Latest user statement: **“the plan is updated and finalized for now.”**
 
+Update 2026-11-02: this file records the planning conversation, so its "next action" is out of date. Current progress is in [PHASE_2_STATUS.md](PHASE_2_STATUS.md).
+
 ## Read these in order
 
 1. [PHASE_2_ADJUSTMENTS.md](PHASE_2_ADJUSTMENTS.md): approved changes; this wins wherever it conflicts with the original design.

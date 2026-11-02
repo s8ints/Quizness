@@ -30,10 +30,13 @@ function canStand(p: Point) {
 }
 export const roomArea: Area = {
   id: "room",
-  art: "/brand/student-room-pixel-v2.png",
+  art: "/brand/optimized/student-room-pixel-v2.webp",
+  thumb: "/brand/optimized/student-room-pixel-v2-thumb.webp",
   width: 1536,
   height: 1024,
   spawn: { x: 770, y: 760 },
+  // Coming home from campus means walking in through the doormat.
+  entrances: { campus: { x: 770, y: 930 } },
   speed: 280,
   // The floor is seen at an angle, so walking "up" the screen covers less of it.
   depthSpeed: 0.72,
@@ -44,6 +47,8 @@ export const roomArea: Area = {
     2.05 + Math.max(0, Math.min(1, (y - bounds.y) / bounds.height)) * 0.85,
   showPins: true,
   ambient: {
+    // Curtains and plants stir in the breeze from the window.
+    sway: { mask: "/brand/masks/room-sway.png", furthest: 5 },
     clouds: {
       mask: "/brand/masks/room-window.png",
       top: 78,

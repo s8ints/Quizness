@@ -7,10 +7,60 @@ const CREAM = 0xefe6dd;
 const WARM = 0xfff3d6;
 const DARK = 0x1b4332;
 
-export function ambientMasks(config: AmbientConfig) {
-  return [config.clouds?.mask, config.water?.mask, config.falls?.mask].filter(
-    (mask): mask is string => !!mask,
-  );
+export type AmbientController = {
+  update: (deltaSeconds: number) => void;
+  // Switches off the heavier effects if the device can't keep up.
+  lower: () => void;
+};
+export function ambientMasks(config: AmbientConfig, lite = false) {
+  return [
+    config.clouds?.mask,
+    config.water?.mask,
+    config.falls?.mask,
+    lite ? undefined : config.sway?.mask,
+  ].filter((mask): mask is string => !!mask);
+}
+// Moves masked pixels a little, and only onto other masked pixels, so edges stay clean.
+function swayShader(furthest: number) {
+  return `
+precision mediump float;
+uniform float time;
+uniform vec2 resolution;
+uniform sampler2D iChannel0;
+uniform sampler2D iChannel1;
+varying vec2 fragCoord;
+void main() {
+  vec2 uv = vec2(fragCoord.x / resolution.x, 1.0 - fragCoord.y / resolution.y);
+  float amount = texture2D(iChannel1, uv).r;
+  if (amount < 0.03) discard;
+  vec2 at = uv * resolution;
+  float wind = sin(time * 1.3 + at.x * 0.016 + at.y * 0.022)
+    + 0.55 * sin(time * 2.9 + at.x * 0.047 - at.y * 0.012);
+  vec2 shifted = uv + vec2(wind, wind * 0.35) * amount * ${furthest.toFixed(2)} / resolution;
+  if (texture2D(iChannel1, shifted).r < 0.03) discard;
+  gl_FragColor = texture2D(iChannel0, shifted);
+}`;
+}
+// A small puff of dust where a foot lands.
+export function addFootsteps(scene: Phaser.Scene, scale: number) {
+  bakeTexture(scene, "ambient-puff", 6, 6, (g) => {
+    g.fillStyle(0xefe6dd, 1);
+    g.fillRect(0, 0, 6, 6);
+  });
+  const puffs = scene.add
+    .particles(0, 0, "ambient-puff", {
+      speedX: { min: -22, max: 22 },
+      speedY: { min: -18, max: -2 },
+      scale: { start: 0.9 * scale * 0.5, end: 0.1 },
+      alpha: { start: 0.65, end: 0 },
+      lifespan: 420,
+      emitting: false,
+    })
+    .setDepth(990);
+  return (x: number, y: number) => {
+    puffs.setDepth(y + 1);
+    puffs.emitParticleAt(x, y, 4);
+  };
 }
 // Small repeatable random numbers, so the scene looks the same on every visit.
 function seeded(seed: number) {
@@ -93,12 +143,37 @@ export function addAmbient(
   config: AmbientConfig,
   width: number,
   height: number,
-) {
+  lite = false,
+): AmbientController {
   const webgl = scene.renderer.type === Phaser.WEBGL;
   const updates: ((delta: number) => void)[] = [];
+  // The effects that cost the most, switched off first on slow devices.
+  const heavy: { setVisible: (visible: boolean) => unknown }[] = [];
+  const heavyEmitters: Phaser.GameObjects.Particles.ParticleEmitter[] = [];
+
+  if (config.sway && webgl && !lite) {
+    const shader = new Phaser.Display.BaseShader(
+      "ambient-sway",
+      swayShader(config.sway.furthest),
+    );
+    const sway = scene.add
+      .shader(shader, 0, 0, width, height)
+      .setOrigin(0, 0)
+      .setDepth(0.5);
+    // Must clamp: repeating a non-power-of-two image makes the GPU draw it black.
+    const sampling = {
+      wrapS: "clamp_to_edge",
+      wrapT: "clamp_to_edge",
+      minFilter: "nearest",
+      magFilter: "nearest",
+    };
+    sway.setSampler2D("iChannel0", "area", 0, sampling);
+    sway.setSampler2D("iChannel1", config.sway.mask, 1, sampling);
+    heavy.push(sway);
+  }
 
   // Soft shadows of passing clouds sweep across the ground.
-  if (config.cloudShadows) {
+  if (config.cloudShadows && !lite) {
     softCircle(scene, "ambient-shadow", "rgba(27,67,50,0.55)");
     const random = seeded(77);
     for (let i = 0; i < config.cloudShadows; i++) {
@@ -107,6 +182,7 @@ export function addAmbient(
         .setScale(1.6 + random() * 1.4, 0.8 + random() * 0.6)
         .setAlpha(0.32)
         .setDepth(2);
+      heavy.push(shadow);
       const speed = 10 + random() * 8;
       updates.push((delta) => {
         shadow.x += speed * delta;
@@ -159,9 +235,10 @@ export function addAmbient(
         tile.tilePositionX += vx * delta;
         tile.tilePositionY += vy * delta;
       });
+      return tile;
     };
     layer(0.5, 26, 5, 1);
-    layer(0.34, -16, 9, 1.4);
+    if (!lite) heavy.push(layer(0.34, -16, 9, 1.4));
   }
 
   if (config.falls && webgl) {
@@ -224,23 +301,25 @@ export function addAmbient(
   }
 
   // Leaves carried across the map on the breeze.
-  if (config.leaves) {
+  if (config.leaves && !lite) {
     bakeTexture(scene, "ambient-leaf", 8, 4, (g) => {
       g.fillStyle(0x40916c, 1);
       g.fillRect(0, 0, 8, 4);
     });
-    scene.add
-      .particles(0, 0, "ambient-leaf", {
-        x: { min: -40, max: width * 0.4 },
-        y: { min: 200, max: height * 0.8 },
-        speedX: { min: 35, max: 70 },
-        speedY: { min: 3, max: 16 },
-        rotate: { start: 0, end: 360 },
-        alpha: { start: 0.9, end: 0 },
-        lifespan: 7000,
-        frequency: config.leaves,
-      })
-      .setDepth(4);
+    heavyEmitters.push(
+      scene.add
+        .particles(0, 0, "ambient-leaf", {
+          x: { min: -40, max: width * 0.4 },
+          y: { min: 200, max: height * 0.8 },
+          speedX: { min: 35, max: 70 },
+          speedY: { min: 3, max: 16 },
+          rotate: { start: 0, end: 360 },
+          alpha: { start: 0.9, end: 0 },
+          lifespan: 7000,
+          frequency: config.leaves,
+        })
+        .setDepth(4),
+    );
   }
 
   // Birds crossing the sky with flapping wings.
@@ -353,7 +432,13 @@ export function addAmbient(
     });
   }
 
-  return (deltaSeconds: number) => {
-    for (const update of updates) update(deltaSeconds);
+  return {
+    update: (deltaSeconds) => {
+      for (const update of updates) update(deltaSeconds);
+    },
+    lower: () => {
+      for (const object of heavy) object.setVisible(false);
+      for (const emitter of heavyEmitters) emitter.stop();
+    },
   };
 }

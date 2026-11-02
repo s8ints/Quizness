@@ -166,22 +166,18 @@ thead { background-color: var(--soft-purple); }
 /* Modern Pixel Adventure homepage. Chapters 12-17: type, colours,
    pseudo-elements, box styling, positioning, Grid/Flexbox, and media queries.
    Homepage layouts sit on top of the shared site palette. */
-.home { max-width: 1240px; padding: 0 32px; background-color: var(--cream); color: var(--ink); }
+.home { max-width: none; width: 100%; padding: 0 32px; background-color: var(--cream); color: var(--ink); }
 .home a { color: var(--purple); }
-.home a:focus { outline: 3px solid var(--purple); outline-offset: 4px; }
 .home .skip-link { background-color: var(--green); color: var(--ink); }
-.home main { max-width: none; margin-top: 0; }
+.home main { max-width: 1176px; margin: 0 auto; }
 .home .site-header { display: block; margin: 0; padding: 24px 0 0; border: 0; background: transparent; box-shadow: none; }
 .home .header-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 20px; }
 .home .brand { margin: 0 24px 0 0; }
-.home .site-header .brand a { color: var(--purple); font-size: 22px; letter-spacing: 1px; }
-.home .site-header .brand img { width: 56px; border: 0; background: transparent; }
 .home .site-header nav { flex: 0 1 auto; max-width: none; }
 .home .site-header nav a { margin: 0; padding: 10px 0; border: 0; color: var(--purple); font-size: 14px; min-height: 44px; }
 .home .site-header nav li { margin-right: 24px; }
 .home .site-header nav li:last-child { margin-right: 0; }
 .home .site-header nav a:hover { background: transparent; color: var(--ink); text-decoration: underline; }
-.home .site-header a:focus { outline-color: var(--purple); }
 .home .site-header nav .explore-button { padding: 10px 18px; border: 1px solid var(--purple); border-radius: 6px; background-color: var(--purple); color: var(--cream); font-weight: bold; }
 .home .site-header nav .explore-button:hover { background-color: var(--ink); color: var(--cream); text-decoration: none; }
 .home .main-nav { padding: 4px 0; border-top: 1px solid var(--accent); border-bottom: 1px solid var(--accent); }
@@ -198,71 +194,71 @@ thead { background-color: var(--soft-purple); }
 .home .intro-text > p { max-width: 480px; }
 .home .intro-links { display: flex; align-items: center; flex-wrap: wrap; margin: 28px -10px 0; }
 .home .intro-links a { margin: 8px 10px; }
-.home .start-button { padding: 13px 22px; border: 1px solid var(--purple); border-bottom: 4px solid var(--purple); border-radius: 6px; background-color: var(--green); color: var(--ink); }
-.home .start-button:hover { border-color: var(--purple); background-color: var(--purple); color: var(--cream); }
+.home .start-button { color: var(--ink); }
+.home .start-button:hover { color: var(--cream); }
 .home .text-link { padding: 10px 0; font-weight: bold; }
 .home .small-text { margin-top: 14px; font-size: 13px; }
 
-/* The decorative scene is one local image; its caption remains readable HTML. */
+/* Home illustration and caption. */
 .home .mascot { min-width: 0; margin: 0; }
 .home .mascot img { display: block; width: 100%; }
-.home .mascot figcaption { margin-top: 8px; color: #44216f; font-size: 13px; line-height: 1.5; text-align: center; }
+.home .mascot figcaption { margin-top: 8px; color: var(--purple); font-size: 13px; line-height: 1.5; text-align: center; }
 
-.home .courses { margin: 0; padding: 40px; border-radius: 20px; background-color: #44216f; }
+.home .courses { max-width: 1176px; margin: 0 auto; padding: 40px; border-radius: 20px; background-color: var(--purple); }
 .home .section-heading { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 48px; align-items: end; margin-bottom: 28px; }
-.home .section-heading h2 { margin-bottom: 0; color: #fff3d9; }
-.home .section-heading > p { max-width: 360px; margin: 0 0 4px; color: #fff3d9; }
-.home .courses .section-label { color: #8acb82; }
+.home .section-heading h2 { margin-bottom: 0; color: var(--cream); }
+.home .section-heading > p { max-width: 360px; margin: 0 0 4px; color: var(--cream); }
+.home .courses .section-label { color: var(--green); }
 .home .course-list { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 24px; }
-.home .course { min-width: 0; overflow: hidden; border-radius: 12px; background-color: #fff3d9; }
+.home .course { min-width: 0; overflow: hidden; border-radius: 12px; background-color: var(--cream); }
 /* Each world picture includes its background and symbols. */
 .home .course-image { display: block; width: 100%; height: 165px; }
 .home .course-text { padding: 26px; }
-.home .course-info { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; color: #44216f; font-size: 12px; font-weight: bold; }
+.home .course-info { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; color: var(--purple); font-size: 12px; font-weight: bold; }
 .home .course-info > span { margin: 0 8px 6px 0; }
-.home .available, .home .preview { padding: 4px 8px; border-radius: 4px; background-color: #8acb82; color: #252037; }
-.home .preview { border: 1px solid #44216f; background-color: #fff3d9; }
-.home .course h3 { margin: 12px 0; color: #44216f; font-size: 28px; }
-.home .course-link { display: flex; justify-content: space-between; align-items: center; min-height: 44px; margin-top: 24px; padding-top: 12px; border-top: 1px solid #9165ce; font-weight: bold; text-decoration: none; }
+.home .available, .home .preview { padding: 4px 8px; border-radius: 4px; background-color: var(--green); color: var(--ink); }
+.home .preview { border: 1px solid var(--purple); background-color: var(--cream); }
+.home .course h3 { margin: 12px 0; color: var(--purple); font-size: 28px; }
+.home .course-link { display: flex; justify-content: space-between; align-items: center; min-height: 44px; margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--accent); font-weight: bold; text-decoration: none; }
 .home .course-link:hover { text-decoration: underline; }
-.home .coming-soon { margin-top: 24px; padding-top: 12px; border-top: 1px solid #9165ce; font-size: 14px; }
+.home .coming-soon { margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--accent); font-size: 14px; }
 
 .home .learning { margin-top: 72px; }
 .home .steps { display: grid; grid-template-columns: repeat(5, 1fr); grid-gap: 24px; margin: 32px 0; padding: 0; list-style: none; }
 .home .steps li { position: relative; min-width: 0; }
-.home .steps li::before { content: ""; position: absolute; top: 22px; left: 44px; right: -24px; border-top: 2px dashed #9165ce; }
+.home .steps li::before { content: ""; position: absolute; top: 22px; left: 44px; right: -24px; border-top: 2px dashed var(--accent); }
 .home .steps li:last-child::before { display: none; }
-.home .step-number { display: inline-block; position: relative; width: 46px; height: 46px; border: 2px solid #44216f; border-radius: 50%; background-color: #fff3d9; color: #44216f; font-family: "Courier New", Courier, monospace; font-weight: bold; line-height: 42px; text-align: center; }
-.home .steps li:first-child .step-number { background-color: #8acb82; }
-.home .steps h3 { margin: 18px 0 8px; font-size: 18px; color: #44216f; }
+.home .step-number { display: inline-block; position: relative; width: 46px; height: 46px; border: 2px solid var(--purple); border-radius: 50%; background-color: var(--cream); color: var(--purple); font-family: "Courier New", Courier, monospace; font-weight: bold; line-height: 42px; text-align: center; }
+.home .steps li:first-child .step-number { background-color: var(--green); }
+.home .steps h3 { margin: 18px 0 8px; font-size: 18px; color: var(--purple); }
 .home .steps p { margin: 0; font-size: 14px; }
-.home .demo-note { padding: 16px 0 16px 20px; border-left: 4px solid #8acb82; font-size: 14px; }
+.home .demo-note { padding: 16px 0 16px 20px; border-left: 4px solid var(--green); font-size: 14px; }
 
 .home .opportunity { display: grid; grid-template-columns: 1.3fr 1fr; grid-gap: 36px 56px; align-items: start; margin-top: 72px; }
 .home .problem { min-width: 0; }
-.home .problem blockquote { margin: 24px 0 0; padding: 0 0 0 18px; border-left: 3px solid #9165ce; background: transparent; font-size: 14px; }
-.home .survey { padding: 30px; border-radius: 12px; background-color: #8acb82; }
-.home .survey h3 { margin: 12px 0; color: #44216f; font-size: 64px; line-height: 1; letter-spacing: -3px; }
+.home .problem blockquote { margin: 24px 0 0; padding: 0 0 0 18px; border-left: 3px solid var(--accent); background: transparent; font-size: 14px; }
+.home .survey { padding: 30px; border-radius: 12px; background-color: var(--green); }
+.home .survey h3 { margin: 12px 0; color: var(--purple); font-size: 64px; line-height: 1; letter-spacing: -3px; }
 .home .survey h3 span { font-size: 28px; letter-spacing: -1px; }
-.home .survey-note { padding-top: 16px; border-top: 1px solid #44216f; font-size: 14px; }
+.home .survey-note { padding-top: 16px; border-top: 1px solid var(--purple); font-size: 14px; }
 .home .survey a { display: inline-block; padding: 8px 0; font-weight: bold; }
 .home .audience { grid-column: 1 / -1; }
-.home .audience h3 { margin: 0 0 18px; color: #44216f; font-size: 22px; }
+.home .audience h3 { margin: 0 0 18px; color: var(--purple); font-size: 22px; }
 .home .audience dl { display: grid; grid-template-columns: 220px 1fr; column-gap: 24px; margin: 0; }
-.home .audience dt, .home .audience dd { padding: 18px 0; border-top: 1px solid #9165ce; }
-.home .audience dt { font-weight: bold; color: #44216f; }
+.home .audience dt, .home .audience dd { padding: 18px 0; border-top: 1px solid var(--accent); }
+.home .audience dt { font-weight: bold; color: var(--purple); }
 .home .audience dd { margin: 0; }
 
-.home .proposal { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 48px; margin-top: 72px; padding: 40px; border-radius: 16px; background-color: #44216f; color: #fff3d9; }
-.home .proposal .section-label { color: #8acb82; }
-.home .proposal h2 { color: #fff3d9; }
+.home .proposal { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 48px; margin-top: 72px; padding: 40px; border-radius: 16px; background-color: var(--purple); color: var(--cream); }
+.home .proposal .section-label { color: var(--green); }
+.home .proposal h2 { color: var(--cream); }
 .home .proposal p:last-child { margin-bottom: 0; }
 .home .proposal-links { margin: 0; padding: 0; list-style: none; }
-.home .proposal-links a { display: flex; align-items: center; justify-content: space-between; min-height: 60px; padding: 16px 0; border-bottom: 1px solid #9165ce; color: #fff3d9; text-decoration: none; }
-.home .proposal-links a span { margin-left: 16px; color: #8acb82; }
+.home .proposal-links a { display: flex; align-items: center; justify-content: space-between; min-height: 60px; padding: 16px 0; border-bottom: 1px solid var(--accent); color: var(--cream); text-decoration: none; }
+.home .proposal-links a span { margin-left: 16px; color: var(--green); }
 .home .proposal-links a:hover { text-decoration: underline; }
-.home .proposal a:focus { outline-color: #8acb82; }
-.home .site-footer { margin-top: 48px; border-top: 1px solid #44216f; box-shadow: none; }
+.home .proposal a:focus { outline-color: var(--green); }
+.home .site-footer { margin-top: 48px; }
 
 @media (max-width: 1100px) {
   .home .intro { grid-template-columns: 1fr; grid-gap: 20px; padding: 48px 0; }
@@ -294,7 +290,7 @@ thead { background-color: var(--soft-purple); }
   .home .steps li { padding: 0 0 28px 68px; min-height: 80px; }
   .home .steps li:last-child { padding-bottom: 0; }
   .home .step-number { position: absolute; top: 0; left: 0; }
-  .home .steps li::before { top: 46px; bottom: 0; left: 22px; right: auto; border-top: 0; border-left: 2px dashed #9165ce; }
+  .home .steps li::before { top: 46px; bottom: 0; left: 22px; right: auto; border-top: 0; border-left: 2px dashed var(--accent); }
   .home .steps h3 { margin-top: 0; }
   .home .audience dl { grid-template-columns: 1fr; }
   .home .audience dt { padding-bottom: 6px; }
@@ -432,43 +428,6 @@ thead { background-color: var(--soft-purple); }
 .tutoring-page .wallet-pending { background-color: var(--soft-purple); }
 .tutoring-page .wallet-note { padding: 16px 20px; border-left: 4px solid var(--green); background-color: var(--green); }
 
-/* Supporting assignment pages: semantic sections and tables (Chapters 5-8),
-   existing colours/spacing (11-14), and Grid/Flexbox (16). */
-.supporting-page .supporting-intro {
-  display: grid;
-  grid-template-columns: 1fr 120px;
-  grid-gap: 24px;
-  align-items: center;
-}
-.supporting-page .supporting-intro h1 { margin: 8px 0 16px; font-size: 38px; }
-.supporting-page .supporting-intro .lead { margin-bottom: 0; }
-.supporting-page .supporting-intro img { margin: 0 auto; }
-.supporting-page .section-links { margin: 28px 0; }
-.supporting-page .section-links ul { display: flex; flex-wrap: wrap; margin: 0 -4px; padding: 0; list-style: none; }
-.supporting-page .section-links a { display: block; margin: 4px; padding: 10px 14px; border: 1px solid var(--accent); background-color: var(--cream); }
-.supporting-page .section-links a:hover { background-color: var(--soft-purple); }
-.supporting-page .status-note { padding: 20px 24px; border-left: 4px solid var(--green); background-color: var(--green); }
-.supporting-page .support-section { margin-top: 32px; padding: 28px; border: 1px solid var(--accent); background-color: var(--cream); }
-.supporting-page .support-section h2 { margin-top: 0; color: var(--purple); font-size: 26px; }
-.supporting-page .support-section h3 { color: var(--purple); }
-.supporting-page .support-section > p:last-child { margin-bottom: 0; }
-.supporting-page .support-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 16px; margin: 24px 0; }
-.supporting-page .support-card { min-width: 0; padding: 20px; border-top: 3px solid var(--purple); background-color: var(--cream); }
-.supporting-page .support-card h3 { margin-top: 0; }
-.supporting-page .support-card p:last-child { margin-bottom: 0; }
-.supporting-page .team-role { font-weight: bold; color: var(--purple); }
-.supporting-page .content-placeholder { display: block; margin: 16px 0; padding: 16px; border: 1px dashed var(--purple); background-color: var(--soft-purple); font-size: 14px; }
-.supporting-page .placeholder-list { padding-left: 24px; }
-.supporting-page .placeholder-list li { margin: 16px 0; padding: 16px; border: 1px dashed var(--purple); background-color: var(--soft-purple); }
-.supporting-page .launch-stages { padding-left: 24px; }
-.supporting-page .launch-stages li { margin: 20px 0; padding: 16px 20px; border-left: 4px solid var(--accent); background-color: var(--cream); }
-.supporting-page .launch-stages h3 { margin: 0; }
-.supporting-page .launch-stages p { margin: 8px 0 0; }
-.supporting-page .source-list { padding-left: 24px; }
-.supporting-page .source-list li { margin: 18px 0; }
-.supporting-page .table-scroll:focus { outline: 3px solid var(--purple); outline-offset: 4px; }
-.supporting-page .support-source-link { margin-top: 24px; }
-
 /* Responsive layouts and flexible images: Chapter 17. */
 @media (max-width: 1000px) {
   .site-header { flex-direction: column; align-items: flex-start; }
@@ -493,11 +452,152 @@ thead { background-color: var(--soft-purple); }
   .tutoring-page .tutor-card, .tutoring-page .request-summary, .tutoring-page .request-confirmation { padding: 20px; }
   .tutoring-page fieldset { padding: 16px; }
   .tutoring-page .demo-guide img { width: 64px; margin-right: 16px; }
-  .supporting-page .supporting-intro { grid-template-columns: 1fr; }
-  .supporting-page .supporting-intro h1 { font-size: 32px; }
-  .supporting-page .supporting-intro img { width: 88px; margin: 0; }
-  .supporting-page .support-section { padding: 24px 16px; }
-  .supporting-page .support-grid { grid-template-columns: 1fr; }
-  .supporting-page .support-card { padding: 16px; }
-  .supporting-page .status-note { padding: 16px 20px; }
+}
+
+/* Information pages: shared home palette, simple sections, and responsive tables. */
+.information main {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.information .page-intro {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 48px;
+  align-items: center;
+  padding: 64px 0 40px;
+}
+
+.information .page-intro h1 {
+  margin: 0 0 24px;
+  color: var(--purple);
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: -3px;
+}
+
+.information .page-intro img { width: 160px; margin: 0 auto; }
+.information .page-intro .intro-lead { max-width: 65ch; margin-bottom: 0; }
+
+.information .page-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  list-style: none;
+}
+
+.information .page-links a { display: block; padding: 8px 0; font-weight: bold; }
+
+.information .assessment {
+  margin: 28px 0 0;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: var(--green);
+}
+
+.information main > section {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--accent);
+}
+
+.information main > section h2 { max-width: 26ch; font-size: 32px; }
+.information main > section h3 { margin: 32px 0 12px; color: var(--purple); font-size: 22px; }
+.information main > section > p { max-width: 75ch; }
+.information main > section blockquote {
+  margin: 0 0 32px;
+  padding: 24px 28px;
+  border: 0;
+  border-radius: 12px;
+  background-color: var(--soft-purple);
+}
+
+.information main > section blockquote p { max-width: 70ch; }
+.information .missing-info {
+  padding: 20px 24px;
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.information .table-scroll { margin: 24px 0; }
+.information .table-scroll:focus { outline: 3px solid var(--purple); outline-offset: 4px; }
+.information table { margin: 0; font-size: 15px; }
+.information caption { padding: 0 0 12px; color: var(--purple); font-size: 18px; }
+.information th, .information td { padding: 18px 20px; }
+.information thead { background-color: var(--purple); color: var(--cream); }
+.information tbody th { width: 32%; color: var(--purple); }
+.information tbody tr:nth-child(even) { background-color: var(--soft-purple); }
+.information .decision { padding: 32px; border: 0; border-radius: 16px; background-color: var(--soft-purple); }
+
+
+
+/* Keep the home illustration responsive without a separate image request. */
+.home .mascot > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Business model options use ordinary articles inside a flexible grid. */
+.information .model-options { grid-template-columns: repeat(3, 1fr); }
+
+.information .model-option, .information .topic { min-width: 0; }
+.information .model-option h3, .information .topic h3 { margin-top: 0; }
+.information .model-option .section-label { font-size: 11px; }
+.information .pricing-list { padding-left: 24px; }
+.information .pricing-list li { padding: 12px 0; }
+.information .decision li { margin-bottom: 12px; }
+
+/* Market and launch: two-column topics and a simple numbered launch plan. */
+.information .model-options, .information .topic-list {
+  display: grid;
+  gap: 28px;
+  margin: 28px 0;
+}
+
+.information .topic-list { grid-template-columns: 1fr 1fr; }
+
+.information .launch-steps { padding-left: 28px; }
+.information .launch-steps li { padding: 12px 0; }
+.information .launch-steps h3 { margin-top: 0; }
+.information .source-link { margin-top: 32px; }
+
+/* About and team: member roles and a readable reference list. */
+.information .member-role { color: var(--purple); font-weight: bold; }
+.information .references { max-width: 85ch; padding-left: 24px; }
+.information .references li { margin: 20px 0; padding-left: 4px; }
+.information .references .missing-info { display: block; margin-top: 12px; }
+
+/* Sources: longer response labels need more room than counts and percentages. */
+.sources .page-intro h1 { font-size: 48px; }
+.sources main > h2 { margin-top: 48px; font-size: 32px; }
+.sources main > h3 { margin-top: 32px; color: var(--purple); }
+.sources main > p { max-width: 75ch; }
+.sources tbody th { width: 60%; }
+.sources caption { font-size: 16px; }
+
+/* Information pages on smaller screens. */
+@media (max-width: 700px) {
+  .information .page-intro { grid-template-columns: 1fr 90px; gap: 20px; padding: 40px 0 28px; }
+  .information .page-intro h1 { font-size: 42px; letter-spacing: -2px; }
+  .information .page-intro .intro-lead { font-size: 18px; }
+  .information .page-links ul { gap: 4px 20px; }
+  .information .assessment { padding: 20px; }
+  .information main > section { margin-top: 36px; padding-top: 24px; }
+  .information main > section h2 { font-size: 28px; }
+  .information main > section blockquote, .information .decision { padding: 24px 20px; }
+  .information th, .information td { padding: 12px; }
+  .information table { min-width: 480px; }
+  .information .model-options, .information .topic-list { grid-template-columns: 1fr; gap: 16px; }
+  .sources .page-intro h1 { font-size: 36px; }
+}
+
+@media (max-width: 420px) {
+  .information .page-intro { grid-template-columns: 1fr; }
+  .information .page-intro img { width: 90px; margin: 0; }
 }

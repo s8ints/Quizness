@@ -2,7 +2,14 @@
 // so new places can be added without touching the game scene or the page.
 export type Point = { x: number; y: number };
 export type Rect = Point & { width: number; height: number };
-export type AreaDialog = { title: string; message: string };
+export type AreaDialog = {
+  title: string;
+  message?: string;
+  // Someone other than Panthy is talking.
+  speaker?: string;
+  // Shows a mission preview instead of a message.
+  missionId?: string;
+};
 export type Destination = Point & {
   id: string;
   label: string;
@@ -37,10 +44,26 @@ export type AmbientConfig = {
   sunbeams?: number[][][];
   dust?: Rect;
   glows?: (Point & { radius: number; alpha: number })[];
+  // Moves the pixels picked out by a sway map; furthest is the most they shift.
+  sway?: { mask: string; furthest: number };
 };
+export type NpcRoute = { points: Point[]; speed: number };
 export type Area = {
   id: string;
+  title?: string;
+  eyebrow?: string;
+  hint?: string;
+  // Where to arrive when coming from another place, by that place's id.
+  entrances?: Record<string, Point>;
+  // Characters standing still who a student can talk to.
+  guides?: (Point & { avatar: string })[];
+  // Mission ids listed in order under the game.
+  missionPath?: string[];
+  // A stand-in picture until the final art arrives.
+  temporaryArt?: boolean;
   art: string;
+  // Tiny blurred copy of the art, shown while the real image loads.
+  thumb: string;
   width: number;
   height: number;
   spawn: Point;
@@ -58,7 +81,24 @@ export type Area = {
   smoothSprites?: boolean;
   showPins?: boolean;
   ambient?: AmbientConfig;
+  // Decorative students walking set routes.
+  npcs?: NpcRoute[];
 };
+// An open floor with rectangular walls, for simple indoor and street areas.
+export function openFloor(bounds: Rect, walls: Rect[], radius: number) {
+  return (p: Point) =>
+    p.x >= bounds.x + radius &&
+    p.x <= bounds.x + bounds.width - radius &&
+    p.y >= bounds.y &&
+    p.y <= bounds.y + bounds.height &&
+    !walls.some(
+      (w) =>
+        p.x + radius > w.x &&
+        p.x - radius < w.x + w.width &&
+        p.y + radius / 2 > w.y &&
+        p.y - radius / 2 < w.y + w.height,
+    );
+}
 export function inPolygon(p: Point, polygon: number[][]) {
   let inside = false;
   for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {

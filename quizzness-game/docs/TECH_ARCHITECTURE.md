@@ -8,6 +8,25 @@ Common activity metadata: id, courseId, topicId, conceptIds, type, difficulty, o
 
 Begin with a small typed renderer/evaluator registry for implemented types. Do not create ten empty implementations or a universal plugin framework. Phase 1 course fixtures/onboarding must support multiple disciplines and optional institutions; actual engines wait until Phase 2. Verify the later engine with at least one non-programming authored activity using the same mission/progress contracts.
 
+## Exploration engine (implemented, Phase 2)
+
+Pages are plain React; Phaser loads only with a walkable page. Rules stay testable without a browser.
+
+| File | Responsibility |
+| --- | --- |
+| `src/game/area.ts` | Area data types and pure rules: movement, collision through `canStand`, nearest destination |
+| `src/game/room.ts`, `campus.ts`, `worldAreas.ts` | Each place as data: art, walls or path polygons, destinations, effects, routes, arrival doors. `worldAreas.ts` also lists quick travel |
+| `src/game/createAreaGame.ts` | The Phaser scene for any area: loading, player, quality tiers |
+| `src/game/ambient.ts` | Background effects from an area's `ambient` settings, including the sway shader |
+| `src/game/npcs.ts` | Decorative students walking routes |
+| `src/components/WalkableArea.tsx` | Canvas host, input, labels, dialogues, loading/error/paused states, off-screen sleep |
+| `src/screens/Explore.tsx` | Page for any place past the campus, at `/explore/<id>`, plus the mission path |
+| `src/data/missions.ts`, `MissionPreviewPanel.tsx` | Demo mission previews, kept separate from game logic |
+
+Add a place by writing a new area data file and passing it to `WalkableArea`. Masks come from `scripts/make-area-masks.cjs`. Shader samplers must use `clamp_to_edge`, or non-power-of-two art renders black.
+
+Quality tiers, reported in the stage's `data-quality` attribute: `full`; `lowered` (frame rate stayed under 24 FPS for 4 s); `lite` (data saver, or 2 GB memory or less); `still` (reduced motion).
+
 ## Selected versus unresolved
 
 Latest provider decision: Supabase Auth + Postgres. Use Supabase Storage for profile pictures if that capability is included, and ship fixed artwork in the app build. Cloudflare R2 remains a future heavy-upload option. The unresolved-provider statements retained below are superseded; routing/build tooling, hosting configuration, and actual Supabase project credentials still require implementation/configuration. Store file references/metadata in Postgres, not binaries.

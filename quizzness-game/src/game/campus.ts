@@ -20,10 +20,12 @@ export const campusPaths: number[][][] = [
 ];
 export const campusArea: Area = {
   id: "campus",
-  art: "/brand/quizzness-campus.png",
+  art: "/brand/optimized/quizzness-campus.webp",
+  thumb: "/brand/optimized/quizzness-campus-thumb.webp",
   width: 1672,
   height: 941,
   spawn: { x: 836, y: 790 },
+  entrances: { "logic-district": { x: 1400, y: 548 } },
   speed: 150,
   depthSpeed: 0.8,
   reach: 80,
@@ -32,7 +34,38 @@ export const campusArea: Area = {
   characterScale: (y) => 0.5 + (Math.max(300, Math.min(940, y)) - 300) * 0.00056,
   smoothSprites: true,
   showPins: true,
+  // A few sample students on the paths. To remove them, delete this list.
+  npcs: [
+    {
+      speed: 46,
+      points: [
+        { x: 616, y: 463 }, { x: 1060, y: 463 }, { x: 1060, y: 595 }, { x: 1076, y: 606 }, { x: 1095, y: 625 },
+        { x: 1098, y: 698 }, { x: 800, y: 698 },
+      ],
+    },
+    {
+      speed: 40,
+      points: [
+        { x: 1060, y: 468 }, { x: 1150, y: 418 }, { x: 1200, y: 420 },
+        { x: 1205, y: 478 }, { x: 1330, y: 535 }, { x: 1440, y: 545 },
+        { x: 1450, y: 490 }, { x: 1450, y: 425 }, { x: 1340, y: 420 },
+      ],
+    },
+    {
+      speed: 52,
+      points: [
+        { x: 300, y: 452 }, { x: 395, y: 455 }, { x: 398, y: 475 },
+        { x: 330, y: 526 }, { x: 215, y: 534 }, { x: 160, y: 546 }, { x: 128, y: 580 }, { x: 125, y: 600 },
+        { x: 170, y: 612 }, { x: 300, y: 642 }, { x: 500, y: 672 },
+        { x: 585, y: 672 }, { x: 582, y: 640 }, { x: 612, y: 590 },
+        { x: 620, y: 458 }, { x: 575, y: 425 }, { x: 510, y: 375 },
+        { x: 440, y: 315 },
+      ],
+    },
+  ],
   ambient: {
+    // Treetops rustle and banners wave.
+    sway: { mask: "/brand/masks/campus-sway.png", furthest: 2.4 },
     clouds: {
       mask: "/brand/masks/campus-sky.png",
       top: 18,
@@ -109,6 +142,15 @@ export const campusArea: Area = {
         message:
           "One day classmates will meet here. Meeting other students comes in a later update.",
       },
+    },
+    {
+      id: "district",
+      label: "Bridge to Logic District",
+      x: 1415,
+      y: 552,
+      path: "/explore/logic-district",
+      arrowY: 480,
+      pin: { x: 1540, y: 535 },
     },
     {
       id: "home",

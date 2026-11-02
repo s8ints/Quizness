@@ -41,12 +41,19 @@ export function Landing() {
             <Mascot state="welcome" />
           </div>
           <figure className="campus-hero">
-            <img
-              src="/brand/quizzness-campus.png"
-              alt="The Quizzness pixel campus, with purple-roofed buildings, a panther fountain and paths through the gardens"
-              width="1672"
-              height="941"
-            />
+            <picture>
+              <source
+                srcSet="/brand/optimized/quizzness-campus.webp"
+                type="image/webp"
+              />
+              <img
+                fetchPriority="high"
+                src="/brand/quizzness-campus.png"
+                alt="The Quizzness pixel campus, with purple-roofed buildings, a panther fountain and paths through the gardens"
+                width="1672"
+                height="941"
+              />
+            </picture>
             <figcaption>
               Your guild. Your subjects. Your next adventure.
               <br />

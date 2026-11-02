@@ -109,3 +109,16 @@ Replaced the procedural rectangle room with the supplied room art; removed the d
 ## Living world and game-first Home base — 2026-11-02
 
 Added `src/game/ambient.ts`, configured per area in `room.ts` and `campus.ts`, and masks from `scripts/make-area-masks.cjs`. Hub now embeds WalkableArea with an overlay greeting; pins added to the room. The first sunbeam attempt read as grey bars in screenshots and was replaced by a soft floor patch. Clouds, ripples and falls need WebGL and are skipped on the canvas fallback. Motion was compared between screenshots taken about a second apart; performance on low-end phones has not been measured.
+
+## Campus sprites, sway, loading and optimisation — 2026-11-02
+
+Added `src/game/npcs.ts`, sway shader and footsteps in `src/game/ambient.ts`, `scripts/optimize-art.cjs`, sway maps in `scripts/make-area-masks.cjs`, and the status document `docs/PHASE_2_STATUS.md`. WalkableArea gained a placeholder, progress bar, paused state, off-screen sleeping and lite detection. Pages are lazy-loaded.
+
+Found and fixed while verifying:
+- The sway shader turned all background art black. Phaser defaults shader textures to REPEAT, which WebGL cannot do for non-power-of-two images. Fixed by passing `clamp_to_edge` explicitly (`clamp` is rejected).
+- A route-checking test caught sample students cutting through gardens at three corners; routes corrected.
+- Browser tests failed intermittently. A dependency-reload theory was tested against the Vite log and rejected. Evidence pointed to timeouts: software rendering across 8 workers while school-site files were being edited in the same repo, which also triggers Tailwind rebuilds. Config now uses 3 workers, a 60 s test limit and a 15 s assertion limit. One idle-after-keypress failure was not reproduced under diagnostics, so that cause is probable, not proven.
+
+- On-demand pages exceeded Testing Library's 1 s wait on a busy machine, failing three unit tests; `src/test/setup.ts` now allows 5 s.
+
+Verification: 63 unit tests (three consecutive runs), production build, 13/13 browser tests on the last three full runs. Production load times and motion measurements are in `docs/PHASE_2_STATUS.md`. Not verified: real phones, automatic quality drop on a real slow device, and student play-testing.

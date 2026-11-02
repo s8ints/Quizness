@@ -1,16 +1,43 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { AuthProvider } from "../auth/AuthProvider";
 import { StudentProvider } from "./StudentProvider";
 import { AppShell } from "../components/AppShell";
 import { Landing } from "../screens/Landing";
-import { Hub } from "../screens/Hub";
-import { Worlds, CourseOverview } from "../screens/Worlds";
-import { Profile, Settings } from "../screens/Profile";
-import { Onboarding } from "../screens/Onboarding";
-import { Campus } from "../screens/Campus";
-import { Room } from "../screens/Room";
-import { AuthScreen, AuthCallback } from "../screens/Auth";
+// Each page downloads only when it's first opened, so the first visit stays quick.
+const Hub = lazy(() =>
+  import("../screens/Hub").then((m) => ({ default: m.Hub })),
+);
+const Worlds = lazy(() =>
+  import("../screens/Worlds").then((m) => ({ default: m.Worlds })),
+);
+const CourseOverview = lazy(() =>
+  import("../screens/Worlds").then((m) => ({ default: m.CourseOverview })),
+);
+const Profile = lazy(() =>
+  import("../screens/Profile").then((m) => ({ default: m.Profile })),
+);
+const Settings = lazy(() =>
+  import("../screens/Profile").then((m) => ({ default: m.Settings })),
+);
+const Onboarding = lazy(() =>
+  import("../screens/Onboarding").then((m) => ({ default: m.Onboarding })),
+);
+const Campus = lazy(() =>
+  import("../screens/Campus").then((m) => ({ default: m.Campus })),
+);
+const Explore = lazy(() =>
+  import("../screens/Explore").then((m) => ({ default: m.Explore })),
+);
+const Room = lazy(() =>
+  import("../screens/Room").then((m) => ({ default: m.Room })),
+);
+const AuthScreen = lazy(() =>
+  import("../screens/Auth").then((m) => ({ default: m.AuthScreen })),
+);
+const AuthCallback = lazy(() =>
+  import("../screens/Auth").then((m) => ({ default: m.AuthCallback })),
+);
 function RouteFocus() {
   const location = useLocation();
   useEffect(() => {
@@ -50,7 +77,14 @@ export function App() {
   return (
     <AuthProvider>
       <RouteFocus />
-      <Routes>
+      <Suspense
+        fallback={
+          <p className="state-page" role="status">
+            Loading…
+          </p>
+        }
+      >
+        <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<AuthScreen />} />
         <Route path="/signup" element={<AuthScreen signup />} />
@@ -70,6 +104,7 @@ export function App() {
           <Route path="courses" element={<Worlds />} />
           <Route path="courses/:courseId" element={<CourseOverview />} />
           <Route path="campus" element={<Campus />} />
+          <Route path="explore/:areaId" element={<Explore />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
           <Route path="onboarding" element={<Onboarding />} />
@@ -86,6 +121,7 @@ export function App() {
           <Route path="/courses" element={<Worlds />} />
           <Route path="/courses/:courseId" element={<CourseOverview />} />
           <Route path="/campus" element={<Campus />} />
+          <Route path="/explore/:areaId" element={<Explore />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/onboarding" element={<Onboarding />} />
@@ -102,7 +138,8 @@ export function App() {
             </div>
           }
         />
-      </Routes>
+        </Routes>
+      </Suspense>
     </AuthProvider>
   );
 }

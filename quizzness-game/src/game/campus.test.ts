@@ -66,6 +66,24 @@ describe("campus map", () => {
     expect(campus.destinations.find((d) => d.id === "market")?.path).toBeUndefined();
     expect(campus.destinations.find((d) => d.id === "plaza")?.path).toBeUndefined();
   });
+  it("keeps every sample student on the paths for their whole route", () => {
+    for (const route of campus.npcs ?? []) {
+      route.points.forEach((point, index) => {
+        const next = route.points[index + 1];
+        if (!next) return;
+        for (let t = 0; t <= 1; t += 0.02) {
+          const spot = {
+            x: point.x + (next.x - point.x) * t,
+            y: point.y + (next.y - point.y) * t,
+          };
+          expect(
+            campus.canStand(spot),
+            `${Math.round(spot.x)},${Math.round(spot.y)}`,
+          ).toBe(true);
+        }
+      });
+    }
+  });
   it("draws the student smaller further up the map", () => {
     expect(campus.characterScale(350)).toBeLessThan(campus.characterScale(900));
   });

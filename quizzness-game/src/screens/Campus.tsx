@@ -4,6 +4,7 @@ import { homeWorldFor } from "../data/majors";
 import { campus } from "../data/worlds";
 import { Mascot } from "../components/Mascot";
 import { WalkableArea } from "../components/WalkableArea";
+import { QuickTravel } from "../components/QuickTravel";
 import { campusArea } from "../game/campus";
 // The shared school hub. Walkable map; social features come later.
 export function Campus() {
@@ -24,6 +25,7 @@ export function Campus() {
           </>
         }
       />
+      <QuickTravel current="/campus" />
       <Mascot
         state="welcome"
         message="Walk the paths or pick a landmark on the map. Every major meets here."

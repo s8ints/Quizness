@@ -113,7 +113,7 @@ export function AuthScreen({
         <section className="auth-story">
           <img
             className="auth-campus"
-            src="/brand/quizzness-campus.png"
+            src="/brand/optimized/quizzness-campus.webp"
             alt="Quizzness pixel campus"
             width="1672"
             height="941"

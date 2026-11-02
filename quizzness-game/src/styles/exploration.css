@@ -58,6 +58,9 @@
 .walkable-stage {
   width: 100%;
   position: relative;
+  /* The tiny placeholder fills the space at once, so nothing jumps while loading. */
+  background-size: cover;
+  background-position: center;
 }
 .walkable-stage:focus-visible {
   outline: 4px solid var(--color-accent);
@@ -104,9 +107,87 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--color-background);
+  background: color-mix(in srgb, var(--color-background) 55%, transparent);
   padding: 24px;
   text-align: center;
+  font-weight: 800;
+}
+.room-load > p {
+  margin: 0 0 10px;
+  padding: 4px 10px;
+  background: var(--color-background);
+  border-radius: 4px;
+}
+.room-progress-bar {
+  width: min(320px, 70%);
+  height: 16px;
+  background: var(--color-background);
+  border: 2px solid var(--color-text);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.room-progress-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  transition: width 0.2s ease;
+}
+.room-paused {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  margin: 0;
+  padding: 4px 10px;
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-background);
+  background: var(--color-primary);
+  border: 2px solid var(--color-text);
+  border-radius: 4px;
+}
+/* Interface elements arrive with a little life. */
+.area-hud {
+  animation: area-slide-in 0.45s ease-out both;
+}
+.map-pin-control {
+  animation: area-pop-in 0.4s ease-out both;
+}
+.map-pin:nth-child(2) .map-pin-control { animation-delay: 0.08s; }
+.map-pin:nth-child(3) .map-pin-control { animation-delay: 0.16s; }
+.map-pin:nth-child(4) .map-pin-control { animation-delay: 0.24s; }
+.map-pin:nth-child(5) .map-pin-control { animation-delay: 0.32s; }
+.room-prompt {
+  animation: area-pop-in 0.18s ease-out both;
+}
+.map-pin[data-near="true"] .map-pin-control {
+  animation: area-nudge 0.5s ease-in-out 2;
+}
+@keyframes area-slide-in {
+  from { opacity: 0; transform: translateY(-10px); }
+}
+@keyframes area-pop-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.9); }
+}
+@keyframes area-nudge {
+  50% { transform: translateY(-3px); }
+}
+.reduce-motion .area-hud,
+.reduce-motion .map-pin-control,
+.reduce-motion .room-prompt,
+.reduce-motion .room-progress-bar > span {
+  animation: none;
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .area-hud,
+  .map-pin-control,
+  .room-prompt,
+  .room-progress-bar > span {
+    animation: none;
+    transition: none;
+  }
 }
 .room-dialogue {
   position: absolute;
@@ -291,4 +372,75 @@
     width: 88px;
     height: 88px;
   }
+}
+
+/* Quick travel, spoken lines and mission previews. */
+.quick-travel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 14px;
+  margin: 12px 0;
+}
+.quick-travel .eyebrow {
+  margin: 0;
+}
+.room-speech strong {
+  display: block;
+  font-family: var(--font-display);
+  margin-bottom: 4px;
+}
+.room-speech p {
+  margin: 0 0 10px;
+}
+.room-dialogue {
+  max-height: 90%;
+  overflow-y: auto;
+}
+.mission-preview h2 {
+  margin: 0 0 6px;
+  font-size: 1.25rem;
+}
+.mission-preview p {
+  margin: 0 0 8px;
+}
+.mission-preview .course-card-pills {
+  margin: 0 0 8px;
+}
+.mission-preview details {
+  margin-bottom: 8px;
+}
+.mission-preview summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+.mission-path {
+  margin-top: 24px;
+}
+.mission-path ol {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  padding: 0;
+  margin: 12px 0;
+}
+.mission-path li {
+  padding: 12px 14px;
+  background: var(--color-background);
+  border: 2px solid var(--color-text);
+  border-radius: 8px;
+  box-shadow: 0 4px 0 var(--color-text);
+}
+.mission-path li[data-locked="true"] {
+  background: color-mix(in srgb, var(--color-secondary) 30%, var(--color-background));
+}
+.mission-path h3 {
+  margin: 8px 0 4px;
+  font-family: var(--font-body);
+  font-weight: 800;
+}
+.mission-path p {
+  margin: 0 0 4px;
 }

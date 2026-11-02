@@ -6,6 +6,7 @@ import { campus, getWorld } from "../data/worlds";
 import { Mascot } from "../components/Mascot";
 import { CourseCard } from "../components/CourseCard";
 import { WalkableArea } from "../components/WalkableArea";
+import { QuickTravel } from "../components/QuickTravel";
 import { roomArea } from "../game/room";
 
 export function Hub() {
@@ -32,6 +33,7 @@ export function Hub() {
           </>
         }
       />
+      <QuickTravel current="/room" />
       <Mascot
         state="welcome"
         message={`Make yourself at home, ${profile.first_name || "Explorer"}. Your desk is ready whenever you are.`}

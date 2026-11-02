@@ -176,3 +176,158 @@ test("campus map: walk the paths, use landmarks and return to the room", async (
     ),
   ).toBe(true);
 });
+
+test.describe("loading, quality and motion states", () => {
+  const stage = (page: import("@playwright/test").Page) =>
+    page.getByRole("group", { name: "Walkable student room", exact: true });
+
+  test("shows progress over a placeholder while the art loads", async ({
+    page,
+  }) => {
+    await page.route("**/optimized/student-room-pixel-v2.webp", async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      await route.continue();
+    });
+    await page.goto("/preview");
+    const bar = page.getByRole("progressbar", { name: "Loading" });
+    await expect(bar).toBeVisible({ timeout: 10000 });
+    await expect(stage(page)).toHaveCSS(
+      "background-image",
+      /student-room-pixel-v2-thumb\.webp/,
+    );
+    await expect(stage(page)).toHaveAttribute("data-ready", "true", {
+      timeout: 20000,
+    });
+    await expect(bar).toHaveCount(0);
+  });
+
+  test("full effects download sway maps; reduced motion skips all effect files", async ({
+    page,
+  }) => {
+    const masks: string[] = [];
+    page.on("request", (request) => {
+      if (request.url().includes("/brand/masks/")) masks.push(request.url());
+    });
+    await page.goto("/preview");
+    await expect(stage(page)).toHaveAttribute("data-ready", "true", {
+      timeout: 20000,
+    });
+    await expect(stage(page)).toHaveAttribute("data-quality", /full|lowered/);
+    expect(masks.some((url) => url.includes("room-sway"))).toBe(true);
+    masks.length = 0;
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.reload();
+    await expect(stage(page)).toHaveAttribute("data-ready", "true", {
+      timeout: 20000,
+    });
+    await expect(stage(page)).toHaveAttribute("data-quality", "still");
+    expect(masks).toEqual([]);
+  });
+
+  test("low-memory devices get the lighter version and can still walk", async ({
+    page,
+  }) => {
+    await page.addInitScript(() =>
+      Object.defineProperty(navigator, "deviceMemory", { value: 1 }),
+    );
+    const masks: string[] = [];
+    page.on("request", (request) => {
+      if (request.url().includes("/brand/masks/")) masks.push(request.url());
+    });
+    await page.goto("/preview/campus");
+    const map = page.getByRole("group", { name: "Walkable campus map" });
+    await expect(map).toHaveAttribute("data-ready", "true", { timeout: 20000 });
+    await expect(map).toHaveAttribute("data-quality", "lite");
+    expect(masks.some((url) => url.includes("sway"))).toBe(false);
+    expect(masks.some((url) => url.includes("water"))).toBe(true);
+    await page.keyboard.down("ArrowUp");
+    await expect
+      .poll(async () => Number(await map.getAttribute("data-player-y")))
+      .toBeLessThan(780);
+    await page.keyboard.up("ArrowUp");
+  });
+
+  test("the game stops drawing when scrolled away and resumes on return", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 600 });
+    await page.goto("/preview");
+    await expect(stage(page)).toHaveAttribute("data-ready", "true", {
+      timeout: 20000,
+    });
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await expect(stage(page)).toHaveAttribute("data-sleeping", "true");
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(stage(page)).toHaveAttribute("data-sleeping", "false");
+  });
+});
+
+test("connected journey: campus to topic, previews, return doors and quick travel", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  const places = () => page.getByRole("navigation", { name: "Places to go" });
+  const ready = (name: string) =>
+    expect(page.getByRole("group", { name })).toHaveAttribute(
+      "data-ready",
+      "true",
+      { timeout: 30000 },
+    );
+  await page.goto("/preview/campus");
+  await ready("Walkable campus map");
+  await places().getByRole("link", { name: "Bridge to Logic District" }).click();
+  await expect(page).toHaveURL(/\/preview\/explore\/logic-district$/);
+  await ready("Walkable Logic District");
+
+  // Talking to the guide, then an unopened building says so honestly.
+  await places().getByRole("button", { name: "District guide" }).click();
+  await expect(page.getByRole("dialog", { name: "District guide" })).toContainText(
+    "Senior student",
+  );
+  await page.getByRole("button", { name: "Back to exploring" }).click();
+  await places().getByRole("button", { name: "QZ-COMP 102 building" }).click();
+  await expect(page.getByRole("dialog")).toContainText("isn't open yet");
+  await page.getByRole("button", { name: "Back to exploring" }).click();
+
+  await places().getByRole("link", { name: "QZ-COMP 101 building" }).click();
+  await ready("Walkable QZ-COMP 101 lobby");
+  await places().getByRole("link", { name: "Variables and values" }).click();
+  await ready("Walkable Variables and values");
+
+  // Locked mission shows its details, including exactly what unlocks it.
+  await places().getByRole("button", { name: "Locked: Changing values" }).click();
+  const locked = page.getByRole("dialog", { name: "Locked mission" });
+  await expect(locked).toContainText("Finish");
+  await expect(locked).toContainText("Variables, values and data types");
+  await expect(locked).toContainText("10–15 minutes");
+  await page.getByRole("button", { name: "Back to exploring" }).click();
+  // The first mission is honest that it can't be played yet.
+  await places().getByRole("button", { name: "Mission: Variables" }).click();
+  await expect(
+    page.getByRole("button", { name: /Start mission/ }),
+  ).toBeDisabled();
+  await page.getByRole("button", { name: "Back to exploring" }).click();
+  await expect(
+    page.getByRole("region", { name: "Mission path" }).getByRole("listitem"),
+  ).toHaveCount(2);
+
+  // Going back arrives at the door you came through, not the far end.
+  await places().getByRole("link", { name: "Back to the lobby" }).click();
+  await ready("Walkable QZ-COMP 101 lobby");
+  const lobby = page.getByRole("group", { name: "Walkable QZ-COMP 101 lobby" });
+  await expect(lobby).toHaveAttribute("data-player-x", "300.0");
+
+  // Quick travel jumps straight home.
+  await page
+    .getByRole("navigation", { name: "Quick travel" })
+    .getByRole("link", { name: "Your room" })
+    .click();
+  await expect(page).toHaveURL(/\/preview$/);
+  await ready("Walkable student room");
+
+  // Unknown places recover helpfully.
+  await page.goto("/preview/explore/nowhere");
+  await expect(page.getByRole("heading", { name: "Place not found" })).toBeVisible();
+  expect(errors).toEqual([]);
+});

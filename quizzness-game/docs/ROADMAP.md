@@ -9,7 +9,9 @@
 5. **Phase 5: more subjects and reviewed content systems.**
 6. **Phase 6: tutoring, social and community.** Tutor screening and give-back recognition must be implemented/verified before claims are made.
 
-This sequence supersedes the earlier breakdown preserved below. Vite/React Router and Supabase were selected; implementation exists, live Supabase setup remains pending.
+This sequence supersedes the earlier breakdown preserved below. Vite/React Router and Supabase are in use, and Phase 1 is complete and live-checked by the user.
+
+**Current position (2026-11-02):** Phase 2. Stage 2 of 7 works end to end; its final art is pending. See [PHASE_2_STATUS.md](PHASE_2_STATUS.md).
 
 ## Earlier detailed roadmap — preserved history
 
