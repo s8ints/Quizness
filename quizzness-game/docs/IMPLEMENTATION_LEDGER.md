@@ -93,3 +93,32 @@ Final review: fresh room_review agent inspected movement, inputs, cleanup, failu
 Final verification: npm run test passes 49/49 across 11 files; npm run build succeeds; npm run test:e2e passes 7/7. Browser coverage includes movement, pause, walls, Panthy help, destinations, SPA remount/single canvas, mobile joystick release after keyboard focus, small-screen overflow and failed-asset navigation fallback, plus all existing foundation flows. Desktop/mobile room screenshots generated and inspected in docs/previews/room-movement*.png.
 
 Build limitation: Phaser's lazy scene chunk is about 1.21 MB (334 KB gzip); Vite reports a chunk-size warning, not a build failure. Initial pages do not load that scene chunk. Final map art and directional walk animation have not been approved or implemented; this is the first playable movement proof, not completion of all Phase 2 maps.
+
+## Supplied student animation integration — 2026-10-09
+
+User stated the character animations were present. Located public/sprites/students/students.json and all six students' idle/walk/shadow sheets; inspected the supplied walk sheet and source metadata. Connected selected-avatar sheets to Phaser without changing any supplied PNGs or original art. Frame dimensions 64×136, idle 2 frames/1.5 fps, walk 8 frames/10 fps; frame scaling is 1× in scene coordinates. Shadow frames sync with character frames. Direction follows actual post-collision movement, so blocked movement returns to idle. Profile/system reduced-motion keeps animation frames still while retaining travel.
+
+Manifest is fetched from its public URL (no duplicate metadata file or runtime import from public). Load failures retain semantic destinations/retry. Room copy now acknowledges supplied animation and temporary side/up views. Side/back stopgaps remain as labelled by the asset author; final environment art remains pending.
+
+Animation selector tests observed RED→GREEN. Final checks: 51/51 unit tests, production build passed, 8/8 browser tests. Browser coverage explicitly verifies right-walk frames advance, release returns to idle, reduced-motion frame zero with continued movement, failed sprite navigation fallback and existing room/student flows.
+
+## Room rebuild and interactive campus — 2026-11-02
+
+Replaced the procedural rectangle room with the supplied room art; removed the dark frame; hid the joystick on mouse-and-keyboard desktops; room focuses on load so keys work immediately (route focus on the h1 had been blocking this). Near-diagonal walking keeps its direction and continues from the same frame instead of restarting. Added `src/game/area.ts` (shared rules), `src/game/campus.ts` (path polygons traced from the art, destinations), `src/game/createAreaGame.ts` (replaces createRoomGame.ts) and `src/components/WalkableArea.tsx`. A reachability test caught the market cottage being unreachable at a narrow path junction; fixed. Known limits: the student draws over the statue when walking behind it, and on a few tree edges; no side/back views. Verification: 62 unit tests, 9 browser tests, production build, screenshots at desktop and 390px.
+
+## Living world and game-first Home base — 2026-11-02
+
+Added `src/game/ambient.ts`, configured per area in `room.ts` and `campus.ts`, and masks from `scripts/make-area-masks.cjs`. Hub now embeds WalkableArea with an overlay greeting; pins added to the room. The first sunbeam attempt read as grey bars in screenshots and was replaced by a soft floor patch. Clouds, ripples and falls need WebGL and are skipped on the canvas fallback. Motion was compared between screenshots taken about a second apart; performance on low-end phones has not been measured.
+
+## Campus sprites, sway, loading and optimisation — 2026-11-02
+
+Added `src/game/npcs.ts`, sway shader and footsteps in `src/game/ambient.ts`, `scripts/optimize-art.cjs`, sway maps in `scripts/make-area-masks.cjs`, and the status document `docs/PHASE_2_STATUS.md`. WalkableArea gained a placeholder, progress bar, paused state, off-screen sleeping and lite detection. Pages are lazy-loaded.
+
+Found and fixed while verifying:
+- The sway shader turned all background art black. Phaser defaults shader textures to REPEAT, which WebGL cannot do for non-power-of-two images. Fixed by passing `clamp_to_edge` explicitly (`clamp` is rejected).
+- A route-checking test caught sample students cutting through gardens at three corners; routes corrected.
+- Browser tests failed intermittently. A dependency-reload theory was tested against the Vite log and rejected. Evidence pointed to timeouts: software rendering across 8 workers while school-site files were being edited in the same repo, which also triggers Tailwind rebuilds. Config now uses 3 workers, a 60 s test limit and a 15 s assertion limit. One idle-after-keypress failure was not reproduced under diagnostics, so that cause is probable, not proven.
+
+- On-demand pages exceeded Testing Library's 1 s wait on a busy machine, failing three unit tests; `src/test/setup.ts` now allows 5 s.
+
+Verification: 63 unit tests (three consecutive runs), production build, 13/13 browser tests on the last three full runs. Production load times and motion measurements are in `docs/PHASE_2_STATUS.md`. Not verified: real phones, automatic quality drop on a real slow device, and student play-testing.

@@ -2,6 +2,8 @@
 
 Recorded: 2026-10-09. This is a contextual summary and decision trail, not a verbatim transcript. The user asked that this planning conversation be saved in docs so Claude can use it when asking follow-up questions. Latest user statement: **“the plan is updated and finalized for now.”**
 
+Update 2026-11-02: this file records the planning conversation, so its "next action" is out of date. Current progress is in [PHASE_2_STATUS.md](PHASE_2_STATUS.md).
+
 ## Read these in order
 
 1. [PHASE_2_ADJUSTMENTS.md](PHASE_2_ADJUSTMENTS.md): approved changes; this wins wherever it conflicts with the original design.
@@ -85,6 +87,8 @@ Do not reuse the original design's proposed Panthy/refill prices or A–F grade 
 - Exact interactions between existing explicit saves, route switching, timer pauses and interrupted attempts were proposed in the design, not directly answered. Resolve these narrowly rather than reopening the whole phase.
 
 ## What to ask next, only if needed
+
+Implementation update, 2026-10-09: the user supplied student animation sheets in public/sprites/students and these are now connected to the walkable room for all six avatar IDs. Do not ask the user to provide sheets already present. Their manifest explicitly marks side/up views as stopgaps; use that metadata when discussing final directional artwork. See the latest animation integration entry in IMPLEMENTATION_LEDGER.md. The original source sheet is still poses, but the separate animation assets now exist.
 
 The approved adjustment document identifies the remaining tuning decisions: Panthy's free-use limit, currency earning rates/prices, related practice sets qualifying for refills, and Speed challenge durations/bonuses. Additional implementation needs include matching walk sprites/map assets, the first animated avatar and eventual real COMP-101 language.
 

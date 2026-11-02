@@ -166,7 +166,7 @@ select:focus-visible {
   width: 32px;
   height: 72px;
   flex-shrink: 0;
-  background-image: url("/brand/student-characters.png");
+  background-image: url("/brand/optimized/student-characters.webp");
   background-size: 300% 200%;
   background-repeat: no-repeat;
   image-rendering: pixelated;
@@ -377,7 +377,7 @@ select:focus-visible {
   border-radius: 2px;
 }
 .journey-landscape {
-  background: url("/brand/quizzness-campus.png") center / cover;
+  background: url("/brand/optimized/quizzness-campus.webp") center / cover;
   border-left: 2px solid var(--color-text);
   opacity: 1;
 }

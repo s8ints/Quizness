@@ -1,5 +1,23 @@
 # Decisions log
 
+## 2026-11-02 — Connected exploration slice and art source
+
+The user chose to generate final art for Logic District, the QZ-COMP 101 lobby and the Variables area in ChatGPT, using prompts in AREA_ART_BRIEF.md. Temporary pictures, labelled as such, let the areas be built and tested first. Places past the campus open at `/explore/<id>`. The mission names, previews and course building are demo content. Stage 3 owns actually playing missions, so Start mission stays disabled.
+
+## 2026-11-02 — Campus sprites, richer animation and load performance
+
+The user asked for more animation, campus sprites and good optimisation, and allowed new libraries. **No runtime library was added**: Phaser and CSS already cover this, and more code would slow loading. Art is served as WebP copies with the original PNGs kept as sources. Pages other than the landing page load on demand. Heavy effects are skipped for reduced motion, data-saver and low-memory devices, and switch off if the frame rate stays low.
+
+Three decorative students walk the campus. **This departs from planning's "no background crowds"** and is recorded as a decision for the user to confirm; they are not real players, and removing the `npcs` list turns them off. Trees, banners, curtains and plants move with a sway-map shader, so the artwork is neither cut up nor changed. Browser tests now use fewer workers and longer limits because they render in software.
+
+## 2026-11-02 — The game is the Home base
+
+The user asked that the game not feel like a second option. The walkable room replaces the still room picture as the Home base; `/room` now redirects there, and status and courses sit below the game. Room and campus have background life (clouds, water, waterfalls, fountain spray, birds, butterflies, leaves, cloud shadows, sunlight, dust, window and lamp glow), off under reduced motion. Colour-derived masks in `public/brand/masks/` (from `scripts/make-area-masks.cjs`) limit effects to sky and water; the artwork is unchanged. Furniture, trees and curtains are still part of the flat art and do not move.
+
+## 2026-11-02 — Room and campus use the real artwork
+
+The user rejected the flat, rectangle-drawn room prototype. The room now uses `student-room-pixel-v2.png` as its walkable background, with invisible walls fitted to the furniture and depth scaling for the student. The campus picture (`quizzness-campus.png`) is now walkable on its paved paths and has clickable landmark pins. Main Hall opens courses, the fountain opens Panthy, and the south steps return to the room. The market cottage and paw plaza say they are coming later; no market or social features exist. Room and campus are data files using one shared scene (`src/game/createAreaGame.ts`) and page component (`src/components/WalkableArea.tsx`). Walking uses the existing front-view sprites, so side and back views remain stopgaps. Landmark names are provisional.
+
 ## 2026-10-08 — Phase 1 complete
 
 The user then confirmed logout, password recovery and a second account seeing only its own data. Phase 1 (student foundation) is complete; next is Phase 2 (worlds/maps/missions/ActivityRenderer). No automated anonymous-access query was run against the live project.

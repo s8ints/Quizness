@@ -14,9 +14,11 @@ Phase 1 builds the student-facing foundation: public welcome, real signup/login,
 | `/signup` | First name, last name, email, password | Public |
 | `/login` | Sign in and access recovery | Public |
 | `/onboarding` | Major (sets home world), optional year of study, optional institution, goals, courses this semester, avatar | Signed in |
-| `/dashboard` | Continue Journey, progression preview, worlds, goals, avatar | Signed in and onboarded |
+| `/dashboard` | Home base: the walkable room, then status and courses below | Signed in and onboarded |
 | `/courses` | Worlds: home world first, then every other world's sample courses | Signed in and onboarded |
-| `/campus` | Shared school hub (presentation only; social features later) | Signed in and onboarded |
+| `/campus` | Walkable shared campus with landmark labels; market and meeting features come later | Signed in and onboarded |
+| `/room` | Redirects to Home base | Signed in and onboarded |
+| `/explore/:areaId` | Walkable places past campus: `logic-district`, `comp-101-lobby`, `variables-topic` | Signed in and onboarded |
 | `/courses/:courseId` | Course overview and future learning entry | Signed in and onboarded |
 | `/profile` | Basic student identity and avatar | Signed in and onboarded |
 | `/settings` | Profile/preferences and logout | Signed in and onboarded |

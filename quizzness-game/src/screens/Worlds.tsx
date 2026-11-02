@@ -7,6 +7,8 @@ import { campus, getWorld, worlds } from "../data/worlds";
 import type { World } from "../types/content";
 import { CourseCard } from "../components/CourseCard";
 import { Mascot } from "../components/Mascot";
+// The one course with walkable areas so far.
+const PLAYABLE_COURSE = "qz-comp-101";
 function WorldSection({
   world,
   label,
@@ -170,12 +172,21 @@ export function CourseOverview() {
                 ? "Remove from my courses"
                 : "Add to my courses"}
           </button>
-          <button
-            className="button secondary"
-            onClick={() => setShowPreview(true)}
-          >
-            Continue learning →
-          </button>
+          {course.id === PLAYABLE_COURSE ? (
+            <Link
+              className="button secondary"
+              to={`${base}/explore/comp-101-lobby`}
+            >
+              Enter the course lobby →
+            </Link>
+          ) : (
+            <button
+              className="button secondary"
+              onClick={() => setShowPreview(true)}
+            >
+              Continue learning →
+            </button>
+          )}
           <p role="status">{message}</p>
           {showPreview && (
             <div className="coming-soon" role="status">

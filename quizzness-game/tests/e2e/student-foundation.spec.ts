@@ -3,19 +3,14 @@ test("student room destinations work with keyboard navigation", async ({
   page,
 }) => {
   await page.goto("/preview");
-  const room = page.getByRole("region", { name: "Your cosy student room" });
-  await expect(room).toBeVisible();
+  const room = page.getByRole("group", { name: "Walkable student room" });
+  await expect(room).toHaveAttribute("data-ready", "true", { timeout: 15000 });
   await page.evaluate(() => document.fonts.ready);
   expect(
     await page.locator("h1").evaluate((el) => getComputedStyle(el).fontFamily),
   ).toContain("Silkscreen");
-  expect(
-    await room.evaluate((el) => getComputedStyle(el).backgroundImage),
-  ).toContain("student-room-pixel-v2.png");
-  await expect(
-    room.getByRole("img", { name: /student character/ }),
-  ).toBeVisible();
-  const bookshelf = room.getByRole("link", { name: /My bookshelf/ });
+  await expect(page.locator(".walkable-stage canvas")).toHaveCount(1);
+  const bookshelf = room.getByRole("link", { name: "Bookshelf" });
   await bookshelf.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/preview\/courses$/);

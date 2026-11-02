@@ -8,6 +8,8 @@ This project is separate from the COMP1170 assessment prototype in `../Quizness`
 
 ## Current status
 
+**Phase 1 is complete. Phase 2 is in progress: Stage 2 of 7 works from room to topic with temporary art in its three newest places, and missions and activities are not built yet.** See [docs/PHASE_2_STATUS.md](docs/PHASE_2_STATUS.md) for the full checklist, measurements and known limits.
+
 The original five-colour palette, Panthy guide, campus illustration and six student characters are integrated throughout the student frontend. See design/README.md for exact tokens and asset provenance. Panthy contextual states preserve the supplied pose; distinct expression art, original logo and established typography/interface reference remain open. Later phase numbering now places missions in Phase 2 and bosses/connected progression in Phase 3.
 
 The Phase 1 student frontend runs locally: landing, onboarding (major, year, university dropdown, courses), home base with status row, seven subject worlds, campus hub, profile/avatar selection, and settings. A clearly labelled `/preview` experience works without an account and resets on refresh.
@@ -17,6 +19,24 @@ The Phase 1 student frontend runs locally: landing, onboarding (major, year, uni
 ## Run locally
 
 From this repository, run `npm install`, then `npm run dev`. Open `http://127.0.0.1:5173/preview` to explore. Run `npm run test`, `npm run build`, and `npm run test:e2e` for verification. Browser tests currently use installed Microsoft Edge via Playwright.
+
+To rebuild generated art (masks, sway maps, WebP copies, sprites), install the image tool without adding it to the project, then run the script you need:
+
+```bash
+npm install --no-save sharp
+```
+```bash
+node scripts/make-area-masks.cjs
+```
+```bash
+node scripts/optimize-art.cjs
+```
+```bash
+node scripts/make-student-sprites.cjs
+```
+```bash
+node scripts/make-placeholder-areas.cjs
+```
 
 ## Connect accounts
 
@@ -37,6 +57,8 @@ Fixed placeholder avatars ship with the app; uploads and storage buckets are not
 3. Use the other design documents for proposed implementation details. Proposals are starting points, not permanent requirements.
 
 ## Documents
+
+- [Phase 2 status](docs/PHASE_2_STATUS.md): **start here as a reviewer**. What is done, measured, unverified and undecided.
 
 - [Student experience](docs/STUDENT_EXPERIENCE.md): account journey, onboarding, player hub, and current Phase 1 scope.
 - [Game design](docs/GAME_DESIGN.md): screens and session behavior.

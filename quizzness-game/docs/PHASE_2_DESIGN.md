@@ -2,6 +2,8 @@
 
 Date: 2026-10-09. Status: finalized planning baseline for now, as confirmed by the user. Read [PHASE_2_ADJUSTMENTS.md](PHASE_2_ADJUSTMENTS.md) first: its approved rules override conflicting answers and proposals preserved below. Finalized planning does not mean gameplay implementation is complete. Values explicitly marked proposed remain playtest proposals.
 
+Current progress: see [PHASE_2_STATUS.md](PHASE_2_STATUS.md). Decorative campus students were added at the user's request after this plan, despite Step 1 answer 15; see DECISIONS.md.
+
 Conversation handoff for Claude and other collaborators: [PHASE_2_CONVERSATION_CONTEXT.md](PHASE_2_CONVERSATION_CONTEXT.md). The 80 answers below preserve the original planning discussion; do not treat superseded currency, timer, grade or help rules as current requirements.
 
 This records 80 planning answers: 16 for each of five steps. The confirmed choices below supersede conflicting older Phase 2 proposals. Phase 1 is complete according to the implementation ledger and the user's live checks. Do not repeat its completed work.
