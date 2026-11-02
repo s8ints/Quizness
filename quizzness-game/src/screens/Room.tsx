@@ -23,6 +23,11 @@ export function Room() {
   const [talking, setTalking] = useState(false);
   const [stick, setStick] = useState<Point>({ x: 0, y: 0 });
   const pointer = useRef<number | null>(null);
+  // Walking works straight away, unless the student is already using something else.
+  useEffect(() => {
+    if (ready && !error && document.activeElement === document.body)
+      stage.current?.focus({ preventScroll: true });
+  }, [ready, error]);
   function stop() {
     keys.current.clear();
     joystick.current = { x: 0, y: 0 };
@@ -107,9 +112,8 @@ export function Room() {
     <div className="exploration-page">
       <div className="exploration-heading">
         <div>
-          <p className="eyebrow">Home base · movement proof</p>
+          <p className="eyebrow">Your room</p>
           <h1>Your little corner of Quizzness.</h1>
-          <p>Take a look around, {profile.first_name || "Explorer"}.</p>
         </div>
         <Link
           className="button secondary"
@@ -119,8 +123,9 @@ export function Room() {
         </Link>
       </div>
       <p id="room-controls">
-        Focus the room to walk with WASD or arrow keys. Press E near an object
-        to interact. Tab leaves the room controls.
+        Walk with <kbd>WASD</kbd> or the arrow keys, and press <kbd>E</kbd> near
+        something to use it. If the keys stop responding, click the room. Tab
+        leaves the room controls.
       </p>
       <div className="exploration-frame">
         <div
@@ -167,6 +172,11 @@ export function Room() {
           onKeyUp={(event) => keys.current.delete(event.code)}
         >
           <div ref={host} className="phaser-room" aria-hidden="true" />
+          {ready && !error && snapshot.nearby && !talking && (
+            <p className="room-prompt" aria-hidden="true">
+              <kbd>E</kbd> {snapshot.nearby.label}
+            </p>
+          )}
         </div>
         {(!ready || error) && (
           <div className="room-load" role="status">
@@ -312,9 +322,9 @@ export function Room() {
         </nav>
       </details>
       <p className="prototype-note">
-        Movement prototype · supplied student idle and walk animations. Side and
-        upward views use the supplied temporary frames; final room art is still
-        pending. Campus opens the existing campus page for now.
+        Early version: students only have a front-facing view for now, so
+        walking sideways or away still faces you. The doormat opens the campus
+        page.
       </p>
     </div>
   );

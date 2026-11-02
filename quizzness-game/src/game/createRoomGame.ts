@@ -6,6 +6,7 @@ import {
   type StudentAnimation,
 } from "./studentAnimation";
 import {
+  characterScale,
   movePlayer,
   nearDestination,
   room,
@@ -18,6 +19,8 @@ export type RoomSnapshot = Point & {
   animation?: StudentAnimation;
   frame?: number;
 };
+const FEET = 0.91; // where the feet sit within a sprite frame
+const LEAN = 4; // degrees the character tilts into sideways movement
 export function createRoomGame(
   parent: HTMLElement,
   avatarId: string,
@@ -34,13 +37,19 @@ export function createRoomGame(
     frameWidth: studentManifest.frameWidth,
     frameHeight: studentManifest.frameHeight,
   };
+  const stillMotion = () =>
+    reducedMotion ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   class RoomScene extends Phaser.Scene {
     private player!: Phaser.GameObjects.Sprite;
     private shadow!: Phaser.GameObjects.Image;
-    private marker!: Phaser.GameObjects.Rectangle;
+    private marker!: Phaser.GameObjects.Triangle;
     private position = { ...room.spawn };
+    private current: StudentAnimation = "idle";
     private lastReport = 0;
     preload() {
+      this.load.once("loaderror", onError);
+      this.load.image("room", "/brand/student-room-pixel-v2.png");
       for (const name of animations)
         this.load.spritesheet(
           name,
@@ -53,95 +62,39 @@ export function createRoomGame(
         frameConfig,
       );
       this.load.svg("panthy", "/brand/panthy-pixel.svg", {
-        width: 64,
-        height: 64,
+        width: 144,
+        height: 138,
       });
-      this.load.once("loaderror", onError);
     }
     create() {
       if (
         animations.some((name) => !this.textures.exists(name)) ||
         !this.textures.exists("student-shadow") ||
-        !this.textures.exists("panthy")
+        !this.textures.exists("panthy") ||
+        !this.textures.exists("room")
       )
         return;
-      const g = this.add.graphics();
-      const dark = 0x1b4332,
-        cream = 0xefe6dd,
-        purple = 0x7a4e9d,
-        lavender = 0xc9b6e4,
-        green = 0x40916c;
-      const block = (x: number, y: number, w: number, h: number, c: number) =>
-        g.fillStyle(c).fillRect(x, y, w, h);
-      // Prototype tile layout uses brand colours. Originals are untouched.
-      block(0, 0, 640, 400, dark);
-      block(24, 28, 592, 356, cream);
-      block(32, 36, 576, 76, lavender);
-      block(32, 104, 576, 12, purple);
-      for (let y = 116; y < 380; y += 24)
-        for (let x = 32; x < 608; x += 48) {
-          g.lineStyle(1, green, 0.15).strokeRect(
-            x + (y % 48 === 20 ? 0 : 24),
-            y,
-            48,
-            24,
-          );
-        }
-      block(230, 46, 180, 54, dark);
-      block(238, 50, 164, 42, green);
-      block(254, 68, 46, 24, cream);
-      block(336, 60, 46, 32, cream);
-      block(278, 56, 16, 12, purple);
-      block(350, 50, 16, 10, purple);
-      block(230, 46, 16, 54, purple);
-      block(394, 46, 16, 54, purple);
-      block(318, 50, 4, 42, cream);
-      // Rug and its stepped border.
-      block(238, 216, 210, 124, purple);
-      block(246, 224, 194, 108, lavender);
-      g.lineStyle(2, cream).strokeRect(254, 232, 178, 92);
-      for (let x = 262; x < 430; x += 24) block(x, 238, 4, 4, purple);
-      // Bookshelf, including book spines.
-      block(52, 118, 118, 56, dark);
-      block(58, 122, 106, 44, purple);
-      for (let row = 0; row < 2; row++)
-        for (let i = 0; i < 9; i++) {
-          block(
-            62 + i * 11,
-            126 + row * 22,
-            8,
-            16,
-            [cream, green, lavender][i % 3],
-          );
-        }
-      block(56, 144, 110, 4, dark);
-      // Desk and stool.
-      block(52, 216, 128, 68, dark);
-      block(56, 220, 120, 52, green);
-      block(76, 230, 40, 26, cream);
-      block(80, 230, 32, 19, purple);
-      block(124, 236, 28, 18, cream);
-      block(136, 238, 2, 14, purple);
-      block(90, 280, 32, 8, purple);
-      // Wardrobe and bed.
-      block(492, 112, 98, 32, dark);
-      block(496, 116, 90, 24, green);
-      block(540, 116, 3, 24, cream);
-      block(532, 126, 3, 4, lavender);
-      block(548, 126, 3, 4, lavender);
-      block(500, 148, 82, 144, dark);
-      block(504, 152, 74, 134, cream);
-      block(510, 158, 62, 26, lavender);
-      block(504, 192, 74, 84, purple);
-      block(510, 200, 62, 68, lavender);
-      block(516, 206, 8, 8, cream);
-      // Potted plant and doorway.
-      block(228, 134, 16, 18, purple);
-      block(222, 120, 28, 18, green);
-      block(232, 114, 8, 28, dark);
-      block(280, 378, 80, 6, purple);
-      block(284, 360, 72, 18, lavender);
-      this.add.image(236, 150, "panthy").setDisplaySize(32, 32).setDepth(150);
+      this.add.image(0, 0, "room").setOrigin(0, 0).setDepth(0);
+      // Doormat marking the way out to campus; the artwork has no door.
+      const mat = this.add.graphics().setDepth(1);
+      mat.fillStyle(0x1b4332).fillRect(684, 984, 172, 40);
+      mat.fillStyle(0x7a4e9d).fillRect(690, 990, 160, 34);
+      mat.fillStyle(0xc9b6e4).fillRect(702, 998, 136, 26);
+      mat.fillStyle(0x7a4e9d).fillRect(760, 1004, 20, 20);
+      const panthy = this.add
+        .image(room.panthy.x, room.panthy.y, "panthy")
+        .setOrigin(0.5, 1)
+        .setDisplaySize(112, 107)
+        .setDepth(room.panthy.y);
+      if (!stillMotion())
+        this.tweens.add({
+          targets: panthy,
+          y: room.panthy.y - 6,
+          duration: 900,
+          yoyo: true,
+          repeat: -1,
+          ease: "Sine.easeInOut",
+        });
       for (const name of animations)
         this.anims.create({
           key: name,
@@ -154,40 +107,73 @@ export function createRoomGame(
         });
       this.shadow = this.add
         .image(this.position.x, this.position.y, "student-shadow", 0)
-        .setOrigin(0.5, 0.91);
+        .setOrigin(0.5, FEET);
       this.player = this.add
         .sprite(this.position.x, this.position.y, "idle", 0)
-        .setOrigin(0.5, 0.91);
+        .setOrigin(0.5, FEET);
+      // Bouncing arrow over whatever can be used right now.
       this.marker = this.add
-        .rectangle(0, 0, 20, 10, lavender, 0.3)
-        .setStrokeStyle(2, purple)
+        .triangle(0, 0, 0, 0, 36, 0, 18, 26, 0x7a4e9d)
+        .setStrokeStyle(4, 0xefe6dd)
+        .setDepth(3000)
         .setVisible(false);
+      this.place();
       onUpdate({ ...this.position });
       onReady();
+    }
+    private place() {
+      const scale = characterScale(this.position.y);
+      this.player
+        .setPosition(this.position.x, this.position.y)
+        .setScale(scale)
+        .setDepth(this.position.y);
+      this.shadow
+        .setPosition(this.position.x, this.position.y)
+        .setScale(scale)
+        .setDepth(this.position.y - 1);
     }
     update(time: number, delta: number) {
       if (!this.player) return;
       const previous = this.position;
       this.position = movePlayer(this.position, getInput(), delta / 1000);
-      const animation = animationForMovement(previous, this.position);
-      if (
-        reducedMotion ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
+      const animation = animationForMovement(
+        previous,
+        this.position,
+        this.current,
+      );
+      const still = stillMotion();
+      if (still) {
         this.player.anims.stop();
         this.player.setTexture(animation, 0);
+      } else if (animation !== this.current) {
+        // Changing direction carries on from the same step instead of restarting.
+        const walking = animation !== "idle" && this.current !== "idle";
+        const startFrame = walking ? Number(this.player.frame.name) : 0;
+        this.player.play({ key: animation, startFrame }, true);
       } else this.player.play(animation, true);
+      this.current = animation;
       const frame = Number(this.player.frame.name);
       this.shadow.setFrame(frame % student.shadow.frames);
-      this.player
-        .setPosition(this.position.x, this.position.y)
-        .setDepth(this.position.y);
-      this.shadow
-        .setPosition(this.position.x, this.position.y)
-        .setDepth(this.position.y - 1);
+      const lean =
+        still || animation === "idle"
+          ? 0
+          : Math.sign(this.position.x - previous.x) * LEAN;
+      this.player.angle += (lean - this.player.angle) * 0.2;
+      this.place();
       const nearby = nearDestination(this.position);
       this.marker.setVisible(!!nearby);
-      if (nearby) this.marker.setPosition(nearby.x, nearby.y).setDepth(1);
+      if (nearby) {
+        // Panthy and the doormat get the arrow; furniture shows it over the student.
+        const fixed = nearby.id === "panthy" || nearby.id === "campus";
+        const height = 136 * FEET * characterScale(this.position.y);
+        const top = fixed
+          ? nearby.id === "panthy"
+            ? room.panthy.y - 150
+            : nearby.y - 60
+          : this.position.y - height - 24;
+        const bob = still ? 0 : Math.sin(time / 180) * 6;
+        this.marker.setPosition(fixed ? nearby.x : this.position.x, top + bob);
+      }
       if (time - this.lastReport > 80) {
         onUpdate({ ...this.position, nearby, animation, frame });
         this.lastReport = time;
@@ -199,7 +185,7 @@ export function createRoomGame(
     parent,
     width: room.width,
     height: room.height,
-    backgroundColor: "#1B4332",
+    backgroundColor: "#EFE6DD",
     pixelArt: true,
     antialias: false,
     roundPixels: true,

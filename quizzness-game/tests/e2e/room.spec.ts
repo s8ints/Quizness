@@ -7,7 +7,7 @@ test("reduced motion keeps student frames still while movement remains available
   await expect(room).toHaveAttribute("data-ready","true",{timeout:15000});
   await room.focus();await page.keyboard.down("ArrowLeft");
   await expect(room).toHaveAttribute("data-animation","walk-left");
-  await expect.poll(async()=>Number(await room.getAttribute("data-player-x"))).toBeLessThan(300);
+  await expect.poll(async()=>Number(await room.getAttribute("data-player-x"))).toBeLessThan(740);
   await expect(room).toHaveAttribute("data-frame","0");
   await page.keyboard.up("ArrowLeft");
   await expect(room).toHaveAttribute("data-animation","idle");
@@ -25,7 +25,8 @@ test("room movement, wall collision, focus, destinations and repeat mounting", a
   });
   await expect(room).toHaveAttribute("data-ready", "true", { timeout: 15000 });
   await expect(page.locator("canvas")).toHaveCount(1);
-  await room.focus();
+  // Keys work as soon as the room is ready, with no click needed.
+  await expect(room).toBeFocused();
   await page.keyboard.down("ArrowRight");
   await expect(room).toHaveAttribute("data-animation", "walk-right");
   await expect
@@ -36,7 +37,7 @@ test("room movement, wall collision, focus, destinations and repeat mounting", a
   await expect(room).toHaveAttribute("data-animation", "idle");
   await expect
     .poll(async () => Number(await room.getAttribute("data-player-x")))
-    .toBeGreaterThan(340);
+    .toBeGreaterThan(800);
   await page.getByRole("button", { name: "Pause walking" }).click();
   await room.focus();
   const stopped = await room.getAttribute("data-player-x");
@@ -51,7 +52,7 @@ test("room movement, wall collision, focus, destinations and repeat mounting", a
   await page.keyboard.up("ArrowDown");
   await expect
     .poll(async () => Number(await room.getAttribute("data-player-y")))
-    .toBeLessThanOrEqual(376);
+    .toBeLessThanOrEqual(1010);
   await page
     .getByRole("button", { name: "Talk to Panthy", exact: true })
     .click();
@@ -93,7 +94,7 @@ test("room mobile joystick releases, layout fits, and failed assets keep navigat
   await page.mouse.up();
   await expect
     .poll(async () => Number(await room.getAttribute("data-player-x")))
-    .toBeGreaterThan(340);
+    .toBeGreaterThan(800);
   await page.waitForTimeout(150);
   const released = await room.getAttribute("data-player-x");
   await page.waitForTimeout(250);

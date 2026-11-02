@@ -9,6 +9,18 @@ it("uses actual movement to select direction and idles when blocked", () => {
   expect(animationForMovement(start, { x: 10, y: 15 })).toBe("walk-down");
   expect(animationForMovement(start, start)).toBe("idle");
 });
+it("keeps the current direction on near-diagonals instead of flip-flopping", () => {
+  const start = { x: 10, y: 10 };
+  const diagonal = { x: 15, y: 14 };
+  expect(animationForMovement(start, diagonal, "walk-down")).toBe("walk-down");
+  expect(animationForMovement(start, diagonal, "walk-right")).toBe(
+    "walk-right",
+  );
+  expect(animationForMovement(start, diagonal, "idle")).toBe("walk-right");
+  expect(animationForMovement(start, { x: 20, y: 10 }, "walk-down")).toBe(
+    "walk-right",
+  );
+});
 it("maps all six avatars to supplied frame metadata", () => {
   for (const id of ["fern", "sun", "sky", "books", "headphones", "glasses"]) {
     expect(studentSprites(id, manifest).animations.idle.frames).toBe(2);

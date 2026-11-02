@@ -12,10 +12,20 @@ export function studentSprites(id: string, manifest: StudentManifest) {
 export function animationForMovement(
   previous: Point,
   next: Point,
+  current?: StudentAnimation,
 ): StudentAnimation {
   const x = next.x - previous.x,
     y = next.y - previous.y;
   if (Math.hypot(x, y) < 0.001) return "idle";
-  if (Math.abs(x) > Math.abs(y)) return x > 0 ? "walk-right" : "walk-left";
-  return y > 0 ? "walk-down" : "walk-up";
+  const horizontal = x > 0 ? "walk-right" : "walk-left";
+  const vertical = y > 0 ? "walk-down" : "walk-up";
+  // On a near-diagonal keep the current direction instead of flip-flopping.
+  const ratio = Math.abs(x) / Math.max(Math.abs(y), 0.0001);
+  if (
+    ratio > 0.6 &&
+    ratio < 1.7 &&
+    (current === horizontal || current === vertical)
+  )
+    return current;
+  return Math.abs(x) > Math.abs(y) ? horizontal : vertical;
 }
