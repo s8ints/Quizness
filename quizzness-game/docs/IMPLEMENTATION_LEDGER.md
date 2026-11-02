@@ -105,3 +105,7 @@ Animation selector tests observed RED→GREEN. Final checks: 51/51 unit tests, p
 ## Room rebuild and interactive campus — 2026-11-02
 
 Replaced the procedural rectangle room with the supplied room art; removed the dark frame; hid the joystick on mouse-and-keyboard desktops; room focuses on load so keys work immediately (route focus on the h1 had been blocking this). Near-diagonal walking keeps its direction and continues from the same frame instead of restarting. Added `src/game/area.ts` (shared rules), `src/game/campus.ts` (path polygons traced from the art, destinations), `src/game/createAreaGame.ts` (replaces createRoomGame.ts) and `src/components/WalkableArea.tsx`. A reachability test caught the market cottage being unreachable at a narrow path junction; fixed. Known limits: the student draws over the statue when walking behind it, and on a few tree edges; no side/back views. Verification: 62 unit tests, 9 browser tests, production build, screenshots at desktop and 390px.
+
+## Living world and game-first Home base — 2026-11-02
+
+Added `src/game/ambient.ts`, configured per area in `room.ts` and `campus.ts`, and masks from `scripts/make-area-masks.cjs`. Hub now embeds WalkableArea with an overlay greeting; pins added to the room. The first sunbeam attempt read as grey bars in screenshots and was replaced by a soft floor patch. Clouds, ripples and falls need WebGL and are skipped on the canvas fallback. Motion was compared between screenshots taken about a second apart; performance on low-end phones has not been measured.

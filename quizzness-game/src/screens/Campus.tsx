@@ -13,31 +13,33 @@ export function Campus() {
   const school = profile.institution.trim() || "Independent learners’ campus";
   return (
     <div className="exploration-page">
-      <div className="exploration-heading">
-        <div>
-          <p className="eyebrow">Shared school hub · {school}</p>
-          <h1>{campus.name}</h1>
-        </div>
-        <Link className="button secondary" to={`${base}/courses`}>
-          {home ? `Travel to ${home.name} →` : "Explore the worlds →"}
-        </Link>
-      </div>
+      <WalkableArea
+        area={campusArea}
+        label="Walkable campus map"
+        hint="Follow the paths to the Main Hall, the fountain, the cottage or the plaza."
+        hud={
+          <>
+            <p className="eyebrow">{school}</p>
+            <h1>{campus.name}</h1>
+          </>
+        }
+      />
       <Mascot
         state="welcome"
         message="Walk the paths or pick a landmark on the map. Every major meets here."
         compact
       />
-      <WalkableArea
-        area={campusArea}
-        label="Walkable campus map"
-        hint="Follow the paths to the Main Hall, the fountain, the cottage or the plaza."
-      />
+      <div className="actions">
+        <Link className="button secondary" to={`${base}/courses`}>
+          {home ? `Travel to ${home.name} →` : "Explore the worlds →"}
+        </Link>
+        <Link className="text-link" to={preview ? "/preview" : "/dashboard"}>
+          Back to home base
+        </Link>
+      </div>
       <p className="prototype-note">
         Campus artwork · meeting classmates and the market are coming later.
       </p>
-      <Link className="text-link" to={preview ? "/preview" : "/dashboard"}>
-        Back to home base
-      </Link>
     </div>
   );
 }

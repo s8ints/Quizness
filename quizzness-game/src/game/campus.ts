@@ -32,6 +32,34 @@ export const campusArea: Area = {
   characterScale: (y) => 0.5 + (Math.max(300, Math.min(940, y)) - 300) * 0.00056,
   smoothSprites: true,
   showPins: true,
+  ambient: {
+    clouds: {
+      mask: "/brand/masks/campus-sky.png",
+      top: 18,
+      bottom: 100,
+      count: 7,
+      scale: 0.75,
+      speed: 11,
+      alpha: 0.92,
+    },
+    water: { mask: "/brand/masks/campus-water.png" },
+    falls: { mask: "/brand/masks/campus-falls.png" },
+    foam: [
+      { x: 1375, y: 868, width: 110 },
+      { x: 1640, y: 566, width: 50 },
+    ],
+    spray: { x: 836, y: 560, radius: 92 },
+    cloudShadows: 3,
+    leaves: 1500,
+    birds: 4,
+    butterflies: [
+      { x: 740, y: 492 },
+      { x: 930, y: 492 },
+      { x: 480, y: 612 },
+      { x: 1190, y: 678 },
+      { x: 1290, y: 462 },
+    ],
+  },
   panthy: { x: 735, y: 672, width: 58, height: 55 },
   destinations: [
     {

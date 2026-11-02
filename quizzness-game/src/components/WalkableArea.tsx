@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useStudent } from "../app/StudentProvider";
 import { Mascot } from "./Mascot";
@@ -12,10 +12,13 @@ export function WalkableArea({
   area,
   label,
   hint,
+  hud,
 }: {
   area: Area;
   label: string;
   hint: string;
+  // The page's greeting, shown over the game like a game's heads-up display.
+  hud?: ReactNode;
 }) {
   const { profile, preview } = useStudent();
   const base = preview ? "/preview" : "";
@@ -142,12 +145,13 @@ export function WalkableArea({
     );
   return (
     <>
-      <p id="area-controls">
-        Walk with <kbd>WASD</kbd> or the arrow keys, and press <kbd>E</kbd> near
-        something to use it. If the keys stop responding, click the picture. Tab
-        leaves the walking controls.
-      </p>
-      <div className="exploration-frame">
+      {/* Tall enough to see the whole place without scrolling. */}
+      <div
+        className="exploration-frame"
+        style={{
+          maxWidth: `calc((100vh - 150px) * ${area.width / area.height})`,
+        }}
+      >
         <div
           ref={stage}
           className="walkable-stage"
@@ -194,7 +198,7 @@ export function WalkableArea({
         >
           <div ref={host} className="phaser-room" aria-hidden="true" />
           {area.showPins && ready && !error && (
-            <nav className="map-pins" aria-label="Map landmarks">
+            <nav className="map-pins" aria-label="Places to go">
               {area.destinations.map((d) => (
                 <span
                   key={d.id}
@@ -210,6 +214,7 @@ export function WalkableArea({
               ))}
             </nav>
           )}
+          {hud && <div className="area-hud">{hud}</div>}
           {ready && !error && snapshot.nearby && !dialog && (
             <p className="room-prompt" aria-hidden="true">
               <kbd>E</kbd> {snapshot.nearby.label}
@@ -258,6 +263,11 @@ export function WalkableArea({
           </div>
         )}
       </div>
+      <p id="area-controls" className="area-controls">
+        Walk with <kbd>WASD</kbd> or the arrow keys, and press <kbd>E</kbd> near
+        something to use it. You can also click the labels. If the keys stop
+        responding, click the picture.
+      </p>
       <div className="exploration-controls">
         <div
           className="touch-joystick"

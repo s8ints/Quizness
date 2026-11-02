@@ -1,7 +1,7 @@
 .exploration-page {
-  max-width: 1100px;
+  max-width: 1400px;
   margin: auto;
-  padding: 24px;
+  padding: 12px 24px 24px;
 }
 .exploration-heading {
   display: flex;
@@ -16,11 +16,39 @@
 .exploration-heading p {
   margin: 8px 0;
 }
-#area-controls {
-  margin: 10px 0 16px;
+.area-controls {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.area-hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 45%;
+  padding: 8px 12px;
+  background: var(--color-background);
+  border: 2px solid var(--color-text);
+  border-radius: 6px;
+  box-shadow: 0 3px 0 var(--color-text);
+  pointer-events: none;
+}
+.area-hud .eyebrow {
+  margin: 0 0 2px;
+  font-size: 0.75rem;
+}
+.area-hud h1 {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.7vw, 1.3rem);
+}
+.area-hud h1 > span {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 .exploration-frame {
   position: relative;
+  margin: 0 auto;
   border: 3px solid var(--color-text);
   border-radius: 8px;
   overflow: hidden;
@@ -92,8 +120,9 @@
 .exploration-controls {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 24px;
-  margin: 24px 0;
+  margin: 14px 0 24px;
 }
 .touch-joystick {
   display: flex;
@@ -208,6 +237,31 @@
 @media (min-width: 821px) and (hover: hover) and (pointer: fine) {
   .touch-joystick {
     display: none;
+  }
+}
+@media (max-width: 700px) {
+  /* On phones the greeting sits above the game so it doesn't cover the room. */
+  .walkable-stage {
+    padding-top: 0;
+  }
+  .area-hud {
+    top: 4px;
+    left: 4px;
+    max-width: 58%;
+    padding: 3px 6px;
+  }
+  .area-hud .eyebrow,
+  .area-hud h1 > span {
+    display: none;
+  }
+  .area-hud h1 {
+    font-size: 0.72rem;
+  }
+  .room-prompt {
+    top: auto;
+    bottom: 6px;
+    font-size: 0.8rem;
+    padding: 3px 8px;
   }
 }
 @media (max-width: 600px) {

@@ -725,3 +725,11 @@ section[aria-labelledby^="world-"] {
     display: none;
   }
 }
+
+/* The room is the Home base, so the header shows the student's character here too. */
+.room-shell .profile-link .avatar {
+  display: inline-block;
+}
+.room-shell .profile-link {
+  padding: 2px 10px;
+}

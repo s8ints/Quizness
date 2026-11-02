@@ -12,6 +12,7 @@ import {
   type Point,
   type Destination,
 } from "./area";
+import { addAmbient, ambientMasks } from "./ambient";
 
 export type AreaSnapshot = Point & {
   nearby?: Destination;
@@ -47,9 +48,13 @@ export function createAreaGame(
     private position = { ...area.spawn };
     private current: StudentAnimation = "idle";
     private lastReport = 0;
+    private updateAmbient?: (deltaSeconds: number) => void;
     preload() {
       this.load.once("loaderror", onError);
       this.load.image("area", area.art);
+      if (area.ambient && !stillMotion())
+        for (const mask of ambientMasks(area.ambient))
+          this.load.image(mask, mask);
       for (const name of animations)
         this.load.spritesheet(
           name,
@@ -78,6 +83,14 @@ export function createAreaGame(
         for (const name of [...animations, "student-shadow", "panthy"])
           this.textures.get(name).setFilter(Phaser.Textures.FilterMode.LINEAR);
       this.add.image(0, 0, "area").setOrigin(0, 0).setDepth(0);
+      // Background life stays off for students who asked for less motion.
+      if (area.ambient && !stillMotion())
+        this.updateAmbient = addAmbient(
+          this,
+          area.ambient,
+          area.width,
+          area.height,
+        );
       if (area.doormat) {
         // Marks the way out where the artwork has no door.
         const { x, y, width, height } = area.doormat;
@@ -143,6 +156,7 @@ export function createAreaGame(
     }
     update(time: number, delta: number) {
       if (!this.player) return;
+      this.updateAmbient?.(Math.min(delta, 100) / 1000);
       const previous = this.position;
       this.position = movePlayer(area, this.position, getInput(), delta / 1000);
       const animation = animationForMovement(

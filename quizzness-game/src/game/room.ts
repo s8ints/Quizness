@@ -42,12 +42,56 @@ export const roomArea: Area = {
   // Fake perspective: small by the window, larger near the front of the room.
   characterScale: (y) =>
     2.05 + Math.max(0, Math.min(1, (y - bounds.y) / bounds.height)) * 0.85,
+  showPins: true,
+  ambient: {
+    clouds: {
+      mask: "/brand/masks/room-window.png",
+      top: 78,
+      bottom: 175,
+      count: 4,
+      scale: 0.5,
+      speed: 9,
+      alpha: 0.95,
+    },
+    // Sunlight from the window landing on the floor, with softer outer edges.
+    sunbeams: [
+      [[610, 490], [1010, 490], [1230, 880], [400, 880]],
+      [[650, 490], [970, 490], [1160, 860], [470, 860]],
+      [[690, 490], [930, 490], [1090, 840], [540, 840]],
+    ],
+    dust: { x: 480, y: 340, width: 640, height: 520 },
+    glows: [
+      { x: 120, y: 468, radius: 90, alpha: 0.28 }, // laptop screen
+      { x: 190, y: 372, radius: 120, alpha: 0.3 }, // desk lamp
+    ],
+  },
   panthy: { x: 1035, y: 560, width: 112, height: 107 },
   doormat: { x: 684, y: 984, width: 172, height: 40 },
   destinations: [
-    { id: "desk", label: "Study desk", x: 370, y: 650, path: "/courses" },
-    { id: "books", label: "Bookshelf", x: 400, y: 565, path: "/courses" },
-    { id: "wardrobe", label: "Wardrobe", x: 1360, y: 810, path: "/profile" },
+    {
+      id: "desk",
+      label: "Study desk",
+      x: 370,
+      y: 650,
+      path: "/courses",
+      pin: { x: 205, y: 400 },
+    },
+    {
+      id: "books",
+      label: "Bookshelf",
+      x: 400,
+      y: 565,
+      path: "/courses",
+      pin: { x: 360, y: 265 },
+    },
+    {
+      id: "wardrobe",
+      label: "Wardrobe",
+      x: 1360,
+      y: 810,
+      path: "/profile",
+      pin: { x: 1395, y: 215 },
+    },
     {
       id: "campus",
       label: "Campus door",
@@ -55,6 +99,7 @@ export const roomArea: Area = {
       y: 985,
       path: "/campus",
       arrowY: 925,
+      pin: { x: 770, y: 980 },
     },
     {
       id: "panthy",
@@ -62,6 +107,7 @@ export const roomArea: Area = {
       x: 1035,
       y: 600,
       arrowY: 410,
+      pin: { x: 1035, y: 440 },
       dialog: {
         title: "Panthy’s welcome",
         message:

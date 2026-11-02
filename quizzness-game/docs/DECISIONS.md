@@ -1,5 +1,9 @@
 # Decisions log
 
+## 2026-11-02 — The game is the Home base
+
+The user asked that the game not feel like a second option. The walkable room replaces the still room picture as the Home base; `/room` now redirects there, and status and courses sit below the game. Room and campus have background life (clouds, water, waterfalls, fountain spray, birds, butterflies, leaves, cloud shadows, sunlight, dust, window and lamp glow), off under reduced motion. Colour-derived masks in `public/brand/masks/` (from `scripts/make-area-masks.cjs`) limit effects to sky and water; the artwork is unchanged. Furniture, trees and curtains are still part of the flat art and do not move.
+
 ## 2026-11-02 — Room and campus use the real artwork
 
 The user rejected the flat, rectangle-drawn room prototype. The room now uses `student-room-pixel-v2.png` as its walkable background, with invisible walls fitted to the furniture and depth scaling for the student. The campus picture (`quizzness-campus.png`) is now walkable on its paved paths and has clickable landmark pins. Main Hall opens courses, the fountain opens Panthy, and the south steps return to the room. The market cottage and paw plaza say they are coming later; no market or social features exist. Room and campus are data files using one shared scene (`src/game/createAreaGame.ts`) and page component (`src/components/WalkableArea.tsx`). Walking uses the existing front-view sprites, so side and back views remain stopgaps. Landmark names are provisional.

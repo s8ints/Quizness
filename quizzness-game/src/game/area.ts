@@ -14,6 +14,30 @@ export type Destination = Point & {
   // Where the clickable pin sits on the map, when the area shows pins.
   pin?: Point;
 };
+// Background life for an area. Every part is optional.
+export type AmbientConfig = {
+  clouds?: {
+    mask: string;
+    top: number;
+    bottom: number;
+    count: number;
+    scale: number;
+    speed: number;
+    alpha: number;
+  };
+  water?: { mask: string };
+  falls?: { mask: string };
+  foam?: (Point & { width: number })[];
+  spray?: Point & { radius: number };
+  cloudShadows?: number;
+  // Milliseconds between leaves.
+  leaves?: number;
+  birds?: number;
+  butterflies?: Point[];
+  sunbeams?: number[][][];
+  dust?: Rect;
+  glows?: (Point & { radius: number; alpha: number })[];
+};
 export type Area = {
   id: string;
   art: string;
@@ -33,6 +57,7 @@ export type Area = {
   // Small sprites look better smoothed than with dropped pixels.
   smoothSprites?: boolean;
   showPins?: boolean;
+  ambient?: AmbientConfig;
 };
 export function inPolygon(p: Point, polygon: number[][]) {
   let inside = false;

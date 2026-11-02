@@ -3,9 +3,10 @@ import { useStudent } from "../app/StudentProvider";
 import { courses } from "../data/courses";
 import { homeWorldFor } from "../data/majors";
 import { campus, getWorld } from "../data/worlds";
-import { Avatar } from "../components/Avatar";
 import { Mascot } from "../components/Mascot";
 import { CourseCard } from "../components/CourseCard";
+import { WalkableArea } from "../components/WalkableArea";
+import { roomArea } from "../game/room";
 
 export function Hub() {
   const { profile, preview } = useStudent();
@@ -16,53 +17,26 @@ export function Hub() {
   const next = selected[0];
   const home = homeWorldFor(profile.major_id);
   return (
-    <div className="student-room-hub">
-      <section className="room-scene" aria-label="Your cosy student room">
-        <header className="room-heading">
-          <div>
+    <div className="exploration-page">
+      <WalkableArea
+        area={roomArea}
+        label="Walkable student room"
+        hint="Walk near your desk, bookshelf, wardrobe, Panthy or the door."
+        hud={
+          <>
             <p className="eyebrow">My student room</p>
             <h1>
               Hey, {profile.first_name || "Explorer"}.{" "}
               <span>Welcome home.</span>
             </h1>
-          </div>
-        </header>
-        <Link
-          className="room-hotspot room-desk"
-          to={next ? `${base}/courses/${next.id}` : `${base}/courses`}
-        >
-          <span className="room-hotspot-icon" aria-hidden="true">
-            ✎
-          </span>
-          <span>{next ? "Continue journey" : "Choose a course"}</span>
-          <span>→</span>
-        </Link>
-        <Link className="room-hotspot room-books" to={`${base}/courses`}>
-          <span aria-hidden="true">▤</span> My bookshelf{" "}
-          <span aria-hidden="true">→</span>
-        </Link>
-        <Link className="room-hotspot room-wardrobe" to={`${base}/profile`}>
-          <span aria-hidden="true">✧</span> My character{" "}
-          <span aria-hidden="true">→</span>
-        </Link>
-        <div className="room-student">
-          <Avatar id={profile.avatar_id} large />
-          <span>{profile.first_name || "Explorer"}</span>
-        </div>
-        <div className="room-panthy">
-          <Mascot
-            state="welcome"
-            message={`Make yourself at home, ${profile.first_name || "Explorer"}. Your books are here whenever you’re ready.`}
-            compact
-          />
-        </div>
-        <span className="room-art-label">
-          Room illustration · movement coming later
-        </span>
-      </section>
-      <Link className="button room-explore-link" to={`${base}/room`}>
-        Walk around your room →
-      </Link>
+          </>
+        }
+      />
+      <Mascot
+        state="welcome"
+        message={`Make yourself at home, ${profile.first_name || "Explorer"}. Your desk is ready whenever you are.`}
+        compact
+      />
       <section className="hub-status" aria-labelledby="hub-status-title">
         <h2 id="hub-status-title" className="hub-section-title">
           Your status
@@ -103,7 +77,7 @@ export function Hub() {
                   className="button small"
                   to={`${base}/courses/${next.id}`}
                 >
-                  Open course →
+                  Continue journey →
                 </Link>
               </>
             ) : (

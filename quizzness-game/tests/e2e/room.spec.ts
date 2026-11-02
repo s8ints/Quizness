@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("reduced motion keeps student frames still while movement remains available",async({page})=>{
   await page.emulateMedia({reducedMotion:"reduce"});
-  await page.goto("/preview/room");
+  await page.goto("/preview");
   const room=page.getByRole("group",{name:"Walkable student room",exact:true});
   await expect(room).toHaveAttribute("data-ready","true",{timeout:15000});
   await room.focus();await page.keyboard.down("ArrowLeft");
@@ -18,7 +18,7 @@ test("room movement, wall collision, focus, destinations and repeat mounting", a
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/preview/room");
+  await page.goto("/preview");
   const room = page.getByRole("group", {
     name: "Walkable student room",
     exact: true,
@@ -62,7 +62,7 @@ test("room movement, wall collision, focus, destinations and repeat mounting", a
   await page.getByRole("button", { name: "Back to exploring" }).click();
   await expect(room).toBeFocused();
   await page
-    .getByRole("navigation", { name: "Destinations" })
+    .getByRole("navigation", { name: "Places to go" })
     .getByRole("link", { name: "Wardrobe" })
     .click();
   await expect(page).toHaveURL(/\/preview\/profile$/);
@@ -76,7 +76,7 @@ test("room mobile joystick releases, layout fits, and failed assets keep navigat
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/preview/room");
+  await page.goto("/preview");
   const room = page.getByRole("group", {
     name: "Walkable student room",
     exact: true,
@@ -134,7 +134,7 @@ test("campus map: walk the paths, use landmarks and return to the room", async (
   });
   await expect(map).toHaveAttribute("data-ready", "true", { timeout: 15000 });
   await expect(map).toBeFocused();
-  const pins = page.getByRole("navigation", { name: "Map landmarks" });
+  const pins = page.getByRole("navigation", { name: "Places to go" });
   await expect(pins.getByRole("link", { name: "Main Hall" })).toBeVisible();
   // Walls: walking sideways off the south steps stops at the water's edge.
   await page.keyboard.down("ArrowRight");
@@ -165,7 +165,7 @@ test("campus map: walk the paths, use landmarks and return to the room", async (
   );
   await page.getByRole("button", { name: "Back to exploring" }).click();
   await pins.getByRole("link", { name: "Back to your room" }).click();
-  await expect(page).toHaveURL(/\/preview\/room$/);
+  await expect(page).toHaveURL(/\/preview$/);
   expect(errors).toEqual([]);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/preview/campus");
