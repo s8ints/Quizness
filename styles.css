@@ -15,9 +15,10 @@ body {
   margin: 0 auto;
   padding: 0 32px;
   font-family: Arial, sans-serif;
+  font-size: 16px;
   line-height: 1.6;
-  color: #1B4332;
-  background-color: #EFE6DD;
+  color: var(--ink);
+  background-color: var(--cream);
 }
 a { color: var(--purple); overflow-wrap: break-word; }
 a:hover { color: var(--purple); text-decoration: underline; }
@@ -39,7 +40,8 @@ a:focus, summary:focus { outline: 3px solid var(--purple); outline-offset: 4px; 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0;
+  max-width: 1176px;
+  margin: 0 auto;
   padding: 24px 0 20px;
   border-bottom: 1px solid var(--accent);
   background-color: transparent;
@@ -170,19 +172,6 @@ thead { background-color: var(--soft-purple); }
 .home a { color: var(--purple); }
 .home .skip-link { background-color: var(--green); color: var(--ink); }
 .home main { max-width: 1176px; margin: 0 auto; }
-.home .site-header { display: block; margin: 0; padding: 24px 0 0; border: 0; background: transparent; box-shadow: none; }
-.home .header-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 20px; }
-.home .brand { margin: 0 24px 0 0; }
-.home .site-header nav { flex: 0 1 auto; max-width: none; }
-.home .site-header nav a { margin: 0; padding: 10px 0; border: 0; color: var(--purple); font-size: 14px; min-height: 44px; }
-.home .site-header nav li { margin-right: 24px; }
-.home .site-header nav li:last-child { margin-right: 0; }
-.home .site-header nav a:hover { background: transparent; color: var(--ink); text-decoration: underline; }
-.home .site-header nav .explore-button { padding: 10px 18px; border: 1px solid var(--purple); border-radius: 6px; background-color: var(--purple); color: var(--cream); font-weight: bold; }
-.home .site-header nav .explore-button:hover { background-color: var(--ink); color: var(--cream); text-decoration: none; }
-.home .main-nav { padding: 4px 0; border-top: 1px solid var(--accent); border-bottom: 1px solid var(--accent); }
-.home .main-nav ul { justify-content: flex-start; }
-.home .site-header .main-nav a[aria-current="page"] { border-bottom: 2px solid var(--purple); background: transparent; color: var(--purple); }
 .home h2 { margin: 0 0 20px; color: var(--purple); font-size: 36px; line-height: 1.15; letter-spacing: -1px; }
 .home .section-label { margin: 0 0 16px; font-family: "Courier New", Courier, monospace; font-size: 12px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: var(--purple); }
 .home .square { display: inline-block; width: 9px; height: 9px; margin-right: 8px; background-color: var(--purple); box-shadow: 4px -4px 0 var(--green); }
@@ -272,11 +261,6 @@ thead { background-color: var(--soft-purple); }
 }
 @media (max-width: 650px) {
   .home { padding: 0 16px; }
-  .home .site-header { padding-top: 20px; }
-  .home .header-top { flex-direction: column; align-items: stretch; }
-  .home .brand { margin: 0 0 16px; }
-  .home .student-nav ul { justify-content: flex-start; }
-  .home .site-header nav li { margin-right: 16px; }
   .home .intro { padding: 40px 0; }
   .home .intro h1 { font-size: 46px; letter-spacing: -2px; }
   .home .intro-lead { font-size: 20px; }
