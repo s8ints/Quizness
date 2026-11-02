@@ -79,7 +79,7 @@ describe("worlds and campus", () => {
     expect(
       await screen.findByRole("heading", { name: "Quizzness Campus" }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/market and exploring are\s+coming later/)).toBeInTheDocument();
+    expect(screen.getByText(/meeting classmates and the market are\s+coming later/)).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "Travel to Pattern Valley →" }),
     ).toHaveAttribute("href", "/preview/courses");

@@ -1,5 +1,5 @@
 import type suppliedManifest from "../../public/sprites/students/students.json";
-import type { Point } from "./room";
+import type { Point } from "./area";
 export type StudentManifest = typeof suppliedManifest;
 export type StudentAnimation =
   "idle" | "walk-down" | "walk-up" | "walk-left" | "walk-right";

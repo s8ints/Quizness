@@ -1,5 +1,9 @@
 # Decisions log
 
+## 2026-11-02 — Room and campus use the real artwork
+
+The user rejected the flat, rectangle-drawn room prototype. The room now uses `student-room-pixel-v2.png` as its walkable background, with invisible walls fitted to the furniture and depth scaling for the student. The campus picture (`quizzness-campus.png`) is now walkable on its paved paths and has clickable landmark pins. Main Hall opens courses, the fountain opens Panthy, and the south steps return to the room. The market cottage and paw plaza say they are coming later; no market or social features exist. Room and campus are data files using one shared scene (`src/game/createAreaGame.ts`) and page component (`src/components/WalkableArea.tsx`). Walking uses the existing front-view sprites, so side and back views remain stopgaps. Landmark names are provisional.
+
 ## 2026-10-08 — Phase 1 complete
 
 The user then confirmed logout, password recovery and a second account seeing only its own data. Phase 1 (student foundation) is complete; next is Phase 2 (worlds/maps/missions/ActivityRenderer). No automated anonymous-access query was run against the live project.

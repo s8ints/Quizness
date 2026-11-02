@@ -62,7 +62,7 @@ test("room movement, wall collision, focus, destinations and repeat mounting", a
   await page.getByRole("button", { name: "Back to exploring" }).click();
   await expect(room).toBeFocused();
   await page
-    .getByRole("navigation", { name: "Room destinations" })
+    .getByRole("navigation", { name: "Destinations" })
     .getByRole("link", { name: "Wardrobe" })
     .click();
   await expect(page).toHaveURL(/\/preview\/profile$/);
@@ -113,11 +113,66 @@ test("room mobile joystick releases, layout fits, and failed assets keep navigat
   );
   await page.reload();
   await expect(
-    page.getByText("The room couldn’t load.", { exact: false }),
+    page.getByText("This place couldn’t load.", { exact: false }),
   ).toBeVisible();
   await page
-    .getByRole("navigation", { name: "Room destinations" })
+    .getByRole("navigation", { name: "Destinations" })
     .getByRole("link", { name: "Campus door" })
     .click();
   await expect(page).toHaveURL(/\/preview\/campus$/);
+});
+
+test("campus map: walk the paths, use landmarks and return to the room", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/preview/campus");
+  const map = page.getByRole("group", {
+    name: "Walkable campus map",
+    exact: true,
+  });
+  await expect(map).toHaveAttribute("data-ready", "true", { timeout: 15000 });
+  await expect(map).toBeFocused();
+  const pins = page.getByRole("navigation", { name: "Map landmarks" });
+  await expect(pins.getByRole("link", { name: "Main Hall" })).toBeVisible();
+  // Walls: walking sideways off the south steps stops at the water's edge.
+  await page.keyboard.down("ArrowRight");
+  await page.waitForTimeout(1500);
+  await page.keyboard.up("ArrowRight");
+  expect(Number(await map.getAttribute("data-player-x"))).toBeLessThan(925);
+  await page.keyboard.down("ArrowLeft");
+  await page.waitForTimeout(600);
+  await page.keyboard.up("ArrowLeft");
+  // Walking up the steps reaches the fountain, and E opens Panthy.
+  await page.keyboard.down("ArrowUp");
+  await expect
+    .poll(async () => page.locator(".room-prompt").textContent(), {
+      timeout: 8000,
+    })
+    .toContain("Panther fountain");
+  await page.keyboard.up("ArrowUp");
+  await page.keyboard.press("KeyE");
+  await expect(
+    page.getByRole("dialog", { name: "Panthy at the fountain" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Back to exploring" }).click();
+  await expect(map).toBeFocused();
+  // Later features say so honestly instead of pretending.
+  await pins.getByRole("button", { name: "Market cottage" }).click();
+  await expect(page.getByRole("dialog", { name: "Market cottage" })).toContainText(
+    "later update",
+  );
+  await page.getByRole("button", { name: "Back to exploring" }).click();
+  await pins.getByRole("link", { name: "Back to your room" }).click();
+  await expect(page).toHaveURL(/\/preview\/room$/);
+  expect(errors).toEqual([]);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/preview/campus");
+  await expect(map).toHaveAttribute("data-ready", "true", { timeout: 15000 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
 });

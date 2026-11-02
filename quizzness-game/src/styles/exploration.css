@@ -16,6 +16,9 @@
 .exploration-heading p {
   margin: 8px 0;
 }
+#area-controls {
+  margin: 10px 0 16px;
+}
 .exploration-frame {
   position: relative;
   border: 3px solid var(--color-text);
@@ -25,7 +28,6 @@
   box-shadow: 0 6px 0 color-mix(in srgb, var(--color-text) 35%, transparent);
 }
 .walkable-stage {
-  aspect-ratio: 3/2;
   width: 100%;
   position: relative;
 }
@@ -139,6 +141,68 @@
 .room-explore-link {
   display: inline-block;
   margin: 16px 0;
+}
+/* Clickable landmark pins on the map. */
+.map-pins {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.map-pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  pointer-events: auto;
+}
+.map-pin-control {
+  position: relative;
+  display: block;
+  padding: 3px 8px;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--color-text);
+  background: var(--color-background);
+  border: 2px solid var(--color-text);
+  border-radius: 6px;
+  box-shadow: 0 2px 0 var(--color-text);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+.map-pin-control::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 8px;
+  height: 8px;
+  background: var(--color-background);
+  border-right: 2px solid var(--color-text);
+  border-bottom: 2px solid var(--color-text);
+  transform: translateX(-50%) rotate(45deg);
+}
+.map-pin-control:hover {
+  transform: translateY(-2px);
+}
+.map-pin-control:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.map-pin[data-near="true"] .map-pin-control,
+.map-pin[data-near="true"] .map-pin-control::after {
+  background: var(--color-secondary);
+}
+@media (max-width: 600px) {
+  /* Short tappable tags still fit on a phone. */
+  .map-pin-control {
+    padding: 2px 5px;
+    font-size: 0.68rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-pin-control {
+    transition: none;
+  }
 }
 /* The joystick is for touch screens; a mouse-and-keyboard desktop doesn't need it. */
 @media (min-width: 821px) and (hover: hover) and (pointer: fine) {

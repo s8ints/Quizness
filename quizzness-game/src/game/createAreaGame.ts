@@ -6,27 +6,27 @@ import {
   type StudentAnimation,
 } from "./studentAnimation";
 import {
-  characterScale,
   movePlayer,
   nearDestination,
-  room,
+  type Area,
   type Point,
   type Destination,
-} from "./room";
+} from "./area";
 
-export type RoomSnapshot = Point & {
+export type AreaSnapshot = Point & {
   nearby?: Destination;
   animation?: StudentAnimation;
   frame?: number;
 };
 const FEET = 0.91; // where the feet sit within a sprite frame
 const LEAN = 4; // degrees the character tilts into sideways movement
-export function createRoomGame(
+export function createAreaGame(
+  area: Area,
   parent: HTMLElement,
   avatarId: string,
   getInput: () => Point,
   onReady: () => void,
-  onUpdate: (state: RoomSnapshot) => void,
+  onUpdate: (state: AreaSnapshot) => void,
   onError: () => void,
   studentManifest: StudentManifest,
   reducedMotion = false,
@@ -40,16 +40,16 @@ export function createRoomGame(
   const stillMotion = () =>
     reducedMotion ||
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  class RoomScene extends Phaser.Scene {
+  class AreaScene extends Phaser.Scene {
     private player!: Phaser.GameObjects.Sprite;
     private shadow!: Phaser.GameObjects.Image;
     private marker!: Phaser.GameObjects.Triangle;
-    private position = { ...room.spawn };
+    private position = { ...area.spawn };
     private current: StudentAnimation = "idle";
     private lastReport = 0;
     preload() {
       this.load.once("loaderror", onError);
-      this.load.image("room", "/brand/student-room-pixel-v2.png");
+      this.load.image("area", area.art);
       for (const name of animations)
         this.load.spritesheet(
           name,
@@ -71,30 +71,39 @@ export function createRoomGame(
         animations.some((name) => !this.textures.exists(name)) ||
         !this.textures.exists("student-shadow") ||
         !this.textures.exists("panthy") ||
-        !this.textures.exists("room")
+        !this.textures.exists("area")
       )
         return;
-      this.add.image(0, 0, "room").setOrigin(0, 0).setDepth(0);
-      // Doormat marking the way out to campus; the artwork has no door.
-      const mat = this.add.graphics().setDepth(1);
-      mat.fillStyle(0x1b4332).fillRect(684, 984, 172, 40);
-      mat.fillStyle(0x7a4e9d).fillRect(690, 990, 160, 34);
-      mat.fillStyle(0xc9b6e4).fillRect(702, 998, 136, 26);
-      mat.fillStyle(0x7a4e9d).fillRect(760, 1004, 20, 20);
-      const panthy = this.add
-        .image(room.panthy.x, room.panthy.y, "panthy")
-        .setOrigin(0.5, 1)
-        .setDisplaySize(112, 107)
-        .setDepth(room.panthy.y);
-      if (!stillMotion())
-        this.tweens.add({
-          targets: panthy,
-          y: room.panthy.y - 6,
-          duration: 900,
-          yoyo: true,
-          repeat: -1,
-          ease: "Sine.easeInOut",
-        });
+      if (area.smoothSprites)
+        for (const name of [...animations, "student-shadow", "panthy"])
+          this.textures.get(name).setFilter(Phaser.Textures.FilterMode.LINEAR);
+      this.add.image(0, 0, "area").setOrigin(0, 0).setDepth(0);
+      if (area.doormat) {
+        // Marks the way out where the artwork has no door.
+        const { x, y, width, height } = area.doormat;
+        const mat = this.add.graphics().setDepth(1);
+        mat.fillStyle(0x1b4332).fillRect(x, y, width, height);
+        mat.fillStyle(0x7a4e9d).fillRect(x + 6, y + 6, width - 12, height - 6);
+        mat.fillStyle(0xc9b6e4).fillRect(x + 18, y + 14, width - 36, height - 14);
+        mat.fillStyle(0x7a4e9d).fillRect(x + width / 2 - 10, y + 20, 20, height - 20);
+      }
+      if (area.panthy) {
+        const { x, y, width, height } = area.panthy;
+        const panthy = this.add
+          .image(x, y, "panthy")
+          .setOrigin(0.5, 1)
+          .setDisplaySize(width, height)
+          .setDepth(y);
+        if (!stillMotion())
+          this.tweens.add({
+            targets: panthy,
+            y: y - height * 0.06,
+            duration: 900,
+            yoyo: true,
+            repeat: -1,
+            ease: "Sine.easeInOut",
+          });
+      }
       for (const name of animations)
         this.anims.create({
           key: name,
@@ -122,7 +131,7 @@ export function createRoomGame(
       onReady();
     }
     private place() {
-      const scale = characterScale(this.position.y);
+      const scale = area.characterScale(this.position.y);
       this.player
         .setPosition(this.position.x, this.position.y)
         .setScale(scale)
@@ -135,7 +144,7 @@ export function createRoomGame(
     update(time: number, delta: number) {
       if (!this.player) return;
       const previous = this.position;
-      this.position = movePlayer(this.position, getInput(), delta / 1000);
+      this.position = movePlayer(area, this.position, getInput(), delta / 1000);
       const animation = animationForMovement(
         previous,
         this.position,
@@ -160,19 +169,19 @@ export function createRoomGame(
           : Math.sign(this.position.x - previous.x) * LEAN;
       this.player.angle += (lean - this.player.angle) * 0.2;
       this.place();
-      const nearby = nearDestination(this.position);
+      const nearby = nearDestination(area, this.position);
       this.marker.setVisible(!!nearby);
       if (nearby) {
-        // Panthy and the doormat get the arrow; furniture shows it over the student.
-        const fixed = nearby.id === "panthy" || nearby.id === "campus";
-        const height = 136 * FEET * characterScale(this.position.y);
-        const top = fixed
-          ? nearby.id === "panthy"
-            ? room.panthy.y - 150
-            : nearby.y - 60
-          : this.position.y - height - 24;
+        const overStudent =
+          this.position.y -
+          136 * FEET * area.characterScale(this.position.y) -
+          24;
+        const fixed = nearby.arrowY !== undefined;
         const bob = still ? 0 : Math.sin(time / 180) * 6;
-        this.marker.setPosition(fixed ? nearby.x : this.position.x, top + bob);
+        this.marker.setPosition(
+          fixed ? nearby.x : this.position.x,
+          (nearby.arrowY ?? overStudent) + bob,
+        );
       }
       if (time - this.lastReport > 80) {
         onUpdate({ ...this.position, nearby, animation, frame });
@@ -183,15 +192,15 @@ export function createRoomGame(
   return new Phaser.Game({
     type: Phaser.AUTO,
     parent,
-    width: room.width,
-    height: room.height,
+    width: area.width,
+    height: area.height,
     backgroundColor: "#EFE6DD",
     pixelArt: true,
     antialias: false,
-    roundPixels: true,
+    roundPixels: !area.smoothSprites,
     input: { keyboard: false },
     audio: { noAudio: true },
-    scene: RoomScene,
+    scene: AreaScene,
     scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
   });
 }
