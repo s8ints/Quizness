@@ -50,6 +50,54 @@ function initializeLearning() {
   var clearOrderButton = document.getElementById("clear-order");
   var finishButton = document.getElementById("finish-level");
 
+  // CSS handles the movement; JavaScript only adds a class when something happens.
+  // Removing the class when it finishes lets the same effect play on a later click.
+  function playEffect(element, effectName) {
+    element.classList.remove(effectName);
+    // Reading offsetWidth asks the browser to apply the removal before adding it again.
+    // This restarts the animation even when the player clicks the same tile quickly.
+    void element.offsetWidth;
+    element.classList.add(effectName);
+  }
+
+  // Listen once on the game area rather than adding a new listener on every click.
+  document.getElementById("main").addEventListener("animationend", function (event) {
+    if (event.animationName === "checkpoint-enter") {
+      event.target.classList.remove("screen-enter");
+    } else if (event.animationName === "rune-bounce") {
+      event.target.classList.remove("rune-success");
+    } else if (event.animationName === "game-shake") {
+      event.target.classList.remove("answer-shake");
+    } else if (event.animationName === "panthy-hop") {
+      event.target.classList.remove("panthy-celebrate");
+    } else if (event.animationName === "reward-rise") {
+      event.target.remove();
+    }
+  });
+
+  // XP is still calculated by updateProgress. This label is only a visual reward.
+  function celebrateCheckpoint(screenId) {
+    // Text feedback already announces the XP, so reduced motion needs no floating label.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+    var reward = document.createElement("span");
+    reward.className = "floating-xp";
+    reward.textContent = "+50 XP";
+    reward.setAttribute("aria-hidden", "true");
+    document.getElementById(screenId).appendChild(reward);
+    playEffect(document.getElementById("game-panthy"), "panthy-celebrate");
+  }
+
+  // Show one plank per chosen stone. A full bridge is only green after checking it.
+  function updateBridge() {
+    var planks = document.getElementsByClassName("bridge-plank");
+    for (var i = 0; i < planks.length; i++) {
+      planks[i].classList.toggle("plank-placed", i < chosenStoneIndexes.length);
+    }
+    document.getElementById("bridge-scene").classList.toggle("bridge-complete", orderingComplete);
+  }
+
   // Hide the other learning sections, show the requested section, and update Panthy's tip.
   function showScreen(screenId, stage, instruction) {
     for (var i = 0; i < screens.length; i++) {
@@ -57,6 +105,7 @@ function initializeLearning() {
     }
     var screen = document.getElementById(screenId);
     screen.style.display = "block";
+    playEffect(screen, "screen-enter");
     activeScreen = screenId;
     document.getElementById("visit-stage").textContent = "Current step: " + stage;
     tip.textContent = instruction;
@@ -152,6 +201,8 @@ function initializeLearning() {
     percentButtons[selected].setAttribute("aria-pressed", "false");
     selectedPercentageIndex = -1;
     if (percentages[selected] !== fractionPercentages[index]) {
+      playEffect(percentButtons[selected], "answer-shake");
+      playEffect(fractionButtons[index], "answer-shake");
       matchingFeedback.textContent = "Try again. " + matchExplanations[selected];
       tip.textContent = "A percentage is a fraction out of 100. Simplify it, then choose another pair.";
       percentButtons[selected].focus();
@@ -159,6 +210,11 @@ function initializeLearning() {
     }
     percentButtons[selected].disabled = true;
     fractionButtons[index].disabled = true;
+    // Keep the green matched style after the short bounce has finished.
+    percentButtons[selected].classList.add("rune-matched");
+    fractionButtons[index].classList.add("rune-matched");
+    playEffect(percentButtons[selected], "rune-success");
+    playEffect(fractionButtons[index], "rune-success");
     percentButtons[selected].textContent = percentages[selected] + "% - Matched";
     fractionButtons[index].textContent = fractions[index] + " - Matched";
     matchedPairs = matchedPairs + 1;
@@ -171,6 +227,9 @@ function initializeLearning() {
       document.getElementById("checkpoint-order").textContent = "Current";
       tip.textContent = "Gate open! You earned 50 demo XP. Continue to build the bridge.";
       updateProgress();
+      document.getElementById("temple-gate").classList.add("gate-open");
+      document.getElementById("gate-caption").textContent = "Gate open! Continue your adventure";
+      celebrateCheckpoint("matching-screen");
       nextGame.focus();
     } else {
       // Keep keyboard focus on an available percentage after a pair is removed.
@@ -193,6 +252,7 @@ function initializeLearning() {
     var stone = document.createElement("li"); // Make a new numbered-list item.
     stone.textContent = stones[index];
     document.getElementById("chosen-order").appendChild(stone); // Add it to the visible bridge.
+    updateBridge();
     orderingFeedback.textContent = chosenStoneIndexes.length + " of 3 stones placed. Use Clear order to start again.";
     if (chosenStoneIndexes.length === 3) {
       checkOrderButton.disabled = false;
@@ -215,6 +275,7 @@ function initializeLearning() {
   function clearOrder() {
     chosenStoneIndexes = [];
     document.getElementById("chosen-order").textContent = "";
+    updateBridge();
     for (var i = 0; i < orderButtons.length; i++) {
       orderButtons[i].disabled = false;
     }
@@ -229,12 +290,15 @@ function initializeLearning() {
     }
     for (var i = 0; i < correctStoneIndexes.length; i++) {
       if (chosenStoneIndexes[i] !== correctStoneIndexes[i]) {
+        playEffect(document.getElementById("chosen-order"), "answer-shake");
         orderingFeedback.textContent = "Try again. 10% of BBD 60 is BBD 6; 20% of BBD 50 is BBD 10; 25% of BBD 80 is BBD 20. Clear your order and compare these results.";
         tip.textContent = "Compare the calculated amounts, not just the percentages. Clear the stones to try again.";
         return;
       }
     }
     orderingComplete = true;
+    updateBridge();
+    celebrateCheckpoint("ordering-screen");
     checkOrderButton.disabled = true;
     clearOrderButton.disabled = true;
     finishButton.disabled = false;
@@ -251,12 +315,26 @@ function initializeLearning() {
     matchedPairs = 0;
     matchingComplete = false;
     orderingComplete = false;
+    // Reset visual states along with the scores, so a new adventure starts fresh.
+    document.getElementById("temple-gate").classList.remove("gate-open");
+    document.getElementById("gate-caption").textContent = "Match the runes to open the gate";
+    document.getElementById("game-panthy").classList.remove("panthy-celebrate");
+    var oldRewards = document.querySelectorAll(".experience-page .floating-xp");
+    for (var rewardIndex = 0; rewardIndex < oldRewards.length; rewardIndex++) {
+      oldRewards[rewardIndex].remove();
+    }
+    var shakingElements = document.querySelectorAll(".experience-page .answer-shake");
+    for (var shakeIndex = 0; shakeIndex < shakingElements.length; shakeIndex++) {
+      shakingElements[shakeIndex].classList.remove("answer-shake");
+    }
     for (var i = 0; i < percentButtons.length; i++) {
       percentButtons[i].disabled = false;
       percentButtons[i].textContent = percentages[i] + "%";
       percentButtons[i].setAttribute("aria-pressed", "false");
       fractionButtons[i].disabled = false;
       fractionButtons[i].textContent = fractions[i];
+      percentButtons[i].classList.remove("rune-matched", "rune-success");
+      fractionButtons[i].classList.remove("rune-matched", "rune-success");
     }
     clearOrder();
     nextGame.disabled = true;
