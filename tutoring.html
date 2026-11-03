@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quizzness | Proposal information</title>
+  <title>Quizzness | Peer Tutoring Demo</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -40,8 +40,9 @@
   </header>
   <main id="main" tabindex="-1" class="tutoring-page">
 
+    <p class="section-label"><span class="square" aria-hidden="true"></span> Learn together</p>
     <h1>Peer tutoring</h1>
-    <p>If a student is still stuck after practising, they could find a peer tutor for that course. Tutors would need to
+    <p class="lead">If a student is still stuck after practising, they could find a peer tutor for that course. Tutors would need to
       meet the university's eligibility rules and complete training. Before launching this service, we would need to
       test whether it can work.</p>
     <blockquote>
@@ -53,17 +54,23 @@
       examples. No personal information is collected and no booking is made.</p>
     <p>Want to help other students? <a href="#become-tutor">Apply to become a peer tutor</a> and work toward
       school GiveBack hours.</p>
-    <div class="demo-guide">
+    <div class="demo-guide tutor-guide">
       <img src="mascot/tiger-pixel.svg" alt="Panthy, the purple learning companion holding a study card." width="88" height="84">
-      <p><strong>Panthy's tip:</strong> Pick the topic you need help with, then review your sample request before
+      <p><strong>Panthy's tip</strong> Pick the topic you need help with, then review your sample request before
         confirming the demonstration.</p>
     </div>
 
     <section id="booking" class="tutor-panel">
+      <p class="section-label">Step 01 / find support</p>
       <h2>Sample tutor</h2>
       <div class="tutor-card">
-        <p class="eyebrow">Fictional tutor / sample profile</p>
-        <h3>Marcus Clarke</h3>
+        <div class="tutor-identity">
+          <span class="tutor-avatar" aria-hidden="true">MC</span>
+          <div>
+            <p class="eyebrow">Fictional tutor / sample profile</p>
+            <h3>Marcus Clarke</h3>
+          </div>
+        </div>
         <p><strong>Course:</strong> Mathematics (sample MATH 101 course)<br>
           <strong>Topics:</strong> percentages, ratios and solving equations
         </p>
@@ -140,7 +147,7 @@
     </section>
 
     <section id="become-tutor" class="tutor-panel" aria-labelledby="tutor-application-title">
-      <p class="eyebrow">Help others / GiveBack programme</p>
+      <p class="section-label">Step 02 / help someone else</p>
       <h2 id="tutor-application-title">Become a peer tutor</h2>
       <p>Share what you know and support other students. Approved tutoring sessions could count toward your
         school's GiveBack hours, subject to school approval and programme rules.</p>
@@ -219,7 +226,8 @@
       </div>
     </section>
 
-    <section id="session">
+    <section id="session" class="session-note">
+      <p class="section-label">How the proposed service could work</p>
       <h2>After a session</h2>
       <p>For a separate fictional completed-session example, imagine that the student and Marcus have finished a 30-minute session on equations.
         They practised doing the same operation to both sides of an equation.</p>
@@ -231,7 +239,8 @@
       <p><a href="experience.html#prototype">Return to the sample practice activity</a></p>
     </section>
 
-    <section id="wallet">
+    <section id="wallet" class="wallet-panel">
+      <p class="section-label">Illustrative records / Marcus Clarke</p>
       <h2>GiveBack Wallet</h2>
       <p>The wallet would keep a record of tutoring time. Pending time would be separate from approved time.</p>
       <table>

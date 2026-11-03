@@ -39,23 +39,30 @@
     </nav>
   </header>
   <main id="main" tabindex="-1" class="experience-page">
-    <p class="eyebrow">Your sample learning space</p>
-    <h1>Find your next learning adventure.</h1>
-    <p class="lead">Choose a world, learn one idea, and practise with Panthy.</p>
-    <p class="prototype-note">Sample student experience. Only Mathematics is playable. Progress lasts for this visit
-      only and resets when you refresh. No account is created and no information is sent.</p>
+    <section class="experience-intro" aria-labelledby="experience-title">
+      <div class="experience-intro-text">
+        <p class="section-label"><span class="square" aria-hidden="true"></span> Your sample learning space</p>
+        <h1 id="experience-title">Ready for a little quest?</h1>
+        <p class="lead">Pick Mathematics, learn percentages, and play two short Puzzle Temple challenges with Panthy.</p>
+        <p class="prototype-note">Sample student experience. Only Mathematics is playable. Progress lasts for this visit
+          only and resets when you refresh. No account is created and no information is sent.</p>
+      </div>
+    </section>
 
     <div class="demo-toolbar" id="progress">
-      <div>
-        <p id="visit-stage"><strong>Current step:</strong> Choose a world</p>
-        <p id="visit-progress" role="status">0 of 2 checkpoints complete this visit.</p>
-        <p id="demo-xp" role="status">0 XP earned this demo.</p>
+      <div class="progress-copy">
+        <p class="section-label">Your progress this visit</p>
+        <div class="progress-stats">
+          <p id="visit-stage">Current step: Choose a world</p>
+          <p id="visit-progress" role="status">0 of 2 checkpoints complete this visit.</p>
+          <p id="demo-xp" role="status">0 XP earned this demo.</p>
+        </div>
       </div>
       <button type="button" class="button button-secondary" id="reset-demo">Reset demonstration</button>
     </div>
     <ol class="level-path" aria-label="Percent Path checkpoints">
-      <li><strong>1. Match the runes</strong><span id="checkpoint-match">Locked</span></li>
-      <li><strong>2. Build the bridge</strong><span id="checkpoint-order">Locked</span></li>
+      <li><span class="path-number" aria-hidden="true">01</span><strong>Match the runes</strong><span id="checkpoint-match">Locked</span></li>
+      <li><span class="path-number" aria-hidden="true">02</span><strong>Build the bridge</strong><span id="checkpoint-order">Locked</span></li>
     </ol>
     <noscript>
       <p class="prototype-note">JavaScript is needed for this interactive demonstration. Enable JavaScript and reload
@@ -63,32 +70,38 @@
     </noscript>
 
     <!-- Existing home and tutoring links both enter the course-selection journey. -->
-    <div id="prototype">
+    <div id="prototype" class="learning-journey">
     <div id="learn">
       <section class="demo-screen demo-panel demo-overview is-open" id="course-screen">
-        <h2 tabindex="-1" id="course-title">1. Choose your learning world</h2>
-        <p>Explore our sample course selection. Start with Percent Path in Puzzle Temple.</p>
+        <p class="section-label">World selection / step 01</p>
+        <h2 tabindex="-1" id="course-title">Choose your learning world</h2>
+        <p class="world-intro">Explore our sample course selection. Start with Percent Path in Puzzle Temple.</p>
         <div class="demo-worlds">
-          <article class="demo-world">
-            <p class="eyebrow">Working demonstration</p>
-            <h3>Mathematics</h3>
-            <p class="demo-world-name">Puzzle Temple</p>
-            <p>Percent Path: match the percentage runes, then build a bridge by ordering calculations.</p>
-            <button type="button" class="button" id="select-maths">Select Mathematics</button>
+          <article class="demo-world demo-world-active">
+            <span class="world-symbol" aria-hidden="true">%</span>
+            <div class="world-copy">
+              <p class="world-meta"><span>Mathematics</span><strong>Playable sample</strong></p>
+              <h3>Puzzle Temple</h3>
+              <p>Percent Path: match the percentage runes, then build a bridge by ordering calculations.</p>
+              <button type="button" class="button" id="select-maths">Enter Puzzle Temple <span aria-hidden="true">&rarr;</span></button>
+            </div>
           </article>
           <article class="demo-world demo-preview">
-            <p class="eyebrow">Preview only</p>
-            <h3>Programming</h3>
-            <p class="demo-world-name">Code Kingdom</p>
-            <p>A planned second course. No lesson or activity is available in this demonstration.</p>
-            <p><strong>Not playable yet</strong></p>
+            <span class="world-symbol" aria-hidden="true">&lt;/&gt;</span>
+            <div class="world-copy">
+              <p class="world-meta"><span>Programming</span><strong>Preview only</strong></p>
+              <h3>Code Kingdom</h3>
+              <p>A planned second course. No lesson or activity is available in this demonstration.</p>
+              <p class="world-soon">Not playable yet</p>
+            </div>
           </article>
         </div>
       </section>
 
       <section class="demo-screen demo-panel" id="lesson-screen">
-        <h2 tabindex="-1" id="lesson-title">2. Percent Path: learn the idea</h2>
-        <p class="eyebrow">Mathematics / Puzzle Temple</p>
+        <p class="section-label">Puzzle Temple / lesson</p>
+        <h2 tabindex="-1" id="lesson-title">Learn the secret of percentages</h2>
+        <p class="quest-subtitle">A short lesson before your first challenge</p>
         <p>A percentage means &ldquo;per hundred.&rdquo; To find 20% of an amount, write 20/100 = 0.20 and multiply
           the amount by 0.20.</p>
         <div class="demo-worked-example">
@@ -112,11 +125,11 @@
 
       <div class="demo-guide game-guide">
         <img src="mascot/tiger-pixel.svg" alt="Panthy, your purple pixel learning guide." width="88" height="84">
-        <p><strong>Panthy's tip:</strong> <span id="panthy-tip">Choose a subject to begin. There is no timer, so take your time!</span></p>
+        <p><strong>Panthy's field notes</strong><span id="panthy-tip">Choose a subject to begin. There is no timer, so take your time!</span></p>
       </div>
 
       <section class="demo-screen demo-panel game-arena" id="matching-screen">
-        <p class="eyebrow">Checkpoint 1 / +50 demo XP</p>
+        <p class="section-label">Quest 01 / +50 demo XP</p>
         <h2 tabindex="-1">Match the runes</h2>
         <p>Open the temple gate: match all three percentages with their equivalent fractions.</p>
         <div class="matching-columns">
@@ -141,7 +154,7 @@
       </section>
 
       <section class="demo-screen demo-panel game-arena" id="ordering-screen">
-        <p class="eyebrow">Checkpoint 2 / +50 demo XP</p>
+        <p class="section-label">Quest 02 / +50 demo XP</p>
         <h2 tabindex="-1">Build the bridge</h2>
         <p>Calculate each amount. Place the stones from the smallest result to the largest to cross the bridge.</p>
         <div class="order-tiles" role="group" aria-label="Available bridge stones">
@@ -161,7 +174,7 @@
       </section>
 
       <section class="demo-screen demo-panel" id="complete-screen">
-        <p class="eyebrow">Percent Path / quest complete</p>
+        <p class="section-label">Percent Path / quest complete</p>
         <h2 tabindex="-1" id="complete-title">Percent Path cleared!</h2>
         <p>You opened the temple gate and crossed the bridge. Both checkpoints are complete!</p>
         <p class="level-reward"><strong>+100 XP earned this demo</strong></p>
@@ -175,8 +188,8 @@
     </div>
 
     <section class="demo-panel friends-panel" aria-labelledby="friends-title">
-      <p class="eyebrow">Your study circle</p>
-      <h2 id="friends-title">Friends leaderboard — fictional sample</h2>
+      <p class="section-label">Your study circle</p>
+      <h2 id="friends-title">Friends leaderboard <span class="sample-label">Fictional sample</span></h2>
       <p>These sample lifetime XP totals represent a fictional history on Quizzness. You start with 320 sample XP;
         the two minigames can add 100 more this visit. All values reset on refresh or when you reset the demo.</p>
       <p>Choose a friend's name to view their sample details.</p>

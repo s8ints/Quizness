@@ -288,130 +288,178 @@ thead { background-color: rgba(68, 33, 111, 0.06); }
   .home .survey, .home .proposal { padding: 24px; }
 }
 
-/* Product experience only: Chapters 9, 11-14, 16, and 17.
-   Completed learning stages stay visible so keyboard focus stays in place. */
+/* Learning experience: page-specific Pixel Adventure design (Chapters 12-17). */
+.experience-page { padding-bottom: 24px; }
 .experience-page button { font-family: inherit; font-size: 16px; line-height: 1.5; cursor: pointer; }
-.experience-page button:focus, .experience-page [tabindex="-1"]:focus {
-  outline: 3px solid #44216f;
-  outline-offset: 4px;
+.experience-page button:focus { outline: 3px solid #44216f; outline-offset: 4px; }
+.experience-page .game-arena button:focus { outline-color: #8acb82; }
+
+.experience-page .experience-intro {
+  margin: 0;
+  padding: 42px 0 34px;
 }
-.experience-page button:disabled { cursor: default; }
-.experience-page .button:disabled { background-color: rgba(68, 33, 111, 0.06); color: #44216f; border-color: #9165ce; }
-.experience-page .demo-guide {
-  display: flex;
-  align-items: center;
-  margin: 24px 0;
-}
-.demo-guide img { flex: 0 0 auto; margin-right: 24px; }
-.demo-guide p { max-width: 600px; }
+.experience-page .experience-intro-text { max-width: 800px; }
+.experience-page .experience-intro h1 { margin: 0 0 14px; color: #44216f; font-size: 50px; line-height: 1.1; letter-spacing: -2px; }
+.experience-page .experience-intro .lead { max-width: 680px; margin: 0 0 20px; }
+.experience-page .experience-intro .prototype-note { max-width: 740px; background-color: rgba(138, 203, 130, 0.25); }
+
 .experience-page .demo-toolbar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
-  border: 1px solid #9165ce;
-  background-color: rgba(68, 33, 111, 0.06);
+  gap: 12px;
+  padding: 18px 0;
+  border-top: 1px solid #9165ce;
+  border-bottom: 1px solid #9165ce;
+  color: #44216f;
 }
-.demo-toolbar p { margin: 4px 20px 4px 0; }
-.demo-toolbar button { margin: 8px 0; }
-.experience-page .demo-screen { display: none; margin-top: 24px; }
-.experience-page .demo-overview { display: block; }
+.experience-page .demo-toolbar .section-label { margin-bottom: 8px; }
+.experience-page .progress-copy { flex: 1 1 640px; min-width: 0; }
+.experience-page .progress-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
+.experience-page .progress-stats p { margin: 0; font-size: 15px; }
+.experience-page #demo-xp { padding: 4px 10px; border-radius: 4px; background-color: #8acb82; color: #252037; font-weight: bold; }
+.experience-page #reset-demo { border-color: #44216f; color: #44216f; }
+.experience-page #reset-demo:hover { background-color: #44216f; color: #fff3d9; }
+.experience-page .level-path { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0 0; padding: 0; list-style: none; }
+.experience-page .level-path li { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 16px 20px; border: 1px solid #9165ce; border-radius: 9px; background-color: rgba(145, 101, 206, 0.1); }
+.experience-page .path-number { padding: 5px 10px; border-radius: 4px; background-color: #44216f; color: #fff3d9; font-family: "Courier New", Courier, monospace; font-weight: bold; }
+.experience-page .level-path strong { flex: 1; color: #44216f; }
+.experience-page .level-path li > span:last-child { color: #44216f; font-size: 14px; font-weight: bold; }
+
+.experience-page .learning-journey { margin-top: 32px; }
+.experience-page .demo-screen { display: none; margin-top: 28px; }
 .experience-page .demo-screen.is-open { display: block; }
-.demo-panel { padding: 32px; border: 1px solid #9165ce; background-color: #fff3d9; }
-.demo-panel h2 { margin-top: 0; color: #44216f; }
-.demo-worlds { display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 20px; }
-.demo-world { padding: 24px; border: 1px solid #9165ce; border-top: 4px solid #44216f; }
-.demo-world h3 { margin-bottom: 0; }
-.demo-world-name { margin-top: 4px; color: #44216f; font-size: 22px; font-weight: bold; }
-.demo-preview { background-color: #fff3d9; }
-.demo-worked-example { padding: 20px 24px; border-left: 4px solid #8acb82; background-color: #8acb82; }
-.demo-worked-example h3 { margin-top: 0; }
-.demo-source { font-size: 14px; }
-.demo-answers { min-width: 0; margin: 24px 0; padding: 0; border: 0; }
-.demo-answers legend { margin-bottom: 16px; padding: 0; color: #44216f; font-size: 22px; font-weight: bold; }
-.demo-answer {
-  display: block;
-  width: 100%;
-  margin: 12px 0;
-  padding: 16px 20px;
-  border: 2px solid #9165ce;
-  background-color: #fff3d9;
-  color: #252037;
-  text-align: left;
-}
-.demo-answer:hover { border-color: #44216f; background-color: rgba(68, 33, 111, 0.06); }
-.demo-answer:disabled { background-color: #fff3d9; border-color: #9165ce; color: #252037; }
-.demo-answer.demo-selected { background-color: rgba(68, 33, 111, 0.06); border-color: #44216f; font-weight: bold; }
-.demo-feedback { padding: 20px; border-left: 4px solid #9165ce; background-color: #fff3d9; }
-.demo-correct { border-color: #44216f; background-color: #8acb82; }
-.demo-incorrect { border-color: #44216f; background-color: rgba(68, 33, 111, 0.06); }
-.demo-actions { display: flex; flex-wrap: wrap; margin: 16px -6px; }
-.demo-actions button { margin: 6px; }
-.demo-topics { padding-top: 12px; }
+.experience-page .demo-panel { padding: 40px; border: 1px solid #9165ce; border-radius: 14px; background-color: #fff3d9; }
+.experience-page .demo-panel h2 { margin: 0 0 16px; color: #44216f; font-size: 36px; }
+.experience-page .demo-panel > p { max-width: 75ch; }
+.experience-page .demo-overview { border: 0; background-color: #44216f; color: #fff3d9; }
+.experience-page .demo-overview .section-label { color: #8acb82; }
+.experience-page .demo-overview h2 { color: #fff3d9; }
+.experience-page .world-intro { margin-bottom: 28px; font-size: 18px; }
+.experience-page .demo-worlds { display: grid; gap: 14px; }
+.experience-page .demo-world { display: flex; align-items: center; gap: 24px; min-width: 0; padding: 22px; border: 1px solid #9165ce; border-radius: 10px; background-color: #fff3d9; color: #252037; }
+.experience-page .demo-world-active { border-color: #8acb82; }
+.experience-page .world-symbol { display: flex; flex: 0 0 112px; align-items: center; justify-content: center; width: 112px; height: 112px; border-radius: 8px; background-color: #8acb82; color: #44216f; font-family: "Courier New", Courier, monospace; font-size: 52px; font-weight: bold; }
+.experience-page .demo-preview .world-symbol { background-color: #9165ce; color: #fff3d9; font-size: 32px; }
+.experience-page .world-copy { flex: 1; min-width: 0; }
+.experience-page .world-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin: 0; color: #44216f; font-size: 13px; font-weight: bold; }
+.experience-page .world-meta strong { padding: 3px 8px; border-radius: 4px; background-color: #8acb82; color: #252037; }
+.experience-page .demo-preview .world-meta strong { border: 1px solid #9165ce; background-color: transparent; color: #44216f; }
+.experience-page .demo-world h3 { margin: 8px 0; color: #44216f; font-size: 27px; }
+.experience-page .world-copy > p:not(.world-meta) { margin: 0 0 12px; }
+.experience-page .world-soon { padding-top: 14px; border-top: 1px solid #9165ce; color: #44216f; font-weight: bold; }
 
-/* Bare-bones game: squared tiles and offset borders echo the pixel artwork. */
-.experience-page .level-path { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0; list-style: none; }
-.experience-page .level-path li { padding: 16px; border: 2px solid #44216f; background-color: rgba(68, 33, 111, 0.06); box-shadow: 3px 3px 0 #9165ce; }
-.experience-page .level-path span { display: block; color: #44216f; }
-.experience-page .game-guide { padding: 16px; border: 2px solid #44216f; background-color: rgba(68, 33, 111, 0.06); }
-.experience-page .game-guide p { margin: 0; }
-.experience-page .game-guide img { image-rendering: pixelated; }
-.experience-page .game-arena { border: 2px solid #44216f; box-shadow: 4px 4px 0 #9165ce; }
-.experience-page .matching-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.experience-page .matching-columns fieldset { min-width: 0; }
-.experience-page .matching-columns legend { font-size: 18px; }
-.experience-page .game-tile { display: block; width: 100%; min-height: 54px; margin: 12px 0; padding: 14px; border: 2px solid #44216f; background-color: #8acb82; color: #44216f; box-shadow: 3px 3px 0 #9165ce; font-weight: bold; }
-.experience-page .game-tile:hover { background-color: #9165ce; }
+.experience-page #lesson-screen { border-top: 6px solid #8acb82; }
+.experience-page .quest-subtitle { margin: 0 0 24px; color: #44216f; font-size: 19px; font-weight: bold; }
+.experience-page .demo-worked-example { max-width: 680px; margin: 28px 0; padding: 24px 28px; border-radius: 10px; background-color: #8acb82; }
+.experience-page .demo-worked-example h3 { margin: 0 0 8px; color: #44216f; }
+.experience-page .demo-worked-example ol { margin-bottom: 0; }
+.experience-page .demo-source { font-size: 14px; }
+.experience-page .demo-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
+.experience-page .demo-actions .button { min-height: 50px; }
+.experience-page .demo-guide { display: flex; align-items: center; gap: 24px; margin: 28px 0; padding: 20px 28px; border-radius: 12px; background-color: #8acb82; }
+.demo-guide img { flex: 0 0 auto; margin-right: 24px; }
+.experience-page .demo-guide img { width: 88px; margin: 0; }
+.experience-page .demo-guide p { margin: 0; }
+.experience-page .demo-guide strong { display: block; color: #44216f; font-size: 17px; }
+.experience-page .demo-guide span { display: block; }
+
+.experience-page .game-arena { border: 0; background-color: #44216f; color: #fff3d9; }
+.experience-page .game-arena .section-label { color: #8acb82; }
+.experience-page .game-arena h2 { color: #fff3d9; }
+.experience-page .game-arena a { color: #fff3d9; }
+.experience-page .game-arena .button { border-color: #8acb82; }
+.experience-page .game-arena .button-secondary { color: #fff3d9; }
+.experience-page .game-arena .button-secondary:hover { color: #44216f; }
+.experience-page .matching-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 24px; }
+.experience-page .demo-answers { min-width: 0; margin: 0; padding: 18px 22px 22px; border: 1px solid #9165ce; border-radius: 10px; background-color: #fff3d9; }
+.experience-page .demo-answers legend { padding: 4px 10px; border-radius: 4px; background-color: #8acb82; color: #252037; font-weight: bold; }
+.experience-page .game-tile { display: block; width: 100%; min-height: 58px; margin: 10px 0; padding: 14px 18px; border: 2px solid #44216f; border-radius: 6px; background-color: #8acb82; color: #252037; font-weight: bold; text-align: left; }
+.experience-page .game-tile:hover { background-color: #9165ce; color: #252037; }
 .experience-page .game-tile[aria-pressed="true"] { background-color: #44216f; color: #fff3d9; }
-.experience-page .game-tile[data-matched="yes"], .experience-page .game-tile[data-selected="yes"] { background-color: rgba(68, 33, 111, 0.06); box-shadow: none; }
-.experience-page .game-tile:disabled { box-shadow: none; background-color: rgba(68, 33, 111, 0.06); }
-.experience-page .bridge-order { min-height: 64px; padding: 16px 16px 16px 44px; border: 2px dashed #44216f; background-color: rgba(68, 33, 111, 0.06); }
-.experience-page .bridge-order li { padding: 8px; color: #44216f; }
-.experience-page .level-reward { padding: 20px; border: 2px solid #8acb82; background-color: #8acb82; color: #44216f; font-size: 22px; }
-.experience-page .friends-panel { margin-top: 30px; }
-.experience-page .friend-button { min-height: 44px; padding: 6px 0; border: 0; background: transparent; color: #44216f; font-weight: bold; text-decoration: underline; }
-.experience-page .leaderboard-you { background-color: rgba(68, 33, 111, 0.06); font-weight: bold; }
-.experience-page .friend-details { padding: 20px; border-left: 4px solid #8acb82; background-color: #8acb82; }
-.experience-page .friend-details h3 { margin-top: 0; }
-@media (max-width: 600px) {
-  .experience-page .level-path, .experience-page .matching-columns { grid-template-columns: 1fr; }
-  .experience-page .matching-columns { gap: 0; }
-  .experience-page .matching-columns fieldset { margin: 12px 0; }
-  .experience-page .friends-panel { padding: 24px 12px; }
-  .experience-page .friends-panel th, .experience-page .friends-panel td { padding: 8px 6px; }
-}
+.experience-page .game-tile[data-matched="yes"], .experience-page .game-tile[data-selected="yes"] { border-color: #9165ce; background-color: #fff3d9; color: #44216f; }
+.experience-page .demo-feedback { margin: 24px 0 0; padding: 18px 22px; border-left: 5px solid #8acb82; border-radius: 0 8px 8px 0; background-color: #fff3d9; color: #252037; font-weight: bold; }
+.experience-page .order-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+.experience-page .order-tiles .game-tile { min-height: 96px; margin: 0; text-align: center; }
+.experience-page .game-arena h3 { color: #fff3d9; }
+.experience-page .bridge-order { min-height: 80px; margin: 0; padding: 18px 20px 18px 48px; border: 2px dashed #9165ce; border-radius: 8px; background-color: #fff3d9; color: #44216f; }
+.experience-page .bridge-order li { padding: 5px 0; font-weight: bold; }
+.experience-page #complete-screen { border: 0; background-color: #8acb82; }
+.experience-page #complete-screen .level-reward { display: inline-block; margin: 20px 0; padding: 14px 22px; border-radius: 6px; background-color: #44216f; color: #fff3d9; font-size: 24px; }
 
-/* Peer tutoring only: labelled controls (Chapter 9), styling (11-14), Grid/Flexbox (16). */
-.tutoring-page button, .tutoring-page select, .tutoring-page input { font-family: inherit; font-size: 16px; line-height: 1.5; }
+.experience-page .friends-panel { margin-top: 48px; background-color: rgba(145, 101, 206, 0.1); }
+.experience-page .friends-panel .sample-label { display: inline-block; margin-left: 10px; padding: 5px 8px; border-radius: 4px; background-color: #8acb82; color: #252037; font-size: 12px; letter-spacing: 0; vertical-align: middle; }
+.experience-page .friends-panel table { margin: 26px 0 14px; background-color: #fff3d9; }
+.experience-page .friends-panel caption { color: #44216f; }
+.experience-page .friends-panel thead { background-color: #44216f; color: #fff3d9; }
+.experience-page .friends-panel th, .experience-page .friends-panel td { padding: 14px 18px; }
+.experience-page .leaderboard-you { background-color: #8acb82; font-weight: bold; }
+.experience-page .friend-button { min-height: 44px; padding: 6px 0; border: 0; background: transparent; color: #44216f; font-weight: bold; text-decoration: underline; }
+.experience-page .friend-details { margin-top: 18px; padding: 20px 24px; border-left: 5px solid #8acb82; border-radius: 0 8px 8px 0; background-color: #fff3d9; }
+.experience-page .friend-details h3 { margin: 0; color: #44216f; }
+.experience-page .friend-details p { margin: 8px 0 16px; }
+.experience-page .demo-topics { max-width: 780px; margin-top: 60px; padding-top: 28px; border-top: 1px solid #9165ce; }
+.experience-page .demo-topics h2 { color: #44216f; }
+.experience-page .demo-topics li { margin: 8px 0; }
+
+@media (max-width: 800px) {
+  .experience-page .order-tiles { grid-template-columns: 1fr; }
+  .experience-page .order-tiles .game-tile { min-height: 58px; }
+}
+@media (max-width: 600px) {
+  .experience-page .experience-intro h1 { font-size: 40px; }
+  .experience-page .demo-panel { padding: 24px 18px; }
+  .experience-page .level-path, .experience-page .matching-columns { grid-template-columns: 1fr; }
+  .experience-page .demo-world h3 { font-size: 26px; }
+  .experience-page .demo-world { display: block; padding: 20px; }
+  .experience-page .world-symbol { width: 72px; height: 72px; margin-bottom: 16px; font-size: 36px; }
+  .experience-page .demo-preview .world-symbol { font-size: 22px; }
+  .experience-page .demo-guide { gap: 12px; padding: 16px; }
+  .experience-page .demo-guide img { width: 62px; }
+  .experience-page .friends-panel { padding: 24px 12px; }
+  .experience-page .friends-panel th, .experience-page .friends-panel td { padding: 9px 6px; font-size: 14px; }
+}
+/* Peer tutoring: labelled controls (Chapter 9), box styling and flexible layouts (Chapters 11-17). */
+.tutoring-page { padding-top: 42px; }
+.tutoring-page > h1 { margin: 0 0 14px; color: #44216f; font-size: 52px; }
+.tutoring-page > .lead { max-width: 780px; }
+.tutoring-page > blockquote { max-width: 680px; margin: 24px 0; border-color: #9165ce; background-color: transparent; font-size: 14px; }
+.tutoring-page > blockquote p { margin: 4px 0; }
+.tutoring-page > .prototype-note { max-width: 800px; background-color: rgba(138, 203, 130, 0.25); }
+.tutoring-page button, .tutoring-page input { font-family: inherit; font-size: 16px; line-height: 1.5; }
 .tutoring-page button { cursor: pointer; }
-.tutoring-page button:disabled { cursor: default; background-color: rgba(68, 33, 111, 0.06); color: #44216f; border-color: #9165ce; }
-.tutoring-page button:focus, .tutoring-page select:focus, .tutoring-page input:focus, .tutoring-page [tabindex="-1"]:focus {
+.tutoring-page button:focus, .tutoring-page input:focus {
   outline: 3px solid #44216f;
   outline-offset: 4px;
 }
-.tutoring-page .demo-guide { display: flex; align-items: center; margin: 24px 0; }
-.tutoring-page .tutor-panel { padding: 32px; border: 1px solid #9165ce; background-color: #fff3d9; }
+.tutoring-page .demo-guide { display: flex; align-items: center; gap: 20px; max-width: 800px; margin: 28px 0; padding: 16px 22px; border-radius: 10px; background-color: #8acb82; }
+.tutoring-page .demo-guide img { width: 72px; margin: 0; }
+.tutoring-page .demo-guide p { margin: 0; }
+.tutoring-page .demo-guide strong { display: block; color: #44216f; }
+.tutoring-page .tutor-panel { margin-top: 44px; padding: 34px; border: 1px solid #9165ce; border-radius: 12px; background-color: #fff3d9; }
 .tutoring-page .tutor-panel h2 { margin-top: 0; color: #44216f; }
-.tutoring-page .tutor-card { padding: 24px; border-top: 4px solid #44216f; background-color: rgba(68, 33, 111, 0.06); }
-.tutoring-page .tutor-card h3 { margin-top: 0; color: #44216f; font-size: 24px; }
+.tutoring-page .tutor-card { padding: 24px; border-left: 5px solid #8acb82; border-radius: 0 8px 8px 0; background-color: rgba(145, 101, 206, 0.1); }
+.tutoring-page .tutor-identity { display: flex; align-items: center; gap: 18px; }
+.tutoring-page .tutor-avatar { display: flex; flex: 0 0 68px; align-items: center; justify-content: center; width: 68px; height: 68px; border-radius: 8px; background-color: #44216f; color: #fff3d9; font-family: "Courier New", Courier, monospace; font-size: 24px; font-weight: bold; }
+.tutoring-page .tutor-card h3 { margin: 0; color: #44216f; font-size: 26px; }
 .tutoring-page .tutor-card p:last-child { margin-bottom: 0; }
+.tutoring-page .request-options { margin-top: 32px; padding-top: 12px; border-top: 1px solid #9165ce; }
+.tutoring-page .request-options h3 { color: #44216f; font-size: 23px; }
 .tutoring-page fieldset { min-width: 0; margin: 20px 0; padding: 20px; border: 1px solid #9165ce; }
 .tutoring-page legend { padding: 0 8px; font-weight: bold; color: #44216f; }
 .tutoring-page .request-fields { display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 20px; }
-.tutoring-page .request-fields > div { min-width: 0; }
-.tutoring-page .request-choice { min-height: 48px; text-align: left; }
+.tutoring-page .request-options .request-fields { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.tutoring-page .request-choice { min-height: 48px; padding: 12px; text-align: center; }
 .tutoring-page .request-choice[aria-pressed="true"] { background-color: #44216f; border-color: #44216f; color: #fff3d9; }
 .tutoring-page label { display: block; margin-bottom: 8px; font-weight: bold; }
-.tutoring-page select { width: 100%; max-width: 100%; padding: 12px 8px; border: 2px solid #9165ce; background-color: #fff3d9; color: #252037; }
 .tutoring-page #tutor-application input[type="text"], .tutoring-page #tutor-application input[type="file"] { width: 100%; min-width: 0; padding: 12px 8px; border: 2px solid #9165ce; background-color: #fff3d9; color: #252037; }
 .tutoring-page .subject-options label { display: flex; align-items: center; gap: 12px; min-height: 44px; margin: 0; cursor: pointer; }
 .tutoring-page .subject-options input { flex-shrink: 0; width: 20px; height: 20px; margin: 0; accent-color: #44216f; }
 .tutoring-page #tutor-application { margin-top: 24px; }
 .tutoring-page .application-field { margin-top: 20px; }
-.tutoring-page select[aria-invalid="true"] { border-color: #44216f; }
-.tutoring-page #request-message { padding: 12px 16px; background-color: #8acb82; }
-.tutoring-page .request-summary, .tutoring-page .request-confirmation { display: none; margin-top: 28px; padding: 24px; border-left: 4px solid #44216f; background-color: rgba(68, 33, 111, 0.06); }
+.tutoring-page #request-message { padding: 12px 16px; border-left: 4px solid #8acb82; background-color: rgba(138, 203, 130, 0.25); }
+.tutoring-page .request-summary, .tutoring-page .request-confirmation { display: none; margin-top: 28px; padding: 24px; border-left: 4px solid #44216f; border-radius: 0 8px 8px 0; background-color: rgba(145, 101, 206, 0.1); }
 .tutoring-page .request-summary.is-open, .tutoring-page .request-confirmation.is-open { display: block; }
 .tutoring-page .request-summary h3, .tutoring-page .request-confirmation h3 { margin-top: 0; }
 .tutoring-page .request-summary dt { font-weight: bold; }
@@ -420,8 +468,17 @@ thead { background-color: rgba(68, 33, 111, 0.06); }
 .tutoring-page .request-actions button { margin: 6px; }
 .tutoring-page .request-actions input[type="reset"] { margin: 6px; cursor: pointer; }
 .tutoring-page .request-confirmation { border-color: #44216f; background-color: #8acb82; }
+.tutoring-page #become-tutor { background-color: rgba(145, 101, 206, 0.1); }
+.tutoring-page #tutor-application fieldset { background-color: #fff3d9; }
+.tutoring-page .session-note { max-width: 800px; margin-top: 50px; padding-top: 20px; border-top: 1px solid #9165ce; }
+.tutoring-page .session-note h2, .tutoring-page .wallet-panel h2 { color: #44216f; }
+.tutoring-page .wallet-panel { margin-top: 50px; padding: 32px; border-radius: 12px; background-color: rgba(145, 101, 206, 0.1); }
+.tutoring-page .wallet-panel table { background-color: #fff3d9; }
+.tutoring-page .wallet-panel caption { color: #44216f; }
+.tutoring-page .wallet-panel thead { background-color: #44216f; color: #fff3d9; }
+.tutoring-page .wallet-panel th, .tutoring-page .wallet-panel td { padding: 14px 18px; }
 .tutoring-page .wallet-approved { background-color: #8acb82; }
-.tutoring-page .wallet-pending { background-color: rgba(68, 33, 111, 0.06); }
+.tutoring-page .wallet-pending { background-color: #fff3d9; }
 .tutoring-page .wallet-note { padding: 16px 20px; border-left: 4px solid #8acb82; background-color: #8acb82; }
 
 /* Responsive layouts and flexible images: Chapter 17. */
@@ -438,16 +495,14 @@ thead { background-color: rgba(68, 33, 111, 0.06); }
   main { margin-top: 24px; }
   .lead { font-size: 20px; }
   th, td { padding: 6px; }
-  .experience-page .demo-panel { padding: 24px 16px; }
-  .experience-page .demo-worlds { grid-template-columns: 1fr; }
-  .experience-page .demo-world { padding: 20px; }
-  .experience-page .demo-guide img { width: 64px; margin-right: 16px; }
-  .experience-page .demo-worked-example { padding: 16px; }
   .tutoring-page .tutor-panel { padding: 24px 16px; }
   .tutoring-page .request-fields { grid-template-columns: 1fr; }
+  .tutoring-page .request-options .request-fields { grid-template-columns: 1fr; }
   .tutoring-page .tutor-card, .tutoring-page .request-summary, .tutoring-page .request-confirmation { padding: 20px; }
   .tutoring-page fieldset { padding: 16px; }
-  .tutoring-page .demo-guide img { width: 64px; margin-right: 16px; }
+  .tutoring-page > h1 { font-size: 42px; }
+  .tutoring-page .tutor-panel, .tutoring-page .wallet-panel { padding: 24px 16px; }
+  .tutoring-page .wallet-panel th, .tutoring-page .wallet-panel td { padding: 9px 6px; }
 }
 
 /* Information pages: shared home palette, simple sections, and responsive tables. */
