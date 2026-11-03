@@ -8,16 +8,29 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="home">
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
-    <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="" width="64"
-          height="64"> QUIZZNESS</a></p>
-    <nav aria-label="Main navigation">
+    <div class="header-top">
+      <p class="brand">
+        <a href="index.html">
+          <img src="images/quizzness-logo.png" alt="" width="64" height="64">
+          QUIZZNESS
+        </a>
+      </p>
+
+      <nav class="student-nav" aria-label="Learning navigation">
+        <ul>
+          <li><a href="experience.html" aria-current="page">Practice</a></li>
+          <li><a href="tutoring.html">Peer tutoring</a></li>
+          <li><a class="explore-button" href="index.html#courses">Explore learning &rarr;</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <nav class="main-nav" aria-label="Venture navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html" aria-current="page">Practice</a></li>
-        <li><a href="tutoring.html">Peer tutoring</a></li>
         <li><a href="feasibility.html">Feasibility</a></li>
         <li><a href="business-model.html">Business model</a></li>
         <li><a href="industry.html">Market &amp; Launch</a></li>
@@ -38,7 +51,7 @@
         <p id="visit-progress" role="status">0 of 2 checkpoints complete this visit.</p>
         <p id="demo-xp" role="status">0 XP earned this demo.</p>
       </div>
-      <button type="button" class="button button-secondary" id="reset-demo" disabled>Reset demonstration</button>
+      <button type="button" class="button button-secondary" id="reset-demo">Reset demonstration</button>
     </div>
     <ol class="level-path" aria-label="Percent Path checkpoints">
       <li><strong>1. Match the runes</strong><span id="checkpoint-match">Locked</span></li>
@@ -52,7 +65,7 @@
     <!-- Existing home and tutoring links both enter the course-selection journey. -->
     <div id="prototype">
     <div id="learn">
-      <section class="demo-screen demo-panel demo-overview" id="course-screen">
+      <section class="demo-screen demo-panel demo-overview is-open" id="course-screen">
         <h2 tabindex="-1" id="course-title">1. Choose your learning world</h2>
         <p>Explore our sample course selection. Start with Percent Path in Puzzle Temple.</p>
         <div class="demo-worlds">
@@ -61,7 +74,7 @@
             <h3>Mathematics</h3>
             <p class="demo-world-name">Puzzle Temple</p>
             <p>Percent Path: match the percentage runes, then build a bridge by ordering calculations.</p>
-            <button type="button" class="button" id="select-maths" disabled>Select Mathematics</button>
+            <button type="button" class="button" id="select-maths">Select Mathematics</button>
           </article>
           <article class="demo-world demo-preview">
             <p class="eyebrow">Preview only</p>
@@ -93,7 +106,7 @@
           <a href="team.html#source-openstax">See the source details</a>.</p>
         <div class="demo-actions">
           <button type="button" class="button" id="start-quiz">Enter Percent Path</button>
-          <button type="button" class="button button-secondary" id="back-courses">Back to course selection</button>
+          <a class="button button-secondary" href="#course-screen">Review course selection</a>
         </div>
       </section>
 
@@ -122,7 +135,7 @@
         </div>
         <p id="matching-feedback" class="demo-feedback" role="status">Choose a percentage first, then a fraction.</p>
         <div class="demo-actions">
-          <button type="button" class="button" id="next-game" disabled>Continue to the bridge</button>
+          <button type="button" class="button" id="next-game">Continue to the bridge</button>
         </div>
         <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
       </section>
@@ -141,8 +154,8 @@
         <p id="ordering-feedback" class="demo-feedback" role="status">Choose the stone with the smallest result first.</p>
         <div class="demo-actions">
           <button type="button" class="button button-secondary" id="clear-order">Clear order</button>
-          <button type="button" class="button" id="check-order" disabled>Check order</button>
-          <button type="button" class="button" id="finish-level" disabled>View level results</button>
+          <button type="button" class="button" id="check-order">Check order</button>
+          <button type="button" class="button" id="finish-level">View level results</button>
         </div>
         <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
       </section>
@@ -171,17 +184,17 @@
         <caption>Ranked by sample lifetime XP</caption>
         <thead><tr><th scope="col">Rank</th><th scope="col">Student</th><th scope="col">Lifetime XP (sample)</th></tr></thead>
         <tbody id="leaderboard-body">
-          <tr id="maya-row"><td>1</td><th scope="row"><button type="button" class="friend-button" id="maya-details" disabled>Maya</button></th><td>400</td></tr>
-          <tr id="jordan-row"><td>2</td><th scope="row"><button type="button" class="friend-button" id="jordan-details" disabled>Jordan</button></th><td>350</td></tr>
+          <tr id="maya-row"><td>1</td><th scope="row"><button type="button" class="friend-button" id="maya-details">Maya</button></th><td>400</td></tr>
+          <tr id="jordan-row"><td>2</td><th scope="row"><button type="button" class="friend-button" id="jordan-details">Jordan</button></th><td>350</td></tr>
           <tr id="your-row" class="leaderboard-you"><td>3</td><th scope="row">You</th><td id="your-xp">320</td></tr>
-          <tr id="alex-row"><td>4</td><th scope="row"><button type="button" class="friend-button" id="alex-details" disabled>Alex</button></th><td>280</td></tr>
+          <tr id="alex-row"><td>4</td><th scope="row"><button type="button" class="friend-button" id="alex-details">Alex</button></th><td>280</td></tr>
         </tbody>
       </table>
       <p id="ranking-message" role="status">Your sample rank: 3 of 4.</p>
-      <div id="friend-details" class="friend-details" hidden>
-        <h3 id="friend-name" tabindex="-1"></h3>
-        <p id="friend-info"></p>
-        <button type="button" class="button button-secondary" id="close-friend">Close friend details</button>
+      <div id="friend-details" class="friend-details">
+        <h3 id="friend-name">Friend details</h3>
+        <p id="friend-info" role="status">Choose a friend's name to see their fictional sample details.</p>
+        <button type="button" class="button button-secondary" id="close-friend">Clear friend details</button>
       </div>
     </section>
 
