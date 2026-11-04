@@ -15,9 +15,10 @@ body {
   margin: 0 auto;
   padding: 0 32px;
   font-family: Arial, sans-serif;
+  font-size: 16px;
   line-height: 1.6;
-  color: #1B4332;
-  background-color: #EFE6DD;
+  color: var(--ink);
+  background-color: var(--cream);
 }
 a { color: var(--purple); overflow-wrap: break-word; }
 a:hover { color: var(--purple); text-decoration: underline; }
@@ -39,7 +40,8 @@ a:focus, summary:focus { outline: 3px solid var(--purple); outline-offset: 4px; 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0;
+  max-width: 1176px;
+  margin: 0 auto;
   padding: 24px 0 20px;
   border-bottom: 1px solid var(--accent);
   background-color: transparent;
@@ -170,19 +172,6 @@ thead { background-color: var(--soft-purple); }
 .home a { color: var(--purple); }
 .home .skip-link { background-color: var(--green); color: var(--ink); }
 .home main { max-width: 1176px; margin: 0 auto; }
-.home .site-header { display: block; margin: 0; padding: 24px 0 0; border: 0; background: transparent; box-shadow: none; }
-.home .header-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 20px; }
-.home .brand { margin: 0 24px 0 0; }
-.home .site-header nav { flex: 0 1 auto; max-width: none; }
-.home .site-header nav a { margin: 0; padding: 10px 0; border: 0; color: var(--purple); font-size: 14px; min-height: 44px; }
-.home .site-header nav li { margin-right: 24px; }
-.home .site-header nav li:last-child { margin-right: 0; }
-.home .site-header nav a:hover { background: transparent; color: var(--ink); text-decoration: underline; }
-.home .site-header nav .explore-button { padding: 10px 18px; border: 1px solid var(--purple); border-radius: 6px; background-color: var(--purple); color: var(--cream); font-weight: bold; }
-.home .site-header nav .explore-button:hover { background-color: var(--ink); color: var(--cream); text-decoration: none; }
-.home .main-nav { padding: 4px 0; border-top: 1px solid var(--accent); border-bottom: 1px solid var(--accent); }
-.home .main-nav ul { justify-content: flex-start; }
-.home .site-header .main-nav a[aria-current="page"] { border-bottom: 2px solid var(--purple); background: transparent; color: var(--purple); }
 .home h2 { margin: 0 0 20px; color: var(--purple); font-size: 36px; line-height: 1.15; letter-spacing: -1px; }
 .home .section-label { margin: 0 0 16px; font-family: "Courier New", Courier, monospace; font-size: 12px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: var(--purple); }
 .home .square { display: inline-block; width: 9px; height: 9px; margin-right: 8px; background-color: var(--purple); box-shadow: 4px -4px 0 var(--green); }
@@ -272,11 +261,6 @@ thead { background-color: var(--soft-purple); }
 }
 @media (max-width: 650px) {
   .home { padding: 0 16px; }
-  .home .site-header { padding-top: 20px; }
-  .home .header-top { flex-direction: column; align-items: stretch; }
-  .home .brand { margin: 0 0 16px; }
-  .home .student-nav ul { justify-content: flex-start; }
-  .home .site-header nav li { margin-right: 16px; }
   .home .intro { padding: 40px 0; }
   .home .intro h1 { font-size: 46px; letter-spacing: -2px; }
   .home .intro-lead { font-size: 20px; }
@@ -388,6 +372,120 @@ thead { background-color: var(--soft-purple); }
   .experience-page .matching-columns fieldset { margin: 12px 0; }
   .experience-page .friends-panel { padding: 24px 12px; }
   .experience-page .friends-panel th, .experience-page .friends-panel td { padding: 8px 6px; }
+}
+
+/* PIXEL ADVENTURE EFFECTS
+   A transition smoothly changes a property (like a button's shadow).
+   @keyframes describes the steps of a short animation.
+   JavaScript adds classes such as .rune-success when the player takes an action.
+   Everything is scoped to .experience-page so other pages keep their own styles. */
+.experience-page .demo-screen { position: relative; }
+.experience-page .screen-enter { animation: checkpoint-enter 360ms ease-out; }
+.experience-page .game-tile {
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out, background-color 120ms ease-out;
+}
+/* Only available tiles lift. Touch users still get the pressed effect below. */
+@media (hover: hover) {
+  .experience-page .game-tile:not(:disabled):hover { transform: translateY(-3px); box-shadow: 3px 6px 0 var(--accent); }
+}
+.experience-page .game-tile:not(:disabled):active { transform: translate(3px, 3px); box-shadow: none; }
+.experience-page .game-tile[aria-pressed="true"] { animation: rune-pulse 300ms ease-out; }
+.experience-page .game-tile.rune-matched { background-color: var(--green); border-color: var(--purple); color: var(--purple); }
+
+/* Stagger just the entrance. Later answer animations replace this animation. */
+.experience-page .screen-enter .game-tile { animation: tile-appear 240ms ease-out backwards; }
+.experience-page .screen-enter .game-tile:nth-of-type(2) { animation-delay: 50ms; }
+.experience-page .screen-enter .game-tile:nth-of-type(3) { animation-delay: 100ms; }
+.experience-page .screen-enter .game-tile[aria-pressed="true"] { animation: rune-pulse 300ms ease-out; }
+.experience-page .game-tile.rune-success { animation: rune-bounce 360ms ease-out; }
+.experience-page .answer-shake,
+.experience-page .game-tile.answer-shake { animation: game-shake 240ms ease-out; }
+.experience-page .panthy-celebrate { animation: panthy-hop 400ms ease-out; }
+.experience-page .bridge-order li { animation: stone-land 300ms ease-out; }
+
+/* The two gate doors slide apart inside a clipped doorway. No image is needed. */
+.experience-page .temple-scene { padding: 16px; background-color: var(--soft-purple); text-align: center; }
+.experience-page .temple-scene p { margin: 10px 0 0; color: var(--purple); font-weight: bold; }
+.experience-page .temple-gate { display: flex; width: 120px; height: 88px; margin: auto; overflow: hidden; border: 6px solid var(--purple); background-color: var(--green); }
+.experience-page .temple-gate span { width: 50%; height: 100%; border: 3px solid var(--accent); background: repeating-linear-gradient(0deg, var(--purple) 0 16px, var(--soft-purple) 16px 19px); transition: transform 400ms ease-out; }
+.experience-page .gate-open span:first-child { transform: translateX(-100%); }
+.experience-page .gate-open span:last-child { transform: translateX(100%); }
+
+/* The banks stay visible; hidden planks leave gaps over the purple river. */
+.experience-page .bridge-scene { display: flex; align-items: center; gap: 6px; min-height: 96px; padding: 12px; border: 2px solid var(--purple); background-color: var(--soft-purple); }
+.experience-page .bridge-bank { flex: 1; height: 54px; border: 2px solid var(--purple); background-color: var(--green); }
+.experience-page .bridge-plank { flex: 1; height: 22px; border: 2px solid var(--purple); background-color: var(--accent); opacity: 0; }
+.experience-page .plank-placed { opacity: 1; animation: stone-land 300ms ease-out; }
+.experience-page .bridge-complete .bridge-plank { background-color: var(--green); }
+
+/* Absolute positioning lets the reward float without moving the question text.
+   aria-hidden in HTML/JS keeps decoration out of screen reader announcements. */
+.experience-page .floating-xp { position: absolute; top: 20px; right: 20px; padding: 6px 10px; border: 2px solid var(--purple); background-color: var(--green); color: var(--purple); font-size: 20px; font-weight: bold; pointer-events: none; animation: reward-rise 800ms ease-out forwards; }
+.experience-page #complete-screen { overflow: hidden; }
+.experience-page .pixel-confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.experience-page .pixel-confetti span { position: absolute; top: -16px; left: 10%; width: 10px; height: 10px; background-color: var(--purple); animation: confetti-fall 950ms ease-in both; }
+/* Different positions and delays make eight simple squares look like a burst. */
+.experience-page .pixel-confetti span:nth-child(2) { left: 22%; animation-delay: 100ms; background-color: var(--green); }
+.experience-page .pixel-confetti span:nth-child(3) { left: 34%; animation-delay: 40ms; }
+.experience-page .pixel-confetti span:nth-child(4) { left: 46%; animation-delay: 170ms; background-color: var(--accent); }
+.experience-page .pixel-confetti span:nth-child(5) { left: 58%; animation-delay: 80ms; background-color: var(--green); }
+.experience-page .pixel-confetti span:nth-child(6) { left: 70%; animation-delay: 130ms; }
+.experience-page .pixel-confetti span:nth-child(7) { left: 82%; animation-delay: 20ms; background-color: var(--accent); }
+.experience-page .pixel-confetti span:nth-child(8) { left: 92%; animation-delay: 200ms; background-color: var(--green); }
+
+/* transform and opacity animate without changing the space elements occupy. */
+@keyframes checkpoint-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes tile-appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes rune-pulse {
+  50% { box-shadow: 0 0 0 4px var(--accent); }
+}
+@keyframes rune-bounce {
+  40% { transform: translateY(-6px); box-shadow: 0 0 0 4px var(--green); }
+  70% { transform: translateY(2px); }
+}
+@keyframes game-shake {
+  25%, 75% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+}
+@keyframes stone-land {
+  from { opacity: 0; transform: translateY(-14px); }
+  70% { opacity: 1; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes panthy-hop {
+  40% { transform: translateY(-12px) rotate(-5deg); }
+  70% { transform: translateY(0) rotate(3deg); }
+}
+@keyframes reward-rise {
+  0% { opacity: 0; transform: translateY(10px); }
+  25%, 65% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-24px); }
+}
+@keyframes confetti-fall {
+  from { opacity: 1; transform: translateY(0) rotate(0); }
+  to { opacity: 0; transform: translateY(340px) rotate(180deg); }
+}
+
+/* Respect the player's device setting. Final colors, text and scenery still work.
+   A tiny duration keeps animationend firing so JavaScript can clean up effects. */
+@media (prefers-reduced-motion: reduce) {
+  .experience-page .demo-screen,
+  .experience-page .demo-screen *,
+  .experience-page #game-panthy {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .experience-page .game-tile:not(:disabled):hover,
+  .experience-page .game-tile:not(:disabled):active { transform: none; }
+  .experience-page .floating-xp,
+  .experience-page .pixel-confetti { display: none; }
 }
 
 /* Peer tutoring only: labelled controls (Chapter 9), styling (11-14), Grid/Flexbox (16). */
