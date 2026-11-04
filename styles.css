@@ -390,7 +390,7 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   background-color: rgba(68, 33, 111, 0.06);
 }
 .game-bar p { margin: 4px 20px 4px 0; }
-.game-bar button { margin: 8px 0; }
+.game-bar .button { margin: 8px 0; }
 .practice-page .game-overview { display: block; }
 .practice-page .game-screen.is-open { display: block; }
 .game-box, .tutoring-page .tutor-section { padding: 32px; border: 1px solid #9165ce; background-color: #fff3d9; }
@@ -427,7 +427,7 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
 }
 .game-message { padding: 20px; border-left: 4px solid #9165ce; background-color: #fff3d9; }
 .game-buttons { display: flex; flex-wrap: wrap; margin: 16px -6px; }
-.game-buttons button { margin: 6px; }
+.game-buttons .button { margin: 6px; }
 .game-topics { padding-top: 12px; }
 .practice-page .game-steps {
   display: grid;
