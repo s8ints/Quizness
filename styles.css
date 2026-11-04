@@ -12,7 +12,6 @@ body {
 a { color: #44216f; overflow-wrap: break-word; }
 a:hover { color: #44216f; text-decoration: underline; }
 
-
 .header {
   display: flex;
   align-items: center;
@@ -122,7 +121,6 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   font-size: 14px;
 }
 
-/* Shared footer. */
 .footer {
   display: flex;
   flex-wrap: wrap;

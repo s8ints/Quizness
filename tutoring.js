@@ -1,4 +1,3 @@
-/* Fictional tutoring demo. Nothing is sent or saved. */
 var chosenTopic = "";
 var chosenSession = "";
 var requestReviewed = false;
