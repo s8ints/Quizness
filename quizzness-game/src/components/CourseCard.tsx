@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { getWorld } from "../data/worlds";
 import type { Course } from "../types/content";
+import { useOptionalGameplay } from "../missions/GameplayProvider";
 // Shared by the dashboard and the Your worlds page.
 export function CourseCard({
   course,
@@ -12,9 +13,13 @@ export function CourseCard({
   selected?: boolean;
 }) {
   const world = getWorld(course.worldId);
+  const gameplay = useOptionalGameplay();
   return (
     <Link className="course-card" to={`${base}/courses/${course.id}`}>
-      <span className={`course-card-banner ${world?.accent ?? ""}`} aria-hidden="true">
+      <span
+        className={`course-card-banner ${world?.accent ?? ""}`}
+        aria-hidden="true"
+      >
         <span>{world?.symbol}</span>
       </span>
       <span className="course-card-body">
@@ -24,7 +29,13 @@ export function CourseCard({
         <span className="course-card-pills">
           <span className="pill">Sample course</span>
           {world && <span className="pill">{world.name}</span>}
-          {selected && <span className="pill pill-selected">✓ In your courses</span>}
+          {selected && (
+            <span className="pill pill-selected">✓ In your courses</span>
+          )}
+          {course.id === "qz-comp-101" &&
+            gameplay?.save.completed.includes("variables-values-types") && (
+              <span className="pill">✓ Variables mission completed</span>
+            )}
         </span>
       </span>
     </Link>

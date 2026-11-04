@@ -25,7 +25,7 @@ Pages are plain React; Phaser loads only with a walkable page. Rules stay testab
 
 Add a place by writing a new area data file and passing it to `WalkableArea`. Masks come from `scripts/make-area-masks.cjs`. Shader samplers must use `clamp_to_edge`, or non-power-of-two art renders black.
 
-Quality tiers, reported in the stage's `data-quality` attribute: `full`; `lowered` (frame rate stayed under 24 FPS for 4 s); `lite` (data saver, or 2 GB memory or less); `still` (reduced motion).
+Quality tiers, reported in the stage's `data-quality` attribute: `full`; `lowered` (frame rate stayed under 24 FPS for 4 s); `lite` (data saver, 2 GB memory or less, or software graphics, overridable with `?quality=full`); `still` (reduced motion).
 
 ## Selected versus unresolved
 

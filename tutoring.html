@@ -4,33 +4,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quizzness | Peer Tutoring Demo</title>
+  <title>Quizzness | Peer tutoring</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="home">
-  <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header">
-    <div class="header-top">
-      <p class="brand">
-        <a href="index.html">
-          <img src="images/quizzness-logo.png" alt="" width="64" height="64">
-          QUIZZNESS
-        </a>
-      </p>
-
-      <nav class="student-nav" aria-label="Learning navigation">
-        <ul>
-          <li><a href="experience.html">Practice</a></li>
-          <li><a href="tutoring.html" aria-current="page">Peer tutoring</a></li>
-          <li><a class="explore-button" href="index.html#courses">Explore learning &rarr;</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <nav class="main-nav" aria-label="Venture navigation">
+<body>
+  <header class="header">
+    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64" height="64"> QUIZZNESS</a></p>
+    <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html">Practice</a></li>
+        <li><a href="tutoring.html" aria-current="page">Peer tutoring</a></li>
         <li><a href="feasibility.html">Feasibility</a></li>
         <li><a href="business-model.html">Business model</a></li>
         <li><a href="industry.html">Market &amp; Launch</a></li>
@@ -40,37 +25,31 @@
   </header>
   <main id="main" tabindex="-1" class="tutoring-page">
 
-    <p class="section-label"><span class="square" aria-hidden="true"></span> Learn together</p>
     <h1>Peer tutoring</h1>
-    <p class="lead">If a student is still stuck after practising, they could find a peer tutor for that course. Tutors would need to
+
+    <p>If a student is still stuck after practising, they could find a peer tutor for that course. Tutors would need to
       meet the university's eligibility rules and complete training. Before launching this service, we would need to
       test whether it can work.</p>
+
     <blockquote>
       <p>&ldquo;Feasibility analysis is the process of determining if a business idea is viable.&rdquo;</p>
       <p>(Barringer &amp; Ireland, 2019, Ch. 3, p. 109)</p>
     </blockquote>
 
-    <p class="prototype-note">All tutors, requests, sessions, and wallet records on this page are fictional prototype
-      examples. No personal information is collected and no booking is made.</p>
-    <p>Want to help other students? <a href="#become-tutor">Apply to become a peer tutor</a> and work toward
-      school GiveBack hours.</p>
-    <div class="demo-guide tutor-guide">
-      <img src="mascot/tiger-pixel.svg" alt="Panthy, the purple learning companion holding a study card." width="88" height="84">
-      <p><strong>Panthy's tip</strong> Pick the topic you need help with, then review your sample request before
-        confirming the demonstration.</p>
+    <p class="demo-note">All tutors, requests, sessions, and wallet records on this page are fictional prototype examples. No personal information is collected and no booking is made.</p>
+
+    <p>Want to help other students? <a href="#become-tutor">Apply to become a peer tutor</a> and work toward school GiveBack hours.</p>
+    <div class="game-help">
+      <img src="mascot/tiger-pixel.svg" alt="Panthy, the purple learning companion holding a study card." width="88"
+        height="84">
+      <p><strong>Panthy's tip:</strong> Choose a topic and session length, then review your sample request.</p>
     </div>
 
-    <section id="booking" class="tutor-panel">
-      <p class="section-label">Step 01 / find support</p>
+    <section id="booking" class="tutor-section">
       <h2>Sample tutor</h2>
       <div class="tutor-card">
-        <div class="tutor-identity">
-          <span class="tutor-avatar" aria-hidden="true">MC</span>
-          <div>
-            <p class="eyebrow">Fictional tutor / sample profile</p>
-            <h3>Marcus Clarke</h3>
-          </div>
-        </div>
+        <p class="section-note">Fictional tutor / sample profile</p>
+        <h3>Marcus Clarke</h3>
         <p><strong>Course:</strong> Mathematics (sample MATH 101 course)<br>
           <strong>Topics:</strong> percentages, ratios and solving equations
         </p>
@@ -79,168 +58,132 @@
       </div>
       <p>A student could request a short explanation or a longer worked example. The tutor would accept the request
         or suggest another time. No actual tutor availability is shown here.</p>
-      <p>These are previews only. Reviewing or confirming a request does not send a booking. Peer GiveBack sessions
+      <p>These are example forms only. No request is actually sent. Peer GiveBack sessions
         would be free to students in the proposed university programme.</p>
 
-      <!-- Buttons are not form submissions. No name, email, or student ID is requested. -->
-      <div id="request-options" class="request-options">
-        <h3 id="request-options-title">1. Choose a sample session</h3>
+      <form id="tutor-request" action="#booking" method="post" onsubmit="reviewRequest(); return false;" onreset="editRequest()">
+        <h3>Choose a sample session</h3>
         <fieldset>
-          <legend>Illustrative tutoring topic (choose one)</legend>
-          <div class="request-fields">
-            <button type="button" class="button button-secondary request-choice" id="topic-percentages" aria-pressed="false">Percentages</button>
-            <button type="button" class="button button-secondary request-choice" id="topic-ratios" aria-pressed="false">Ratios</button>
-            <button type="button" class="button button-secondary request-choice" id="topic-equations" aria-pressed="false">Solving equations</button>
+          <legend>Session details</legend>
+          <div class="form-columns">
+            <div>
+              <label for="topic">Topic (required)</label>
+              <select id="topic" name="topic" required>
+                <option value="">Choose a topic</option>
+                <option value="Percentages">Percentages</option>
+                <option value="Ratios">Ratios</option>
+                <option value="Solving equations">Solving equations</option>
+              </select>
+            </div>
+            <div>
+              <label for="session-length">Session (required)</label>
+              <select id="session-length" name="session" required>
+                <option value="">Choose a session</option>
+                <option value="30 minutes">30 minutes</option>
+                <option value="1 hour">1 hour</option>
+                <option value="2 hours">2 hours</option>
+              </select>
+            </div>
           </div>
         </fieldset>
-        <fieldset>
-          <legend>Illustrative session length (choose one)</legend>
-          <div class="request-fields">
-            <button type="button" class="button button-secondary request-choice" id="session-30" aria-pressed="false">30 minutes</button>
-            <button type="button" class="button button-secondary request-choice" id="session-60" aria-pressed="false">1 hour</button>
-            <button type="button" class="button button-secondary request-choice" id="session-120" aria-pressed="false">2 hours</button>
-          </div>
-        </fieldset>
-        <p id="request-message" role="status">Choose a topic and session, then review the example.</p>
-        <div class="request-actions">
-          <button type="button" class="button" id="review-request">Review sample request</button>
-          <button type="button" class="button button-secondary" id="another-request">Start another demonstration</button>
-        </div>
-        <noscript>
-          <p class="prototype-note">Enable JavaScript and reload to try the request demonstration. You can still
-            read the tutor information, session process, and illustrative wallet below.</p>
-        </noscript>
+        <p>This is a demonstration. Nothing will be sent or saved.</p>
+        <button type="submit" class="button" id="review-button" disabled>Review request</button>
+        <button type="reset" class="button button-light">Reset</button>
+      </form>
+      <div id="review" class="demo-note" hidden>
+        <h3>Review your request</h3>
+        <p>Tutor: Marcus Clarke</p>
+        <p id="choice"></p>
+        <button type="button" class="button" onclick="finishRequest()">Confirm demo request</button>
+        <button type="button" class="button button-light" onclick="editRequest()">Edit</button>
       </div>
-
-      <div id="request-summary" class="request-summary">
-        <h3 id="request-summary-title">2. Review your example request</h3>
-        <p><strong>Prototype preview:</strong> this is not a booking or an accepted appointment.</p>
-        <dl>
-          <dt>Fictional tutor</dt>
-          <dd>Marcus Clarke</dd>
-          <dt>Sample course</dt>
-          <dd>Mathematics / sample MATH 101</dd>
-          <dt>Topic</dt>
-          <dd id="summary-topic"></dd>
-          <dt>Session</dt>
-          <dd id="summary-session"></dd>
-          <dt>Illustrative time preference</dt>
-          <dd id="summary-time"></dd>
-        </dl>
-        <p>These sample time preferences do not represent real availability. No request has been sent or saved.</p>
-        <div class="request-actions">
-          <button type="button" class="button" id="confirm-request">Confirm demonstration only</button>
-          <button type="button" class="button button-secondary" id="change-request">Change selection</button>
-        </div>
+      <div id="request-done" class="demo-note" role="status" hidden>
+        <p>Demo complete. Your request has not been sent or saved.</p>
+        <button type="reset" form="tutor-request" class="button button-light">Start again</button>
       </div>
-
-      <div id="request-confirmation" class="request-confirmation">
-        <h3 id="request-confirmation-title">3. Demonstration complete</h3>
-        <p><strong>Your example request has not been sent or saved.</strong> No tutor was contacted, no appointment
-          exists, and no tutoring time has been added to the GiveBack Wallet.</p>
-        <p>In the proposed service, a tutor would review a request before agreeing to a session. The wallet below is
-          a separate fictional completed-session example.</p>
-        <p><a href="#wallet">Explore the illustrative GiveBack Wallet</a> or
-          <a href="experience.html#prototype">return to the sample learning experience</a>.</p>
-      </div>
-      <p><a href="experience.html#prototype">Back to the learning experience</a></p>
+      <p><a href="experience.html#game-demo">Back to the learning experience</a></p>
     </section>
 
-    <section id="become-tutor" class="tutor-panel" aria-labelledby="tutor-application-title">
-      <p class="section-label">Step 02 / help someone else</p>
-      <h2 id="tutor-application-title">Become a peer tutor</h2>
+    <section id="become-tutor" class="tutor-section">
+      <p class="section-note">Help others / GiveBack programme</p>
+      <h2 id="tutor-form-title">Become a peer tutor</h2>
       <p>Share what you know and support other students. Approved tutoring sessions could count toward your
         school's GiveBack hours, subject to school approval and programme rules.</p>
-      <p id="application-note" class="prototype-note">This is an unvalidated prototype application preview. The
-        preview button does not check required fields. Nothing is uploaded, sent, or saved. Use sample details and documents.</p>
+      <p id="form-note" class="demo-note">This is a prototype application. You can try the form, but
+        your details and files will not be uploaded, sent, or saved. Use sample details and documents.</p>
 
-      <form id="tutor-application" aria-describedby="application-note">
+      <form id="tutor-form" action="#become-tutor" method="post" enctype="multipart/form-data" aria-describedby="form-note" onsubmit="finishApplication(); return false;" onreset="resetApplication()">
         <fieldset>
           <legend>Your details</legend>
           <label for="tutor-name">Full name (required)</label>
           <input type="text" id="tutor-name" name="full-name" autocomplete="name" required maxlength="120">
         </fieldset>
 
-        <fieldset aria-describedby="tutor-subjects-help">
+        <fieldset aria-describedby="subject-help">
           <legend>Preferred subjects</legend>
-          <p id="tutor-subjects-help">Select all the subjects you feel comfortable tutoring.</p>
-          <div class="request-fields subject-options">
-            <label for="subject-mathematics"><input type="checkbox" id="subject-mathematics"
-                name="subjects" value="mathematics"> Mathematics</label>
-            <label for="subject-programming"><input type="checkbox" id="subject-programming"
-                name="subjects" value="programming"> Programming</label>
-            <label for="subject-statistics"><input type="checkbox" id="subject-statistics"
-                name="subjects" value="statistics"> Statistics</label>
-            <label for="subject-english"><input type="checkbox" id="subject-english"
-                name="subjects" value="english"> English</label>
-            <label for="subject-accounting"><input type="checkbox" id="subject-accounting"
-                name="subjects" value="accounting"> Accounting</label>
-            <label for="subject-economics"><input type="checkbox" id="subject-economics"
-                name="subjects" value="economics"> Economics</label>
+          <p id="subject-help">Select all the subjects you feel comfortable tutoring.</p>
+          <div class="form-columns subject-options">
+            <label for="subject-mathematics"><input type="checkbox" id="subject-mathematics" name="subjects"
+                value="mathematics"> Mathematics</label>
+            <label for="subject-programming"><input type="checkbox" id="subject-programming" name="subjects"
+                value="programming"> Programming</label>
+            <label for="subject-statistics"><input type="checkbox" id="subject-statistics" name="subjects"
+                value="statistics"> Statistics</label>
+            <label for="subject-english"><input type="checkbox" id="subject-english" name="subjects" value="english">
+              English</label>
+            <label for="subject-accounting"><input type="checkbox" id="subject-accounting" name="subjects"
+                value="accounting"> Accounting</label>
+            <label for="subject-economics"><input type="checkbox" id="subject-economics" name="subjects"
+                value="economics"> Economics</label>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>CV and recommendations</legend>
-          <p id="application-files-help">Choose a CV and at least two recommendation letters from teachers,
+          <p id="file-help">Choose a CV and at least two recommendation letters from teachers,
             lecturers, or other people who can recommend you as a tutor. Accepted file types: PDF, DOC, or DOCX.</p>
-          <div class="application-field">
-            <label for="tutor-cv">CV (required)</label>
-            <input type="file" id="tutor-cv" name="cv" accept=".pdf,.doc,.docx" required
-              aria-describedby="application-files-help">
+          <div class="form-field">
+            <label for="cv-file">CV (required)</label>
+            <input type="file" id="cv-file" name="cv" accept=".pdf,.doc,.docx" required aria-describedby="file-help">
           </div>
-          <div class="application-field">
-            <label for="tutor-recommendation-1">Recommendation letter 1 (required)</label>
-            <input type="file" id="tutor-recommendation-1" name="recommendation-1" accept=".pdf,.doc,.docx" required
-              aria-describedby="application-files-help">
+          <div class="form-field">
+            <label for="letter1">Recommendation letter 1 (required)</label>
+            <input type="file" id="letter1" name="recommendation-1" accept=".pdf,.doc,.docx" required
+              aria-describedby="file-help">
           </div>
-          <div class="application-field">
-            <label for="tutor-recommendation-2">Recommendation letter 2 (required)</label>
-            <input type="file" id="tutor-recommendation-2" name="recommendation-2" accept=".pdf,.doc,.docx" required
-              aria-describedby="application-files-help">
+          <div class="form-field">
+            <label for="letter2">Recommendation letter 2 (required)</label>
+            <input type="file" id="letter2" name="recommendation-2" accept=".pdf,.doc,.docx" required
+              aria-describedby="file-help">
           </div>
-          <div class="application-field">
-            <label for="tutor-recommendation-3">Recommendation letter 3 (optional)</label>
-            <input type="file" id="tutor-recommendation-3" name="recommendation-3" accept=".pdf,.doc,.docx"
-              aria-describedby="application-files-help">
+          <div class="form-field">
+            <label for="letter3">Recommendation letter 3 (optional)</label>
+            <input type="file" id="letter3" name="recommendation-3" accept=".pdf,.doc,.docx"
+              aria-describedby="file-help">
           </div>
         </fieldset>
 
-        <div class="request-actions">
-          <button type="button" class="button" id="preview-application">Preview application demonstration</button>
-          <input type="reset" class="button button-secondary" id="reset-application" value="Reset application demo">
-        </div>
-        <!-- A disabled submit control prevents Enter in the name field from submitting this preview form. -->
-        <button type="submit" disabled hidden>Submission unavailable in this demonstration</button>
-        <noscript><p class="prototype-note">Enable JavaScript and reload to try the application demonstration. This prototype
-          does not send applications.</p></noscript>
+        <p>This is a demonstration. Nothing will be sent or uploaded.</p>
+        <button type="submit" class="button" id="apply-button" disabled>Confirm demo application</button>
+        <p id="application-done" class="demo-note" role="status" hidden>Demo complete. Your application and files have not been sent or saved.</p>
+        <button type="reset" class="button button-light">Reset</button>
       </form>
-
-      <div id="application-confirmation" class="request-confirmation" role="status">
-        <h3 id="application-confirmation-title">Application demonstration complete</h3>
-        <p><strong>Your application has not been sent or saved.</strong> Your name, subject choices, CV, and
-          recommendation letters stay in this demonstration. No tutor application has been created and no
-          GiveBack hours have been added.</p>
-        <p>In the proposed programme, a coordinator would review your application before you could tutor and
-          earn approved GiveBack hours.</p>
-      </div>
     </section>
 
-    <section id="session" class="session-note">
-      <p class="section-label">How the proposed service could work</p>
+    <section id="session">
       <h2>After a session</h2>
-      <p>For a separate fictional completed-session example, imagine that the student and Marcus have finished a 30-minute session on equations.
+      <p>For a separate fictional completed-session example, imagine that the student and Marcus have finished a
+        30-minute session on equations.
         They practised doing the same operation to both sides of an equation.</p>
       <p>Both people would confirm the session time. The student could give feedback, and the tutor could send the time
         for coordinator review.</p>
       <p>Research supports this kind of structured help. A meta-analysis of 37 studies found a moderately strong
         positive relationship between formal peer learning approaches and course performance in higher education
         (Bengesai et al., 2023).</p>
-      <p><a href="experience.html#prototype">Return to the sample practice activity</a></p>
+      <p><a href="experience.html#game-demo">Return to the sample practice activity</a></p>
     </section>
 
-    <section id="wallet" class="wallet-panel">
-      <p class="section-label">Illustrative records / Marcus Clarke</p>
+    <section id="wallet">
       <h2>GiveBack Wallet</h2>
       <p>The wallet would keep a record of tutoring time. Pending time would be separate from approved time.</p>
       <table>
@@ -252,18 +195,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="wallet-approved">
+          <tr class="approved-hours">
             <th scope="row">Previously approved (illustrative)</th>
             <td>24 hours</td>
           </tr>
-          <tr class="wallet-pending">
+          <tr class="pending-hours">
             <th scope="row">Latest session, pending review (illustrative)</th>
             <td>30 minutes (0.5 hours)</td>
           </tr>
         </tbody>
       </table>
       <p class="wallet-note">The pending 0.5 hours are not part of the 24 approved hours. These fixed sample records do
-        not change when you confirm a demonstration request or refresh the page.</p>
+        not change when you fill in the sample forms or refresh the page.</p>
       <h3>How time would be approved</h3>
       <ol>
         <li>The student and tutor confirm the session.</li>
@@ -277,11 +220,11 @@
           partner.</strong></p>
     </section>
   </main>
-  <footer class="site-footer">
+  <footer class="footer">
     <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>
-  <script src="script.js"></script>
+  <script src="tutoring.js"></script>
 </body>
 
 </html>

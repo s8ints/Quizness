@@ -117,8 +117,63 @@ Added `src/game/npcs.ts`, sway shader and footsteps in `src/game/ambient.ts`, `s
 Found and fixed while verifying:
 - The sway shader turned all background art black. Phaser defaults shader textures to REPEAT, which WebGL cannot do for non-power-of-two images. Fixed by passing `clamp_to_edge` explicitly (`clamp` is rejected).
 - A route-checking test caught sample students cutting through gardens at three corners; routes corrected.
-- Browser tests failed intermittently. A dependency-reload theory was tested against the Vite log and rejected. Evidence pointed to timeouts: software rendering across 8 workers while school-site files were being edited in the same repo, which also triggers Tailwind rebuilds. Config now uses 3 workers, a 60 s test limit and a 15 s assertion limit. One idle-after-keypress failure was not reproduced under diagnostics, so that cause is probable, not proven.
+- Browser tests failed intermittently. A dependency-reload theory was tested against the Vite log and rejected. Evidence pointed to timeouts: 8 game browsers plus the dev server competing for the machine while school-site files were being edited in the same repo, which also triggers Tailwind rebuilds. (An earlier version of this note blamed software rendering. That was wrong: the test browser uses the Intel UHD GPU.) Config now uses 3 workers, a 60 s test limit and a 15 s assertion limit. One idle-after-keypress failure was not reproduced under diagnostics, so that cause is probable, not proven.
 
 - On-demand pages exceeded Testing Library's 1 s wait on a busy machine, failing three unit tests; `src/test/setup.ts` now allows 5 s.
 
 Verification: 63 unit tests (three consecutive runs), production build, 13/13 browser tests on the last three full runs. Production load times and motion measurements are in `docs/PHASE_2_STATUS.md`. Not verified: real phones, automatic quality drop on a real slow device, and student play-testing.
+
+## Stage 2 connected exploration — 2026-11-02
+
+Built Logic District, the QZ-COMP 101 lobby and the Variables area as walkable places at `/explore/<id>`, using temporary pictures that are labelled as temporary. The campus bridge leads onward and each place has a way back; returning arrives at the door you left through. Added guide characters, honest "not open yet" messages, locked-mission previews, the mission path, quick travel from the room and a link from the course page. Mission text is demo content and Start mission stays disabled until Stage 3.
+
+Bugs found and fixed: arriving on an exit triggered it, so spawns moved away from exits; an endless arrow animation made pins unclickable, so it now plays twice; keys did nothing on load because the page heading held focus; slow-device detection used capped time, so it now uses real elapsed time.
+
+Ruling: machines with software-only graphics get the lighter version automatically — cost if wrong: those machines see fewer effects. Add `?quality=full` to override.
+
+Correction: earlier notes said browser tests were slow because they render in software. That was wrong. They use the Intel UHD GPU.
+
+Frame rate on this Intel UHD laptop, one browser at a time, dev server:
+
+| Place | Ready | Frame rate | Worst frame |
+|---|---|---|---|
+| Campus, full | 2.6 s | 144 fps | 14 ms |
+| Campus, lite | 1.8 s | 144 fps | not recorded |
+| Room, full | 2.7 s | 143 fps | not recorded |
+| Room, lite | 1.8 s | 144 fps | not recorded |
+| Variables area | 1.7 s | 144 fps | not recorded |
+
+Frame rate with the GPU turned off (`--disable-gpu`, SwiftShader):
+
+| Place | Ready | Frame rate | Worst frame | Quality |
+|---|---|---|---|---|
+| Campus, automatic | 2.2 s | 3 fps | 400 ms | lite, chosen automatically |
+| Campus, forced full | 3.8 s | 2 fps | 467 ms | full |
+| Room, automatic | 2.3 s | 6 fps | 200 ms | lite, chosen automatically |
+
+Finding: detection works, but the lighter version is not enough without a GPU. The game is not playable on such a machine. Not addressed yet. Not measured on real phones.
+
+Soak: 12 area changes kept one canvas with no crash. Heap grew from 46 to 68 MB; not investigated further.
+
+Flaky campus test: with 3 workers, 3 of 6 repeats failed, on teardown or the 60 s limit, with no failed assertion. The traces show the whole test run stalling, including a 1.5 s wait that took 7 s. The cause of that stall was not identified. It coincided with other work on the machine, but that link is not proven. One at a time, 4 of 4 passed. Game-load waits are now 30 s.
+
+Verification: 85 unit tests pass, build passes, 14 of 14 browser tests pass in the latest full run. The flake above could return under load.
+
+
+## Remaining Phase 2 implementation — 2026-11-03
+
+User authorised completing the rest of Phase 2. Work stayed inside the existing real product folder; no new repository, automatic commits, school-site changes, purchases or cloud gameplay schema. Completion outline: docs/PHASE_2_COMPLETION_PLAN.md.
+
+Final art: three supplied/generated PNG sources optimised into WebP, entrances/spawn/floor/pins refitted and ambient masks/glows added. Focused area tests passed 23/23.
+
+Learning: src/learning contains typed ActivityRenderer, pure evaluators and error/replacement boundary. Seven presentations support native keyboard/touch lists, select/place and dragging; multipart feedback retains answers. src/content/phase2/routes.ts contains three original CS stories, each seven types/two variants, optional checkpoint, changing-values followup and three-type Mathematics demonstration. Every authored answer is checked against the actual evaluator.
+
+Missions: walkable markers open focused panels over paused world; checklist and authored help, explicit checkpoint/save/discard, per-visit suspended route state, optional timers, five attempts with free practice/hour refill. src/missions owns rules, provider, screens, journal and styles. Local saves isolate account IDs and preview, preserve corrupted bytes, and report failed writes without granting unsaved progress. Results show first/eventual accuracy, transparent 70/30 grade, stars, elapsed time, hints, gems, unresolved objectives, history and best/latest. Next mission unlocks after any primary story. Rewards capped; no money buys learning.
+
+Rulings: use existing courtyard for each story rather than invent unapproved scenery; cost: story settings currently differ through authored objects/tasks, not different backgrounds. Use provisional config (20 first gems, three 5-gem replays, 2 speed bonus, 90/180-second optional timers, 3 Panthy uses); cost: tune after playtesting. Suspended route evidence stays in memory only; explicit saves persist evidence and attempt metadata but no draft answers; cost: browser closure loses unsaved work as specified. No milestone Paw Tokens awarded because no Phase2 premium-currency milestone was defined; balance is shown as zero.
+
+Fresh reviewer found shallow nested save validation, inaccessible stacked leave dialog, route-switch data loss, refill countdown starting too early, unevaluated reflection refills, and lost first-attempt metadata. Fixed all six: deep validation; focus/inert/trap; suspended sessions; hour begins at exhaustion; two evaluated related problems; saved evidence retains tries. Regressions cover these plus owner changes and write failures. Mobile timing selector overflow and added-header-link overflow found in browser runs; selector constrained and journal link placed in footer. Existing browser assertions updated from disabled missions/temporary door positions to playable mission links/final art.
+
+Remaining acceptance: user play/visual review, real phones and slow-device performance. Existing front-only sprites, overdraw/occlusion, no day/night selection and poor software-only GPU performance remain known asset/engine limitations. Introductory demo content is not a university-validated syllabus.
+
+Final automated acceptance: 108/108 unit tests across 21 files; 22/22 Edge browser tests (one worker, 3.1 minutes); production build passed with the existing lazy Phaser chunk-size warning. Browser checks include all three CS routes, Mathematics, mobile, incorrect/incomplete answers, explicit saves, interruption, suspended stories, keyboard leave, five attempts/free practice, optional timer expiry/removal, corrupt save and storage failure. Desktop activity and mobile entrance screenshots inspected in docs/previews. Existing room/campus/foundation flows remain green. User visual/play acceptance and real-device testing are not claimed.

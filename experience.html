@@ -8,29 +8,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="home">
-  <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header">
-    <div class="header-top">
-      <p class="brand">
-        <a href="index.html">
-          <img src="images/quizzness-logo.png" alt="" width="64" height="64">
-          QUIZZNESS
-        </a>
-      </p>
-
-      <nav class="student-nav" aria-label="Learning navigation">
-        <ul>
-          <li><a href="experience.html" aria-current="page">Practice</a></li>
-          <li><a href="tutoring.html">Peer tutoring</a></li>
-          <li><a class="explore-button" href="index.html#courses">Explore learning &rarr;</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <nav class="main-nav" aria-label="Venture navigation">
+<body>
+  <header class="header">
+    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64" height="64"> QUIZZNESS</a></p>
+    <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html" aria-current="page">Practice</a></li>
+        <li><a href="tutoring.html">Peer tutoring</a></li>
         <li><a href="feasibility.html">Feasibility</a></li>
         <li><a href="business-model.html">Business model</a></li>
         <li><a href="industry.html">Market &amp; Launch</a></li>
@@ -38,73 +23,60 @@
       </ul>
     </nav>
   </header>
-  <main id="main" tabindex="-1" class="experience-page">
-    <section class="experience-intro" aria-labelledby="experience-title">
-      <div class="experience-intro-text">
-        <p class="section-label"><span class="square" aria-hidden="true"></span> Your sample learning space</p>
-        <h1 id="experience-title">Ready for a little quest?</h1>
-        <p class="lead">Pick Mathematics, learn percentages, and play two short Puzzle Temple challenges with Panthy.</p>
-        <p class="prototype-note">Sample student experience. Only Mathematics is playable. Progress lasts for this visit
-          only and resets when you refresh. No account is created and no information is sent.</p>
-      </div>
-    </section>
+  <main id="main" tabindex="-1" class="practice-page">
+    <p class="section-note">Your sample learning space</p>
+    <h1>Find your next learning adventure.</h1>
+    <p class="main-text">Choose a world, learn one idea, and practise with Panthy.</p>
+    <p class="demo-note">Sample student experience. Only Mathematics is playable. Progress lasts for this visit
+      only and resets when you refresh. No account is created and no information is sent.</p>
 
-    <div class="demo-toolbar" id="progress">
-      <div class="progress-copy">
-        <p class="section-label">Your progress this visit</p>
-        <div class="progress-stats">
-          <p id="visit-stage">Current step: Choose a world</p>
-          <p id="visit-progress" role="status">0 of 2 checkpoints complete this visit.</p>
-          <p id="demo-xp" role="status">0 XP earned this demo.</p>
-        </div>
+    <div class="game-bar" id="progress">
+      <div>
+        <p id="game-step"><strong>Current step:</strong> Choose a world</p>
+        <p id="game-progress" role="status">0 of 2 checkpoints complete this visit.</p>
+        <p id="game-points" role="status">0 XP earned this demo.</p>
       </div>
-      <button type="button" class="button button-secondary" id="reset-demo">Reset demonstration</button>
+      <button type="button" class="button button-light" id="reset-demo" disabled>Reset demonstration</button>
     </div>
-    <ol class="level-path" aria-label="Percent Path checkpoints">
-      <li><span class="path-number" aria-hidden="true">01</span><strong>Match the runes</strong><span id="checkpoint-match">Locked</span></li>
-      <li><span class="path-number" aria-hidden="true">02</span><strong>Build the bridge</strong><span id="checkpoint-order">Locked</span></li>
+    <ol class="game-steps" aria-label="Percent Path checkpoints">
+      <li><strong>1. Match the runes</strong><span id="matching-status">Locked</span></li>
+      <li><strong>2. Build the bridge</strong><span id="ordering-status">Locked</span></li>
     </ol>
     <noscript>
-      <p class="prototype-note">JavaScript is needed for this interactive demonstration. Enable JavaScript and reload
-        to play the two minigames and explore sample friends. You can still <a href="tutoring.html">read the peer-tutoring example</a>.</p>
+      <p class="demo-note">JavaScript is needed for this interactive demonstration. Enable JavaScript and reload
+        to play the two minigames. You can still <a href="tutoring.html">read the peer-tutoring example</a>.</p>
     </noscript>
 
     <!-- Existing home and tutoring links both enter the course-selection journey. -->
-    <div id="prototype" class="learning-journey">
+    <div id="game-demo">
     <div id="learn">
-      <section class="demo-screen demo-panel demo-overview is-open" id="course-screen">
-        <p class="section-label">World selection / step 01</p>
-        <h2 tabindex="-1" id="course-title">Choose your learning world</h2>
-        <p class="world-intro">Explore our sample course selection. Start with Percent Path in Puzzle Temple.</p>
-        <div class="demo-worlds">
-          <article class="demo-world demo-world-active">
-            <span class="world-symbol" aria-hidden="true">%</span>
-            <div class="world-copy">
-              <p class="world-meta"><span>Mathematics</span><strong>Playable sample</strong></p>
-              <h3>Puzzle Temple</h3>
-              <p>Percent Path: match the percentage runes, then build a bridge by ordering calculations.</p>
-              <button type="button" class="button" id="select-maths">Enter Puzzle Temple <span aria-hidden="true">&rarr;</span></button>
-            </div>
+      <section class="game-screen game-box game-overview" id="course-menu">
+        <h2 tabindex="-1" id="course-title">1. Choose your learning world</h2>
+        <p>Explore our sample course selection. Start with Percent Path in Puzzle Temple.</p>
+        <div class="world-list">
+          <article class="world-card">
+            <p class="section-note">Working demonstration</p>
+            <h3>Mathematics</h3>
+            <p class="world-name">Puzzle Temple</p>
+            <p>Percent Path: match the percentage runes, then build a bridge by ordering calculations.</p>
+            <button type="button" class="button" id="select-maths" disabled>Select Mathematics</button>
           </article>
-          <article class="demo-world demo-preview">
-            <span class="world-symbol" aria-hidden="true">&lt;/&gt;</span>
-            <div class="world-copy">
-              <p class="world-meta"><span>Programming</span><strong>Preview only</strong></p>
-              <h3>Code Kingdom</h3>
-              <p>A planned second course. No lesson or activity is available in this demonstration.</p>
-              <p class="world-soon">Not playable yet</p>
-            </div>
+          <article class="world-card game-preview">
+            <p class="section-note">Preview only</p>
+            <h3>Programming</h3>
+            <p class="world-name">Code Kingdom</p>
+            <p>A planned second course. No lesson or activity is available in this demonstration.</p>
+            <p><strong>Not playable yet</strong></p>
           </article>
         </div>
       </section>
 
-      <section class="demo-screen demo-panel" id="lesson-screen">
-        <p class="section-label">Puzzle Temple / lesson</p>
-        <h2 tabindex="-1" id="lesson-title">Learn the secret of percentages</h2>
-        <p class="quest-subtitle">A short lesson before your first challenge</p>
+      <section class="game-screen game-box" id="lesson-page">
+        <h2 tabindex="-1" id="lesson-title">2. Percent Path: learn the idea</h2>
+        <p class="section-note">Mathematics / Puzzle Temple</p>
         <p>A percentage means &ldquo;per hundred.&rdquo; To find 20% of an amount, write 20/100 = 0.20 and multiply
           the amount by 0.20.</p>
-        <div class="demo-worked-example">
+        <div class="worked-example">
           <h3>A worked example</h3>
           <p><strong>What is 20% of BBD 40?</strong></p>
           <ol>
@@ -115,83 +87,81 @@
         </div>
         <p>For 25%, use 25/100 = 0.25. This is the same as one quarter, so you can also divide the amount by 4.</p>
         <p>Useful equivalents: 20% = 1/5, 25% = 1/4, and 50% = 1/2.</p>
-        <p class="demo-source">Learning source: OpenStax (2020), <cite>Prealgebra 2e</cite>, Section 6.1.
+        <p class="game-source">Learning source: OpenStax (2020), <cite>Prealgebra 2e</cite>, Section 6.1.
           <a href="team.html#source-openstax">See the source details</a>.</p>
-        <div class="demo-actions">
+        <div class="game-buttons">
           <button type="button" class="button" id="start-quiz">Enter Percent Path</button>
-          <a class="button button-secondary" href="#course-screen">Review course selection</a>
+          <button type="button" class="button button-light" id="back-courses">Back to course selection</button>
         </div>
       </section>
 
-      <div class="demo-guide game-guide">
-        <img id="game-panthy" src="mascot/tiger-pixel.svg" alt="Panthy, your purple pixel learning guide." width="88" height="84">
-        <p><strong>Panthy's field notes</strong><span id="panthy-tip">Choose a subject to begin. There is no timer, so take your time!</span></p>
+      <div class="game-help game-guide">
+        <img id="game-mascot" src="mascot/tiger-pixel.svg" alt="Panthy, your purple pixel learning guide." width="88" height="84">
+        <p><strong>Panthy's tip:</strong> <span id="panthy-tip">Choose a subject to begin. There is no timer, so take your time!</span></p>
       </div>
 
-      <section class="demo-screen demo-panel game-arena" id="matching-screen">
-        <span class="floating-xp" id="match-reward" aria-hidden="true">+50 XP</span>
-        <p class="section-label">Quest 01 / +50 demo XP</p>
+      <section class="game-screen game-box game-area" id="matching-game">
+        <p class="section-note">Checkpoint 1 / +50 demo XP</p>
         <h2 tabindex="-1">Match the runes</h2>
         <p>Open the temple gate: match all three percentages with their equivalent fractions.</p>
-        <div class="temple-scene" aria-hidden="true">
+        <!-- Decorative scenery: the feedback below explains progress in words too. -->
+        <div class="temple-picture" aria-hidden="true">
           <div class="temple-gate" id="temple-gate"><span></span><span></span></div>
           <p id="gate-caption">Match the runes to open the gate</p>
         </div>
-        <div class="matching-columns">
-          <fieldset class="demo-answers">
+        <div class="match-columns">
+          <fieldset class="game-answers">
             <legend>Percentage runes</legend>
-            <button type="button" class="game-tile percent-tile" id="match-percent-0" aria-pressed="false">20%</button>
-            <button type="button" class="game-tile percent-tile" id="match-percent-1" aria-pressed="false">25%</button>
-            <button type="button" class="game-tile percent-tile" id="match-percent-2" aria-pressed="false">50%</button>
+            <button type="button" class="answer-button percent-button" id="percent20" aria-pressed="false">20%</button>
+            <button type="button" class="answer-button percent-button" id="percent25" aria-pressed="false">25%</button>
+            <button type="button" class="answer-button percent-button" id="percent50" aria-pressed="false">50%</button>
           </fieldset>
-          <fieldset class="demo-answers">
+          <fieldset class="game-answers">
             <legend>Fraction runes</legend>
-            <button type="button" class="game-tile fraction-tile" id="match-fraction-0">1/2</button>
-            <button type="button" class="game-tile fraction-tile" id="match-fraction-1">1/5</button>
-            <button type="button" class="game-tile fraction-tile" id="match-fraction-2">1/4</button>
+            <button type="button" class="answer-button fraction-button" id="fraction-half">1/2</button>
+            <button type="button" class="answer-button fraction-button" id="fraction-fifth">1/5</button>
+            <button type="button" class="answer-button fraction-button" id="fraction-quarter">1/4</button>
           </fieldset>
         </div>
-        <p id="matching-feedback" class="demo-feedback" role="status">Choose a percentage first, then a fraction.</p>
-        <div class="demo-actions">
-          <button type="button" class="button" id="next-game">Continue to the bridge</button>
+        <p id="match-message" class="game-message" role="status">Choose a percentage first, then a fraction.</p>
+        <div class="game-buttons">
+          <button type="button" class="button" id="next-game" disabled>Continue to the bridge</button>
         </div>
         <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
       </section>
 
-      <section class="demo-screen demo-panel game-arena" id="ordering-screen">
-        <span class="floating-xp" id="order-reward" aria-hidden="true">+50 XP</span>
-        <p class="section-label">Quest 02 / +50 demo XP</p>
+      <section class="game-screen game-box game-area" id="ordering-game">
+        <p class="section-note">Checkpoint 2 / +50 demo XP</p>
         <h2 tabindex="-1">Build the bridge</h2>
         <p>Calculate each amount. Place the stones from the smallest result to the largest to cross the bridge.</p>
-        <div class="bridge-scene" id="bridge-scene" aria-hidden="true">
+        <!-- Each span is one bridge plank. JavaScript reveals them as stones are chosen. -->
+        <div class="bridge-picture" id="bridge-picture" aria-hidden="true">
           <span class="bridge-bank"></span>
-          <span class="bridge-plank" id="bridge-plank-1"></span>
-          <span class="bridge-plank" id="bridge-plank-2"></span>
-          <span class="bridge-plank" id="bridge-plank-3"></span>
+          <span class="bridge-plank" id="plank1"></span><span class="bridge-plank" id="plank2"></span><span class="bridge-plank" id="plank3"></span>
           <span class="bridge-bank"></span>
         </div>
-        <div class="order-tiles" role="group" aria-label="Available bridge stones">
-          <button type="button" class="game-tile order-tile" id="order-0">25% of BBD 80</button>
-          <button type="button" class="game-tile order-tile" id="order-1">10% of BBD 60</button>
-          <button type="button" class="game-tile order-tile" id="order-2">20% of BBD 50</button>
+        <div class="stone-buttons">
+          <button type="button" class="answer-button stone-button" id="stone20">25% of BBD 80</button>
+          <button type="button" class="answer-button stone-button" id="stone6">10% of BBD 60</button>
+          <button type="button" class="answer-button stone-button" id="stone10">20% of BBD 50</button>
         </div>
         <h3>Your bridge: smallest to largest</h3>
-        <ol id="chosen-order" class="bridge-order" aria-label="Selected stone order"></ol>
-        <p id="ordering-feedback" class="demo-feedback" role="status">Choose the stone with the smallest result first.</p>
-        <div class="demo-actions">
-          <button type="button" class="button button-secondary" id="clear-order">Clear order</button>
-          <button type="button" class="button" id="check-order">Check order</button>
-          <button type="button" class="button" id="finish-level">View level results</button>
+        <ol id="stone-order" class="bridge-order" aria-label="Selected stone order"></ol>
+        <p id="order-message" class="game-message" role="status">Choose the stone with the smallest result first.</p>
+        <div class="game-buttons">
+          <button type="button" class="button button-light" id="clear-order">Clear order</button>
+          <button type="button" class="button" id="check-order" disabled>Check order</button>
+          <button type="button" class="button" id="finish-level" disabled>View level results</button>
         </div>
         <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
       </section>
 
-      <section class="demo-screen demo-panel" id="complete-screen">
-        <div class="pixel-confetti" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-        <p class="section-label">Percent Path / quest complete</p>
-        <h2 tabindex="-1" id="complete-title">Percent Path cleared!</h2>
+      <section class="game-screen game-box" id="game-finished">
+        <!-- These squares celebrate once; they never cover or capture button clicks. -->
+        <p class="section-note">Percent Path / quest complete</p>
+        <h2 tabindex="-1" id="finish-title">Percent Path cleared!</h2>
         <p>You opened the temple gate and crossed the bridge. Both checkpoints are complete!</p>
-        <p class="level-reward"><strong>+100 XP earned this demo</strong></p>
+        <p class="game-reward"><strong>+100 XP earned this demo</strong></p>
         <p><strong>2 of 2 checkpoints complete this visit.</strong> This is demonstration completion, not a course grade
           or a measure of mastery.</p>
         <p>You matched percentages to fractions and compared the results of percentage calculations.</p>
@@ -201,31 +171,24 @@
     </div>
     </div>
 
-    <section class="demo-panel friends-panel" aria-labelledby="friends-title">
-      <p class="section-label">Your study circle</p>
-      <h2 id="friends-title">Friends leaderboard <span class="sample-label">Fictional sample</span></h2>
-      <p>These sample lifetime XP totals represent a fictional history on Quizzness. You start with 320 sample XP;
-        the two minigames can add 100 more this visit. All values reset on refresh or when you reset the demo.</p>
-      <p>Choose a friend's name to view their sample details.</p>
+    <section class="game-box friends-box">
+      <h2 id="friends-title">Friends leaderboard</h2>
+      <p>This is a fixed fictional example. Playing the games does not change these scores.</p>
       <table>
-        <caption>Ranked by sample lifetime XP</caption>
-        <thead><tr><th scope="col">Rank</th><th scope="col">Student</th><th scope="col">Lifetime XP (sample)</th></tr></thead>
+        <caption>Sample lifetime XP</caption>
+        <thead>
+          <tr><th scope="col">Rank</th><th scope="col">Student</th><th scope="col">XP</th></tr>
+        </thead>
         <tbody>
-          <tr id="leaderboard-place-1"><td>1</td><th scope="row"><button type="button" class="friend-button" id="leaderboard-name-1">Maya</button></th><td id="leaderboard-xp-1">400</td></tr>
-          <tr id="leaderboard-place-2"><td>2</td><th scope="row"><button type="button" class="friend-button" id="leaderboard-name-2">Jordan</button></th><td id="leaderboard-xp-2">350</td></tr>
-          <tr id="leaderboard-place-3" class="leaderboard-you"><td>3</td><th scope="row"><button type="button" class="friend-button" id="leaderboard-name-3">You</button></th><td id="leaderboard-xp-3">320</td></tr>
-          <tr id="leaderboard-place-4"><td>4</td><th scope="row"><button type="button" class="friend-button" id="leaderboard-name-4">Alex</button></th><td id="leaderboard-xp-4">280</td></tr>
+          <tr><td>1</td><th scope="row">Maya</th><td>400</td></tr>
+          <tr><td>2</td><th scope="row">Jordan</th><td>350</td></tr>
+          <tr><td>3</td><th scope="row">You</th><td>320</td></tr>
+          <tr><td>4</td><th scope="row">Alex</th><td>280</td></tr>
         </tbody>
       </table>
-      <p id="ranking-message" role="status">Your sample rank: 3 of 4.</p>
-      <div id="friend-details" class="friend-details">
-        <h3 id="friend-name">Friend details</h3>
-        <p id="friend-info" role="status">Choose a friend's name to see their fictional sample details.</p>
-        <button type="button" class="button button-secondary" id="close-friend">Clear friend details</button>
-      </div>
     </section>
 
-    <section class="demo-topics" id="experience">
+    <section class="game-topics" id="extra-topics">
       <h2>Beyond this sample</h2>
       <p>We would organise each course into small activities. These are our planned areas for Puzzle Temple:</p>
       <ol>
@@ -239,16 +202,16 @@
         coordinator would check the questions and explanations before students use them.</p>
       <p>Like Duolingo's repeated practice model, Quizzness uses short interactive challenges to reinforce learning.
         Unlike Quizlet, Quizzness connects weak topics directly to peer tutoring.</p>
-      <p class="demo-source">This prototype uses HTML, external CSS, and introductory JavaScript. It does not save
+      <p class="game-source">This prototype uses HTML, external CSS, and introductory JavaScript. It does not save
         progress, assess a whole course, or book tutoring sessions.</p>
     </section>
   
   </main>
-  <footer class="site-footer">
+  <footer class="footer">
     <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>
-  <script src="script.js"></script>
+  <script src="games.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,16 @@
 import { getMissionPreview } from "../data/missions";
+import { Link } from "react-router-dom";
+import { useStudent } from "../app/StudentProvider";
+import { useGameplay } from "../missions/GameplayProvider";
 
 // Everything a student should know about a mission before it can be played.
 export function MissionPreviewPanel({ missionId }: { missionId: string }) {
+  const { preview } = useStudent();
+  const { save } = useGameplay();
+  const base = preview ? "/preview" : "";
+  const locked =
+    missionId === "changing-values" &&
+    !save.completed.includes("variables-values-types");
   const mission = getMissionPreview(missionId);
   if (!mission) return <p>This mission’s details couldn’t be found.</p>;
   return (
@@ -15,15 +24,18 @@ export function MissionPreviewPanel({ missionId }: { missionId: string }) {
       <p>
         <strong>Objective:</strong> {mission.objective}
       </p>
-      {mission.prerequisite ? (
+      {locked && mission.prerequisite ? (
         <p>
           <strong>🔒 Locked.</strong> Finish “{mission.prerequisite.mission}”
           first, at {mission.prerequisite.location}.
         </p>
       ) : (
-        <button className="button" disabled>
-          Start mission · coming in a later update
-        </button>
+        <Link
+          className="button"
+          to={`${base}/missions/${missionId === "changing-values" ? "changing-values" : "campus-event"}`}
+        >
+          Start mission
+        </Link>
       )}
       <details>
         <summary>Story teaser (optional)</summary>

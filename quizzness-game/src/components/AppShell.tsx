@@ -1,6 +1,7 @@
 import { NavLink, Outlet, Link, useLocation } from "react-router-dom";
 import { useStudent } from "../app/StudentProvider";
 import { Avatar } from "./Avatar";
+import { GameplayProvider } from "../missions/GameplayProvider";
 export function AppShell() {
   const { profile, preview } = useStudent();
   const base = preview ? "/preview" : "";
@@ -46,9 +47,12 @@ export function AppShell() {
         </Link>
       </header>
       <main id="main" tabIndex={-1}>
-        <Outlet />
+        <GameplayProvider>
+          <Outlet />
+        </GameplayProvider>
       </main>
       <footer className="app-footer">
+        <Link to={`${base}/journal`}>Learning journal</Link>
         <span>Small steps. Bigger possibilities.</span>
         <span>Quizzness · made for curious minds</span>
       </footer>

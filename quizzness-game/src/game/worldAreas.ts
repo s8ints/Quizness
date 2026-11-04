@@ -3,24 +3,23 @@ import { campusArea } from "./campus";
 import { roomArea } from "./room";
 
 // The connected slice beyond campus: Logic District → COMP-101 lobby → Variables.
-// Walls and spots fit the temporary pictures; refit them when final art arrives.
-const FLOOR = { x: 0, y: 470, width: 1536, height: 530 };
+// Feet stay below the final art's back wall. All foreground paving is open.
+const FLOOR = { x: 0, y: 525, width: 1536, height: 475 };
 const scale = (y: number) =>
   1.75 + Math.max(0, Math.min(1, (y - FLOOR.y) / FLOOR.height)) * 0.7;
 const later = (id: string, label: string, x: number, message: string): Destination => ({
   id,
   label,
   x,
-  y: 500,
-  arrowY: 250,
-  pin: { x, y: 225 },
+  y: 535,
+  arrowY: 345,
+  pin: { x, y: 320 },
   dialog: { title: label, message },
 });
-const building = (x: number) => ({ x: x - 170, y: 440, width: 340, height: 50 });
 const art = (name: string) => ({
   art: `/brand/optimized/areas/${name}.webp`,
   thumb: `/brand/optimized/areas/${name}-thumb.webp`,
-  temporaryArt: true,
+  temporaryArt: false,
 });
 
 export const logicDistrictArea: Area = {
@@ -34,29 +33,34 @@ export const logicDistrictArea: Area = {
   // Far enough from the exit that arriving doesn't trigger it.
   spawn: { x: 768, y: 850 },
   entrances: {
-    "comp-101-lobby": { x: 430, y: 560 },
+    "comp-101-lobby": { x: 375, y: 600 },
   },
   speed: 260,
   depthSpeed: 0.75,
   reach: 110,
-  canStand: openFloor(FLOOR, [building(430), building(1106)], 30),
+  canStand: openFloor(FLOOR, [], 30),
   characterScale: scale,
   showPins: true,
   guides: [{ avatar: "glasses", x: 768, y: 640 }],
+  ambient: {
+    clouds: { mask: "/brand/masks/logic-district-sky.png", top: 15, bottom: 160, count: 3, scale: 0.8, speed: 6, alpha: 0.16 },
+    sway: { mask: "/brand/masks/logic-district-sway.png", furthest: 1.4 },
+    glows: [375, 1225].map(x => ({ x, y: 275, radius: 75, alpha: 0.08 })),
+  },
   destinations: [
     {
       id: "comp-101",
       label: "QZ-COMP 101 building",
-      x: 430,
-      y: 515,
+      x: 375,
+      y: 535,
       path: "/explore/comp-101-lobby",
-      arrowY: 250,
-      pin: { x: 430, y: 225 },
+      arrowY: 345,
+      pin: { x: 375, y: 320 },
     },
     later(
       "comp-102",
       "QZ-COMP 102 building",
-      1106,
+      1225,
       "Data Structures isn't open yet. For now, QZ-COMP 101 is the one playable course.",
     ),
     {
@@ -96,24 +100,29 @@ export const comp101LobbyArea: Area = {
   // Far enough from the exit that arriving doesn't trigger it.
   spawn: { x: 768, y: 850 },
   entrances: {
-    "variables-topic": { x: 300, y: 560 },
+    "variables-topic": { x: 265, y: 620 },
   },
   speed: 240,
   depthSpeed: 0.75,
   reach: 110,
-  canStand: openFloor(FLOOR, [building(300), building(768), building(1236)], 30),
+  canStand: openFloor(FLOOR, [], 30),
   characterScale: scale,
   showPins: true,
   panthy: { x: 1130, y: 700, width: 112, height: 107 },
+  ambient: {
+    sway: { mask: "/brand/masks/comp-101-lobby-sway.png", furthest: 1.1 },
+    glows: [430, 940].map(x => ({ x, y: 235, radius: 90, alpha: 0.13 })),
+    dust: { x: 100, y: 100, width: 1300, height: 650 },
+  },
   destinations: [
     {
       id: "variables",
       label: "Variables and values",
-      x: 300,
-      y: 515,
+      x: 265,
+      y: 535,
       path: "/explore/variables-topic",
-      arrowY: 250,
-      pin: { x: 300, y: 225 },
+      arrowY: 345,
+      pin: { x: 265, y: 320 },
     },
     later(
       "conditions",
@@ -124,7 +133,7 @@ export const comp101LobbyArea: Area = {
     later(
       "problem-solving",
       "Problem solving",
-      1236,
+      1270,
       "This topic isn't built yet. Variables and values comes first.",
     ),
     {
@@ -165,28 +174,32 @@ export const variablesTopicArea: Area = {
   speed: 240,
   depthSpeed: 0.75,
   reach: 110,
-  canStand: openFloor(FLOOR, [building(430), building(1106)], 30),
+  canStand: openFloor(FLOOR, [], 30),
   characterScale: scale,
   showPins: true,
   guides: [{ avatar: "books", x: 768, y: 620 }],
+  ambient: {
+    sway: { mask: "/brand/masks/variables-topic-sway.png", furthest: 1.3 },
+    glows: [485, 1050].map(x => ({ x, y: 230, radius: 80, alpha: 0.13 })),
+  },
   missionPath: ["variables-values-types", "changing-values"],
   destinations: [
     {
       id: "mission-1",
       label: "Mission: Variables",
-      x: 430,
-      y: 515,
-      arrowY: 250,
-      pin: { x: 430, y: 225 },
+      x: 265,
+      y: 535,
+      arrowY: 325,
+      pin: { x: 265, y: 300 },
       dialog: { title: "Mission preview", missionId: "variables-values-types" },
     },
     {
       id: "mission-2",
       label: "Locked: Changing values",
-      x: 1106,
-      y: 515,
-      arrowY: 250,
-      pin: { x: 1106, y: 225 },
+      x: 1270,
+      y: 535,
+      arrowY: 325,
+      pin: { x: 1270, y: 300 },
       dialog: { title: "Locked mission", missionId: "changing-values" },
     },
     {
