@@ -23,7 +23,7 @@
       </ul>
     </nav>
   </header>
-  <main id="main" tabindex="-1" class="tutoring-page">
+  <main id="main" class="tutoring-page">
 
     <h1>Peer tutoring</h1>
 
@@ -102,14 +102,14 @@
       <h2 id="tutor-form-title">Become a peer tutor</h2>
       <p>Share what you know and support other students. Approved tutoring sessions could count toward your
         school's GiveBack hours, subject to school approval and programme rules.</p>
-      <p id="form-note" class="demo-note">This is an unvalidated prototype application preview. You can try the form, but
-        your details and files will not be uploaded, sent, or saved. Use sample details and documents.</p>
+      <p id="form-note" class="demo-note">This is an unvalidated prototype application preview. A real application would
+        require a name, CV and two recommendation letters. Nothing entered here is uploaded, sent or saved. Use sample details and documents.</p>
 
       <form id="tutor-form" aria-describedby="form-note" onsubmit="return false;">
         <fieldset>
           <legend>Your details</legend>
-          <label for="tutor-name">Full name (required)</label>
-          <input type="text" id="tutor-name" name="full-name" autocomplete="name" required maxlength="120">
+          <label for="tutor-name">Full name</label>
+          <input type="text" id="tutor-name" name="full-name" autocomplete="name" maxlength="120">
         </fieldset>
 
         <fieldset aria-describedby="subject-help">
@@ -136,17 +136,17 @@
           <p id="file-help">Choose a CV and at least two recommendation letters from teachers,
             lecturers, or other people who can recommend you as a tutor. Accepted file types: PDF, DOC, or DOCX.</p>
           <div class="form-field">
-            <label for="cv-file">CV (required)</label>
-            <input type="file" id="cv-file" name="cv" accept=".pdf,.doc,.docx" required aria-describedby="file-help">
+            <label for="cv-file">CV</label>
+            <input type="file" id="cv-file" name="cv" accept=".pdf,.doc,.docx" aria-describedby="file-help">
           </div>
           <div class="form-field">
-            <label for="letter1">Recommendation letter 1 (required)</label>
-            <input type="file" id="letter1" name="recommendation-1" accept=".pdf,.doc,.docx" required
+            <label for="letter1">Recommendation letter 1</label>
+            <input type="file" id="letter1" name="recommendation-1" accept=".pdf,.doc,.docx"
               aria-describedby="file-help">
           </div>
           <div class="form-field">
-            <label for="letter2">Recommendation letter 2 (required)</label>
-            <input type="file" id="letter2" name="recommendation-2" accept=".pdf,.doc,.docx" required
+            <label for="letter2">Recommendation letter 2</label>
+            <input type="file" id="letter2" name="recommendation-2" accept=".pdf,.doc,.docx"
               aria-describedby="file-help">
           </div>
           <div class="form-field">
