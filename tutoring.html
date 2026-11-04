@@ -10,7 +10,7 @@
 
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header">
+  <header class="header">
     <p class="brand"><a href="index.html"><img src="images/quizzness-logo.webp" alt="" width="64"
           height="64"> QUIZZNESS</a></p>
     <nav aria-label="Main navigation">
@@ -36,11 +36,11 @@
       <p>(Barringer &amp; Ireland, 2019, Ch. 3, p. 109)</p>
     </blockquote>
 
-    <p class="prototype-note">All tutors, requests, sessions, and wallet records on this page are fictional prototype
+    <p class="demo-note">All tutors, requests, sessions, and wallet records on this page are fictional prototype
       examples. No personal information is collected and no booking is made.</p>
     <p>Want to help other students? <a href="#become-tutor">Apply to become a peer tutor</a> and work toward
       school GiveBack hours.</p>
-    <div class="demo-guide">
+    <div class="game-help">
       <img src="mascot/tiger-pixel.svg" alt="Panthy, the purple learning companion holding a study card." width="88" height="84">
       <p><strong>Panthy's tip:</strong> Pick the topic you need help with, then review your sample request before
         confirming the demonstration.</p>
@@ -64,10 +64,10 @@
 
       <!-- Buttons are not form submissions. No name, email, or student ID is requested. -->
       <div id="request-options" class="request-options">
-        <h3 id="request-options-title" tabindex="-1">1. Choose a sample session</h3>
+        <h3 id="options-title" tabindex="-1">1. Choose a sample session</h3>
         <fieldset>
           <legend>Illustrative request options</legend>
-          <div class="request-fields">
+          <div class="request-inputs">
             <div>
               <label for="request-topic">Topic (required)</label>
               <select id="request-topic" required aria-describedby="request-message">
@@ -91,13 +91,13 @@
         <p id="request-message" role="status" tabindex="-1">Choose a topic and session, then review the example.</p>
         <button type="button" class="button" id="review-request" disabled>Review sample request</button>
         <noscript>
-          <p class="prototype-note">Enable JavaScript and reload to try the request demonstration. You can still
+          <p class="demo-note">Enable JavaScript and reload to try the request demonstration. You can still
             read the tutor information, session process, and illustrative wallet below.</p>
         </noscript>
       </div>
 
       <div id="request-summary" class="request-summary">
-        <h3 id="request-summary-title" tabindex="-1">2. Review your example request</h3>
+        <h3 id="summary-title" tabindex="-1">2. Review your example request</h3>
         <p><strong>Prototype preview:</strong> this is not a booking or an accepted appointment.</p>
         <dl>
           <dt>Fictional tutor</dt>
@@ -112,34 +112,34 @@
           <dd id="summary-time"></dd>
         </dl>
         <p>These sample time preferences do not represent real availability. No request has been sent or saved.</p>
-        <div class="request-actions">
+        <div class="request-buttons">
           <button type="button" class="button" id="confirm-request">Confirm demonstration only</button>
-          <button type="button" class="button button-secondary" id="change-request">Change selection</button>
+          <button type="button" class="button button-light" id="change-request">Change selection</button>
         </div>
       </div>
 
-      <div id="request-confirmation" class="request-confirmation">
-        <h3 id="request-confirmation-title" tabindex="-1">3. Demonstration complete</h3>
+      <div id="request-result" class="request-result">
+        <h3 id="result-title" tabindex="-1">3. Demonstration complete</h3>
         <p><strong>Your example request has not been sent or saved.</strong> No tutor was contacted, no appointment
           exists, and no tutoring time has been added to the GiveBack Wallet.</p>
         <p>In the proposed service, a tutor would review a request before agreeing to a session. The wallet below is
           a separate fictional completed-session example.</p>
         <p><a href="#wallet">Explore the illustrative GiveBack Wallet</a> or
           <a href="experience.html#prototype">return to the sample learning experience</a>.</p>
-        <button type="button" class="button button-secondary" id="another-request">Start another demonstration</button>
+        <button type="button" class="button button-light" id="another-request">Start another demonstration</button>
       </div>
       <p><a href="experience.html#prototype">Back to the learning experience</a></p>
     </section>
 
-    <section id="become-tutor" class="tutor-panel" aria-labelledby="tutor-application-title">
+    <section id="become-tutor" class="tutor-panel" aria-labelledby="tutor-form-title">
       <p class="eyebrow">Help others / GiveBack programme</p>
-      <h2 id="tutor-application-title">Become a peer tutor</h2>
+      <h2 id="tutor-form-title">Become a peer tutor</h2>
       <p>Share what you know and support other students. Approved tutoring sessions could count toward your
         school's GiveBack hours, subject to school approval and programme rules.</p>
-      <p id="application-note" class="prototype-note">This is a prototype application. You can try the form, but
+      <p id="form-note" class="demo-note">This is a prototype application. You can try the form, but
         your details and files will not be uploaded, sent, or saved. Use sample details and documents.</p>
 
-      <form id="tutor-application" aria-describedby="application-note">
+      <form id="tutor-application" aria-describedby="form-note">
         <fieldset>
           <legend>Your details</legend>
           <label for="tutor-name">Full name (required)</label>
@@ -149,7 +149,7 @@
         <fieldset aria-describedby="tutor-subjects-help">
           <legend>Preferred subjects</legend>
           <p id="tutor-subjects-help">Select all the subjects you feel comfortable tutoring.</p>
-          <div class="request-fields subject-options">
+          <div class="request-inputs subject-options">
             <label for="subject-mathematics"><input type="checkbox" id="subject-mathematics"
                 name="subjects" value="mathematics"> Mathematics</label>
             <label for="subject-programming"><input type="checkbox" id="subject-programming"
@@ -167,43 +167,43 @@
 
         <fieldset>
           <legend>CV and recommendations</legend>
-          <p id="application-files-help">Choose a CV and at least two recommendation letters from teachers,
+          <p id="file-help">Choose a CV and at least two recommendation letters from teachers,
             lecturers, or other people who can recommend you as a tutor. Accepted file types: PDF, DOC, or DOCX.</p>
-          <div class="application-field">
+          <div class="form-field">
             <label for="tutor-cv">CV (required)</label>
             <input type="file" id="tutor-cv" name="cv" accept=".pdf,.doc,.docx" required
-              aria-describedby="application-files-help">
+              aria-describedby="file-help">
           </div>
-          <div class="application-field">
+          <div class="form-field">
             <label for="tutor-recommendation-1">Recommendation letter 1 (required)</label>
             <input type="file" id="tutor-recommendation-1" name="recommendation-1" accept=".pdf,.doc,.docx" required
-              aria-describedby="application-files-help">
+              aria-describedby="file-help">
           </div>
-          <div class="application-field">
+          <div class="form-field">
             <label for="tutor-recommendation-2">Recommendation letter 2 (required)</label>
             <input type="file" id="tutor-recommendation-2" name="recommendation-2" accept=".pdf,.doc,.docx" required
-              aria-describedby="application-files-help">
+              aria-describedby="file-help">
           </div>
-          <div class="application-field">
+          <div class="form-field">
             <label for="tutor-recommendation-3">Recommendation letter 3 (optional)</label>
             <input type="file" id="tutor-recommendation-3" name="recommendation-3" accept=".pdf,.doc,.docx"
-              aria-describedby="application-files-help">
+              aria-describedby="file-help">
           </div>
         </fieldset>
 
-        <button type="submit" class="button" id="preview-application" disabled>Submit demonstration only</button>
-        <noscript><p class="prototype-note">Enable JavaScript and reload to try the application demonstration. This prototype
+        <button type="submit" class="button" id="submit-application" disabled>Submit demonstration only</button>
+        <noscript><p class="demo-note">Enable JavaScript and reload to try the application demonstration. This prototype
           does not send applications.</p></noscript>
       </form>
 
-      <div id="application-confirmation" class="request-confirmation">
-        <h3 id="application-confirmation-title" tabindex="-1">Application demonstration complete</h3>
+      <div id="form-result" class="request-result">
+        <h3 id="form-result-title" tabindex="-1">Application demonstration complete</h3>
         <p><strong>Your application has not been sent or saved.</strong> Your name, subject choices, CV, and
           recommendation letters stay in this demonstration. No tutor application has been created and no
           GiveBack hours have been added.</p>
         <p>In the proposed programme, a coordinator would review your application before you could tutor and
           earn approved GiveBack hours.</p>
-        <button type="button" class="button button-secondary" id="reset-application">Reset application demo</button>
+        <button type="button" class="button button-light" id="reset-application">Reset application demo</button>
       </div>
     </section>
 
@@ -256,7 +256,7 @@
           partner.</strong></p>
     </section>
   </main>
-  <footer class="site-footer">
+  <footer class="footer">
     <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>

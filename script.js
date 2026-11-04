@@ -1,123 +1,93 @@
-/* HOW TO READ THIS FILE
-   1. initializeLearning runs the two minigames and friends leaderboard.
-   2. initializeTutoring runs the sample tutor booking.
-   3. initializeTutorApplication runs the application form.
-   The checks at the bottom start only the code needed by the current page.
+// Chapter 22: create a text node, remove old children, and append the new text.
+function changeText(element, value) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+  element.appendChild(document.createTextNode(value));
+}
 
-   getElementById finds an HTML element using its id.
-   textContent changes the words inside an element.
-   disabled = true stops a button being used; false enables it.
-   focus() moves the keyboard cursor to a button or heading.
-   addEventListener connects a button click to a function.
-   Array positions start at 0: position 0 is the first item, 1 is the second.
-   === means "is equal to"; !== means "is not equal to".
-   || means "or". return stops the current function and waits for another action.
-*/
-// Set up the two minigames, their progress, and the sample friends list.
-function initializeLearning() {
+// Chapter 21 loops and arrays; Chapter 22 className controls the CSS classes.
+function changeClass(element, name, enabled) {
+  var classes = element.className.split(" ");
+  var result = "";
+  for (var i = 0; i < classes.length; i++) {
+    if (classes[i] !== "" && classes[i] !== name) {
+      if (result !== "") { result = result + " "; }
+      result = result + classes[i];
+    }
+  }
+  if (enabled) {
+    if (result !== "") { result = result + " "; }
+    result = result + name;
+  }
+  element.className = result;
+}
+
+
+function startGames() {
   // Learning content stays separate from the functions that run the games.
   var percentages = [20, 25, 50];
   var fractions = ["1/2", "1/5", "1/4"];
   // Each number below belongs to the fraction in the same array position.
-  // For example, fractions[0] is 1/2, so fractionPercentages[0] is 50.
-  var fractionPercentages = [50, 20, 25];
-  var matchExplanations = [
+  // For example, fractions[0] is 1/2, so fractionAnswers[0] is 50.
+  var fractionAnswers = [50, 20, 25];
+  var answerHelp = [
     "20% means 20 out of 100. Dividing both by 20 gives 1/5.",
     "25% means 25 out of 100. Dividing both by 25 gives 1/4.",
     "50% means 50 out of 100, which is one half: 1/2."
   ];
   var stones = ["25% of BBD 80", "10% of BBD 60", "20% of BBD 50"];
-  var correctStoneIndexes = [1, 2, 0]; // Results: BBD 6, BBD 10, BBD 20.
-  var sampleLifetimeXP = 320; // Your fictional XP before playing this demo.
+  var correctOrder = [1, 2, 0]; // Results: BBD 6, BBD 10, BBD 20.
+  var totalXP = 320; // Your fictional XP before playing this demo.
 
   // All progress exists only until refresh or reset. Nothing is saved or sent.
-  var activeScreen = "course-screen";
-  var selectedPercentageIndex = -1; // -1 means no percentage has been chosen.
-  var matchedPairs = 0;
-  var matchingComplete = false;
-  var orderingComplete = false;
-  var chosenStoneIndexes = []; // Stores stone positions in the order you click them.
-  var lastFriendButtonId = "";
-  var screens = document.getElementsByClassName("demo-screen");
-  var percentButtons = document.getElementsByClassName("percent-tile");
-  var fractionButtons = document.getElementsByClassName("fraction-tile");
-  var orderButtons = document.getElementsByClassName("order-tile");
-  var matchingFeedback = document.getElementById("matching-feedback");
-  var orderingFeedback = document.getElementById("ordering-feedback");
+  var currentScreen = "course-screen";
+  var chosenPercent = -1; // -1 means no percentage has been chosen.
+  var matches = 0;
+  var matchingDone = false;
+  var orderingDone = false;
+  var chosenStones = []; // Stores stone positions in the order you click them.
+  var friendButton = "";
+  var screens = document.getElementsByClassName("game-screen");
+  var percentBtns = document.getElementsByClassName("percent-tile");
+  var fractionBtns = document.getElementsByClassName("fraction-tile");
+  var stoneBtns = document.getElementsByClassName("order-tile");
+  var matchMessage = document.getElementById("match-message");
+  var orderMessage = document.getElementById("order-message");
   var tip = document.getElementById("panthy-tip");
-  var nextGame = document.getElementById("next-game");
-  var checkOrderButton = document.getElementById("check-order");
-  var clearOrderButton = document.getElementById("clear-order");
-  var finishButton = document.getElementById("finish-level");
-
-  // CSS handles the movement; JavaScript only adds a class when something happens.
-  // Removing the class when it finishes lets the same effect play on a later click.
-  function playEffect(element, effectName) {
-    element.classList.remove(effectName);
-    // Reading offsetWidth asks the browser to apply the removal before adding it again.
-    // This restarts the animation even when the player clicks the same tile quickly.
-    void element.offsetWidth;
-    element.classList.add(effectName);
-  }
-
-  // Listen once on the game area rather than adding a new listener on every click.
-  document.getElementById("main").addEventListener("animationend", function (event) {
-    if (event.animationName === "checkpoint-enter") {
-      event.target.classList.remove("screen-enter");
-    } else if (event.animationName === "rune-bounce") {
-      event.target.classList.remove("rune-success");
-    } else if (event.animationName === "game-shake") {
-      event.target.classList.remove("answer-shake");
-    } else if (event.animationName === "panthy-hop") {
-      event.target.classList.remove("panthy-celebrate");
-    } else if (event.animationName === "reward-rise") {
-      event.target.remove();
-    }
-  });
-
-  // XP is still calculated by updateProgress. This label is only a visual reward.
-  function celebrateCheckpoint(screenId) {
-    // Text feedback already announces the XP, so reduced motion needs no floating label.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-    var reward = document.createElement("span");
-    reward.className = "floating-xp";
-    reward.textContent = "+50 XP";
-    reward.setAttribute("aria-hidden", "true");
-    document.getElementById(screenId).appendChild(reward);
-    playEffect(document.getElementById("game-panthy"), "panthy-celebrate");
-  }
+  var nextButton = document.getElementById("next-game");
+  var checkButton = document.getElementById("check-order");
+  var clearButton = document.getElementById("clear-order");
+  var doneButton = document.getElementById("finish-level");
 
   // Show one plank per chosen stone. A full bridge is only green after checking it.
   function updateBridge() {
     var planks = document.getElementsByClassName("bridge-plank");
     for (var i = 0; i < planks.length; i++) {
-      planks[i].classList.toggle("plank-placed", i < chosenStoneIndexes.length);
+      changeClass(planks[i], "plank-placed", i < chosenStones.length);
     }
-    document.getElementById("bridge-scene").classList.toggle("bridge-complete", orderingComplete);
+    changeClass(document.getElementById("bridge-scene"), "bridge-complete", orderingDone);
   }
 
   // Hide the other learning sections, show the requested section, and update Panthy's tip.
-  function showScreen(screenId, stage, instruction) {
+  function showScreen(screenName, stage, instruction) {
     for (var i = 0; i < screens.length; i++) {
       screens[i].style.display = "none";
     }
-    var screen = document.getElementById(screenId);
+    var screen = document.getElementById(screenName);
     screen.style.display = "block";
-    playEffect(screen, "screen-enter");
-    activeScreen = screenId;
-    document.getElementById("visit-stage").textContent = "Current step: " + stage;
-    tip.textContent = instruction;
+    currentScreen = screenName;
+    changeText(document.getElementById("game-step"), "Current step: " + stage);
+    changeText(tip, instruction);
     screen.getElementsByTagName("h2")[0].focus();
   }
 
   // Show one friend's sample information and remember which button opened it.
-  function showFriend(friendName, friendXP, subject, buttonId) {
-    lastFriendButtonId = buttonId;
-    document.getElementById("friend-name").textContent = friendName + " (fictional friend)";
-    document.getElementById("friend-info").textContent = "Sample lifetime XP: " + friendXP +
-      ". Preferred subject: " + subject + ".";
+  function showFriend(friendName, friendPoints, subject, buttonId) {
+    friendButton = buttonId;
+    changeText(document.getElementById("friend-name"), friendName + " (fictional friend)");
+    changeText(document.getElementById("friend-info"), "Sample lifetime XP: " + friendPoints +
+      ". Preferred subject: " + subject + ".");
     document.getElementById("friend-details").hidden = false;
     document.getElementById("friend-name").focus();
   }
@@ -125,117 +95,112 @@ function initializeLearning() {
   // Close the details and return keyboard focus to the same friend's button.
   function closeFriend() {
     document.getElementById("friend-details").hidden = true;
-    if (lastFriendButtonId !== "") {
-      document.getElementById(lastFriendButtonId).focus();
+    if (friendButton !== "") {
+      document.getElementById(friendButton).focus();
     }
   }
 
   // Move the four existing HTML rows into the right order for your sample XP.
   // Friends' XP stays fixed: Maya has 400, Jordan has 350, and Alex has 280.
   // Only your total changes: 320 at the start, 370 after one game, 420 after both.
-  function updateLeaderboard() {
-    var rowOrder = ["maya-row", "jordan-row", "your-row", "alex-row"];
+  function updateRanks() {
+    var friendOrder = ["maya-row", "jordan-row", "your-row", "alex-row"];
 
-    if (sampleLifetimeXP > 400) {
-      rowOrder = ["your-row", "maya-row", "jordan-row", "alex-row"];
-    } else if (sampleLifetimeXP > 350) {
-      rowOrder = ["maya-row", "your-row", "jordan-row", "alex-row"];
+    if (totalXP > 400) {
+      friendOrder = ["your-row", "maya-row", "jordan-row", "alex-row"];
+    } else if (totalXP > 350) {
+      friendOrder = ["maya-row", "your-row", "jordan-row", "alex-row"];
     }
 
-    document.getElementById("your-xp").textContent = sampleLifetimeXP;
-    var leaderboard = document.getElementById("leaderboard-body");
+    changeText(document.getElementById("your-xp"), totalXP);
+    var leaderboard = document.getElementById("rank-list");
 
-    for (var i = 0; i < rowOrder.length; i++) {
-      var row = document.getElementById(rowOrder[i]);
+    for (var i = 0; i < friendOrder.length; i++) {
+      var row = document.getElementById(friendOrder[i]);
       var rank = i + 1;
-      row.cells[0].textContent = rank; // The first table cell shows the rank.
+      changeText(row.cells[0], rank);
       leaderboard.appendChild(row); // Moves this existing row to the bottom.
-      if (rowOrder[i] === "your-row") {
-        document.getElementById("ranking-message").textContent = "Your sample rank: " + rank + " of 4.";
+      if (friendOrder[i] === "your-row") {
+        changeText(document.getElementById("ranking-message"), "Your sample rank: " + rank + " of 4.");
       }
     }
   }
 
-  // Count completed games, calculate demo XP, and update the leaderboard.
-  function updateProgress() {
-    var completed = 0;
-    if (matchingComplete) {
-      completed = completed + 1;
+  // Count gamesDone games, calculate demo XP, and update the leaderboard.
+  function updateScore() {
+    var gamesDone = 0;
+    if (matchingDone) {
+      gamesDone = gamesDone + 1;
     }
-    if (orderingComplete) {
-      completed = completed + 1;
+    if (orderingDone) {
+      gamesDone = gamesDone + 1;
     }
-    // Recalculate XP from completed games instead of adding it after every click.
-    // This prevents the same completed game from giving XP twice.
-    var earnedXP = completed * 50;
-    sampleLifetimeXP = 320 + earnedXP;
-    document.getElementById("visit-progress").textContent = completed + " of 2 checkpoints complete this visit.";
-    document.getElementById("demo-xp").textContent = earnedXP + " XP earned this demo.";
-    updateLeaderboard();
+    // Recalculate XP from gamesDone games instead of adding it after every click.
+    // This prevents the same gamesDone game from giving XP twice.
+    var gameXP = gamesDone * 50;
+    totalXP = 320 + gameXP;
+    changeText(document.getElementById("game-progress"), gamesDone + " of 2 checkpoints complete this visit.");
+    changeText(document.getElementById("demo-xp"), gameXP + " XP earned this demo.");
+    updateRanks();
   }
 
   // Remember which percentage was clicked and highlight just that button.
-  function choosePercentage(index) {
-    if (activeScreen !== "matching-screen" || percentButtons[index].disabled) {
+  function pickPercent(index) {
+    if (currentScreen !== "matching-screen" || percentBtns[index].disabled) {
       return;
     }
-    selectedPercentageIndex = index;
-    for (var i = 0; i < percentButtons.length; i++) {
-      percentButtons[i].setAttribute("aria-pressed", "false");
+    chosenPercent = index;
+    for (var i = 0; i < percentBtns.length; i++) {
+      percentBtns[i].setAttribute("aria-pressed", "false");
     }
     // Mark the chosen button so its selected style and screen reader state agree.
-    percentButtons[index].setAttribute("aria-pressed", "true");
-    matchingFeedback.textContent = percentages[index] + "% selected. Now choose its fraction.";
+    percentBtns[index].setAttribute("aria-pressed", "true");
+    changeText(matchMessage, percentages[index] + "% selected. Now choose its fraction.");
   }
 
   // Check the chosen percentage against a fraction; explain mistakes or mark a correct pair.
-  function chooseFraction(index) {
-    if (activeScreen !== "matching-screen" || fractionButtons[index].disabled || matchingComplete) {
+  function pickFraction(index) {
+    if (currentScreen !== "matching-screen" || fractionBtns[index].disabled || matchingDone) {
       return;
     }
-    if (selectedPercentageIndex === -1) {
-      matchingFeedback.textContent = "Choose a percentage first, then its matching fraction.";
+    if (chosenPercent === -1) {
+      changeText(matchMessage, "Choose a percentage first, then its matching fraction.");
       return;
     }
-    var selected = selectedPercentageIndex;
-    percentButtons[selected].setAttribute("aria-pressed", "false");
-    selectedPercentageIndex = -1;
-    if (percentages[selected] !== fractionPercentages[index]) {
-      playEffect(percentButtons[selected], "answer-shake");
-      playEffect(fractionButtons[index], "answer-shake");
-      matchingFeedback.textContent = "Try again. " + matchExplanations[selected];
-      tip.textContent = "A percentage is a fraction out of 100. Simplify it, then choose another pair.";
-      percentButtons[selected].focus();
+    var selected = chosenPercent;
+    percentBtns[selected].setAttribute("aria-pressed", "false");
+    chosenPercent = -1;
+    if (percentages[selected] !== fractionAnswers[index]) {
+      changeText(matchMessage, "Try again. " + answerHelp[selected]);
+      changeText(tip, "A percentage is a fraction out of 100. Simplify it, then choose another pair.");
+      percentBtns[selected].focus();
       return;
     }
-    percentButtons[selected].disabled = true;
-    fractionButtons[index].disabled = true;
-    // Keep the green matched style after the short bounce has finished.
-    percentButtons[selected].classList.add("rune-matched");
-    fractionButtons[index].classList.add("rune-matched");
-    playEffect(percentButtons[selected], "rune-success");
-    playEffect(fractionButtons[index], "rune-success");
-    percentButtons[selected].textContent = percentages[selected] + "% - Matched";
-    fractionButtons[index].textContent = fractions[index] + " - Matched";
-    matchedPairs = matchedPairs + 1;
-    matchingFeedback.textContent = "Correct! " + matchExplanations[selected] + " " + matchedPairs + " of 3 pairs matched.";
-    tip.textContent = "Good match! Find the remaining pairs to open the temple gate.";
-    if (matchedPairs === 3) {
-      matchingComplete = true;
-      nextGame.disabled = false;
-      document.getElementById("checkpoint-match").textContent = "Complete";
-      document.getElementById("checkpoint-order").textContent = "Current";
-      tip.textContent = "Gate open! You earned 50 demo XP. Continue to build the bridge.";
-      updateProgress();
-      document.getElementById("temple-gate").classList.add("gate-open");
-      document.getElementById("gate-caption").textContent = "Gate open! Continue your adventure";
-      celebrateCheckpoint("matching-screen");
-      nextGame.focus();
+    percentBtns[selected].disabled = true;
+    fractionBtns[index].disabled = true;
+    // Keep the green style on each matched pair.
+    changeClass(percentBtns[selected], "rune-matched", true);
+    changeClass(fractionBtns[index], "rune-matched", true);
+    changeText(percentBtns[selected], percentages[selected] + "% - Matched");
+    changeText(fractionBtns[index], fractions[index] + " - Matched");
+    matches = matches + 1;
+    changeText(matchMessage, "Correct! " + answerHelp[selected] + " " + matches + " of 3 pairs matched.");
+    changeText(tip, "Good match! Find the remaining pairs to open the temple gate.");
+    if (matches === 3) {
+      matchingDone = true;
+      nextButton.disabled = false;
+      changeText(document.getElementById("checkpoint-match"), "Complete");
+      changeText(document.getElementById("checkpoint-order"), "Current");
+      changeText(tip, "Gate open! You earned 50 demo XP. Continue to build the bridge.");
+      updateScore();
+      changeClass(document.getElementById("temple-gate"), "gate-open", true);
+      changeText(document.getElementById("gate-caption"), "Gate open! Continue your adventure");
+      nextButton.focus();
     } else {
       // Keep keyboard focus on an available percentage after a pair is removed.
-      for (var i = 0; i < percentButtons.length; i++) {
-        if (percentButtons[i].disabled === false) {
-          percentButtons[i].focus();
+      for (var i = 0; i < percentBtns.length; i++) {
+        if (percentBtns[i].disabled === false) {
+          percentBtns[i].focus();
           break;
         }
       }
@@ -243,28 +208,28 @@ function initializeLearning() {
   }
 
   // Add the clicked calculation to the bridge and prevent selecting the same stone twice.
-  function chooseStone(index) {
-    if (activeScreen !== "ordering-screen" || orderingComplete || orderButtons[index].disabled) {
+  function pickStone(index) {
+    if (currentScreen !== "ordering-screen" || orderingDone || stoneBtns[index].disabled) {
       return;
     }
-    chosenStoneIndexes.push(index); // Add this stone's position to the end of the array.
-    orderButtons[index].disabled = true;
+    chosenStones.push(index); // Add this stone's position to the end of the array.
+    stoneBtns[index].disabled = true;
     var stone = document.createElement("li"); // Make a new numbered-list item.
-    stone.textContent = stones[index];
-    document.getElementById("chosen-order").appendChild(stone); // Add it to the visible bridge.
+    changeText(stone, stones[index]);
+    document.getElementById("stone-order").appendChild(stone); // Add it to the visible bridge.
     updateBridge();
-    orderingFeedback.textContent = chosenStoneIndexes.length + " of 3 stones placed. Use Clear order to start again.";
-    if (chosenStoneIndexes.length === 3) {
-      checkOrderButton.disabled = false;
+    changeText(orderMessage, chosenStones.length + " of 3 stones placed. Use Clear order to start again.");
+    if (chosenStones.length === 3) {
+      checkButton.disabled = false;
     } else {
-      checkOrderButton.disabled = true;
+      checkButton.disabled = true;
     }
-    if (chosenStoneIndexes.length === 3) {
-      checkOrderButton.focus();
+    if (chosenStones.length === 3) {
+      checkButton.focus();
     } else {
-      for (var i = 0; i < orderButtons.length; i++) {
-        if (orderButtons[i].disabled === false) {
-          orderButtons[i].focus();
+      for (var i = 0; i < stoneBtns.length; i++) {
+        if (stoneBtns[i].disabled === false) {
+          stoneBtns[i].focus();
           break;
         }
       }
@@ -273,81 +238,73 @@ function initializeLearning() {
 
   // Empty the bridge list and make all three stones available again.
   function clearOrder() {
-    chosenStoneIndexes = [];
-    document.getElementById("chosen-order").textContent = "";
+    chosenStones = [];
+    changeText(document.getElementById("stone-order"), "");
     updateBridge();
-    for (var i = 0; i < orderButtons.length; i++) {
-      orderButtons[i].disabled = false;
+    for (var i = 0; i < stoneBtns.length; i++) {
+      stoneBtns[i].disabled = false;
     }
-    checkOrderButton.disabled = true;
-    orderingFeedback.textContent = "Choose the stone with the smallest result first.";
+    checkButton.disabled = true;
+    changeText(orderMessage, "Choose the stone with the smallest result first.");
   }
 
   // Compare the three selected stone positions with the answer and award completion once.
   function checkOrder() {
-    if (activeScreen !== "ordering-screen" || orderingComplete || chosenStoneIndexes.length !== 3) {
+    if (currentScreen !== "ordering-screen" || orderingDone || chosenStones.length !== 3) {
       return;
     }
-    for (var i = 0; i < correctStoneIndexes.length; i++) {
-      if (chosenStoneIndexes[i] !== correctStoneIndexes[i]) {
-        playEffect(document.getElementById("chosen-order"), "answer-shake");
-        orderingFeedback.textContent = "Try again. 10% of BBD 60 is BBD 6; 20% of BBD 50 is BBD 10; 25% of BBD 80 is BBD 20. Clear your order and compare these results.";
-        tip.textContent = "Compare the calculated amounts, not just the percentages. Clear the stones to try again.";
+    for (var i = 0; i < correctOrder.length; i++) {
+      if (chosenStones[i] !== correctOrder[i]) {
+        changeText(orderMessage, "Try again. 10% of BBD 60 is BBD 6; 20% of BBD 50 is BBD 10; 25% of BBD 80 is BBD 20. Clear your order and compare these results.");
+        changeText(tip, "Compare the calculated amounts, not just the percentages. Clear the stones to try again.");
         return;
       }
     }
-    orderingComplete = true;
+    orderingDone = true;
     updateBridge();
-    celebrateCheckpoint("ordering-screen");
-    checkOrderButton.disabled = true;
-    clearOrderButton.disabled = true;
-    finishButton.disabled = false;
-    orderingFeedback.textContent = "Bridge complete! BBD 6 < BBD 10 < BBD 20. You earned another 50 demo XP.";
-    document.getElementById("checkpoint-order").textContent = "Complete";
-    tip.textContent = "You crossed the bridge! Both checkpoints are complete. View your level results.";
-    updateProgress();
-    finishButton.focus();
+    checkButton.disabled = true;
+    clearButton.disabled = true;
+    doneButton.disabled = false;
+    changeText(orderMessage, "Bridge complete! BBD 6 < BBD 10 < BBD 20. You earned another 50 demo XP.");
+    changeText(document.getElementById("checkpoint-order"), "Complete");
+    changeText(tip, "You crossed the bridge! Both checkpoints are complete. View your level results.");
+    updateScore();
+    doneButton.focus();
   }
 
   // Clear both games, feedback, XP, and friend details, then return to course selection.
   function resetDemo() {
-    selectedPercentageIndex = -1;
-    matchedPairs = 0;
-    matchingComplete = false;
-    orderingComplete = false;
+    chosenPercent = -1;
+    matches = 0;
+    matchingDone = false;
+    orderingDone = false;
     // Reset visual states along with the scores, so a new adventure starts fresh.
-    document.getElementById("temple-gate").classList.remove("gate-open");
-    document.getElementById("gate-caption").textContent = "Match the runes to open the gate";
-    document.getElementById("game-panthy").classList.remove("panthy-celebrate");
-    var oldRewards = document.querySelectorAll(".experience-page .floating-xp");
-    for (var rewardIndex = 0; rewardIndex < oldRewards.length; rewardIndex++) {
-      oldRewards[rewardIndex].remove();
-    }
-    var shakingElements = document.querySelectorAll(".experience-page .answer-shake");
-    for (var shakeIndex = 0; shakeIndex < shakingElements.length; shakeIndex++) {
-      shakingElements[shakeIndex].classList.remove("answer-shake");
-    }
-    for (var i = 0; i < percentButtons.length; i++) {
-      percentButtons[i].disabled = false;
-      percentButtons[i].textContent = percentages[i] + "%";
-      percentButtons[i].setAttribute("aria-pressed", "false");
-      fractionButtons[i].disabled = false;
-      fractionButtons[i].textContent = fractions[i];
-      percentButtons[i].classList.remove("rune-matched", "rune-success");
-      fractionButtons[i].classList.remove("rune-matched", "rune-success");
+    changeClass(document.getElementById("temple-gate"), "gate-open", false);
+    changeText(document.getElementById("gate-caption"), "Match the runes to open the gate");
+    changeClass(document.getElementById("game-panthy"), "panthy-celebrate", false);
+    for (var i = 0; i < percentBtns.length; i++) {
+      percentBtns[i].disabled = false;
+      changeText(percentBtns[i], percentages[i] + "%");
+      percentBtns[i].setAttribute("aria-pressed", "false");
+      fractionBtns[i].disabled = false;
+      changeText(fractionBtns[i], fractions[i]);
+      changeClass(percentBtns[i], "rune-matched", false);
+      changeClass(percentBtns[i], "rune-success", false);
+      changeClass(fractionBtns[i], "rune-matched", false);
+      changeClass(fractionBtns[i], "rune-success", false);
     }
     clearOrder();
-    nextGame.disabled = true;
-    clearOrderButton.disabled = false;
-    finishButton.disabled = true;
-    matchingFeedback.textContent = "Choose a percentage first, then a fraction.";
-    document.getElementById("checkpoint-match").textContent = "Locked";
-    document.getElementById("checkpoint-order").textContent = "Locked";
+    nextButton.disabled = true;
+    clearButton.disabled = false;
+    doneButton.disabled = true;
+    changeText(matchMessage, "Choose a percentage first, then a fraction.");
+    changeText(document.getElementById("checkpoint-match"), "Locked");
+    changeText(document.getElementById("checkpoint-order"), "Locked");
     document.getElementById("friend-details").hidden = true;
-    document.getElementById("friend-name").textContent = "";
-    document.getElementById("friend-info").textContent = "";
-    lastFriendButtonId = "";
-    updateProgress();
+    changeText(document.getElementById("friend-name"), "");
+    changeText(document.getElementById("friend-info"), "");
+    friendButton = "";
+    updateScore();
     showScreen("course-screen", "Choose a world", "Choose a subject to begin. There is no timer, so take your time!");
   }
 
@@ -358,16 +315,16 @@ function initializeLearning() {
 
   // Start the matching game after the student has opened the lesson.
   function startMatching() {
-    if (activeScreen !== "lesson-screen") {
+    if (currentScreen !== "lesson-screen") {
       return;
     }
-    document.getElementById("checkpoint-match").textContent = "Current";
+    changeText(document.getElementById("checkpoint-match"), "Current");
     showScreen("matching-screen", "Match the runes", "Choose a percentage rune, then its equivalent fraction. Match all three pairs. You can change your percentage before picking a fraction.");
   }
 
   // Open the bridge game only after all percentage pairs have been matched.
   function startOrdering() {
-    if (matchingComplete === false || activeScreen !== "matching-screen") {
+    if (matchingDone === false || currentScreen !== "matching-screen") {
       return;
     }
     showScreen("ordering-screen", "Build the bridge", "Work out each amount, then choose stones from smallest to largest. Use Clear order to change your choices, then Check order.");
@@ -375,7 +332,7 @@ function initializeLearning() {
 
   // Show the results only when the student has finished both games.
   function finishLevel() {
-    if (matchingComplete === false || orderingComplete === false || activeScreen !== "ordering-screen") {
+    if (matchingDone === false || orderingDone === false || currentScreen !== "ordering-screen") {
       return;
     }
     showScreen("complete-screen", "Level complete", "Level cleared! You earned 100 demo XP. Explore your friends or reset to play again.");
@@ -383,11 +340,11 @@ function initializeLearning() {
 
   // Let the student rearrange the bridge stones while the game is unfinished.
   function restartOrder() {
-    if (activeScreen !== "ordering-screen" || orderingComplete) {
+    if (currentScreen !== "ordering-screen" || orderingDone) {
       return;
     }
     clearOrder();
-    orderButtons[0].focus();
+    stoneBtns[0].focus();
   }
 
   // These three functions supply the fixed details for each fictional friend.
@@ -409,12 +366,12 @@ function initializeLearning() {
   // Connect the main buttons to the named functions above.
   document.getElementById("select-maths").addEventListener("click", openLesson);
   document.getElementById("start-quiz").addEventListener("click", startMatching);
-  nextGame.addEventListener("click", startOrdering);
-  finishButton.addEventListener("click", finishLevel);
+  nextButton.addEventListener("click", startOrdering);
+  doneButton.addEventListener("click", finishLevel);
   document.getElementById("reset-demo").addEventListener("click", resetDemo);
   document.getElementById("back-courses").addEventListener("click", resetDemo);
-  clearOrderButton.addEventListener("click", restartOrder);
-  checkOrderButton.addEventListener("click", checkOrder);
+  clearButton.addEventListener("click", restartOrder);
+  checkButton.addEventListener("click", checkOrder);
   document.getElementById("close-friend").addEventListener("click", closeFriend);
   document.getElementById("maya-details").addEventListener("click", showMaya);
   document.getElementById("jordan-details").addEventListener("click", showJordan);
@@ -422,44 +379,44 @@ function initializeLearning() {
 
   // Each small function below tells the game exactly which tile was clicked.
   // Select the first percentage: 20%.
-  percentButtons[0].addEventListener("click", function () {
-    choosePercentage(0);
+  percentBtns[0].addEventListener("click", function () {
+    pickPercent(0);
   });
   // Select the second percentage: 25%.
-  percentButtons[1].addEventListener("click", function () {
-    choosePercentage(1);
+  percentBtns[1].addEventListener("click", function () {
+    pickPercent(1);
   });
   // Select the third percentage: 50%.
-  percentButtons[2].addEventListener("click", function () {
-    choosePercentage(2);
+  percentBtns[2].addEventListener("click", function () {
+    pickPercent(2);
   });
   // Check the first fraction: 1/2.
-  fractionButtons[0].addEventListener("click", function () {
-    chooseFraction(0);
+  fractionBtns[0].addEventListener("click", function () {
+    pickFraction(0);
   });
   // Check the second fraction: 1/5.
-  fractionButtons[1].addEventListener("click", function () {
-    chooseFraction(1);
+  fractionBtns[1].addEventListener("click", function () {
+    pickFraction(1);
   });
   // Check the third fraction: 1/4.
-  fractionButtons[2].addEventListener("click", function () {
-    chooseFraction(2);
+  fractionBtns[2].addEventListener("click", function () {
+    pickFraction(2);
   });
   // Place the first stone: 25% of BBD 80.
-  orderButtons[0].addEventListener("click", function () {
-    chooseStone(0);
+  stoneBtns[0].addEventListener("click", function () {
+    pickStone(0);
   });
   // Place the second stone: 10% of BBD 60.
-  orderButtons[1].addEventListener("click", function () {
-    chooseStone(1);
+  stoneBtns[1].addEventListener("click", function () {
+    pickStone(1);
   });
   // Place the third stone: 20% of BBD 50.
-  orderButtons[2].addEventListener("click", function () {
-    chooseStone(2);
+  stoneBtns[2].addEventListener("click", function () {
+    pickStone(2);
   });
 
   // Show the starting XP and enable controls now that their click handlers exist.
-  updateProgress();
+  updateScore();
   document.getElementById("select-maths").disabled = false;
   document.getElementById("reset-demo").disabled = false;
   document.getElementById("maya-details").disabled = false;
@@ -468,112 +425,111 @@ function initializeLearning() {
 }
 
 // Set up the sample tutor request: choose options, review them, then confirm the demo.
-function initializeTutoring() {
+function startTutoring() {
   // These are fixed prototype choices, not tutor availability or student data.
   var topics = ["Percentages", "Ratios", "Solving equations"];
   var sessions = ["30 minutes", "1 hour", "2 hours"];
-  var preferences = ["Weekday afternoon (illustrative; not agreed)", "Weekday evening (illustrative; not agreed)", "Weekend afternoon (illustrative; not agreed)"];
-  var topicSelect = document.getElementById("request-topic");
-  var sessionSelect = document.getElementById("request-session");
-  var optionsPanel = document.getElementById("request-options");
-  var summaryPanel = document.getElementById("request-summary");
-  var confirmationPanel = document.getElementById("request-confirmation");
+  var sessionTimes = ["Weekday afternoon (illustrative; not agreed)", "Weekday evening (illustrative; not agreed)", "Weekend afternoon (illustrative; not agreed)"];
+  var topicMenu = document.getElementById("request-topic");
+  var sessionMenu = document.getElementById("request-session");
+  var requestOptions = document.getElementById("request-options");
+  var requestSummary = document.getElementById("request-summary");
+  var requestResult = document.getElementById("request-result");
   var message = document.getElementById("request-message");
-  var confirmButton = document.getElementById("confirm-request");
-  var reviewed = false;
-  var confirmed = false;
+  var confirmBtn = document.getElementById("confirm-request");
+  var requestChecked = false;
+  var requestDone = false;
 
   // Hide old summaries and confirmations whenever the request options change.
-  function clearPreview() {
-    reviewed = false;
-    confirmed = false;
-    summaryPanel.style.display = "none";
-    confirmationPanel.style.display = "none";
-    optionsPanel.style.display = "block";
-    confirmButton.style.display = "inline-block";
-    topicSelect.setAttribute("aria-invalid", "false");
-    sessionSelect.setAttribute("aria-invalid", "false");
-    message.textContent = "Choose a topic and session, then review the example.";
+  function clearRequest() {
+    requestChecked = false;
+    requestDone = false;
+    requestSummary.style.display = "none";
+    requestResult.style.display = "none";
+    requestOptions.style.display = "block";
+    confirmBtn.style.display = "inline-block";
+    topicMenu.setAttribute("aria-invalid", "false");
+    sessionMenu.setAttribute("aria-invalid", "false");
+    changeText(message, "Choose a topic and session, then review the example.");
   }
 
   // Check the topic and duration, then show a summary of the selected sample session.
   function reviewRequest() {
     // Index 0 is the prompt. The actual choices start at index 1.
-    var topicIndex = topicSelect.selectedIndex - 1;
-    var sessionIndex = sessionSelect.selectedIndex - 1;
-    clearPreview();
+    var topicChoice = topicMenu.selectedIndex - 1;
+    var sessionChoice = sessionMenu.selectedIndex - 1;
+    clearRequest();
 
     // A prompt has no matching array item. Check each dropdown separately.
-    var topicMissing = topicIndex < 0 || topicIndex >= topics.length;
-    var sessionMissing = sessionIndex < 0 || sessionIndex >= sessions.length;
-    if (topicMissing) {
-      topicSelect.setAttribute("aria-invalid", "true");
+    var noTopic = topicChoice < 0 || topicChoice >= topics.length;
+    var noSession = sessionChoice < 0 || sessionChoice >= sessions.length;
+    if (noTopic) {
+      topicMenu.setAttribute("aria-invalid", "true");
     }
-    if (sessionMissing) {
-      sessionSelect.setAttribute("aria-invalid", "true");
+    if (noSession) {
+      sessionMenu.setAttribute("aria-invalid", "true");
     }
-    if (topicMissing || sessionMissing) {
-      message.textContent = "Choose a topic and a session before reviewing your sample request.";
+    if (noTopic || noSession) {
+      changeText(message, "Choose a topic and a session before reviewing your sample request.");
       message.focus();
       return;
     }
     // Insert only our authored choices, not user-entered text.
-    document.getElementById("summary-topic").textContent = topics[topicIndex];
-    document.getElementById("summary-session").textContent = sessions[sessionIndex];
-    document.getElementById("summary-time").textContent = preferences[sessionIndex];
-    reviewed = true;
-    optionsPanel.style.display = "none";
-    summaryPanel.style.display = "block";
-    document.getElementById("request-summary-title").focus();
+    changeText(document.getElementById("summary-topic"), topics[topicChoice]);
+    changeText(document.getElementById("summary-session"), sessions[sessionChoice]);
+    changeText(document.getElementById("summary-time"), sessionTimes[sessionChoice]);
+    requestChecked = true;
+    requestOptions.style.display = "none";
+    requestSummary.style.display = "block";
+    document.getElementById("summary-title").focus();
   }
 
   // Show the demonstration confirmation once, without sending a booking.
   function confirmRequest() {
-    if (reviewed === false || confirmed) {
+    if (requestChecked === false || requestDone) {
       return;
     }
-    confirmed = true;
-    confirmButton.style.display = "none";
-    confirmationPanel.style.display = "block";
-    document.getElementById("request-confirmation-title").focus();
+    requestDone = true;
+    confirmBtn.style.display = "none";
+    requestResult.style.display = "block";
+    document.getElementById("result-title").focus();
     // This changes the display only. It never changes the GiveBack Wallet.
   }
 
   // Return to the topic and session choices so the student can edit them.
   function changeRequest() {
-    clearPreview();
-    document.getElementById("request-options-title").focus();
+    clearRequest();
+    document.getElementById("options-title").focus();
   }
 
   // Clear both dropdown choices and start a fresh sample tutor request.
   function anotherRequest() {
-    topicSelect.selectedIndex = 0;
-    sessionSelect.selectedIndex = 0;
+    topicMenu.selectedIndex = 0;
+    sessionMenu.selectedIndex = 0;
     changeRequest();
   }
 
   // Buttons move through the demo; changing a dropdown clears any old preview.
   document.getElementById("review-request").addEventListener("click", reviewRequest);
-  confirmButton.addEventListener("click", confirmRequest);
+  confirmBtn.addEventListener("click", confirmRequest);
   document.getElementById("change-request").addEventListener("click", changeRequest);
   document.getElementById("another-request").addEventListener("click", anotherRequest);
-  topicSelect.addEventListener("change", clearPreview);
-  sessionSelect.addEventListener("change", clearPreview);
+  topicMenu.addEventListener("change", clearRequest);
+  sessionMenu.addEventListener("change", clearRequest);
   document.getElementById("review-request").disabled = false;
 }
 
 // Set up the application demo and its reset button. No files are uploaded.
-function initializeTutorApplication() {
+function startTutorForm() {
   var form = document.getElementById("tutor-application");
-  var confirmation = document.getElementById("application-confirmation");
+  var confirmation = document.getElementById("form-result");
 
   // The browser checks required fields before calling this function.
   // Stop the form from leaving the page and show the demo confirmation instead.
-  function submitApplication(event) {
-    event.preventDefault(); // Keep the form on this page instead of sending it.
+  function submitApplication() {
     form.style.display = "none";
     confirmation.style.display = "block";
-    document.getElementById("application-confirmation-title").focus();
+    document.getElementById("form-result-title").focus();
   }
 
   // Clear the name, chosen subjects, and files, then let the student try again.
@@ -585,19 +541,22 @@ function initializeTutorApplication() {
   }
 
   // Connect the application buttons to the two functions above.
-  form.addEventListener("submit", submitApplication);
+  form.onsubmit = function () {
+    submitApplication();
+    return false; // Keep the demonstration form on this page.
+  };
   document.getElementById("reset-application").addEventListener("click", resetApplication);
-  document.getElementById("preview-application").disabled = false;
+  document.getElementById("submit-application").disabled = false;
 }
 
 // Loading this shared file must not look for learning controls on the tutor page.
 if (document.getElementById("select-maths")) {
-  initializeLearning();
+  startGames();
 }
 if (document.getElementById("review-request")) {
-  initializeTutoring();
+  startTutoring();
 }
 if (document.getElementById("tutor-application")) {
-  initializeTutorApplication();
+  startTutorForm();
 }
 
