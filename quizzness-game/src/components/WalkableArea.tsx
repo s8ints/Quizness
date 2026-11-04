@@ -8,15 +8,30 @@ import type { AreaSnapshot } from "../game/createAreaGame";
 import type { Game } from "phaser";
 import "../styles/exploration.css";
 
-// Data-saver connections and low-memory devices get the lighter version of a place.
+// True when graphics run on the processor because there's no usable graphics card.
+function usesSoftwareGraphics() {
+  const gl = document.createElement("canvas").getContext("webgl");
+  if (!gl) return true;
+  const info = gl.getExtension("WEBGL_debug_renderer_info");
+  const renderer = info
+    ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL))
+    : "";
+  gl.getExtension("WEBGL_lose_context")?.loseContext();
+  return /swiftshader|llvmpipe|software|basic render/i.test(renderer);
+}
+// Slower devices and data-saver connections get the lighter version of a place.
+// Add ?quality=full to the address to force the full version when testing.
 function wantsLiteEffects() {
+  if (new URLSearchParams(window.location.search).get("quality") === "full")
+    return false;
   const device = navigator as Navigator & {
     connection?: { saveData?: boolean };
     deviceMemory?: number;
   };
   return (
     !!device.connection?.saveData ||
-    (device.deviceMemory !== undefined && device.deviceMemory <= 2)
+    (device.deviceMemory !== undefined && device.deviceMemory <= 2) ||
+    usesSoftwareGraphics()
   );
 }
 // One walkable place: the game canvas, keyboard and touch controls, and links
@@ -26,12 +41,16 @@ export function WalkableArea({
   label,
   hint,
   hud,
+  onActivity,
+  externallyPaused = false,
 }: {
   area: Area;
   label: string;
   hint: string;
   // The page's greeting, shown over the game like a game's heads-up display.
   hud?: ReactNode;
+  onActivity?: (id: string) => void;
+  externallyPaused?: boolean;
 }) {
   const { profile, preview } = useStudent();
   const base = preview ? "/preview" : "";
@@ -42,12 +61,23 @@ export function WalkableArea({
     (arrivedFrom && area.entrances?.[arrivedFrom]) || area.spawn,
   ).current;
   const host = useRef<HTMLDivElement>(null);
+  const gameInstance = useRef<Game | null>(null);
   const stage = useRef<HTMLDivElement>(null);
   const keys = useRef(new Set<string>());
   const joystick = useRef<Point>({ x: 0, y: 0 });
   const pausedRef = useRef(false);
+  const externalPause = useRef(externallyPaused);
+  externalPause.current = externallyPaused;
   const [paused, setPaused] = useState(false);
   const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const g = gameInstance.current;
+    if (!g?.isBooted) return;
+    for (const scene of g.scene.getScenes(false)) {
+      if (externallyPaused) scene.scene.pause();
+      else scene.scene.resume();
+    }
+  }, [externallyPaused, ready]);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
   const [retry, setRetry] = useState(0);
@@ -74,6 +104,10 @@ export function WalkableArea({
   }
   function interact(destination: Destination) {
     stop();
+    if (destination.dialog?.activityId && onActivity) {
+      onActivity(destination.dialog.activityId);
+      return;
+    }
     if (destination.dialog) {
       pausedRef.current = true;
       setDialog(destination.dialog);
@@ -109,7 +143,8 @@ export function WalkableArea({
             if (!cancelled) setProgress(fraction);
           },
           getInput: () => {
-            if (pausedRef.current || document.hidden) return { x: 0, y: 0 };
+            if (pausedRef.current || externalPause.current || document.hidden)
+              return { x: 0, y: 0 };
             const focused = stage.current?.contains(document.activeElement);
             const has = (...codes: string[]) =>
               !!focused && codes.some((code) => keys.current.has(code));
@@ -135,6 +170,7 @@ export function WalkableArea({
           },
         });
         const running = game;
+        gameInstance.current = running;
         // No need to draw the game while it's scrolled out of view.
         if (stage.current && "IntersectionObserver" in window) {
           watcher = new IntersectionObserver(([entry]) => {
@@ -171,7 +207,11 @@ export function WalkableArea({
       document.removeEventListener("visibilitychange", clear);
     };
   }, [area, profile.avatar_id, profile.reduced_motion, retry]);
-  const destinationControl = (d: Destination, className: string, text: string) =>
+  const destinationControl = (
+    d: Destination,
+    className: string,
+    text: string,
+  ) =>
     d.path && !d.dialog ? (
       <Link
         key={d.id}
@@ -352,13 +392,7 @@ export function WalkableArea({
           role="group"
           aria-label="Touch movement joystick"
           onPointerDown={(e) => {
-            if (
-              paused ||
-              dialog ||
-              error ||
-              !ready ||
-              pointer.current !== null
-            )
+            if (paused || dialog || error || !ready || pointer.current !== null)
               return;
             e.preventDefault();
             keys.current.clear();

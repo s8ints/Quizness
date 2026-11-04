@@ -56,7 +56,7 @@ export function Worlds() {
         compact
       />
       <p className="muted">
-        Sample course catalogue · playable activities are coming later.
+        Sample course catalogue · COMP 101 and a Mathematics activity demo are playable.
       </p>
       {home && (
         <WorldSection
@@ -179,7 +179,7 @@ export function CourseOverview() {
             >
               Enter the course lobby →
             </Link>
-          ) : (
+          ) : course.id==='qz-math-101' ? <Link className="button secondary" to={`${base}/missions/mathematics-demo`}>Play Mathematics demo →</Link> : (
             <button
               className="button secondary"
               onClick={() => setShowPreview(true)}

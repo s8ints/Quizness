@@ -224,7 +224,8 @@ export function createAreaGame({
       const deltaSeconds = Math.min(delta, 100) / 1000;
       this.ambient?.update(deltaSeconds);
       this.updateNpcs?.(deltaSeconds);
-      this.watchSpeed(deltaSeconds);
+      // Real elapsed time: on a very slow device, capped time would delay this for ages.
+      this.watchSpeed(delta / 1000);
       const previous = this.position;
       this.position = movePlayer(area, this.position, getInput(), delta / 1000);
       const animation = animationForMovement(

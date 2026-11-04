@@ -1,0 +1,86 @@
+.mission-page {
+  position: relative;
+}
+.mission-intro,
+.mission-results {
+  background: var(--cream, #efe6dd);
+  padding: 1.5rem;
+  border: 2px solid #7a4e9d;
+  color: #1b4332;
+}
+.mission-page button,
+.mission-page a {
+  margin: 0.35rem;
+}
+.mission-page select,
+.mission-page textarea {
+  max-width: 100%;
+}
+.mission-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #10251f99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.mission-panel {
+  background: #efe6dd;
+  color: #1b4332;
+  border: 4px solid #7a4e9d;
+  box-shadow: 6px 6px #1b4332;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90dvh;
+  overflow: auto;
+  padding: 1.5rem;
+  overscroll-behavior: contain;
+}
+.mission-panel button {
+  min-height: 44px;
+}
+.mission-panel aside {
+  border-left: 4px solid #7a4e9d;
+  padding: 1rem;
+}
+.mission-panel textarea {
+  display: block;
+  width: 100%;
+  min-height: 80px;
+}
+.mission-celebration {
+  padding: 1rem;
+  background: #c9b6e4;
+  font-size: 1.4rem;
+}
+.mission-panel input,
+.mission-panel select {
+  font: inherit;
+}
+.mission-panel form {
+  margin: 1rem 0;
+}
+@media (max-width: 600px) {
+  .mission-overlay {
+    padding: 0.35rem;
+  }
+  .mission-panel {
+    padding: 0.75rem;
+  }
+  .mission-page .page {
+    padding: 1rem;
+  }
+}
+.mission-intro select {
+  width: 100%;
+  min-width: 0;
+}
+.mission-page {
+  overflow-wrap: anywhere;
+}
+.app-header nav {
+  flex-wrap: wrap;
+  min-width: 0;
+}

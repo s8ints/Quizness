@@ -73,6 +73,12 @@ function RouteFocus() {
   }, [location.pathname]);
   return null;
 }
+const Mission = lazy(() =>
+  import("../missions/Mission").then((m) => ({ default: m.Mission })),
+);
+const Journal = lazy(() =>
+  import("../missions/Journal").then((m) => ({ default: m.Journal })),
+);
 export function App() {
   return (
     <AuthProvider>
@@ -85,59 +91,63 @@ export function App() {
         }
       >
         <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<AuthScreen />} />
-        <Route path="/signup" element={<AuthScreen signup />} />
-        <Route path="/recovery" element={<AuthScreen recovery />} />
-        <Route path="/auth/callback" element={<AuthCallback />} />
-        <Route path="/auth/reset" element={<AuthCallback reset />} />
-        <Route
-          path="/preview"
-          element={
-            <StudentProvider preview>
-              <AppShell />
-            </StudentProvider>
-          }
-        >
-          <Route index element={<Hub />} />
-          <Route path="room" element={<Room />} />
-          <Route path="courses" element={<Worlds />} />
-          <Route path="courses/:courseId" element={<CourseOverview />} />
-          <Route path="campus" element={<Campus />} />
-          <Route path="explore/:areaId" element={<Explore />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="onboarding" element={<Onboarding />} />
-        </Route>
-        <Route
-          element={
-            <StudentProvider key="real-student" preview={false}>
-              <AppShell />
-            </StudentProvider>
-          }
-        >
-          <Route path="/dashboard" element={<Hub />} />
-          <Route path="/room" element={<Room />} />
-          <Route path="/courses" element={<Worlds />} />
-          <Route path="/courses/:courseId" element={<CourseOverview />} />
-          <Route path="/campus" element={<Campus />} />
-          <Route path="/explore/:areaId" element={<Explore />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/onboarding" element={<Onboarding />} />
-        </Route>
-        <Route
-          path="*"
-          element={
-            <div className="page empty-panel">
-              <h1>That path isn’t here.</h1>
-              <p>Let’s find your way back.</p>
-              <Link className="button" to="/">
-                Back to Quizzness →
-              </Link>
-            </div>
-          }
-        />
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<AuthScreen />} />
+          <Route path="/signup" element={<AuthScreen signup />} />
+          <Route path="/recovery" element={<AuthScreen recovery />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route path="/auth/reset" element={<AuthCallback reset />} />
+          <Route
+            path="/preview"
+            element={
+              <StudentProvider preview>
+                <AppShell />
+              </StudentProvider>
+            }
+          >
+            <Route index element={<Hub />} />
+            <Route path="room" element={<Room />} />
+            <Route path="courses" element={<Worlds />} />
+            <Route path="courses/:courseId" element={<CourseOverview />} />
+            <Route path="campus" element={<Campus />} />
+            <Route path="explore/:areaId" element={<Explore />} />
+            <Route path="missions/:routeId" element={<Mission />} />
+            <Route path="journal" element={<Journal />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="onboarding" element={<Onboarding />} />
+          </Route>
+          <Route
+            element={
+              <StudentProvider key="real-student" preview={false}>
+                <AppShell />
+              </StudentProvider>
+            }
+          >
+            <Route path="/dashboard" element={<Hub />} />
+            <Route path="/room" element={<Room />} />
+            <Route path="/courses" element={<Worlds />} />
+            <Route path="/courses/:courseId" element={<CourseOverview />} />
+            <Route path="/campus" element={<Campus />} />
+            <Route path="/explore/:areaId" element={<Explore />} />
+            <Route path="/missions/:routeId" element={<Mission />} />
+            <Route path="/journal" element={<Journal />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/onboarding" element={<Onboarding />} />
+          </Route>
+          <Route
+            path="*"
+            element={
+              <div className="page empty-panel">
+                <h1>That path isn’t here.</h1>
+                <p>Let’s find your way back.</p>
+                <Link className="button" to="/">
+                  Back to Quizzness →
+                </Link>
+              </div>
+            }
+          />
         </Routes>
       </Suspense>
     </AuthProvider>

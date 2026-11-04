@@ -1,7 +1,7 @@
 import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "./tests/e2e",
-  // The test browser renders the game in software, so fewer run at once, with more time.
+  // Several game browsers plus a dev server compete for the machine, so run fewer, with more time.
   workers: 3,
   timeout: 60000,
   expect: { timeout: 15000 },

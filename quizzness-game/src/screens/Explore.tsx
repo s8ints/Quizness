@@ -5,13 +5,30 @@ import { QuickTravel } from "../components/QuickTravel";
 import { Mascot } from "../components/Mascot";
 import { getMissionPreview } from "../data/missions";
 import { getExploreArea } from "../game/worldAreas";
+import { useGameplay } from "../missions/GameplayProvider";
 
 // Any walkable place past the campus, opened at /explore/<area id>.
 export function Explore() {
   const { areaId = "" } = useParams();
   const { preview } = useStudent();
+  const { save } = useGameplay();
   const base = preview ? "/preview" : "";
-  const area = getExploreArea(areaId);
+  const source = getExploreArea(areaId);
+  const area =
+    source && save.completed.includes("variables-values-types")
+      ? {
+          ...source,
+          destinations: source.destinations.map((d) =>
+            d.dialog?.missionId === "changing-values"
+              ? {
+                  ...d,
+                  label: "Mission: Changing values",
+                  dialog: { ...d.dialog, title: "Mission preview" },
+                }
+              : d,
+          ),
+        }
+      : source;
   if (!area)
     return (
       <div className="page empty-panel">
@@ -46,29 +63,57 @@ export function Explore() {
             {area.missionPath.map((id, index) => {
               const mission = getMissionPreview(id);
               if (!mission) return null;
+              const locked =
+                !!mission.prerequisite &&
+                !save.completed.includes("variables-values-types");
               return (
-                <li key={id} data-locked={!!mission.prerequisite}>
+                <li key={id} data-locked={locked}>
                   <span className="pill">
-                    {mission.prerequisite ? "🔒 Locked" : "Opens next"}
+                    {locked
+                      ? "🔒 Locked"
+                      : save.completed.includes(id)
+                        ? "✓ Completed"
+                        : "Ready to play"}
                   </span>
                   <h3>
                     {index + 1}. {mission.title}
                   </h3>
                   <p>{mission.objective}</p>
-                  {mission.prerequisite && (
+                  {locked && mission.prerequisite && (
                     <p className="muted">
                       Finish “{mission.prerequisite.mission}” first, at{" "}
                       {mission.prerequisite.location}.
                     </p>
+                  )}
+                  {!locked && (
+                    <Link
+                      className="button"
+                      to={`${base}/missions/${id === "changing-values" ? "changing-values" : "campus-event"}`}
+                    >
+                      Start mission
+                    </Link>
                   )}
                 </li>
               );
             })}
           </ol>
           <p className="prototype-note">
-            Demo content. Playing missions arrives in a later update.
+            Original demo content.{" "}
+            <Link to={`${base}/journal`}>
+              Choose a story route or view your journal
+            </Link>
+            .
           </p>
         </section>
+      )}
+      {area.id === "comp-101-lobby" && (
+        <p className="page">
+          Variables mission:{" "}
+          {save.completed.includes("variables-values-types")
+            ? "completed"
+            : "ready to play"}{" "}
+          · <Link to={`${base}/journal`}>Learning journal and results</Link>
+        </p>
       )}
       <QuickTravel current={`/explore/${area.id}`} />
       {area.temporaryArt && (

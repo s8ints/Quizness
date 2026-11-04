@@ -3,6 +3,7 @@
 export type Point = { x: number; y: number };
 export type Rect = Point & { width: number; height: number };
 export type AreaDialog = {
+  activityId?: string;
   title: string;
   message?: string;
   // Someone other than Panthy is talking.

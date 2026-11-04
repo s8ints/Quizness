@@ -135,4 +135,33 @@ const isSky = ([r, g, b]) => (b > r + 20 && b > 170 && g > 110) || (r > 205 && g
       for (let x = c.x; x < c.x + c.width; x++)
         if (isCurtain(room.get(x, y))) roomSway[y * rw + x] = Math.min(255, 20 + (y - 36) * 0.55);
   await saveAmount(tidy(roomSway, rw, rh, 3), roomSway, rw, rh, "room-sway.png");
+
+  // Final connected-area artwork: foliage and hanging cloth are confined to
+  // the back wall, never the walkable foreground. Roofs and paper stay still.
+  for (const name of ["logic-district", "comp-101-lobby", "variables-topic"]) {
+    const area = await load(`design/source/areas/${name}.png`);
+    const aw = area.width, ah = area.height;
+    const amount = new Uint8Array(aw * ah);
+    for (let y = 0; y < 510; y++)
+      for (let x = 0; x < aw; x++) {
+        if (treeLeaf(area.get(x, y))) amount[y * aw + x] = 170;
+        // Only the two hanging lobby banners, not purple books or stonework.
+        if (name === "comp-101-lobby" && y > 300 && y < 450 &&
+          ((x > 390 && x < 470) || (x > 900 && x < 975)) && isBanner(area.get(x, y)))
+          amount[y * aw + x] = Math.min(210, 30 + (y - 300));
+      }
+    await saveAmount(tidy(amount, aw, ah, 3), amount, aw, ah, `${name}-sway.png`);
+    if (name === "logic-district") {
+      const sky = new Uint8Array(aw * ah);
+      const queue = [];
+      for (let x = 0; x < aw; x++) if (isSky(area.get(x, 0))) queue.push([x, 0]);
+      while (queue.length) {
+        const [x, y] = queue.pop();
+        if (x < 0 || y < 0 || x >= aw || y >= 210 || sky[y * aw + x] || !isSky(area.get(x, y))) continue;
+        sky[y * aw + x] = 1;
+        queue.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+      }
+      await save(sky, aw, ah, `${name}-sky.png`);
+    }
+  }
 })();

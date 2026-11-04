@@ -8,7 +8,7 @@ The user chose to generate final art for Logic District, the QZ-COMP 101 lobby a
 
 The user asked for more animation, campus sprites and good optimisation, and allowed new libraries. **No runtime library was added**: Phaser and CSS already cover this, and more code would slow loading. Art is served as WebP copies with the original PNGs kept as sources. Pages other than the landing page load on demand. Heavy effects are skipped for reduced motion, data-saver and low-memory devices, and switch off if the frame rate stays low.
 
-Three decorative students walk the campus. **This departs from planning's "no background crowds"** and is recorded as a decision for the user to confirm; they are not real players, and removing the `npcs` list turns them off. Trees, banners, curtains and plants move with a sway-map shader, so the artwork is neither cut up nor changed. Browser tests now use fewer workers and longer limits because they render in software.
+Three decorative students walk the campus. **This departs from planning's "no background crowds"** and is recorded as a decision for the user to confirm; they are not real players, and removing the `npcs` list turns them off. Trees, banners, curtains and plants move with a sway-map shader, so the artwork is neither cut up nor changed. Browser tests now use fewer workers and longer limits because several game browsers plus the dev server compete for the machine.
 
 ## 2026-11-02 — The game is the Home base
 
