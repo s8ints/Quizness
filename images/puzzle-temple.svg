@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 165" preserveAspectRatio="none">
+  <rect width="600" height="165" fill="#8acb82"/>
+  <text x="30" y="66" fill="#44216f" font-family="Arial, sans-serif" font-size="42" font-weight="bold">%</text>
+  <text x="530" y="130" fill="#44216f" font-family="Arial, sans-serif" font-size="40">¼</text>
+  <path fill="#44216f" d="M205 38h190v12H205zM215 50h170v14H215zM245 64h18v88h-18zM291 64h18v88h-18zM337 64h18v88h-18zM215 148h170v11H215zM194 159h212v10H194z"/>
+</svg>

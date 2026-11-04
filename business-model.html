@@ -16,70 +16,170 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header"><a class="brand" href="index.html">Quizzness<span>Quizzness over pleasure</span></a>
-    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="experience.html">Experience</a><a
-        href="feasibility.html">Feasibility</a><a href="business-model.html" aria-current="page">Business model</a><a
-        href="industry.html">Competition</a><a href="team.html">Team &amp; sources</a></nav>
+<body class="content-page">
+
+  <!-- Site name and navigation -->
+  <header class="header">
+    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64" height="64"> QUIZZNESS</a></p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html">Practice</a></li>
+        <li><a href="tutoring.html">Peer tutoring</a></li>
+        <li><a href="feasibility.html">Feasibility</a></li>
+        <li><a href="business-model.html" aria-current="page">Business model</a></li>
+        <li><a href="industry.html">Market &amp; Launch</a></li>
+        <li><a href="team.html">About &amp; Team</a></li>
+      </ul>
+    </nav>
   </header>
+
   <main id="main">
-    <div class="page-intro">
-      <p class="eyebrow">Barringer &amp; Ireland · Chapter 4</p>
-      <h1>A familiar model.<br>A focused learning service.</h1>
-      <p>We propose a primarily <strong>standard business model</strong>: free basic practice, optional premium
-        subscriptions and institutional course licences.</p>
+    <div class="page-heading">
+      <div>
+        <p class="heading-label">How the proposed venture would sustain its service</p>
+
+        <h1>Business model</h1>
+
+        <p class="intro-message">
+          Institutional licensing would fund the core service; optional revenue streams would need separate validation.
+        </p>
+      </div>
+      <img src="mascot/tiger-pixel.svg" alt="Panthy, Quizzness's purple learning companion." width="112" height="107">
     </div>
-    <section>
-      <h2>Why standard, rather than disruptive?</h2>
-      <p>Chapter 4 lists freemium and subscriptions among standard models. Quizzness would use these established methods
-        to create, deliver and capture value. <a class="citation" href="team.html#source-text">[1, pp. 150–153, Table
-          4.1]</a></p>
-      <p>Our proposed difference is reviewed practice aligned to a particular course, with minigame templates and
-        explanations. We have no evidence that this changes an industry’s competitive logic or creates a
-        difficult-to-copy business model, so a disruptive classification is not justified.</p>
+
+    <nav class="page-menu" aria-label="On this page">
+      <ul>
+        <li><a href="#model">Revenue model</a></li>
+        <li><a href="#value">Value</a></li>
+        <li><a href="#pricing">Pricing gaps</a></li>
+        <li><a href="#costs">Costs</a></li>
+        <li><a href="#sustainability">Sustainability</a></li>
+      </ul>
+    </nav>
+
+    <p class="assessment"><strong>Proposed model:</strong> there are no confirmed prices, sales, revenues, or financial projections. This prototype does not take payments or provide paid services.
+    </p>
+
+    <section id="model">
+<h2>How the venture would earn money</h2>
+<p>The primary proposed model is institutional licensing and partnerships. Educational institutions would provide access to students, with agreed arrangements for reviewed course content, tutor screening and support.</p>
+<div class="model-list">
+<article class="model-card"><h3>Institutional licensing</h3><p>The main intended route to revenue is licences and partnerships with universities, colleges and other educational institutions. Prices, included support and responsibilities are not yet agreed.</p></article>
+<article class="model-card"><h3>Optional premium features</h3><p>Additional premium activities or features are a future consideration. The team has not selected features or prices.</p></article>
+<article class="model-card"><h3>Tutor-related revenue</h3><p>Tutor-related income is another future consideration. No payment structure, commission or rate has been agreed. Proposed GiveBack participation would depend on institutional approval.</p></article>
+</div><p>Optional revenue streams are not confirmed income and should not be included as assured funding.</p>
     </section>
-    <section>
-      <h2>How value would flow</h2>
-      <div class="cards">
-        <article><span class="step">01</span>
-          <h3>Create value</h3>
-          <p>Convert selected course material into short application questions and explanatory feedback. Reuse game
-            templates while adapting the content to each topic.</p>
+
+    <section id="value">
+      <h2>Creating, delivering and capturing value</h2>
+
+      <blockquote>
+        <p>
+          &ldquo;A firm&rsquo;s business model is its plan or recipe for how it creates, delivers,and captures value for its stakeholders.&rdquo;
+        </p>
+
+        <p>(Barringer &amp; Ireland, 2019, Ch. 4, p. 149)</p>
+      </blockquote>
+
+      <div class="model-list">
+        <article class="model-card">
+          <h3>Create</h3>
+
+          <p>
+            Help students practise coursework, understand feedback, and find suitable peer help when a topic remains difficult.
+          </p>
         </article>
-        <article><span class="step">02</span>
-          <h3>Deliver value</h3>
-          <p>Offer browser-based practice on phones and computers. A course partner would provide approved material and
-            review questions; students would choose a topic and practise independently.</p>
+
+        <article class="model-card">
+          <h3>Deliver</h3>
+
+          <p>
+            Provide course activities and tutoring access through a proposed university partnership. Content approval and tutor oversight would need agreed responsibilities.
+          </p>
         </article>
-        <article><span class="step">03</span>
-          <h3>Capture value</h3>
-          <p>Keep basic activities free. Test subscriptions for extra course packs and progress tools, plus semester
-            licences for institutions. Pricing and buyer demand remain untested.</p>
+
+        <article class="model-card">
+          <h3>Capture</h3>
+
+          <p>
+            Use proposed licence income to support development, hosting, content review, and
+            support, with optional secondary revenue only if validated.
+          </p>
         </article>
       </div>
     </section>
-    <section>
-      <h2>Course comparison: Dropbox</h2>
-      <p>Barringer and Ireland use <strong>Dropbox</strong> as a freemium example: basic access is free and a premium
-        version earns revenue. <a class="citation" href="team.html#source-text">[1, p. 152, Table 4.1]</a></p>
-      <p>Quizzness would similarly lower the barrier to trying the service with free basic practice. Its proposed paid
-        value is additional reviewed course content and study tools, rather than file storage. Institutional licences
-        would add a second buyer route. The comparison explains our revenue structure; it does not establish that
-        Dropbox’s success would transfer to Quizzness.</p>
+
+    <section id="pricing">
+<h2>Pricing and financial assumptions</h2>
+<p>The updated report does not set licence prices, premium prices, tutor charges or financial projections. These decisions require a cost estimate, a clear service scope and agreement with potential institutional partners.</p>
+<p>Current resources are team time, existing skills and limited voluntary contributions. A live service would also need hosting, content review, tutor coordination, maintenance and user support. No financial forecast is claimed.</p>
     </section>
-    <section class="note">
-      <h2>What must be true for this to work?</h2>
-      <p>Income would need to cover development, hosting, content review and support. Reusable templates could spread
-        development effort across courses, but reviewing new course content remains a recurring task.</p>
-      <p>Before setting a price, we would estimate cost per course and per active student, test paid interest and check
-        whether recurring income exceeds recurring delivery costs. Until then, profitability is an assumption.</p>
+
+    <section id="comparison">
+<h2>A standard venture with a focused difference</h2>
+<p>Quizzness is proposed as a standard venture. It combines familiar methods&mdash;gamification, online practice and peer support&mdash;around course material supplied or approved by educators. The report does not claim that this would fundamentally disrupt the market.</p>
+<p>The core strategy is course-specific practice, immediate explanations and a direct path to screened peer support. Institutional partnerships and prototype feedback would guide expansion (Barringer &amp; Ireland, 2019, Chapter 4).</p>
+    </section>
+
+    <section id="duolingo-comparison">
+      <h2>Comparison with Duolingo</h2>
+
+      <p><a href="https://blog.duolingo.com/duolingo-teaching-method/">Duolingo uses interactive lessons, repeated practice and game elements</a>. We want to use practice activities for university coursework.</p>
+    </section>
+
+    <section id="costs">
+<h2>Resources, costs and initial funding</h2>
+<p>The team plans to bootstrap the prototype using personal savings and sweat equity. Isaiah proposed this approach and the team agreed. Team labour, time and existing skills would reduce the need to pay external developers at this stage.</p>
+<p>Financial contributions would be voluntary, limited, agreed and documented. Labour, responsibilities and recognition of contributions would also be recorded. No investment, loan or grant is confirmed.</p>
+<div class="table-box">
+<table>
+<caption>Resources and operating needs</caption>
+<thead>
+<tr>
+<th scope="col">Area</th>
+<th scope="col">Current approach or next requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Prototype development</th>
+<td>Use team skills and time; record responsibilities and contributions.</td>
+</tr>
+<tr>
+<th scope="row">Course content</th>
+<td>Obtain course permissions and develop reviewed question banks, activities and explanations.</td>
+</tr>
+<tr>
+<th scope="row">Software and hosting</th>
+<td>Estimate maintenance, hosting and security costs before operating a live service.</td>
+</tr>
+<tr>
+<th scope="row">Peer support</th>
+<td>Plan tutor screening, training, session coordination, user support and complaints handling.</td>
+</tr>
+<tr>
+<th scope="row">Additional resources</th>
+<td>Seek educational-institution partnerships, student innovation initiatives, pitches and grant opportunities after the prototype.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>No startup or recurring BBD amounts are supplied in the updated report. The initial plan avoids committing to loans or giving up equity before stronger evidence and delivery arrangements are available.</p>
+    </section>
+
+    <section class="decision" id="sustainability">
+<h2>Building a sustainable service</h2>
+<p>Start within the team's available skills and resources. Use prototype feedback to improve the learning and tutoring journey, and estimate the real workload of reviewed content, software maintenance and support.</p>
+<p>Institutional partnerships, innovation initiatives and grant opportunities are the first proposed routes to additional resources. Larger external financing would be considered only after the direction, costs and responsibilities are clearer.</p>
+<p><a href="feasibility.html#pilot">See the proposed testing approach</a> and <a href="industry.html#launch">the updated launch plan</a>.</p>
     </section>
   </main>
-  <footer>
-    <p><strong>Quizzness over pleasure.</strong> · COMP1170 venture proposal, 2026</p>
-    <p><a href="team.html#sources">Sources &amp; asset credits</a> · <a href="industry.html">Next: industry and
-        competition →</a></p>
+
+  <footer class="footer">
+    <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
+
+    <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
   </footer>
 </body>
 

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quizzness | Peer tutoring</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="header">
+    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64" height="64"> QUIZZNESS</a></p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html">Practice</a></li>
+        <li><a href="tutoring.html" aria-current="page">Peer tutoring</a></li>
+        <li><a href="feasibility.html">Feasibility</a></li>
+        <li><a href="business-model.html">Business model</a></li>
+        <li><a href="industry.html">Market &amp; Launch</a></li>
+        <li><a href="team.html">About &amp; Team</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="main" class="tutoring-page">
+
+    <h1>Peer tutoring</h1>
+
+    <p>If a student is still stuck after practising, they could find a peer tutor for that course. Tutors would need to
+      meet the university's eligibility rules and complete training. Before launching this service, we would need to
+      test whether it can work.</p>
+
+    <blockquote>
+      <p>&ldquo;Feasibility analysis is the process of determining if a business idea is viable.&rdquo;</p>
+      <p>(Barringer &amp; Ireland, 2019, Ch. 3, p. 109)</p>
+    </blockquote>
+
+    <p class="demo-note">All tutors, requests, sessions, and wallet records on this page are fictional prototype examples. No personal information is collected and no booking is made.</p>
+
+    <p>Want to help other students? <a href="#become-tutor">Apply to become a peer tutor</a> and work toward school GiveBack hours.</p>
+    <div class="game-help">
+      <img src="mascot/tiger-pixel.svg" alt="Panthy, the purple learning companion holding a study card." width="88"
+        height="84">
+      <p><strong>Panthy's tip:</strong> Choose a topic and session length, then review your sample request.</p>
+    </div>
+
+    <section id="booking" class="tutor-section">
+      <h2>Sample tutor</h2>
+      <div class="tutor-card">
+        <p class="section-note">Fictional tutor / sample profile</p>
+        <h3>Marcus Clarke</h3>
+        <p><strong>Course:</strong> Mathematics (sample MATH 101 course)<br>
+          <strong>Topics:</strong> percentages, ratios and solving equations
+        </p>
+        <p>Marcus is a fictional tutor used for this example. In the proposed service, a coordinator would check course
+          results, training and the tutor's agreement to the code of conduct.</p>
+      </div>
+      <p>A student could request a short explanation or a longer worked example. The tutor would accept the request
+        or suggest another time. No actual tutor availability is shown here.</p>
+      <p>These are example forms only. No request is actually sent. Peer GiveBack sessions
+        would be free to students in the proposed university programme.</p>
+
+      <div id="tutor-request">
+        <h3>Choose a sample session</h3>
+        <fieldset>
+          <legend>Sample topic (choose one)</legend>
+          <div class="form-columns request-choices">
+            <button type="button" class="button button-light" id="topic-percentages" aria-pressed="false" onclick="chooseTopic('Percentages', 'topic-percentages')">Percentages</button>
+            <button type="button" class="button button-light" id="topic-ratios" aria-pressed="false" onclick="chooseTopic('Ratios', 'topic-ratios')">Ratios</button>
+            <button type="button" class="button button-light" id="topic-equations" aria-pressed="false" onclick="chooseTopic('Solving equations', 'topic-equations')">Solving equations</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Sample session length (choose one)</legend>
+          <div class="form-columns request-choices">
+            <button type="button" class="button button-light" id="session-30" aria-pressed="false" onclick="chooseSession('30 minutes', 'session-30')">30 minutes</button>
+            <button type="button" class="button button-light" id="session-60" aria-pressed="false" onclick="chooseSession('1 hour', 'session-60')">1 hour</button>
+            <button type="button" class="button button-light" id="session-120" aria-pressed="false" onclick="chooseSession('2 hours', 'session-120')">2 hours</button>
+          </div>
+        </fieldset>
+        <p id="request-message" role="status">Choose a topic and session, then review the example. Nothing will be sent or saved.</p>
+        <button type="button" class="button" id="review-button" onclick="reviewRequest()">Review request</button>
+        <button type="button" class="button button-light" onclick="resetRequest()">Reset request demo</button>
+      </div>
+      <div id="review" class="demo-note request-summary">
+        <h3>Review your request</h3>
+        <p>Tutor: Marcus Clarke</p>
+        <p id="choice"></p>
+        <button type="button" class="button" onclick="finishRequest()">Confirm demo request</button>
+        <button type="button" class="button button-light" onclick="editRequest()">Edit</button>
+      </div>
+      <div id="request-done" class="demo-note request-confirmation" role="status">
+        <p>Demo complete. Your request has not been sent or saved.</p>
+        <p>Use Reset request demo above to try another example.</p>
+      </div>
+      <p><a href="experience.html#game-demo">Back to the learning experience</a></p>
+    </section>
+
+    <section id="become-tutor" class="tutor-section">
+      <p class="section-note">Help others / GiveBack programme</p>
+      <h2 id="tutor-form-title">Become a peer tutor</h2>
+      <p>Share what you know and support other students. Approved tutoring sessions could count toward your
+        school's GiveBack hours, subject to school approval and programme rules.</p>
+      <p id="form-note" class="demo-note">This is an unvalidated prototype application preview. A real application would
+        require a name, CV and two recommendation letters. Nothing entered here is uploaded, sent or saved. Use sample details and documents.</p>
+
+      <form id="tutor-form" aria-describedby="form-note" onsubmit="return false;">
+        <fieldset>
+          <legend>Your details</legend>
+          <label for="tutor-name">Full name</label>
+          <input type="text" id="tutor-name" name="full-name" autocomplete="name" maxlength="120">
+        </fieldset>
+
+        <fieldset aria-describedby="subject-help">
+          <legend>Preferred subjects</legend>
+          <p id="subject-help">Select all the subjects you feel comfortable tutoring.</p>
+          <div class="form-columns subject-options">
+            <label for="subject-mathematics"><input type="checkbox" id="subject-mathematics" name="subjects"
+                value="mathematics"> Mathematics</label>
+            <label for="subject-programming"><input type="checkbox" id="subject-programming" name="subjects"
+                value="programming"> Programming</label>
+            <label for="subject-statistics"><input type="checkbox" id="subject-statistics" name="subjects"
+                value="statistics"> Statistics</label>
+            <label for="subject-english"><input type="checkbox" id="subject-english" name="subjects" value="english">
+              English</label>
+            <label for="subject-accounting"><input type="checkbox" id="subject-accounting" name="subjects"
+                value="accounting"> Accounting</label>
+            <label for="subject-economics"><input type="checkbox" id="subject-economics" name="subjects"
+                value="economics"> Economics</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>CV and recommendations</legend>
+          <p id="file-help">Choose a CV and at least two recommendation letters from teachers,
+            lecturers, or other people who can recommend you as a tutor. Accepted file types: PDF, DOC, or DOCX.</p>
+          <div class="form-field">
+            <label for="cv-file">CV</label>
+            <input type="file" id="cv-file" name="cv" accept=".pdf,.doc,.docx" aria-describedby="file-help">
+          </div>
+          <div class="form-field">
+            <label for="letter1">Recommendation letter 1</label>
+            <input type="file" id="letter1" name="recommendation-1" accept=".pdf,.doc,.docx"
+              aria-describedby="file-help">
+          </div>
+          <div class="form-field">
+            <label for="letter2">Recommendation letter 2</label>
+            <input type="file" id="letter2" name="recommendation-2" accept=".pdf,.doc,.docx"
+              aria-describedby="file-help">
+          </div>
+          <div class="form-field">
+            <label for="letter3">Recommendation letter 3 (optional)</label>
+            <input type="file" id="letter3" name="recommendation-3" accept=".pdf,.doc,.docx"
+              aria-describedby="file-help">
+          </div>
+        </fieldset>
+
+        <p>This is a demonstration. Nothing will be sent or uploaded.</p>
+        <button type="button" class="button" id="apply-button" onclick="finishApplication()">Preview demo application</button>
+        <p id="application-done" class="demo-note request-confirmation" role="status">Demo complete. Your application and files have not been sent or saved.</p>
+        <button type="reset" class="button button-light" onclick="resetApplication()">Reset</button>
+      </form>
+    </section>
+
+    <section id="session">
+      <h2>After a session</h2>
+      <p>For a separate fictional completed-session example, imagine that the student and Marcus have finished a
+        30-minute session on equations.
+        They practised doing the same operation to both sides of an equation.</p>
+      <p>Both people would confirm the session time. The student could give feedback, and the tutor could send the time
+        for coordinator review.</p>
+      <p>Research supports this kind of structured help. A meta-analysis of 37 studies found a moderately strong
+        positive relationship between formal peer learning approaches and course performance in higher education
+        (Bengesai et al., 2023).</p>
+      <p><a href="experience.html#game-demo">Return to the sample practice activity</a></p>
+    </section>
+
+    <section id="wallet">
+      <h2>GiveBack Wallet</h2>
+      <p>The wallet would keep a record of tutoring time. Pending time would be separate from approved time.</p>
+      <table>
+        <caption>Marcus's fictional record - separate from the request demonstration</caption>
+        <thead>
+          <tr>
+            <th scope="col">Status</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="approved-hours">
+            <th scope="row">Previously approved (illustrative)</th>
+            <td>24 hours</td>
+          </tr>
+          <tr class="pending-hours">
+            <th scope="row">Latest session, pending review (illustrative)</th>
+            <td>30 minutes (0.5 hours)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="wallet-note">The pending 0.5 hours are not part of the 24 approved hours. These fixed sample records do
+        not change when you fill in the sample forms or refresh the page.</p>
+      <h3>How time would be approved</h3>
+      <ol>
+        <li>The student and tutor confirm the session.</li>
+        <li>A coordinator checks the time and programme rules.</li>
+        <li>Approved time is added to the tutor's verified total.</li>
+        <li>The university issues a report or certificate under its rules.</li>
+      </ol>
+      <p>We would need a formal university agreement before claiming that tutoring counts toward GiveBack requirements.
+        The totals above are sample data.</p>
+      <p><strong>No pilot results are claimed; GiveBack recognition requires formal approval by a university
+          partner.</strong></p>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
+    <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
+  </footer>
+  <script src="tutoring.js"></script>
+</body>
+
+</html>
