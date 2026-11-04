@@ -11,14 +11,27 @@
 <body class="content-page">
 
   <!-- Site name and navigation -->
-  <header class="header">
-    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64"
-          height="64"> QUIZZNESS</a></p>
-    <nav>
+  <header class="site-header">
+    <div class="header-top">
+      <p class="brand">
+        <a href="index.html">
+          <img src="images/quizzness-logo.png" alt="" width="64" height="64">
+          QUIZZNESS
+        </a>
+      </p>
+
+      <nav class="student-nav" aria-label="Learning navigation">
+        <ul>
+          <li><a href="experience.html">Practice</a></li>
+          <li><a href="tutoring.html">Peer tutoring</a></li>
+          <li><a class="explore-button" href="index.html#courses">Explore learning &rarr;</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <nav class="main-nav" aria-label="Venture navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="experience.html">Practice</a></li>
-        <li><a href="tutoring.html">Peer tutoring</a></li>
         <li><a href="feasibility.html">Feasibility</a></li>
         <li><a href="business-model.html" aria-current="page">Business model</a></li>
         <li><a href="industry.html">Market &amp; Launch</a></li>
@@ -171,7 +184,10 @@
       <h2>Comparison with Duolingo</h2>
 
       <p><a href="https://blog.duolingo.com/duolingo-teaching-method/">Duolingo uses interactive lessons, repeated practice and game elements</a>. We want to use practice activities for university coursework.</p>
+    </section>
 
+    <section id="costs">
+      <h2>Main operating costs to estimate</h2>
       <p>
         Volunteer tutoring would still require supervision. Our proposed costs include building
         activities, reviewing course content, training tutors, hosting the website, and managing sessions.

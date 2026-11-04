@@ -1,4 +1,4 @@
-Quizzness - COMP1170 Group Proposal
+Quizzness - COMP1170 school prototype
 
 Open index.html in a browser. Keep styles.css, games.js, tutoring.js, images and the HTML
 pages together. This is a front-end demonstration; it needs no account or server.
