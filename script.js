@@ -21,6 +21,7 @@ var firstStone = -1;
 var secondStone = -1;
 var thirdStone = -1;
 var lifetimeXP = 320;
+var leaderboardOrder = [0, 1, 2, 3];
 
 function openLearningStage(id, className, stage, tip) {
   document.getElementById(id).setAttribute("class", className);
@@ -29,19 +30,24 @@ function openLearningStage(id, className, stage, tip) {
 }
 
 function updateLeaderboard() {
-  var order = ["maya-row", "jordan-row", "your-row", "alex-row"];
+  var names = ["Maya", "Jordan", "You", "Alex"];
+  var xp = [400, 350, lifetimeXP, 280];
+  leaderboardOrder = [0, 1, 2, 3];
   if (lifetimeXP > 400) {
-    order = ["your-row", "maya-row", "jordan-row", "alex-row"];
-  } else if (lifetimeXP > 350) {
-    order = ["maya-row", "your-row", "jordan-row", "alex-row"];
+    leaderboardOrder = [2, 0, 1, 3];
+  } else {
+    if (lifetimeXP > 350) {
+      leaderboardOrder = [0, 2, 1, 3];
+    }
   }
-  document.getElementById("your-xp").textContent = lifetimeXP;
-  for (var i = 0; i < order.length; i++) {
-    var row = document.getElementById(order[i]);
+  for (var i = 0; i < leaderboardOrder.length; i++) {
     var rank = i + 1;
-    row.getElementsByTagName("td")[0].textContent = rank;
-    document.getElementById("leaderboard-body").appendChild(row);
-    if (order[i] === "your-row") {
+    var row = document.getElementById("leaderboard-place-" + rank);
+    document.getElementById("leaderboard-name-" + rank).textContent = names[leaderboardOrder[i]];
+    document.getElementById("leaderboard-xp-" + rank).textContent = xp[leaderboardOrder[i]];
+    row.setAttribute("class", "");
+    if (leaderboardOrder[i] === 2) {
+      row.setAttribute("class", "leaderboard-you");
       document.getElementById("ranking-message").textContent = "Your sample rank: " + rank + " of 4.";
     }
   }
@@ -79,7 +85,7 @@ function choosePercentage(index) {
   var feedback = document.getElementById("matching-feedback");
   if (matchingComplete || button.getAttribute("data-matched") === "yes") {
     feedback.textContent = "That rune is already matched. Continue to the bridge when ready.";
-    return;
+    return false;
   }
   chosenPercentage = index;
   for (var i = 0; i < 3; i++) {
@@ -94,11 +100,11 @@ function chooseFraction(index) {
   var feedback = document.getElementById("matching-feedback");
   if (matchingComplete || button.getAttribute("data-matched") === "yes") {
     feedback.textContent = "That fraction is already matched. Find an unmatched pair.";
-    return;
+    return false;
   }
   if (chosenPercentage === -1) {
     feedback.textContent = "Choose a percentage first, then its matching fraction.";
-    return;
+    return false;
   }
   var selected = chosenPercentage;
   chosenPercentage = -1;
@@ -106,7 +112,7 @@ function chooseFraction(index) {
   if (percentages[selected] !== fractionValues[index]) {
     feedback.textContent = "Try again. " + explanations[selected];
     document.getElementById("panthy-tip").textContent = "A percentage is a fraction out of 100. Simplify it, then try again.";
-    return;
+    return false;
   }
   document.getElementById("match-percent-" + selected).setAttribute("data-matched", "yes");
   button.setAttribute("data-matched", "yes");
@@ -132,7 +138,7 @@ function chooseFraction(index) {
 function startOrdering() {
   if (matchingComplete === false) {
     document.getElementById("matching-feedback").textContent = "Match all three pairs before continuing to the bridge.";
-    return;
+    return false;
   }
   if (learningStage < 3) {
     learningStage = 3;
@@ -147,21 +153,21 @@ function chooseStone(index) {
   var feedback = document.getElementById("ordering-feedback");
   if (orderingComplete) {
     feedback.textContent = "The bridge is complete. View results or reset the demonstration.";
-    return;
+    return false;
   }
   if (button.getAttribute("data-selected") === "yes") {
     feedback.textContent = "That stone is already on the bridge. Choose another or clear the order.";
-    return;
+    return false;
   }
   if (stoneCount === 3) {
     feedback.textContent = "All three stones are placed. Check the order or clear the bridge to try again.";
-    return;
+    return false;
   }
   button.setAttribute("data-selected", "yes");
   stoneCount = stoneCount + 1;
   if (stoneCount === 1) { firstStone = index; }
-  else if (stoneCount === 2) { secondStone = index; }
-  else { thirdStone = index; }
+  if (stoneCount === 2) { secondStone = index; }
+  if (stoneCount === 3) { thirdStone = index; }
   var stone = document.createElement("li");
   stone.textContent = stones[index];
   document.getElementById("chosen-order").appendChild(stone);
@@ -186,7 +192,7 @@ function clearOrder() {
 function restartOrder() {
   if (orderingComplete) {
     document.getElementById("ordering-feedback").textContent = "This checkpoint is complete. Reset the demonstration to play again.";
-    return;
+    return false;
   }
   clearOrder();
 }
@@ -195,16 +201,16 @@ function checkOrder() {
   var feedback = document.getElementById("ordering-feedback");
   if (orderingComplete) {
     feedback.textContent = "The bridge is already complete. View your level results.";
-    return;
+    return false;
   }
   if (stoneCount !== 3) {
     feedback.textContent = "Place all three stones before checking your order.";
-    return;
+    return false;
   }
   if (firstStone !== 1 || secondStone !== 2 || thirdStone !== 0) {
     feedback.textContent = "Try again. 10% of BBD 60 is BBD 6; 20% of BBD 50 is BBD 10; 25% of BBD 80 is BBD 20. Clear your order and compare these results.";
     document.getElementById("panthy-tip").textContent = "Compare the calculated amounts, then clear the stones to try again.";
-    return;
+    return false;
   }
   orderingComplete = true;
   document.getElementById("bridge-scene").setAttribute("class", "bridge-scene bridge-complete");
@@ -218,7 +224,7 @@ function checkOrder() {
 function finishLevel() {
   if (orderingComplete === false) {
     document.getElementById("ordering-feedback").textContent = "Complete the bridge before viewing your results.";
-    return;
+    return false;
   }
   if (learningStage < 4) {
     learningStage = 4;
@@ -239,9 +245,19 @@ function showJordan() {
   document.getElementById("friend-name").textContent = "Jordan (fictional friend)";
   document.getElementById("friend-info").textContent = "Sample lifetime XP: 350. Preferred subject: Programming.";
 }
+function showYou() {
+  document.getElementById("friend-name").textContent = "You (fictional sample)";
+  document.getElementById("friend-info").textContent = "Your sample lifetime XP: " + lifetimeXP + ".";
+}
 function showAlex() {
   document.getElementById("friend-name").textContent = "Alex (fictional friend)";
   document.getElementById("friend-info").textContent = "Sample lifetime XP: 280. Preferred subject: Statistics.";
+}
+function showRank(index) {
+  if (leaderboardOrder[index] === 0) { showMaya(); }
+  if (leaderboardOrder[index] === 1) { showJordan(); }
+  if (leaderboardOrder[index] === 2) { showYou(); }
+  if (leaderboardOrder[index] === 3) { showAlex(); }
 }
 
 function resetLearning() {
@@ -287,6 +303,10 @@ function fraction2() { chooseFraction(2); }
 function stone0() { chooseStone(0); }
 function stone1() { chooseStone(1); }
 function stone2() { chooseStone(2); }
+function rank0() { showRank(0); }
+function rank1() { showRank(1); }
+function rank2() { showRank(2); }
+function rank3() { showRank(3); }
 
 function initializeLearning() {
   document.getElementById("select-maths").addEventListener("click", openLesson);
@@ -296,9 +316,10 @@ function initializeLearning() {
   document.getElementById("check-order").addEventListener("click", checkOrder);
   document.getElementById("finish-level").addEventListener("click", finishLevel);
   document.getElementById("reset-demo").addEventListener("click", resetLearning);
-  document.getElementById("maya-details").addEventListener("click", showMaya);
-  document.getElementById("jordan-details").addEventListener("click", showJordan);
-  document.getElementById("alex-details").addEventListener("click", showAlex);
+  document.getElementById("leaderboard-name-1").addEventListener("click", rank0);
+  document.getElementById("leaderboard-name-2").addEventListener("click", rank1);
+  document.getElementById("leaderboard-name-3").addEventListener("click", rank2);
+  document.getElementById("leaderboard-name-4").addEventListener("click", rank3);
   document.getElementById("close-friend").addEventListener("click", clearFriend);
   document.getElementById("match-percent-0").addEventListener("click", percent0);
   document.getElementById("match-percent-1").addEventListener("click", percent1);
@@ -352,11 +373,11 @@ function chooseSession(index) {
 function reviewRequest() {
   if (chosenTopic === -1 || chosenSession === -1) {
     document.getElementById("request-message").textContent = "Choose both a topic and a session before reviewing.";
-    return;
+    return false;
   }
   if (requestConfirmed) {
     document.getElementById("request-message").textContent = "This demonstration is complete. Choose another option or start again.";
-    return;
+    return false;
   }
   document.getElementById("summary-topic").textContent = topicNames[chosenTopic];
   document.getElementById("summary-session").textContent = sessionNames[chosenSession];
@@ -368,7 +389,7 @@ function reviewRequest() {
 function confirmRequest() {
   if (requestReviewed === false || requestConfirmed === true) {
     document.getElementById("request-message").textContent = "Review a new sample request before confirming it.";
-    return;
+    return false;
   }
   requestConfirmed = true;
   document.getElementById("request-confirmation").setAttribute("class", "request-confirmation is-open");
