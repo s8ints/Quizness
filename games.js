@@ -1,6 +1,3 @@
-/* Fictional Percent Path demo. Progress lasts only until refresh or reset.
-   Button onclick calls are shown in Lab 8; DOM changes use Chapters 21-22. */
-
 var gameStage = 0;
 var chosenPercent = 0;
 var chosenButtonId = "";
