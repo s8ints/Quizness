@@ -10,30 +10,15 @@
 </head>
 
 <body class="home">
-  <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- Site name and navigation -->
-  <header class="site-header">
-    <div class="header-top">
-      <p class="brand">
-        <a href="index.html">
-          <img src="images/quizzness-logo.png" alt="" width="64" height="64">
-          QUIZZNESS
-        </a>
-      </p>
-
-      <nav class="student-nav" aria-label="Learning navigation">
-        <ul>
-          <li><a href="experience.html">Practice</a></li>
-          <li><a href="tutoring.html">Peer tutoring</a></li>
-          <li><a class="explore-button" href="#courses">Explore learning &rarr;</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <nav class="main-nav" aria-label="Venture navigation">
+  <header class="header">
+    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64" height="64"> QUIZZNESS</a></p>
+    <nav>
       <ul>
         <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="experience.html">Practice</a></li>
+        <li><a href="tutoring.html">Peer tutoring</a></li>
         <li><a href="feasibility.html">Feasibility</a></li>
         <li><a href="business-model.html">Business model</a></li>
         <li><a href="industry.html">Market &amp; Launch</a></li>
@@ -45,37 +30,37 @@
   <main id="main" tabindex="-1">
 
     <!-- Introduction -->
-    <section class="intro">
-      <div class="intro-text">
-        <p class="section-label"><span class="square"></span> A proposed course-support platform</p>
+    <section class="introduction">
+      <div class="intro-content">
+        <p class="heading-label"><span class="square"></span> A proposed course-support platform</p>
 
-        <h1 id="intro-title">Quizzness<br><span>Over Pleasure.</span></h1>
+        <h1 id="home-title">Quizzness<br><span>Over Pleasure.</span></h1>
 
-        <p class="intro-lead">Practise difficult topics.<br>Understand your mistakes.<br>Find your next step.</p>
+        <p class="intro-message">Practise difficult topics.<br>Understand your mistakes.<br>Find your next step.</p>
 
         <p>
           University coursework, reimagined as short learning quests with useful feedback and a
           route to screened peer support.
         </p>
 
-        <div class="intro-links">
+        <div class="intro-buttons">
           <a class="button start-button" href="experience.html#learn">Try a sample quest &rarr;</a>
           <a class="text-link" href="#opportunity">Discover the opportunity</a>
         </div>
         <p class="small-text">Two sample minigames. No account needed.</p>
       </div>
 
-      <figure class="mascot">
-        <img src="images/panthy-quest.svg" alt="Panthy beside a sample Percent Path quest in Mathematics." width="520" height="420">
+      <figure class="mascot-picture">
+        <img src="images/panthy-percent-path.svg" width="520" height="420" alt="Panthy beside a sample Percent Path quest in Mathematics.">
         <figcaption>Meet Panthy, the thinking panther.<br>Your proposed learning companion.</figcaption>
       </figure>
     </section>
 
     <!-- Course samples -->
     <section class="courses" id="courses">
-      <div class="section-heading">
+      <div class="section-title">
         <div>
-          <p class="section-label">Choose your starting point</p>
+          <p class="heading-label">Choose your starting point</p>
 
           <h2 id="courses-title">A world of ideas.<br>One quest at a time.</h2>
         </div>
@@ -86,7 +71,7 @@
 
       </div>
 
-      <div class="course-list">
+      <div class="course-cards">
         <article class="course">
           <img class="course-image" src="images/puzzle-temple.svg" alt="" width="600" height="165">
           <div class="course-text">
@@ -124,7 +109,7 @@
 
     <!-- Steps in the learning process -->
     <section class="learning" id="steps">
-      <p class="section-label">The learning loop</p>
+      <p class="heading-label">The learning loop</p>
 
       <h2 id="steps-title">Every attempt has a next step.</h2>
 
@@ -160,13 +145,12 @@
         </li>
       </ol>
 
-      <!-- <p class="demo-note"><strong>A demonstration, not a live service.</strong> This prototype shows two learning minigames and a tutoring example. It does not create accounts, save scores, or book sessions. GiveBack recognition would require a formal university agreement.</p> -->
     </section>
 
     <!-- Problem, survey evidence, and audience -->
     <section class="opportunity" id="opportunity">
       <div class="problem">
-        <p class="section-label">The opportunity</p>
+        <p class="heading-label">The opportunity</p>
 
         <h2 id="opportunity-title">Bridge the gap<br>between class and confidence.</h2>
 
@@ -189,17 +173,10 @@
       </div>
 
       <aside class="survey">
-        <p class="section-label">An early signal</p>
-        <h3 id="survey-title">22 <span>of 28</span></h3>
-
-        <p>
-          students in our survey (78.6%) said they have difficulty understanding course topics at least sometimes.
-        </p>
-
-        <p class="survey-note">
-          A small exploratory survey, not proof of demand. We still need interviews to find out
-          whether students would keep using Quizzness.
-        </p>
+        <p class="heading-label">Our updated survey</p>
+        <h3 id="survey-title">26 <span>of 30</span></h3>
+        <p>respondents (86.7%) rated their likelihood of trying the combined practice-and-peer-support concept 4 or 5 out of 5.</p>
+        <p class="survey-note">Thirty anonymous responses, 8&ndash;10 October 2026, across several education levels. This shows stated interest, rather than proven repeat use or learning improvement.</p>
         <a href="feasibility.html#evidence">Explore the evidence <span>&rarr;</span></a>
       </aside>
 
@@ -222,12 +199,12 @@
     <!-- Pilot proposal and further reading -->
     <section class="proposal">
       <div>
-        <p class="section-label">The venture behind the adventure</p>
+        <p class="heading-label">The venture behind the adventure</p>
 
         <h2 id="proposal-title">A focused pilot.<br>A testable proposition.</h2>
 
         <p>
-          We would start with Programming and Mathematics at one university. The main question is whether linking course practice to peer help gives students a reason to use the website regularly.
+          We would start with selected courses at a willing educational institution, using team time and agreed personal contributions to build the prototype. Student and tutor feedback would guide further development.
         </p>
       </div>
 
@@ -245,7 +222,7 @@
 
   </main>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <p>Quizzness Over Pleasure | Group project prototype, 2026</p>
 
     <p><a href="index.html">Home</a> | <a href="team.html#sources">Sources</a></p>
