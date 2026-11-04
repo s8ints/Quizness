@@ -23,7 +23,7 @@
       </ul>
     </nav>
   </header>
-  <main id="main" tabindex="-1" class="tutoring-page">
+  <main id="main" class="tutoring-page">
 
     <h1>Peer tutoring</h1>
 
@@ -61,45 +61,38 @@
       <p>These are example forms only. No request is actually sent. Peer GiveBack sessions
         would be free to students in the proposed university programme.</p>
 
-      <form id="tutor-request" action="#booking" method="post" onsubmit="reviewRequest(); return false;" onreset="editRequest()">
+      <div id="tutor-request">
         <h3>Choose a sample session</h3>
         <fieldset>
-          <legend>Session details</legend>
-          <div class="form-columns">
-            <div>
-              <label for="topic">Topic (required)</label>
-              <select id="topic" name="topic" required>
-                <option value="">Choose a topic</option>
-                <option value="Percentages">Percentages</option>
-                <option value="Ratios">Ratios</option>
-                <option value="Solving equations">Solving equations</option>
-              </select>
-            </div>
-            <div>
-              <label for="session-length">Session (required)</label>
-              <select id="session-length" name="session" required>
-                <option value="">Choose a session</option>
-                <option value="30 minutes">30 minutes</option>
-                <option value="1 hour">1 hour</option>
-                <option value="2 hours">2 hours</option>
-              </select>
-            </div>
+          <legend>Sample topic (choose one)</legend>
+          <div class="form-columns request-choices">
+            <button type="button" class="button button-light" id="topic-percentages" aria-pressed="false" onclick="chooseTopic('Percentages', 'topic-percentages')">Percentages</button>
+            <button type="button" class="button button-light" id="topic-ratios" aria-pressed="false" onclick="chooseTopic('Ratios', 'topic-ratios')">Ratios</button>
+            <button type="button" class="button button-light" id="topic-equations" aria-pressed="false" onclick="chooseTopic('Solving equations', 'topic-equations')">Solving equations</button>
           </div>
         </fieldset>
-        <p>This is a demonstration. Nothing will be sent or saved.</p>
-        <button type="submit" class="button" id="review-button" disabled>Review request</button>
-        <button type="reset" class="button button-light">Reset</button>
-      </form>
-      <div id="review" class="demo-note" hidden>
+        <fieldset>
+          <legend>Sample session length (choose one)</legend>
+          <div class="form-columns request-choices">
+            <button type="button" class="button button-light" id="session-30" aria-pressed="false" onclick="chooseSession('30 minutes', 'session-30')">30 minutes</button>
+            <button type="button" class="button button-light" id="session-60" aria-pressed="false" onclick="chooseSession('1 hour', 'session-60')">1 hour</button>
+            <button type="button" class="button button-light" id="session-120" aria-pressed="false" onclick="chooseSession('2 hours', 'session-120')">2 hours</button>
+          </div>
+        </fieldset>
+        <p id="request-message" role="status">Choose a topic and session, then review the example. Nothing will be sent or saved.</p>
+        <button type="button" class="button" id="review-button" onclick="reviewRequest()">Review request</button>
+        <button type="button" class="button button-light" onclick="resetRequest()">Reset request demo</button>
+      </div>
+      <div id="review" class="demo-note request-summary">
         <h3>Review your request</h3>
         <p>Tutor: Marcus Clarke</p>
         <p id="choice"></p>
         <button type="button" class="button" onclick="finishRequest()">Confirm demo request</button>
         <button type="button" class="button button-light" onclick="editRequest()">Edit</button>
       </div>
-      <div id="request-done" class="demo-note" role="status" hidden>
+      <div id="request-done" class="demo-note request-confirmation" role="status">
         <p>Demo complete. Your request has not been sent or saved.</p>
-        <button type="reset" form="tutor-request" class="button button-light">Start again</button>
+        <p>Use Reset request demo above to try another example.</p>
       </div>
       <p><a href="experience.html#game-demo">Back to the learning experience</a></p>
     </section>
@@ -109,14 +102,14 @@
       <h2 id="tutor-form-title">Become a peer tutor</h2>
       <p>Share what you know and support other students. Approved tutoring sessions could count toward your
         school's GiveBack hours, subject to school approval and programme rules.</p>
-      <p id="form-note" class="demo-note">This is a prototype application. You can try the form, but
-        your details and files will not be uploaded, sent, or saved. Use sample details and documents.</p>
+      <p id="form-note" class="demo-note">This is an unvalidated prototype application preview. A real application would
+        require a name, CV and two recommendation letters. Nothing entered here is uploaded, sent or saved. Use sample details and documents.</p>
 
-      <form id="tutor-form" action="#become-tutor" method="post" enctype="multipart/form-data" aria-describedby="form-note" onsubmit="finishApplication(); return false;" onreset="resetApplication()">
+      <form id="tutor-form" aria-describedby="form-note" onsubmit="return false;">
         <fieldset>
           <legend>Your details</legend>
-          <label for="tutor-name">Full name (required)</label>
-          <input type="text" id="tutor-name" name="full-name" autocomplete="name" required maxlength="120">
+          <label for="tutor-name">Full name</label>
+          <input type="text" id="tutor-name" name="full-name" autocomplete="name" maxlength="120">
         </fieldset>
 
         <fieldset aria-describedby="subject-help">
@@ -143,17 +136,17 @@
           <p id="file-help">Choose a CV and at least two recommendation letters from teachers,
             lecturers, or other people who can recommend you as a tutor. Accepted file types: PDF, DOC, or DOCX.</p>
           <div class="form-field">
-            <label for="cv-file">CV (required)</label>
-            <input type="file" id="cv-file" name="cv" accept=".pdf,.doc,.docx" required aria-describedby="file-help">
+            <label for="cv-file">CV</label>
+            <input type="file" id="cv-file" name="cv" accept=".pdf,.doc,.docx" aria-describedby="file-help">
           </div>
           <div class="form-field">
-            <label for="letter1">Recommendation letter 1 (required)</label>
-            <input type="file" id="letter1" name="recommendation-1" accept=".pdf,.doc,.docx" required
+            <label for="letter1">Recommendation letter 1</label>
+            <input type="file" id="letter1" name="recommendation-1" accept=".pdf,.doc,.docx"
               aria-describedby="file-help">
           </div>
           <div class="form-field">
-            <label for="letter2">Recommendation letter 2 (required)</label>
-            <input type="file" id="letter2" name="recommendation-2" accept=".pdf,.doc,.docx" required
+            <label for="letter2">Recommendation letter 2</label>
+            <input type="file" id="letter2" name="recommendation-2" accept=".pdf,.doc,.docx"
               aria-describedby="file-help">
           </div>
           <div class="form-field">
@@ -164,9 +157,9 @@
         </fieldset>
 
         <p>This is a demonstration. Nothing will be sent or uploaded.</p>
-        <button type="submit" class="button" id="apply-button" disabled>Confirm demo application</button>
-        <p id="application-done" class="demo-note" role="status" hidden>Demo complete. Your application and files have not been sent or saved.</p>
-        <button type="reset" class="button button-light">Reset</button>
+        <button type="button" class="button" id="apply-button" onclick="finishApplication()">Preview demo application</button>
+        <p id="application-done" class="demo-note request-confirmation" role="status">Demo complete. Your application and files have not been sent or saved.</p>
+        <button type="reset" class="button button-light" onclick="resetApplication()">Reset</button>
       </form>
     </section>
 
