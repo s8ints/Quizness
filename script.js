@@ -119,6 +119,10 @@ function chooseFraction(index) {
     document.getElementById("checkpoint-match").textContent = "Complete";
     document.getElementById("checkpoint-order").textContent = "Ready";
     document.getElementById("panthy-tip").textContent = "Gate open! You earned 50 demo XP. Continue to build the bridge.";
+    document.getElementById("temple-gate").setAttribute("class", "temple-gate gate-open");
+    document.getElementById("gate-caption").textContent = "Gate open! Continue your adventure.";
+    document.getElementById("game-panthy").setAttribute("class", "panthy-celebrate");
+    document.getElementById("match-reward").setAttribute("class", "floating-xp is-visible");
     updateProgress();
   } else {
     document.getElementById("panthy-tip").textContent = "Good match! Find the remaining pairs.";
@@ -149,6 +153,10 @@ function chooseStone(index) {
     feedback.textContent = "That stone is already on the bridge. Choose another or clear the order.";
     return;
   }
+  if (stoneCount === 3) {
+    feedback.textContent = "All three stones are placed. Check the order or clear the bridge to try again.";
+    return;
+  }
   button.setAttribute("data-selected", "yes");
   stoneCount = stoneCount + 1;
   if (stoneCount === 1) { firstStone = index; }
@@ -157,6 +165,7 @@ function chooseStone(index) {
   var stone = document.createElement("li");
   stone.textContent = stones[index];
   document.getElementById("chosen-order").appendChild(stone);
+  document.getElementById("bridge-plank-" + stoneCount).setAttribute("class", "bridge-plank is-placed");
   feedback.textContent = stoneCount + " of 3 stones placed. Use Clear order to try again.";
 }
 
@@ -168,7 +177,9 @@ function clearOrder() {
   document.getElementById("chosen-order").textContent = "";
   for (var i = 0; i < 3; i++) {
     document.getElementById("order-" + i).setAttribute("data-selected", "no");
+    document.getElementById("bridge-plank-" + (i + 1)).setAttribute("class", "bridge-plank");
   }
+  document.getElementById("bridge-scene").setAttribute("class", "bridge-scene");
   document.getElementById("ordering-feedback").textContent = "Choose the stone with the smallest result first.";
 }
 
@@ -196,6 +207,8 @@ function checkOrder() {
     return;
   }
   orderingComplete = true;
+  document.getElementById("bridge-scene").setAttribute("class", "bridge-scene bridge-complete");
+  document.getElementById("order-reward").setAttribute("class", "floating-xp is-visible");
   feedback.textContent = "Bridge complete! BBD 6 < BBD 10 < BBD 20. You earned another 50 demo XP.";
   document.getElementById("checkpoint-order").textContent = "Complete";
   document.getElementById("panthy-tip").textContent = "You crossed the bridge! View your level results.";
@@ -237,6 +250,11 @@ function resetLearning() {
   pairsMatched = 0;
   matchingComplete = false;
   orderingComplete = false;
+  document.getElementById("temple-gate").setAttribute("class", "temple-gate");
+  document.getElementById("gate-caption").textContent = "Match the runes to open the gate";
+  document.getElementById("game-panthy").setAttribute("class", "");
+  document.getElementById("match-reward").setAttribute("class", "floating-xp");
+  document.getElementById("order-reward").setAttribute("class", "floating-xp");
   for (var i = 0; i < 3; i++) {
     var percent = document.getElementById("match-percent-" + i);
     var fraction = document.getElementById("match-fraction-" + i);

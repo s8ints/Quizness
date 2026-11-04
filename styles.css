@@ -403,6 +403,35 @@ thead { background-color: rgba(68, 33, 111, 0.06); }
 .experience-page .demo-topics h2 { color: #44216f; }
 .experience-page .demo-topics li { margin: 8px 0; }
 
+/* Short decorative effects from Chapter 18. Text feedback carries every result. */
+.experience-page .game-arena { position: relative; }
+.experience-page .game-tile { transition: background-color 180ms ease-out, transform 180ms ease-out; }
+.experience-page .game-tile:hover, .experience-page .game-tile:focus { transform: translateY(-2px); }
+.experience-page .temple-scene { display: flex; align-items: center; gap:16px; max-width: 430px; margin: 22px 0; padding: 14px; border-radius: 8px; background-color: #fff3d9; color: #44216f; }
+.experience-page .temple-scene p { margin: 0; font-weight: bold; }
+.experience-page .temple-gate { display: flex; flex: 0 0 78px; width: 78px; height: 60px; overflow: hidden; border: 5px solid #44216f; background-color: #8acb82; }
+.experience-page .temple-gate span { width: 50%; height: 100%; border: 2px solid #44216f; background-color: #9165ce; transition: transform 400ms ease-out; }
+.experience-page .gate-open span:first-child { transform: translateX(-100%); }
+.experience-page .gate-open span:last-child { transform: translateX(100%); }
+.experience-page .bridge-scene { display: flex; align-items: center; gap: 6px; min-height: 78px; margin: 22px 0; padding: 10px; border: 1px solid #9165ce; border-radius: 8px; background-color: #fff3d9; }
+.experience-page .bridge-bank { flex: 1; height: 44px; border: 2px solid #44216f; background-color: #8acb82; }
+.experience-page .bridge-plank { flex: 1; height: 20px; border: 2px solid #44216f; background-color: #9165ce; opacity: 0; transition: opacity 300ms ease-out, background-color 300ms ease-out; }
+.experience-page .bridge-plank.is-placed { opacity: 1; }
+.experience-page .bridge-complete .bridge-plank { background-color: #8acb82; }
+.experience-page .panthy-celebrate { animation: panthy-hop 400ms ease-out; }
+.experience-page .floating-xp { display: none; position: absolute; top: 18px; right: 18px; padding: 6px 10px; border-radius: 4px; background-color: #8acb82; color: #252037; font-weight: bold; }
+.experience-page .floating-xp.is-visible { display: block; animation: reward-rise 850ms ease-out forwards; }
+.experience-page #complete-screen { position: relative; }
+.experience-page .pixel-confetti { position: absolute; top: 12px; right: 12px; width: 110px; height: 65px; overflow: hidden; }
+.experience-page .pixel-confetti span { display: block; position: absolute; top: 0; left: 10px; width: 9px; height: 9px; background-color: #44216f; }
+.experience-page .pixel-confetti span:nth-child(2) { left: 35px; background-color: #9165ce; }
+.experience-page .pixel-confetti span:nth-child(3) { left: 65px; }
+.experience-page .pixel-confetti span:nth-child(4) { left: 90px; background-color: #9165ce; }
+.experience-page #complete-screen.is-open .pixel-confetti span { animation: confetti-fall 700ms ease-in forwards; }
+@keyframes panthy-hop { 50% { transform: translateY(-6px); } }
+@keyframes reward-rise { to { opacity: 0; transform: translateY(-12px); } }
+@keyframes confetti-fall { to { opacity: 0; transform: translateY(55px); } }
+
 @media (max-width: 800px) {
   .experience-page .order-tiles { grid-template-columns: 1fr; }
   .experience-page .order-tiles .game-tile { min-height: 58px; }

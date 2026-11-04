@@ -124,14 +124,19 @@
       </section>
 
       <div class="demo-guide game-guide">
-        <img src="mascot/tiger-pixel.svg" alt="Panthy, your purple pixel learning guide." width="88" height="84">
+        <img id="game-panthy" src="mascot/tiger-pixel.svg" alt="Panthy, your purple pixel learning guide." width="88" height="84">
         <p><strong>Panthy's field notes</strong><span id="panthy-tip">Choose a subject to begin. There is no timer, so take your time!</span></p>
       </div>
 
       <section class="demo-screen demo-panel game-arena" id="matching-screen">
+        <span class="floating-xp" id="match-reward" aria-hidden="true">+50 XP</span>
         <p class="section-label">Quest 01 / +50 demo XP</p>
         <h2 tabindex="-1">Match the runes</h2>
         <p>Open the temple gate: match all three percentages with their equivalent fractions.</p>
+        <div class="temple-scene" aria-hidden="true">
+          <div class="temple-gate" id="temple-gate"><span></span><span></span></div>
+          <p id="gate-caption">Match the runes to open the gate</p>
+        </div>
         <div class="matching-columns">
           <fieldset class="demo-answers">
             <legend>Percentage runes</legend>
@@ -154,9 +159,17 @@
       </section>
 
       <section class="demo-screen demo-panel game-arena" id="ordering-screen">
+        <span class="floating-xp" id="order-reward" aria-hidden="true">+50 XP</span>
         <p class="section-label">Quest 02 / +50 demo XP</p>
         <h2 tabindex="-1">Build the bridge</h2>
         <p>Calculate each amount. Place the stones from the smallest result to the largest to cross the bridge.</p>
+        <div class="bridge-scene" id="bridge-scene" aria-hidden="true">
+          <span class="bridge-bank"></span>
+          <span class="bridge-plank" id="bridge-plank-1"></span>
+          <span class="bridge-plank" id="bridge-plank-2"></span>
+          <span class="bridge-plank" id="bridge-plank-3"></span>
+          <span class="bridge-bank"></span>
+        </div>
         <div class="order-tiles" role="group" aria-label="Available bridge stones">
           <button type="button" class="game-tile order-tile" id="order-0">25% of BBD 80</button>
           <button type="button" class="game-tile order-tile" id="order-1">10% of BBD 60</button>
@@ -174,6 +187,7 @@
       </section>
 
       <section class="demo-screen demo-panel" id="complete-screen">
+        <div class="pixel-confetti" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
         <p class="section-label">Percent Path / quest complete</p>
         <h2 tabindex="-1" id="complete-title">Percent Path cleared!</h2>
         <p>You opened the temple gate and crossed the bridge. Both checkpoints are complete!</p>
