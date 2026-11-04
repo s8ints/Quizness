@@ -536,7 +536,7 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.tutoring-page button, .tutoring-page input {
+.tutoring-page button, .tutoring-page input, .tutoring-page select {
   font-family: inherit;
   font-size: 16px;
   line-height: 1.5;
@@ -582,6 +582,16 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
 }
 .tutoring-page #tutor-form { margin-top: 24px; }
 .tutoring-page .form-field { margin-top: 20px; }
+.tutoring-page .availability-calendar {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 12px;
+}
+.tutoring-page #request-slot { width: 100%; min-width: 0; padding: 12px 8px; border: 2px solid #9165ce; background-color: #fff3d9; color: #252037; }
+.tutoring-page #request-slot:focus-visible { outline: 3px solid #44216f; outline-offset: 3px; }
 .tutoring-page .wallet-note { padding: 16px 20px; border-left: 4px solid #8acb82; background-color: #8acb82; }
 
 .content-page .page-heading {

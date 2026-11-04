@@ -16,7 +16,7 @@ function chooseTopic(name, buttonId) {
   document.getElementById("topic-equations").setAttribute("aria-pressed", "false");
   document.getElementById(buttonId).setAttribute("aria-pressed", "true");
   clearRequestPreview();
-  document.getElementById("request-message").textContent = "Topic: " + name + ". Choose a session length, then review.";
+  document.getElementById("request-message").textContent = "Topic: " + name + ". Choose a session length and available date and time, then review.";
 }
 
 function chooseSession(name, buttonId) {
@@ -26,22 +26,28 @@ function chooseSession(name, buttonId) {
   document.getElementById("session-120").setAttribute("aria-pressed", "false");
   document.getElementById(buttonId).setAttribute("aria-pressed", "true");
   clearRequestPreview();
-  document.getElementById("request-message").textContent = "Session: " + name + ". Choose a topic, then review.";
+  document.getElementById("request-message").textContent = "Session: " + name + ". Choose a topic and available date and time, then review.";
+}
+
+function chooseSlot() {
+  clearRequestPreview();
+  document.getElementById("request-message").textContent = "Choose a topic, session length, and available date and time, then review.";
 }
 
 function reviewRequest() {
-  if (chosenTopic === "" || chosenSession === "") {
-    document.getElementById("request-message").textContent = "Choose both a topic and a session length before reviewing.";
+  var slot = document.getElementById("request-slot");
+  if (chosenTopic === "" || chosenSession === "" || slot.value === "") {
+    document.getElementById("request-message").textContent = "Choose a topic, session length, and available date and time before reviewing.";
     return false;
   }
-  document.getElementById("choice").textContent = "Topic: " + chosenTopic + " | Session: " + chosenSession;
+  document.getElementById("choice").textContent = "Topic: " + chosenTopic + " | Session: " + chosenSession + " | Date and time: " + slot.options[slot.selectedIndex].text + " (tutor local time)";
   document.getElementById("review").setAttribute("class", "demo-note request-summary is-open");
   document.getElementById("request-message").textContent = "Review the fictional request below. Nothing has been sent or saved.";
   requestReviewed = true;
 }
 
 function editRequest() {
-  document.getElementById("request-message").textContent = "Change the topic or session above, then review again.";
+  document.getElementById("request-message").textContent = "Change the topic, session length, or date and time above, then review again.";
 }
 
 function finishRequest() {
@@ -56,6 +62,7 @@ function finishRequest() {
 function resetRequest() {
   chosenTopic = "";
   chosenSession = "";
+  document.getElementById("request-slot").value = "";
   clearRequestPreview();
   document.getElementById("topic-percentages").setAttribute("aria-pressed", "false");
   document.getElementById("topic-ratios").setAttribute("aria-pressed", "false");
@@ -64,7 +71,7 @@ function resetRequest() {
   document.getElementById("session-60").setAttribute("aria-pressed", "false");
   document.getElementById("session-120").setAttribute("aria-pressed", "false");
   document.getElementById("choice").textContent = "";
-  document.getElementById("request-message").textContent = "Choose a topic and session, then review the example. Nothing will be sent or saved.";
+  document.getElementById("request-message").textContent = "Choose a topic, session length, and available date and time, then review the example. Nothing will be sent or saved.";
 }
 
 function finishApplication() {
