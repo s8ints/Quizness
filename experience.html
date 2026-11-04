@@ -36,7 +36,7 @@
         <p id="game-progress" role="status">0 of 2 checkpoints complete this visit.</p>
         <p id="game-points" role="status">0 XP earned this demo.</p>
       </div>
-      <button type="button" class="button button-light" id="reset-demo" disabled>Reset demonstration</button>
+      <button type="button" class="button button-light" id="reset-demo" onclick="resetDemo()">Reset demonstration</button>
     </div>
     <ol class="game-steps" aria-label="Percent Path checkpoints">
       <li><strong>1. Match the runes</strong><span id="matching-status">Locked</span></li>
@@ -50,7 +50,7 @@
     <!-- Existing home and tutoring links both enter the course-selection journey. -->
     <div id="game-demo">
     <div id="learn">
-      <section class="game-screen game-box game-overview" id="course-menu">
+      <section class="game-screen game-box game-overview is-open" id="course-menu">
         <h2 tabindex="-1" id="course-title">1. Choose your learning world</h2>
         <p>Explore our sample course selection. Start with Percent Path in Puzzle Temple.</p>
         <div class="world-list">
@@ -59,7 +59,7 @@
             <h3>Mathematics</h3>
             <p class="world-name">Puzzle Temple</p>
             <p>Percent Path: match the percentage runes, then build a bridge by ordering calculations.</p>
-            <button type="button" class="button" id="select-maths" disabled>Select Mathematics</button>
+            <button type="button" class="button" id="select-maths" onclick="openLesson()">Select Mathematics</button>
           </article>
           <article class="world-card game-preview">
             <p class="section-note">Preview only</p>
@@ -90,8 +90,8 @@
         <p class="game-source">Learning source: OpenStax (2020), <cite>Prealgebra 2e</cite>, Section 6.1.
           <a href="team.html#source-openstax">See the source details</a>.</p>
         <div class="game-buttons">
-          <button type="button" class="button" id="start-quiz">Enter Percent Path</button>
-          <button type="button" class="button button-light" id="back-courses">Back to course selection</button>
+          <button type="button" class="button" id="start-quiz" onclick="startMatching()">Enter Percent Path</button>
+          <a class="button button-light" href="#course-menu">Back to course selection</a>
         </div>
       </section>
 
@@ -112,20 +112,20 @@
         <div class="match-columns">
           <fieldset class="game-answers">
             <legend>Percentage runes</legend>
-            <button type="button" class="answer-button percent-button" id="percent20" aria-pressed="false">20%</button>
-            <button type="button" class="answer-button percent-button" id="percent25" aria-pressed="false">25%</button>
-            <button type="button" class="answer-button percent-button" id="percent50" aria-pressed="false">50%</button>
+            <button type="button" class="answer-button percent-button" id="percent20" aria-pressed="false" onclick="pickPercent(20, 'percent20')">20%</button>
+            <button type="button" class="answer-button percent-button" id="percent25" aria-pressed="false" onclick="pickPercent(25, 'percent25')">25%</button>
+            <button type="button" class="answer-button percent-button" id="percent50" aria-pressed="false" onclick="pickPercent(50, 'percent50')">50%</button>
           </fieldset>
           <fieldset class="game-answers">
             <legend>Fraction runes</legend>
-            <button type="button" class="answer-button fraction-button" id="fraction-half">1/2</button>
-            <button type="button" class="answer-button fraction-button" id="fraction-fifth">1/5</button>
-            <button type="button" class="answer-button fraction-button" id="fraction-quarter">1/4</button>
+            <button type="button" class="answer-button fraction-button" id="fraction-half" onclick="pickFraction(50, 'fraction-half', '1/2')">1/2</button>
+            <button type="button" class="answer-button fraction-button" id="fraction-fifth" onclick="pickFraction(20, 'fraction-fifth', '1/5')">1/5</button>
+            <button type="button" class="answer-button fraction-button" id="fraction-quarter" onclick="pickFraction(25, 'fraction-quarter', '1/4')">1/4</button>
           </fieldset>
         </div>
         <p id="match-message" class="game-message" role="status">Choose a percentage first, then a fraction.</p>
         <div class="game-buttons">
-          <button type="button" class="button" id="next-game" disabled>Continue to the bridge</button>
+          <button type="button" class="button" id="next-game" onclick="startOrdering()">Continue to the bridge</button>
         </div>
         <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
       </section>
@@ -141,17 +141,21 @@
           <span class="bridge-bank"></span>
         </div>
         <div class="stone-buttons">
-          <button type="button" class="answer-button stone-button" id="stone20">25% of BBD 80</button>
-          <button type="button" class="answer-button stone-button" id="stone6">10% of BBD 60</button>
-          <button type="button" class="answer-button stone-button" id="stone10">20% of BBD 50</button>
+          <button type="button" class="answer-button stone-button" id="stone20" onclick="pickStone(20, 'stone20', '25% of BBD 80')">25% of BBD 80</button>
+          <button type="button" class="answer-button stone-button" id="stone6" onclick="pickStone(6, 'stone6', '10% of BBD 60')">10% of BBD 60</button>
+          <button type="button" class="answer-button stone-button" id="stone10" onclick="pickStone(10, 'stone10', '20% of BBD 50')">20% of BBD 50</button>
         </div>
         <h3>Your bridge: smallest to largest</h3>
-        <ol id="stone-order" class="bridge-order" aria-label="Selected stone order"></ol>
+        <ol id="stone-order" class="bridge-order" aria-label="Selected stone order">
+          <li id="stone-slot-1" class="stone-slot"></li>
+          <li id="stone-slot-2" class="stone-slot"></li>
+          <li id="stone-slot-3" class="stone-slot"></li>
+        </ol>
         <p id="order-message" class="game-message" role="status">Choose the stone with the smallest result first.</p>
         <div class="game-buttons">
-          <button type="button" class="button button-light" id="clear-order">Clear order</button>
-          <button type="button" class="button" id="check-order" disabled>Check order</button>
-          <button type="button" class="button" id="finish-level" disabled>View level results</button>
+          <button type="button" class="button button-light" id="clear-order" onclick="restartOrder()">Clear order</button>
+          <button type="button" class="button" id="check-order" onclick="checkOrder()">Check order</button>
+          <button type="button" class="button" id="finish-level" onclick="finishLevel()">View level results</button>
         </div>
         <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
       </section>

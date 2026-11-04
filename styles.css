@@ -404,6 +404,7 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
 .game-bar p { margin: 4px 20px 4px 0; }
 .game-bar button { margin: 8px 0; }
 .practice-page .game-overview { display: block; }
+.practice-page .game-screen.is-open { display: block; }
 .game-box, .tutoring-page .tutor-section { padding: 32px; border: 1px solid #9165ce; background-color: #fff3d9; }
 .game-box h2, .tutoring-page .tutor-section h2 { margin-top: 0; color: #44216f; }
 .world-list, .tutoring-page .form-columns { display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 20px; }
@@ -480,6 +481,9 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   background-color: rgba(68, 33, 111, 0.06);
 }
 .practice-page .bridge-order li { padding: 8px; color: #44216f; }
+.practice-page .stone-slot { display: none; }
+.practice-page .stone-slot.is-filled { display: list-item; }
+.practice-page .stone-button[data-selected="yes"] { background-color: #8acb82; }
 .practice-page .game-reward {
   padding: 20px;
   border: 2px solid #8acb82;
@@ -555,11 +559,6 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   70% { opacity: 1; transform: translateY(3px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.practice-page .game-screen, .practice-page .game-screen *, .practice-page #game-mascot {
-  animation-duration: 0.01ms;
-  animation-delay: 0ms;
-  transition-duration: 0.01ms;
-}
 
 .tutoring-page button, .tutoring-page select, .tutoring-page input {
   font-family: inherit;
@@ -567,6 +566,9 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   line-height: 1.5;
 }
 .tutoring-page button { cursor: pointer; }
+.tutoring-page .request-choices button[aria-pressed="true"] { background-color: #44216f; color: #fff3d9; }
+.tutoring-page .request-summary, .tutoring-page .request-confirmation { display: none; }
+.tutoring-page .request-summary.is-open, .tutoring-page .request-confirmation.is-open { display: block; }
 .tutoring-page button:disabled {
   cursor: default;
   background-color: rgba(68, 33, 111, 0.06);
