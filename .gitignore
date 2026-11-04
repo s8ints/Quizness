@@ -12,3 +12,6 @@ build/
 .env.*
 !.env.example
 !.env.*.example
+
+# Separate game app stays local, outside the school proposal repository
+quizzness-game/
