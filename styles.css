@@ -678,3 +678,89 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
 .practice-page .bridge-picture > * + * { margin-left: 6px; }
 .tutoring-page .subject-options input { margin-right: 12px; }
 .content-page .page-menu li { margin: 4px 24px 4px 0; }
+
+@media (max-width: 1100px) {
+  .home .introduction { grid-template-columns: 1fr; grid-gap: 20px; padding: 48px 0; }
+  .home .mascot-picture { width: 100%; max-width: 520px; margin: 0 auto; }
+  .home .intro-content > p { max-width: 620px; }
+  .home .section-title { grid-gap: 24px; }
+  .home .steps { grid-gap: 16px; }
+  .home .steps li::before { right: -16px; }
+  .home .opportunity, .home .proposal { grid-gap: 28px; }
+}
+
+@media (max-width: 650px) {
+  .home { padding: 0 16px; }
+  .home .introduction { padding: 40px 0; }
+  .home .introduction h1 { font-size: 46px; letter-spacing: -2px; }
+  .home .intro-message { font-size: 20px; }
+  .home h2 { font-size: 30px; }
+  .home .courses { padding: 28px 16px; border-radius: 12px; }
+  .home .section-title, .home .course-cards, .home .opportunity, .home .proposal, .home .audience dl {
+    grid-template-columns: 1fr;
+  }
+  .home .section-title { grid-gap: 20px; }
+  .home .course-text { padding: 20px; }
+  .home .learning, .home .opportunity, .home .proposal { margin-top: 48px; }
+  .home .steps { grid-template-columns: 1fr; grid-gap: 0; }
+  .home .steps li { padding: 0 0 28px 68px; min-height: 80px; }
+  .home .steps li:last-child { padding-bottom: 0; }
+  .home .step-number { position: absolute; top: 0; left: 0; }
+  .home .steps li::before {
+    top: 46px;
+    bottom: 0;
+    left: 22px;
+    right: auto;
+    border-top: 0;
+    border-left: 2px dashed #9165ce;
+  }
+  .home .steps h3 { margin-top: 0; }
+  .home .audience dt { padding-bottom: 6px; }
+  .home .audience dd { padding-top: 0; border-top: 0; }
+  .home .survey, .home .proposal { padding: 24px; }
+}
+
+@media (max-width: 600px) {
+  .practice-page .game-steps, .practice-page .match-columns { grid-template-columns: 1fr; }
+  .practice-page .match-columns { grid-gap: 0; }
+  .practice-page .match-columns fieldset { margin: 12px 0; }
+  .practice-page .friends-box { padding: 24px 12px; }
+  .practice-page .friends-box th, .practice-page .friends-box td { padding: 8px 6px; }
+}
+
+@media (max-width: 1000px) {
+  .header { flex-direction: column; align-items: flex-start; }
+  .site-name { margin-bottom: 12px; }
+  .header nav { max-width: none; }
+  .header nav ul { justify-content: flex-start; }
+}
+
+@media (max-width: 700px) {
+  body { padding: 0 16px; }
+  .header { padding: 20px 0 16px; }
+  .header nav a { padding: 10px; }
+  main { margin-top: 24px; }
+  th, td { padding: 6px; }
+  .practice-page .game-box, .tutoring-page .tutor-section { padding: 24px 16px; }
+  .practice-page .world-list, .tutoring-page .form-columns { grid-template-columns: 1fr; }
+  .practice-page .world-card, .tutoring-page .tutor-card { padding: 20px; }
+  .practice-page .game-help img, .tutoring-page .game-help img { width: 64px; margin-right: 16px; }
+  .practice-page .worked-example, .tutoring-page fieldset { padding: 16px; }
+}
+
+@media (max-width: 700px) {
+  .content-page .page-heading { grid-template-columns: 1fr 90px; grid-gap: 20px; }
+  .content-page .page-heading .intro-message {  }
+  .content-page .assessment { padding: 20px; }
+  .content-page main > section blockquote, .content-page .decision { padding: 24px 20px; }
+  .content-page .model-list, .content-page .topics { grid-template-columns: 1fr; grid-gap: 16px; }
+}
+
+@media (max-width: 420px) {
+  .content-page .page-heading { grid-template-columns: 1fr; }
+  .content-page .page-heading img { width: 90px; margin: 0; }
+}
+
+@media (max-width: 700px) {
+  .content-page .page-menu li { margin: 2px 20px 2px 0; }
+}

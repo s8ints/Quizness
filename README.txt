@@ -5,7 +5,7 @@ pages together. This is a front-end demonstration; it needs no account or server
 
 Pages:
 - index.html: introduction, course samples, opportunity and audience
-- experience.html: percentage matching, ordering, demo XP and fictional friends
+- experience.html: percentage matching, ordering, demo XP and a fixed fictional leaderboard
 - tutoring.html: sample tutor requests and tutor application demonstration
 - feasibility.html: survey evidence, feasibility and proposed pilot
 - business-model.html: revenue, costs and model comparison
@@ -33,7 +33,8 @@ Scores, tutor details and GiveBack totals are fictional examples. No bookings,
 applications or files are sent, and no progress is saved. GiveBack recognition
 would require a formal university agreement.
 
-Survey figures come from the group's own 28-response survey (8-9 October 2026).
+Survey figures come from the updated group report: 30 anonymous responses,
+8-10 October 2026.
 No pilot results are claimed.
 
 The separate quizzness-game directory is a separate application and is outside
@@ -41,3 +42,11 @@ the supplied static-site file list. Its source and dependencies are unchanged.
 
 JavaScript files: games.js runs the games; tutoring.js runs the simple form review
 and demo confirmations. Both work independently, without a shared script file.
+
+The leaderboard is a fixed HTML table. The static site uses games.js and tutoring.js
+with no arrays or loops. Responsive CSS is enabled; custom skip links and focus CSS
+remain removed. The added signup.html page is retained as a non-submitting preview.
+
+Updated business case: confirmed five-member team, institutional licensing proposal,
+bootstrapping and sweat equity, and participant-feedback-led development. No fixed
+pilot size, financial forecasts, confirmed partnership or live pilot results are claimed.
