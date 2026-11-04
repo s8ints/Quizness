@@ -4,6 +4,8 @@ build/
 .next/
 coverage/
 .env
+.env.local
+.env.development.local
 .env.*
 !.env.example
 *.log
@@ -11,3 +13,25 @@ test-results/
 playwright-report/
 *.tsbuildinfo
 .superpowers/
+.claude
+
+# Test reports, caches and local tooling
+*.test.*
+*.spec.*
+__tests__/
+tests/
+test/
+e2e/
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.vite/
+.cache/
+.superpowers/
+*.log
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini

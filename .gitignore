@@ -12,24 +12,3 @@ build/
 .env.*
 !.env.example
 !.env.*.example
-
-# Test reports, caches and local tooling
-*.test.*
-*.spec.*
-__tests__/
-tests/
-test/
-e2e/
-coverage/
-test-results/
-playwright-report/
-blob-report/
-.vite/
-.cache/
-.superpowers/
-*.log
-
-# Operating-system files
-.DS_Store
-Thumbs.db
-Desktop.ini
