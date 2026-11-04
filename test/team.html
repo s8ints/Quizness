@@ -1,0 +1,157 @@
+<!doctype html>
+<!--
+  Web textbook reference: Jennifer Niederst Robbins (2018), Learning Web Design,
+  5th edition, O'Reilly.
+  Chapter 4, "Creating a Simple Page" (p. 49): HTML document structure.
+  Chapter 5, "Marking Up Text" (p. 71): headings, paragraphs and semantic sections.
+  Chapter 6, "Adding Links" (p. 113): local navigation and section anchors.
+  Chapter 8, "Table Markup" (p. 163): team table with accessible headers.
+  Page numbers refer to chapter openings in the supplied textbook.
+-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quizzness | Research and citations</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><a class="brand" href="index.html">Quizzness<span>Quizzness over pleasure</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Brand and concept</a><a href="experience.html">Prototype cues</a><a
+        href="feasibility.html">Feasibility analysis</a><a href="business-model.html">Business model</a><a
+        href="industry.html">Industry and competitors</a><a href="team.html" aria-current="page">Research and citations</a><a href="signup.html">Sign up demo</a></nav>
+  </header>
+  <main id="main">
+    <div class="page-intro">
+      <p class="eyebrow">People, evidence &amp; next steps</p>
+      <h1>Research and citations</h1>
+      <p>A proposal for a focused pilot, supported by course concepts and external evidence.</p>
+    </div>
+    <section id="team">
+      <h2>The project team</h2>
+      <p>Names retained from the project’s previous team page. The role allocation below is proposed and needs
+        confirmation by the group.</p>
+      <div class="table-scroll" role="region" aria-label="Proposed team roles" tabindex="0">
+        <table>
+          <caption>Proposed responsibilities</caption>
+          <thead>
+            <tr>
+              <th scope="col">Member</th>
+              <th scope="col">Proposed role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Jelani Clarke</th>
+              <td>Venture concept and product journey</td>
+            </tr>
+            <tr>
+              <th scope="row">Jolicia Williams</th>
+              <td>Research synthesis and editing</td>
+            </tr>
+            <tr>
+              <th scope="row">Akira Jemmott</th>
+              <td>Survey analysis and validation</td>
+            </tr>
+            <tr>
+              <th scope="row">Nathaniel Als</th>
+              <td>HTML/CSS implementation and browser checks</td>
+            </tr>
+            <tr>
+              <th scope="row">Isaiah (surname to confirm)</th>
+              <td>Visual assets and accessibility checks</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="next-step" class="callout"><img class="mascot" src="mascot/tiger-pixel.svg"
+        alt="Rory, the purple pixel tiger mascot." width="144" height="138">
+      <div>
+        <p class="eyebrow">For a course partner or pilot sponsor</p>
+        <h2>Help us test one course well.</h2>
+        <p>Our ask is access to a consenting cohort, two course activity sets, a peer-support coordinator and a lecturer
+          reviewer for a four-week pilot. We would agree a modest budget after estimating development, review and
+          support costs.</p>
+        <p>At the end, we would report repeat use, performance on separate application tasks and delivery costs, then
+          decide whether to continue.</p><a class="button" href="feasibility.html#pilot">Review the pilot plan →</a>
+      </div>
+    </section>
+    <section id="sources">
+      <p class="eyebrow">References</p>
+      <h2>Sources used in this proposal</h2>
+      <p>Numbered links beside claims point here. External pages were checked on 9 October 2026. Product documentation
+        establishes features; it does not prove demand for Quizzness.</p>
+      <ol class="sources">
+        <li id="source-text"><strong>Barringer, B. R., &amp; Ireland, R. D. (2019).</strong> <cite>Entrepreneurship:
+            Successfully Launching New Ventures</cite> (6th ed., Global ed.). Pearson. ISBN 978-1-292-25533-0. Supplied
+          course PDF. Chapter 3: pp. 110–122, product/service and industry/target-market feasibility. Chapter 4: pp.
+          150–153 and Table 4.1, standard models and the CoachUp comparison (p. 150). Chapter 5: pp. 189–201, trends, Five Forces and Figure
+          5.2. References use printed page numbers.</li>
+        <li id="source-retrieval"><strong>Karpicke, J. D., &amp; Blunt, J. R. (2011).</strong> <a
+            href="https://doi.org/10.1126/science.1199327"><cite>Retrieval practice produces more learning than
+              elaborative studying with concept mapping</cite></a>. <cite>Science</cite>, 331(6018), 772–775. <a
+            href="https://pubmed.ncbi.nlm.nih.gov/21252317/">Abstract and bibliographic record</a>. Supports the
+          learning rationale; not a Quizzness trial.</li>
+        <li id="source-quizlet"><strong>Quizlet (n.d.).</strong> <a
+            href="https://help.quizlet.com/hc/en-us/articles/360030841732-Studying-on-Quizlet"><cite>Studying on
+              Quizlet</cite></a>. Official help centre. Used for flashcards, study games and material-based practice
+          tools.</li>
+        <li id="source-kahoot"><strong>Kahoot! (2026).</strong> <a
+            href="https://support.kahoot.com/hc/en-us/articles/31566898896029-How-to-learn-and-practice-with-Kahoot-self-study-modes"><cite>How
+              to learn and practice with Kahoot! self-study modes</cite></a>. Official help centre, updated 30 September
+          2026. Used for self-study and solo-mode descriptions.</li>
+        <li id="source-unesco"><strong>Miao, F., &amp; Holmes, W. (2023).</strong> <a
+            href="https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research"><cite>Guidance for
+              generative AI in education and research</cite></a>. UNESCO. Used for validation and privacy considerations
+          if AI conversion is introduced.</li>
+        <li id="source-anki"><strong>Anki (n.d.).</strong> <a href="https://docs.ankiweb.net/background.html"><cite>Anki
+              Manual: Background</cite></a>. Official documentation. Used for active recall and spaced repetition as a
+          substitute approach.</li>
+        <li id="source-web"><strong>Robbins, J. N. (2018).</strong> <cite>Learning Web Design: A Beginner’s Guide to
+            HTML, CSS, JavaScript, and Web Graphics</cite> (5th ed.). O’Reilly. ISBN 978-1-491-96020-2. Supplied
+          technical reading; used as guidance for page structure, links, images, tables and responsive design. This
+          proposal uses HTML and external CSS.</li>
+      
+<li id="source-survey"><strong>Quizzness project team (2026).</strong> <cite>Student Learning &amp; Study Experience Survey</cite>. Supplied file: Student Learning &amp; Study Experience Survey.csv; 28 submitted rows. Primary research. <a href="survey.html">Question-by-question aggregate results</a> and <a href="survey-summary.csv">downloadable aggregate counts</a>. Percentages are rounded to one decimal place. Recruitment, location and eligibility checks are not documented. Findings do not establish population demand, retention or learning gains. Individual timestamps and written answers are omitted.</li>
+<li id="source-proposal"><strong>Quizzness project team (2026).</strong> <cite>Quizzness Group Proposal</cite>. Supplied Quizzness_Group_Proposal.docx, dated 9 October 2026. Used for the audience, practice-to-peer-help concept, licensing and proposed GiveBack process. COMP1170_Group_Project_Proposal_2026.pdf provides assessment context. The other proposal's screenshots and HTML informed presentation only; its branding, business content and code were not copied.</li>
+<li id="source-games"><strong>Sailer, M., &amp; Homner, L. (2020).</strong> <a href="https://doi.org/10.1007/s10648-019-09498-w"><cite>The gamification of learning: A meta-analysis</cite></a>. Educational Psychology Review, 32, 77?112. Informs testing game elements; does not establish Quizzness's effectiveness.</li>
+<li id="source-peer"><strong>Education Endowment Foundation (n.d.).</strong> <a href="https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/peer-tutoring"><cite>Peer tutoring</cite></a>. Teaching and Learning Toolkit. Checked 9 October 2026. School-focused evidence on structured tutoring and training, not a trial of this tertiary venture.</li>
+</ol>
+    </section>
+    <section id="name-check">
+      <h2>Name research</h2>
+      <p>On 9 October 2026, searches for “Quizzness” and “Quizzness company” returned similar quiz-related wording,
+        including <a href="https://queueapp.me/">“Risky Quizzness” event listings</a> and <a
+          href="https://shannonsirishpub.ca/whos-on-stage/">“Quizzness as usual” quiz nights</a>. These are not claimed
+        as our venture or inspiration for its artwork.</p>
+      <p>We retain the owner’s chosen Quizzness name provisionally. The search does not establish exclusive ownership or
+        originality of the name; a fuller name check remains a launch task.</p>
+    </section>
+    <p>The supplied group proposal flags a possible same-name trivia platform at <a href="https://www.quizzness.com/">quizzness.com</a>. Its live page could not be verified during this check. The name remains provisional pending investigation of that reported conflict. <a href="#source-proposal">[9]</a></p>
+<section id="assets">
+      <h2>Visual identity and asset credits</h2>
+      <p><strong>Identity:</strong> the supplied Quizzness name and “Quizzness over pleasure” slogan, with a purple,
+        lavender and gold palette drawn from the supplied logo.</p>
+      <ul class="spaced-list">
+        <li><strong>Logo:</strong> <a href="quizzness_logo.png">quizzness_logo.png</a>, supplied by the project owner.
+          Creator and licence details were not provided; authorship is not claimed here.</li>
+        <li><strong>Mascot:</strong> <a href="mascot/tiger-pixel.svg">mascot/tiger-pixel.svg</a>, existing project
+          artwork. Its embedded title identifies Rory, the pixel-art purple tiger. No competitor mascot is used.</li>
+        <li><strong>Screenshot area:</strong> an empty CSS placeholder, awaiting a project screenshot. It is not a
+          functioning game screen.</li>
+      </ul>
+      <p>The concept comes from the owner’s brief. The question, pilot plan and business judgements are proposal
+        content, not live service records or pilot results.</p>
+    </section>
+  </main>
+  <footer>
+    <p><strong>Quizzness over pleasure.</strong> · COMP1170 venture proposal, 2026</p>
+    <p><a href="index.html">Brand and concept</a> · <a href="#sources">References</a></p>
+  </footer>
+</body>
+
+</html>

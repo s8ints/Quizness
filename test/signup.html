@@ -1,0 +1,91 @@
+<!doctype html>
+<!--
+  Robbins (2018), Learning Web Design, 5th edition.
+  Chapters 4-6: document structure, headings and links.
+  Chapter 9, "Forms" (p. 177): labels, fieldsets, inputs and select controls.
+  The native HTML dialog form demonstrates completion without JavaScript or
+  a network submission. It is a prototype, not an account-registration service.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quizzness | Sign up demonstration</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">Quizzness<span>Quizzness over pleasure</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Brand and concept</a>
+      <a href="experience.html">Prototype cues</a>
+      <a href="signup.html" aria-current="page">Sign up demo</a>
+      <a href="feasibility.html">Feasibility analysis</a>
+      <a href="business-model.html">Business model</a>
+      <a href="industry.html">Industry and competitors</a>
+      <a href="team.html">Research and citations</a>
+    </nav>
+  </header>
+  <main id="main">
+    <h1>Sign up demonstration</h1>
+    <p>Try the first step of the proposed Quizzness journey using sample details.</p>
+    <p>This form does not send or save information and does not create an account.</p>
+
+    <dialog open class="signup-demo" aria-labelledby="signup-fields-title">
+      <h2 id="signup-fields-title">Your study interests</h2>
+      <!-- method="dialog" closes this dialog after browser validation; no data is sent. -->
+      <form method="dialog" autocomplete="off">
+        <fieldset>
+          <legend>Sample student details</legend>
+          <p><label for="display-name">Display name (required)</label>
+            <input id="display-name" type="text" required placeholder="Example: Alex"></p>
+          <p><label for="email">Email address (required)</label>
+            <input id="email" type="email" required placeholder="alex@example.com"></p>
+          <p><label for="education">Education level (required)</label>
+            <select id="education" required>
+              <option value="">Choose a level</option>
+              <option value="tertiary">College or university</option>
+              <option value="cape">CAPE or sixth form</option>
+              <option value="csec">CSEC or CXC</option>
+              <option value="other">Other</option>
+            </select></p>
+          <p><label for="institution">Institution (optional)</label>
+            <input id="institution" type="text" placeholder="Example institution"></p>
+          <p><label for="subject">Subject to practise (required)</label>
+            <select id="subject" required>
+              <option value="">Choose a subject</option>
+              <option value="programming">Programming</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="accounting">Accounting</option>
+              <option value="languages">Languages</option>
+              <option value="other">Another subject</option>
+            </select></p>
+          <p><label for="participation">How would you like to participate?</label>
+            <select id="participation">
+              <option>Practise my courses</option>
+              <option>Apply to become a peer tutor</option>
+              <option>Both</option>
+            </select></p>
+        </fieldset>
+        <p><button type="submit">Preview next steps</button> <button type="reset">Clear fields</button></p>
+      </form>
+    </dialog>
+
+    <section class="signup-next" aria-labelledby="signup-next-title">
+      <h2 id="signup-next-title">Your next steps</h2>
+      <p>You have completed the form demonstration. No account was created and no details were sent or saved.</p>
+      <ol>
+        <li>Choose a course and practise a topic.</li>
+        <li>Read the explanation and retry a related question.</li>
+        <li>If you still need help, explore the proposed peer-support step.</li>
+      </ol>
+      <p><a class="button" href="experience.html#practice">Continue to the sample activity</a></p>
+      <p>In a future service, tutor applications would require separate screening and institutional approval.</p>
+      <p><a href="signup.html">Try the form again</a></p>
+    </section>
+    <p><a href="experience.html">Back to the student journey</a></p>
+  </main>
+  <footer><p><strong>Quizzness over pleasure.</strong> · Static prototype, 2026</p><p><a href="team.html#sources">Sources and asset credits</a></p></footer>
+</body>
+</html>

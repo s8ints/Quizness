@@ -1,4 +1,14 @@
 <!doctype html>
+<!--
+  Web textbook reference: Jennifer Niederst Robbins (2018), Learning Web Design,
+  5th edition, O'Reilly.
+  Chapter 4, "Creating a Simple Page" (p. 49): HTML document structure.
+  Chapter 5, "Marking Up Text" (p. 71): headings, paragraphs and semantic sections.
+  Chapter 6, "Adding Links" (p. 113): local navigation and section anchors.
+  Chapter 5, "Marking Up Text": preformatted code and organised practice content.
+  Chapter 7, "Adding Images" (p. 131): the SVG mascot and image alternative text.
+  Page numbers refer to chapter openings in the supplied textbook.
+-->
 <html lang="en">
 
 <head>
@@ -36,7 +46,7 @@
         <p id="game-progress" role="status">0 of 2 checkpoints complete this visit.</p>
         <p id="game-points" role="status">0 XP earned this demo.</p>
       </div>
-      <button type="button" class="button button-light" id="reset-demo" onclick="resetDemo()">Reset demonstration</button>
+      <a class="button button-light" id="reset-demo" href="#course-menu" onclick="return resetDemo()">Reset demonstration</a>
     </div>
     <ol class="game-steps" aria-label="Percent Path checkpoints">
       <li><strong>1. Match the runes</strong><span id="matching-status">Locked</span></li>
@@ -59,7 +69,7 @@
             <h3>Mathematics</h3>
             <p class="world-name">Puzzle Temple</p>
             <p>Percent Path: match the percentage runes, then build a bridge by ordering calculations.</p>
-            <button type="button" class="button" id="select-maths" onclick="openLesson()">Select Mathematics</button>
+            <a class="button" id="select-maths" href="#lesson-page" onclick="return openLesson()">Select Mathematics</a>
           </article>
           <article class="world-card game-preview">
             <p class="section-note">Preview only</p>
@@ -90,7 +100,7 @@
         <p class="game-source">Learning source: OpenStax (2020), <cite>Prealgebra 2e</cite>, Section 6.1.
           <a href="team.html#source-openstax">See the source details</a>.</p>
         <div class="game-buttons">
-          <button type="button" class="button" id="start-quiz" onclick="startMatching()">Enter Percent Path</button>
+          <a class="button" id="start-quiz" href="#matching-game" onclick="return startMatching()">Enter Percent Path</a>
           <a class="button button-light" href="#course-menu">Back to course selection</a>
         </div>
       </section>
@@ -125,7 +135,7 @@
         </div>
         <p id="match-message" class="game-message" role="status">Choose a percentage first, then a fraction.</p>
         <div class="game-buttons">
-          <button type="button" class="button" id="next-game" onclick="startOrdering()">Continue to the bridge</button>
+          <a class="button" id="next-game" href="#ordering-game" onclick="return startOrdering()">Continue to the bridge</a>
         </div>
         <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
       </section>
@@ -155,7 +165,7 @@
         <div class="game-buttons">
           <button type="button" class="button button-light" id="clear-order" onclick="restartOrder()">Clear order</button>
           <button type="button" class="button" id="check-order" onclick="checkOrder()">Check order</button>
-          <button type="button" class="button" id="finish-level" onclick="finishLevel()">View level results</button>
+          <a class="button" id="finish-level" href="#game-finished" onclick="return finishLevel()">View level results</a>
         </div>
         <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
       </section>

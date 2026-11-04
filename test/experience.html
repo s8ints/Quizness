@@ -1,0 +1,139 @@
+<!doctype html>
+<!--
+  Web textbook reference: Jennifer Niederst Robbins (2018), Learning Web Design,
+  5th edition, O'Reilly.
+  Chapter 4, "Creating a Simple Page" (p. 49): HTML document structure.
+  Chapter 5, "Marking Up Text" (p. 71): headings, paragraphs and semantic sections.
+  Chapter 6, "Adding Links" (p. 113): local navigation and section anchors.
+  Chapter 5, "Marking Up Text": preformatted code and organised practice content.
+  Chapter 7, "Adding Images" (p. 131): the SVG mascot and image alternative text.
+  Page numbers refer to chapter openings in the supplied textbook.
+-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quizzness | Prototype cues</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">Quizzness<span>Quizzness over pleasure</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Brand and concept</a><a href="experience.html"
+        aria-current="page">Prototype cues</a><a href="feasibility.html">Feasibility analysis</a><a
+        href="business-model.html">Business model</a><a href="industry.html">Industry and competitors</a><a href="team.html">Team
+        &amp; sources</a><a href="signup.html">Sign up demo</a></nav>
+  </header>
+  <main id="main">
+    <div class="page-intro">
+      <p class="eyebrow">Product experience</p>
+      <h1>Prototype cues</h1>
+      <p>Our proposed journey: sign up, choose a subject, practise, read feedback, retry and find peer support if needed. The primary activity is a short course-topic quiz. <a href="team.html#source-proposal">[9]</a></p>
+      <p><a class="button" href="signup.html">Try the signup demonstration</a></p>
+    </div>
+    <section aria-labelledby="journey-title">
+      <h2 id="journey-title">How a student would use Quizzness</h2>
+      <ol class="journey">
+        <li>
+          <h3>Choose</h3>
+          <p>Select Programming → Variables and addition.</p>
+        </li>
+        <li>
+          <h3>Practise</h3>
+          <p>Answer questions drawn from reviewed course material.</p>
+        </li>
+        <li>
+          <h3>Review</h3>
+          <p>Read why an answer is correct or where you went wrong.</p>
+        </li>
+        <li>
+          <h3>Continue</h3>
+          <p>Use a topic summary to choose what to practise next.</p>
+        </li>
+      </ol>
+      <p>The next proposed step is screened peer tutoring for the same topic. After an eligible volunteer session, a partner coordinator would approve the time for the GiveBack Wallet.</p>
+      <p class="small">This prototype uses sample activities and fictional support records. It does not provide live tutoring, accounts, matching or saved progress.</p>
+    </section>
+    <section id="screenshot" aria-labelledby="screenshot-title">
+      <p class="eyebrow">Product preview</p>
+      <h2 id="screenshot-title">A space for the game</h2>
+      <figure>
+        <div class="screenshot-placeholder" role="img"
+          aria-label="Empty placeholder reserved for a screenshot of the Quizzness game interface."><span>Game
+            screenshot goes here</span><small>Reserved for the topic-selection or quiz screen</small></div>
+        <figcaption>Add your own screenshot here to show the proposed digital experience.</figcaption>
+      </figure>
+    </section>
+    <section id="practice" class="practice-panel" aria-labelledby="practice-title">
+      <div class="practice-heading">
+        <div>
+          <p class="eyebrow">Code Kingdom · Beginner sample</p>
+          <h2 id="practice-title">Variables and addition</h2>
+        </div><img class="mascot small-mascot" src="mascot/tiger-pixel.svg" alt="Rory, the Quizzness tiger mascot."
+          width="96" height="92">
+      </div>
+      <p>A variable is a name that stores a value. The <code>+</code> symbol adds two numbers together. You have 2
+        apples and buy 3 more.</p>
+      <pre><code>
+        apples = 2
+        more_apples = 3
+        total = apples + more_apples</code>
+      </pre>
+      <h3>What value will <code>total</code> have?</h3>
+      <p>Choose an answer by opening its explanation.</p>
+      <details>
+        <summary>5 apples</summary>
+        <p><strong>Correct!</strong> Add the values: 2 + 3 = 5. The value stored in <code>total</code> is 5.</p>
+        <p><a href="#next-step">Finish the sample and review your next step →</a></p>
+      </details>
+      <details>
+        <summary>2 apples</summary>
+        <p>Try again. 2 is the number you started with. The total also includes the 3 new apples.</p>
+      </details>
+      <details>
+        <summary>3 apples</summary>
+        <p>Try again. 3 is only the number of new apples. Add the 2 apples you already had.</p>
+      </details>
+      <p class="small">Static sample: answers expand using HTML. Attempts are not recorded and no score is calculated.
+      </p>
+    </section>
+    <section id="next-step" class="note" aria-labelledby="next-title">
+      <h2 id="next-title">After the sample</h2>
+      <p>If you answered correctly, try another addition question with different values. If you were unsure, replace
+        each variable with its number before calculating.</p>
+      <p>In the proposed product, a completion screen would show topics answered correctly and topics to revisit. We
+        would test learning with separate application questions, rather than treating a game score as proof of
+        understanding.</p><a href="feasibility.html#pilot">See how we would test the experience →</a>
+    </section>
+    <section id="retry">
+      <h2>Retry with a related question</h2>
+      <p>Imagine you have 4 apples and buy 1 more. What is the new total?</p>
+      <details><summary>Check your answer</summary><p>4 + 1 = 5 apples. This is another example of adding two stored values.</p></details>
+      <p><a href="#peer-help">Still unsure? Explore peer support</a></p>
+    </section>
+    <section id="peer-help" class="note">
+      <h2>Peer tutoring: sample next step</h2>
+      <p><strong>Illustrative profile:</strong> Riley, a fictional peer tutor for introductory mathematics. A future profile would show reviewed subject evidence, availability and the topics the tutor can explain.</p>
+      <p>The proposed learner would request help on the same topic, rather than starting over with a general question. Tutor screening would include subject evidence, a teaching check and partner approval. No tutor is currently verified or booked by this page. <a href="team.html#source-proposal">[9]</a></p>
+      <p><a href="signup.html">Explore learner and tutor interests in the signup demo</a></p>
+    </section>
+    <section id="giveback">
+      <h2>GiveBack Wallet: illustrative record</h2>
+      <table>
+        <caption>Fictional example for an approved volunteer tutor</caption>
+        <thead><tr><th scope="col">Record</th><th scope="col">Sample total</th></tr></thead>
+        <tbody><tr><th scope="row">Completed sessions</th><td>2</td></tr><tr><th scope="row">Learners helped</th><td>2</td></tr><tr><th scope="row">Approved service time</th><td>1 hour</td></tr></tbody>
+      </table>
+      <p>In the proposed service, both participants would confirm a session and a coordinator would approve eligible time. An institution would decide whether those hours count toward its requirements. Paid sessions would be recorded separately. These totals are fictional; no service hours are earned through this prototype. <a href="team.html#source-proposal">[9]</a></p>
+    </section>
+  </main>
+  <footer>
+    <p><strong>Quizzness over pleasure.</strong> · COMP1170 venture proposal, 2026</p>
+    <p><a href="team.html#sources">Sources &amp; asset credits</a> · <a href="index.html">Brand and concept</a></p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<!--
+  Web textbook reference: Jennifer Niederst Robbins (2018), Learning Web Design,
+  5th edition, O'Reilly.
+  Chapter 4, "Creating a Simple Page" (p. 49): HTML document structure.
+  Chapter 5, "Marking Up Text" (p. 71): headings, paragraphs and semantic sections.
+  Chapter 6, "Adding Links" (p. 113): local navigation and section anchors.
+  Chapter 7, "Adding Images" (p. 131): logo and SVG mascot with alternative text.
+  Page numbers refer to chapter openings in the supplied textbook.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quizzness is a student venture proposal turning course material into short quiz minigames for independent practice.">
+  <title>Quizzness | Brand and concept</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">Quizzness<span>Quizzness over pleasure</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html" aria-current="page">Brand and concept</a>
+      <a href="experience.html">Prototype cues</a>
+      <a href="feasibility.html">Feasibility analysis</a>
+      <a href="business-model.html">Business model</a>
+      <a href="industry.html">Industry and competitors</a>
+      <a href="team.html">Research and citations</a>
+    <a href="signup.html">Sign up demo</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">A student venture · COMP1170</p>
+        <h1 id="hero-title">Brand and concept</h1>
+        <p>Quizzness would turn course material into short quiz minigames, connect mistakes to useful explanations and help students find screened peer support for the same topic. Approved tutors could record eligible service hours in a GiveBack Wallet.</p>
+        <a class="button" href="experience.html#practice">Try a sample question <span aria-hidden="true">→</span></a>
+        <p><strong>Venture name:</strong> Quizzness. <strong>Slogan:</strong> Quizzness over pleasure.</p><p><strong>Visual identity:</strong> the supplied purple-and-gold logo and pixel tiger mascot. <a href="team.html#name-check">Name research</a> and <a href="team.html#assets">asset credits</a>.</p><p class="small">Venture proposal and static prototype.</p>
+      </div>
+      <figure class="logo-panel">
+        <img src="quizzness_logo.png" alt="Quizzness logo: a smiling purple graduate beside books, a laptop and gold stars." width="1254" height="1254">
+        <figcaption>Brand artwork supplied by the project owner. <a href="team.html#assets">Asset credits</a></figcaption>
+      </figure>
+    </section>
+
+    <section class="section-grid" aria-labelledby="problem-title">
+      <div>
+        <p class="eyebrow">The problem &amp; the people</p>
+        <h2 id="problem-title">Problem, user, and product</h2>
+        <p>Our starting problem is the gap between following an explanation and applying it independently. We want to support students practising after class, especially before coursework or an exam.</p>
+        <p><strong>Core digital service:</strong> reviewed course minigames, explanatory feedback, topic-focused retries and a route to screened peer tutoring. <strong>Primary prototype action:</strong> choose a topic, answer a short quiz and review the explanation.</p>
+        <p>Our proposed first users are tertiary students in Barbados. Subjects could include mathematics, accounting, languages and computing; CSEC/CAPE and other Caribbean institutions would be later expansion options. Institutions would review content and coordinate peer support. <a href="team.html#source-proposal">[9]</a></p>
+        <p>In our 28-response survey, 22 respondents (78.6%) reported understanding difficulties at least sometimes, and 20 (71.4%) sometimes or frequently stopped studying a difficult, confusing or boring topic. These findings describe our sample, not all students. <a href="survey.html#q3">[8, Q3]</a> <a href="survey.html#q6">[8, Q6]</a></p>
+      </div>
+      <aside class="note">
+        <h3>Why explore this now?</h3>
+        <p>Quizlet already turns uploaded material into study guides and practice tests. This makes course-material conversion a relevant opportunity, but also a competitive one. <a class="citation" href="team.html#source-quizlet">[3]</a></p>
+        <p>Research found benefits from retrieval practice on comprehension and inference questions. That supports testing our approach, rather than assuming games automatically improve learning. <a class="citation" href="team.html#source-retrieval">[2]</a></p>
+      </aside>
+    </section>
+
+    <section aria-labelledby="concept-title">
+      <p class="eyebrow">The concept</p>
+      <h2 id="concept-title">Concept statement</h2>
+      <p>Quizzness is a proposed course-support platform combining reusable quiz minigames, explanations, retries and screened peer tutoring. An institution partner would review activities and approve any eligible GiveBack service hours. We would test two courses before expanding, with institutional licences as the proposed main revenue source. <a href="team.html#source-proposal">[9]</a></p>
+      <div class="cards">
+        <article><span class="step">01</span><h3>Choose a topic</h3><p>Find a practice activity linked to what you are learning.</p></article>
+        <article><span class="step">02</span><h3>Play &amp; apply</h3><p>Use the lesson in a short quiz rather than just rereading it.</p></article>
+        <article><span class="step">03</span><h3>Learn from feedback</h3><p>Review the explanation and return to the topic that needs work.</p></article>
+      </div>
+      <p><a href="experience.html">See the proposed student journey →</a></p>
+      <p><a href="signup.html">Try the signup demonstration</a>. The form uses sample details and sends no data.</p>
+      <h3>How participation could improve the service</h3>
+      <p>Reviewed course templates could serve more learners without rebuilding each activity. More approved tutors could broaden subject coverage, while capable learners could later apply to tutor. These are proposed scaling mechanisms; screening and human tutoring would still require time and coordination.</p>
+    </section>
+
+    <section class="callout" aria-labelledby="pilot-title">
+      <img class="mascot" src="mascot/tiger-pixel.svg" alt="Rory, the purple pixel tiger mascot, holding a study card." width="144" height="138">
+      <div><p class="eyebrow">Our next milestone</p><h2 id="pilot-title">A small pilot before a big promise</h2><p>We are seeking a course partner and pilot sponsor to test usefulness, repeat use and content-review costs before expanding.</p><a href="feasibility.html#pilot">Read the pilot proposal →</a></div>
+    </section>
+  </main>
+  <footer><p><strong>Quizzness over pleasure.</strong> · COMP1170 venture proposal, 2026</p><p><a href="team.html#sources">Sources &amp; asset credits</a> · <a href="team.html#next-step">Partner with the pilot</a></p></footer>
+</body>
+</html>

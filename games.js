@@ -31,6 +31,7 @@ function openLesson() {
 }
 
 function startMatching() {
+  if (gameStage >= 2) { return true; }
   if (gameStage !== 1) { return false; }
   gameStage = 2;
   document.getElementById("matching-game").setAttribute("class", "game-screen game-box game-area is-open");
@@ -106,6 +107,7 @@ function pickFraction(answer, buttonId, label) {
 }
 
 function startOrdering() {
+  if (gameStage >= 3) { return true; }
   if (gameStage !== 2 || matchingDone === false) {
     document.getElementById("match-message").textContent = "Match all three pairs before continuing to the bridge.";
     return false;
@@ -189,6 +191,7 @@ function checkOrder() {
 }
 
 function finishLevel() {
+  if (gameStage === 4) { return true; }
   if (gameStage !== 3 || orderingDone === false) {
     document.getElementById("order-message").textContent = "Complete the bridge before viewing your results.";
     return false;
