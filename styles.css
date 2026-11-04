@@ -1,8 +1,4 @@
-/* Colours use ordinary CSS values (Chapters 11-14). */
-/* Shared foundation: textbook Chapters 11-14. */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 body {
   max-width: 1240px;
   margin: 0 auto;
@@ -13,35 +9,10 @@ body {
   color: #252037;
   background-color: #fff3d9;
 }
-a {
-  color: #44216f;
-  overflow-wrap: break-word;
-}
-a:hover {
-  color: #44216f;
-  text-decoration: underline;
-}
-a:focus,
-summary:focus {
-  outline: 3px solid #44216f;
-  outline-offset: 4px;
-}
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 24px;
-  z-index: 1;
-  padding: 12px 20px;
-  background-color: #44216f;
-  color: #fff3d9;
-  font-weight: bold;
-}
-.skip-link:focus {
-  top: 12px;
-  color: #fff3d9;
-}
+a { color: #44216f; overflow-wrap: break-word; }
+a:hover { color: #44216f; text-decoration: underline; }
 
-/* Shared navigation: Flexbox in Chapter 16. */
+
 .header {
   display: flex;
   align-items: center;
@@ -52,11 +23,8 @@ summary:focus {
   border-bottom: 1px solid #9165ce;
   background-color: transparent;
 }
-.brand {
-  flex: 0 0 auto;
-  margin: 0 28px 0 0;
-}
-.header .brand a {
+.site-name { flex: 0 0 auto; margin: 0 28px 0 0; }
+.header .site-name a {
   display: flex;
   align-items: center;
   color: #44216f;
@@ -65,16 +33,14 @@ summary:focus {
   letter-spacing: 1px;
   text-decoration: none;
 }
-.header .brand img {
+.header .site-name img {
   width: 56px;
   height: auto;
   margin-right: 12px;
   border: 0;
   background-color: transparent;
 }
-.header nav {
-  flex: 1;
-}
+.header nav { flex: 1; }
 .header nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -93,79 +59,36 @@ summary:focus {
   font-size: 14px;
   text-decoration: none;
 }
-.header nav a:hover,
-.header nav a[aria-current="page"] {
+.header nav a:hover, .header nav a[aria-current="page"] {
   border-bottom-color: #44216f;
   background-color: transparent;
   color: #44216f;
 }
-.header nav a[aria-current="page"] {
-  font-weight: bold;
-}
-.header a:focus {
-  outline-color: #44216f;
-  outline-offset: 4px;
-}
-main {
-  max-width: 900px;
-  margin: 32px auto 0;
-}
-main:focus {
-  outline: none;
-}
-h1,
-h2,
-h3 {
-  line-height: 1.3;
-}
-h1 {
-  color: #44216f;
-}
-section {
-  margin-top: 30px;
-}
-img {
-  max-width: 100%;
-  height: auto;
-}
-pre {
-  padding: 12px;
-  background-color: rgba(68, 33, 111, 0.06);
-}
+.header nav a[aria-current="page"] { font-weight: bold; }
+main { max-width: 900px; margin: 32px auto 0; }
+h1, h2, h3 { line-height: 1.3; }
+h1, .footer a, .home a { color: #44216f; }
+section, .practice-page .friends-box { margin-top: 30px; }
+img { max-width: 100%; height: auto; }
+pre { padding: 12px; background-color: rgba(68, 33, 111, 0.06); }
 blockquote {
   margin: 16px 0;
   padding: 4px 16px;
   border-left: 4px solid #44216f;
   background-color: rgba(68, 33, 111, 0.06);
 }
-details {
-  margin: 12px 0;
-}
-summary {
-  cursor: pointer;
-  font-weight: bold;
-}
-.table-wrap {
-  overflow-x: auto;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 16px 0;
-}
-caption {
-  text-align: left;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-th,
-td {
+details { margin: 12px 0; }
+summary { cursor: pointer; font-weight: bold; }
+.table-box { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+caption { text-align: left; margin-bottom: 8px; font-weight: bold; }
+th, td {
   border: 1px solid #9165ce;
   padding: 10px;
   text-align: left;
   vertical-align: top;
 }
-thead {
+thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   background-color: rgba(68, 33, 111, 0.06);
 }
 .button {
@@ -186,24 +109,14 @@ thead {
   color: #fff3d9;
   text-decoration: none;
 }
-.button-light {
-  background-color: transparent;
-  color: #44216f;
-}
-
-/* Text and prototype notices used by the other school pages. */
-.eyebrow {
+.button-light { background-color: transparent; color: #44216f; }
+.section-note {
   margin-top: 0;
   color: #44216f;
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
-}
-.lead {
-  font-size: 22px;
-  line-height: 1.45;
-  color: #44216f;
 }
 .demo-note {
   margin-bottom: 0;
@@ -212,6 +125,7 @@ thead {
   background-color: #8acb82;
   font-size: 14px;
 }
+
 /* Shared footer. */
 .footer {
   display: flex;
@@ -223,16 +137,7 @@ thead {
   color: #44216f;
   font-size: 14px;
 }
-.footer p {
-  margin: 6px 20px 6px 0;
-}
-.footer a {
-  color: #44216f;
-}
-
-/* Modern Pixel Adventure homepage. Chapters 12-17: type, colours,
-   pseudo-elements, box styling, positioning, Grid/Flexbox, and media queries.
-   Homepage layouts sit on top of the shared site palette. */
+.footer p { margin: 6px 20px 6px 0; }
 .home {
   max-width: none;
   width: 100%;
@@ -240,17 +145,7 @@ thead {
   background-color: #fff3d9;
   color: #252037;
 }
-.home a {
-  color: #44216f;
-}
-.home .skip-link {
-  background-color: #8acb82;
-  color: #252037;
-}
-.home main {
-  max-width: 1176px;
-  margin: 0 auto;
-}
+.home main { max-width: 1176px; margin: 0 auto; }
 .home h2 {
   margin: 0 0 20px;
   color: #44216f;
@@ -258,7 +153,7 @@ thead {
   line-height: 1.15;
   letter-spacing: -1px;
 }
-.home .small-heading {
+.home .heading-label {
   margin: 0 0 16px;
   font-family: "Courier New", Courier, monospace;
   font-size: 12px;
@@ -275,7 +170,7 @@ thead {
   background-color: #44216f;
   box-shadow: 4px -4px 0 #8acb82;
 }
-.home .intro {
+.home .introduction {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   grid-gap: 48px;
@@ -283,68 +178,43 @@ thead {
   margin-top: 0;
   padding: 64px 0 72px;
 }
-.home .intro-text {
+.home .intro-content,
+.home .problem,
+.practice-page .match-columns fieldset,
+.tutoring-page .form-columns > div,
+.content-page .model-card,
+.content-page .topic {
   min-width: 0;
 }
-.home .intro h1 {
+.home .introduction h1 {
   margin: 0 0 28px;
   font-size: 64px;
   line-height: 1.05;
   letter-spacing: -3px;
   color: #44216f;
 }
-.home .intro h1 span {
-  color: #252037;
-}
-.home .intro-message {
-  font-size: 22px;
-  line-height: 1.45;
-  color: #44216f;
-}
-.home .intro-text > p {
-  max-width: 480px;
-}
+.home .introduction h1 span, .home .start-button { color: #252037; }
+.home .intro-message { font-size: 22px; line-height: 1.45; color: #44216f; }
+.home .intro-content > p { max-width: 480px; }
 .home .intro-buttons {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   margin: 28px -10px 0;
 }
-.home .intro-buttons a {
-  margin: 8px 10px;
-}
-.home .start-button {
-  color: #252037;
-}
-.home .start-button:hover {
-  color: #fff3d9;
-}
-.home .text-link {
-  padding: 10px 0;
-  font-weight: bold;
-}
-.home .small-text {
-  margin-top: 14px;
-  font-size: 13px;
-}
-
-/* Home illustration and caption. */
-.home .mascot {
-  min-width: 0;
-  margin: 0;
-}
-.home .mascot img {
-  display: block;
-  width: 100%;
-}
-.home .mascot figcaption {
+.home .intro-buttons a { margin: 8px 10px; }
+.home .start-button:hover, .home .proposal h2 { color: #fff3d9; }
+.home .text-link { padding: 10px 0; font-weight: bold; }
+.home .small-text { margin-top: 14px; font-size: 13px; }
+.home .mascot-picture { min-width: 0; margin: 0; }
+.home .mascot-picture img { display: block; width: 100%; }
+.home .mascot-picture figcaption {
   margin-top: 8px;
   color: #44216f;
   font-size: 13px;
   line-height: 1.5;
   text-align: center;
 }
-
 .home .courses {
   max-width: 1176px;
   margin: 0 auto;
@@ -359,38 +229,18 @@ thead {
   align-items: end;
   margin-bottom: 28px;
 }
-.home .section-title h2 {
-  margin-bottom: 0;
-  color: #fff3d9;
-}
-.home .section-title > p {
-  max-width: 360px;
-  margin: 0 0 4px;
-  color: #fff3d9;
-}
-.home .courses .small-heading {
-  color: #8acb82;
-}
-.home .course-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 24px;
-}
+.home .section-title h2 { margin-bottom: 0; color: #fff3d9; }
+.home .section-title > p { max-width: 360px; margin: 0 0 4px; color: #fff3d9; }
+.home .courses .heading-label, .home .proposal .heading-label { color: #8acb82; }
+.home .course-cards { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 24px; }
 .home .course {
   min-width: 0;
   overflow: hidden;
   border-radius: 12px;
   background-color: #fff3d9;
 }
-/* Each world picture includes its background and symbols. */
-.home .course-image {
-  display: block;
-  width: 100%;
-  height: 165px;
-}
-.home .course-text {
-  padding: 26px;
-}
+.home .course-image { display: block; width: 100%; height: 165px; }
+.home .course-text { padding: 26px; }
 .home .course-info {
   display: flex;
   flex-wrap: wrap;
@@ -400,25 +250,15 @@ thead {
   font-size: 12px;
   font-weight: bold;
 }
-.home .course-info > span {
-  margin: 0 8px 6px 0;
-}
-.home .available,
-.home .preview {
+.home .course-info > span { margin: 0 8px 6px 0; }
+.home .available, .home .preview {
   padding: 4px 8px;
   border-radius: 4px;
   background-color: #8acb82;
   color: #252037;
 }
-.home .preview {
-  border: 1px solid #44216f;
-  background-color: #fff3d9;
-}
-.home .course h3 {
-  margin: 12px 0;
-  color: #44216f;
-  font-size: 28px;
-}
+.home .preview { border: 1px solid #44216f; background-color: #fff3d9; }
+.home .course h3 { margin: 12px 0; color: #44216f; font-size: 28px; }
 .home .course-link {
   display: flex;
   justify-content: space-between;
@@ -430,19 +270,14 @@ thead {
   font-weight: bold;
   text-decoration: none;
 }
-.home .course-link:hover {
-  text-decoration: underline;
-}
+.home .course-link:hover, .home .proposal-links a:hover { text-decoration: underline; }
 .home .coming-soon {
   margin-top: 24px;
   padding-top: 12px;
   border-top: 1px solid #9165ce;
   font-size: 14px;
 }
-
-.home .learning {
-  margin-top: 72px;
-}
+.home .learning { margin-top: 72px; }
 .home .steps {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -451,10 +286,7 @@ thead {
   padding: 0;
   list-style: none;
 }
-.home .steps li {
-  position: relative;
-  min-width: 0;
-}
+.home .steps li { position: relative; min-width: 0; }
 .home .steps li::before {
   content: "";
   position: absolute;
@@ -463,9 +295,7 @@ thead {
   right: -24px;
   border-top: 2px dashed #9165ce;
 }
-.home .steps li:last-child::before {
-  display: none;
-}
+.home .steps li:last-child::before, .practice-page .game-screen { display: none; }
 .home .step-number {
   display: inline-block;
   position: relative;
@@ -480,33 +310,20 @@ thead {
   line-height: 42px;
   text-align: center;
 }
-.home .steps li:first-child .step-number {
+.home .steps li:first-child .step-number,
+.practice-page .bridge-complete .bridge-plank,
+.tutoring-page .approved-hours {
   background-color: #8acb82;
 }
-.home .steps h3 {
-  margin: 18px 0 8px;
-  font-size: 18px;
-  color: #44216f;
-}
-.home .steps p {
-  margin: 0;
-  font-size: 14px;
-}
-.home .demo-note {
-  padding: 16px 0 16px 20px;
-  border-left: 4px solid #8acb82;
-  font-size: 14px;
-}
-
+.home .steps h3 { margin: 18px 0 8px; font-size: 18px; color: #44216f; }
+.home .steps p { margin: 0; font-size: 14px; }
+.home .demo-note { padding: 16px 0 16px 20px; border-left: 4px solid #8acb82; font-size: 14px; }
 .home .opportunity {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   grid-gap: 36px 56px;
   align-items: start;
   margin-top: 72px;
-}
-.home .problem {
-  min-width: 0;
 }
 .home .problem blockquote {
   margin: 24px 0 0;
@@ -515,11 +332,7 @@ thead {
   background: transparent;
   font-size: 14px;
 }
-.home .survey {
-  padding: 30px;
-  border-radius: 12px;
-  background-color: #8acb82;
-}
+.home .survey { padding: 30px; border-radius: 12px; background-color: #8acb82; }
 .home .survey h3 {
   margin: 12px 0;
   color: #44216f;
@@ -527,47 +340,20 @@ thead {
   line-height: 1;
   letter-spacing: -3px;
 }
-.home .survey h3 span {
-  font-size: 28px;
-  letter-spacing: -1px;
-}
-.home .survey-note {
-  padding-top: 16px;
-  border-top: 1px solid #44216f;
-  font-size: 14px;
-}
-.home .survey a {
-  display: inline-block;
-  padding: 8px 0;
-  font-weight: bold;
-}
-.home .audience {
-  grid-column: 1 / -1;
-}
-.home .audience h3 {
-  margin: 0 0 18px;
-  color: #44216f;
-  font-size: 22px;
-}
+.home .survey h3 span { font-size: 28px; letter-spacing: -1px; }
+.home .survey-note { padding-top: 16px; border-top: 1px solid #44216f; font-size: 14px; }
+.home .survey a { display: inline-block; padding: 8px 0; font-weight: bold; }
+.home .audience { grid-column: 1 / -1; }
+.home .audience h3 { margin: 0 0 18px; color: #44216f; font-size: 22px; }
 .home .audience dl {
   display: grid;
   grid-template-columns: 220px 1fr;
   column-gap: 24px;
   margin: 0;
 }
-.home .audience dt,
-.home .audience dd {
-  padding: 18px 0;
-  border-top: 1px solid #9165ce;
-}
-.home .audience dt {
-  font-weight: bold;
-  color: #44216f;
-}
-.home .audience dd {
-  margin: 0;
-}
-
+.home .audience dt, .home .audience dd { padding: 18px 0; border-top: 1px solid #9165ce; }
+.home .audience dt { font-weight: bold; color: #44216f; }
+.home .audience dd, .practice-page .game-guide p { margin: 0; }
 .home .proposal {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -578,20 +364,8 @@ thead {
   background-color: #44216f;
   color: #fff3d9;
 }
-.home .proposal .small-heading {
-  color: #8acb82;
-}
-.home .proposal h2 {
-  color: #fff3d9;
-}
-.home .proposal p:last-child {
-  margin-bottom: 0;
-}
-.home .proposal-links {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+.home .proposal p:last-child, .world-card h3, .tutoring-page .tutor-card p:last-child { margin-bottom: 0; }
+.home .proposal-links { margin: 0; padding: 0; list-style: none; }
 .home .proposal-links a {
   display: flex;
   align-items: center;
@@ -602,165 +376,23 @@ thead {
   color: #fff3d9;
   text-decoration: none;
 }
-.home .proposal-links a span {
-  margin-left: 16px;
-  color: #8acb82;
-}
-.home .proposal-links a:hover {
-  text-decoration: underline;
-}
-.home .proposal a:focus {
-  outline-color: #8acb82;
-}
-.home .footer {
-  margin-top: 48px;
-}
-
-@media (max-width: 1100px) {
-  .home .intro {
-    grid-template-columns: 1fr;
-    grid-gap: 20px;
-    padding: 48px 0;
-  }
-  .home .mascot {
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto;
-  }
-  .home .intro-text > p {
-    max-width: 620px;
-  }
-  .home .section-title {
-    grid-gap: 24px;
-  }
-  .home .steps {
-    grid-gap: 16px;
-  }
-  .home .steps li::before {
-    right: -16px;
-  }
-  .home .opportunity {
-    grid-gap: 28px;
-  }
-  .home .proposal {
-    grid-gap: 28px;
-  }
-}
-@media (max-width: 650px) {
-  .home {
-    padding: 0 16px;
-  }
-  .home .intro {
-    padding: 40px 0;
-  }
-  .home .intro h1 {
-    font-size: 46px;
-    letter-spacing: -2px;
-  }
-  .home .intro-message {
-    font-size: 20px;
-  }
-  .home h2 {
-    font-size: 30px;
-  }
-  .home .courses {
-    padding: 28px 16px;
-    border-radius: 12px;
-  }
-  .home .section-title,
-  .home .course-cards,
-  .home .opportunity,
-  .home .proposal {
-    grid-template-columns: 1fr;
-  }
-  .home .section-title {
-    grid-gap: 20px;
-  }
-  .home .course-text {
-    padding: 20px;
-  }
-  .home .learning,
-  .home .opportunity,
-  .home .proposal {
-    margin-top: 48px;
-  }
-  .home .steps {
-    grid-template-columns: 1fr;
-    grid-gap: 0;
-  }
-  .home .steps li {
-    padding: 0 0 28px 68px;
-    min-height: 80px;
-  }
-  .home .steps li:last-child {
-    padding-bottom: 0;
-  }
-  .home .step-number {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .home .steps li::before {
-    top: 46px;
-    bottom: 0;
-    left: 22px;
-    right: auto;
-    border-top: 0;
-    border-left: 2px dashed #9165ce;
-  }
-  .home .steps h3 {
-    margin-top: 0;
-  }
-  .home .audience dl {
-    grid-template-columns: 1fr;
-  }
-  .home .audience dt {
-    padding-bottom: 6px;
-  }
-  .home .audience dd {
-    padding-top: 0;
-    border-top: 0;
-  }
-  .home .survey,
-  .home .proposal {
-    padding: 24px;
-  }
-}
-
-/* Product experience only: Chapters 9, 11-14, 16, and 17.
-   JavaScript changes display to show one learning stage at a time. */
-.experience-page button {
+.home .proposal-links a span { margin-left: 16px; color: #8acb82; }
+.practice-page button {
   font-family: inherit;
   font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
 }
-.experience-page button:focus,
-.experience-page [tabindex="-1"]:focus {
-  outline: 3px solid #44216f;
-  outline-offset: 4px;
-}
-.experience-page button:disabled {
-  cursor: default;
-}
-.experience-page .button:disabled {
+.practice-page button:disabled { cursor: default; }
+.practice-page .button:disabled {
   background-color: rgba(68, 33, 111, 0.06);
   color: #44216f;
   border-color: #9165ce;
 }
-.experience-page .game-help {
-  display: flex;
-  align-items: center;
-  margin: 24px 0;
-}
-.game-help img {
-  flex: 0 0 auto;
-  margin-right: 24px;
-}
-.game-help p {
-  max-width: 600px;
-}
-.experience-page .game-bar {
+.practice-page .game-help, .tutoring-page .game-help { display: flex; align-items: center; margin: 24px 0; }
+.game-help img { flex: 0 0 auto; margin-right: 24px; }
+.game-help p { max-width: 600px; }
+.practice-page .game-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -769,60 +401,28 @@ thead {
   border: 1px solid #9165ce;
   background-color: rgba(68, 33, 111, 0.06);
 }
-.game-bar p {
-  margin: 4px 20px 4px 0;
-}
-.game-bar button {
-  margin: 8px 0;
-}
-.experience-page .game-screen {
-  display: none;
-}
-.experience-page .demo-overview {
-  display: block;
-}
-.game-box {
-  padding: 32px;
-  border: 1px solid #9165ce;
-  background-color: #fff3d9;
-}
-.game-box h2 {
-  margin-top: 0;
-  color: #44216f;
-}
-.world-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
-}
-.world-card {
-  padding: 24px;
-  border: 1px solid #9165ce;
-  border-top: 4px solid #44216f;
-}
-.world-card h3 {
-  margin-bottom: 0;
-}
+.game-bar p { margin: 4px 20px 4px 0; }
+.game-bar button { margin: 8px 0; }
+.practice-page .game-overview { display: block; }
+.game-box, .tutoring-page .tutor-section { padding: 32px; border: 1px solid #9165ce; background-color: #fff3d9; }
+.game-box h2, .tutoring-page .tutor-section h2 { margin-top: 0; color: #44216f; }
+.world-list, .tutoring-page .form-columns { display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 20px; }
+.world-card { padding: 24px; border: 1px solid #9165ce; border-top: 4px solid #44216f; }
 .world-name {
   margin-top: 4px;
   color: #44216f;
   font-size: 22px;
   font-weight: bold;
 }
-.game-preview {
-  background-color: #fff3d9;
-}
-.worked-example {
-  padding: 20px 24px;
-  border-left: 4px solid #8acb82;
-  background-color: #8acb82;
-}
-.worked-example h3 {
+.game-preview { background-color: #fff3d9; }
+.worked-example { padding: 20px 24px; border-left: 4px solid #8acb82; background-color: #8acb82; }
+.worked-example h3,
+.content-page .model-card h3,
+.content-page .topic h3,
+.content-page .launch-plan h3 {
   margin-top: 0;
 }
-.game-source {
-  font-size: 14px;
-}
+.game-source { font-size: 14px; }
 .game-answers {
   min-width: 0;
   margin: 24px 0;
@@ -836,100 +436,29 @@ thead {
   font-size: 22px;
   font-weight: bold;
 }
-.demo-answer {
-  display: block;
-  width: 100%;
-  margin: 12px 0;
-  padding: 16px 20px;
-  border: 2px solid #9165ce;
-  background-color: #fff3d9;
-  color: #252037;
-  text-align: left;
-}
-.demo-answer:hover {
-  border-color: #44216f;
-  background-color: rgba(68, 33, 111, 0.06);
-}
-.demo-answer:disabled {
-  background-color: #fff3d9;
-  border-color: #9165ce;
-  color: #252037;
-}
-.demo-answer.demo-selected {
-  background-color: rgba(68, 33, 111, 0.06);
-  border-color: #44216f;
-  font-weight: bold;
-}
-.game-message {
-  padding: 20px;
-  border-left: 4px solid #9165ce;
-  background-color: #fff3d9;
-}
-.demo-correct {
-  border-color: #44216f;
-  background-color: #8acb82;
-}
-.demo-incorrect {
-  border-color: #44216f;
-  background-color: rgba(68, 33, 111, 0.06);
-}
-.game-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 16px -6px;
-}
-.game-buttons button {
-  margin: 6px;
-}
-.game-topics {
-  padding-top: 12px;
-}
-
-/* Bare-bones game: squared tiles and offset borders echo the pixel artwork. */
-.experience-page .game-steps {
+.game-message { padding: 20px; border-left: 4px solid #9165ce; background-color: #fff3d9; }
+.game-buttons { display: flex; flex-wrap: wrap; margin: 16px -6px; }
+.game-buttons button { margin: 6px; }
+.game-topics { padding-top: 12px; }
+.practice-page .game-steps {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
   padding: 0;
   list-style: none;
 }
-.experience-page .game-steps li {
+.practice-page .game-steps li {
   padding: 16px;
   border: 2px solid #44216f;
   background-color: rgba(68, 33, 111, 0.06);
   box-shadow: 3px 3px 0 #9165ce;
 }
-.experience-page .game-steps span {
-  display: block;
-  color: #44216f;
-}
-.experience-page .game-guide {
-  padding: 16px;
-  border: 2px solid #44216f;
-  background-color: rgba(68, 33, 111, 0.06);
-}
-.experience-page .game-guide p {
-  margin: 0;
-}
-.experience-page .game-guide img {
-
-}
-.experience-page .game-arena {
-  border: 2px solid #44216f;
-  box-shadow: 4px 4px 0 #9165ce;
-}
-.experience-page .match-columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-}
-.experience-page .match-columns fieldset {
-  min-width: 0;
-}
-.experience-page .match-columns legend {
-  font-size: 18px;
-}
-.experience-page .game-tile {
+.practice-page .game-steps span { display: block; color: #44216f; }
+.practice-page .game-guide { padding: 16px; border: 2px solid #44216f; background-color: rgba(68, 33, 111, 0.06); }
+.practice-page .game-area { border: 2px solid #44216f; box-shadow: 4px 4px 0 #9165ce; }
+.practice-page .match-columns { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 20px; }
+.practice-page .match-columns legend { font-size: 18px; }
+.practice-page .answer-button {
   display: block;
   width: 100%;
   min-height: 54px;
@@ -941,148 +470,41 @@ thead {
   box-shadow: 3px 3px 0 #9165ce;
   font-weight: bold;
 }
-.experience-page .game-tile:hover {
-  background-color: #9165ce;
-}
-.experience-page .game-tile[aria-pressed="true"] {
-  background-color: #44216f;
-  color: #fff3d9;
-}
-.experience-page .game-tile:disabled {
-  box-shadow: none;
-  background-color: rgba(68, 33, 111, 0.06);
-}
-.experience-page .bridge-order {
+.practice-page .answer-button:hover { background-color: #9165ce; }
+.practice-page .answer-button[aria-pressed="true"] { background-color: #44216f; color: #fff3d9; }
+.practice-page .answer-button:disabled { box-shadow: none; background-color: rgba(68, 33, 111, 0.06); }
+.practice-page .bridge-order {
   min-height: 64px;
   padding: 16px 16px 16px 44px;
   border: 2px dashed #44216f;
   background-color: rgba(68, 33, 111, 0.06);
 }
-.experience-page .bridge-order li {
-  padding: 8px;
-  color: #44216f;
-}
-.experience-page .game-reward {
+.practice-page .bridge-order li { padding: 8px; color: #44216f; }
+.practice-page .game-reward {
   padding: 20px;
   border: 2px solid #8acb82;
   background-color: #8acb82;
   color: #44216f;
   font-size: 22px;
 }
-.experience-page .friends-box {
-  margin-top: 30px;
-}
-.experience-page .friend-button {
-  min-height: 44px;
-  padding: 6px 0;
-  border: 0;
-  background: transparent;
-  color: #44216f;
-  font-weight: bold;
-  text-decoration: underline;
-}
-.experience-page .your-rank {
-  background-color: rgba(68, 33, 111, 0.06);
-  font-weight: bold;
-}
-.experience-page .friend-details {
-  padding: 20px;
-  border-left: 4px solid #8acb82;
-  background-color: #8acb82;
-}
-.experience-page .friend-details h3 {
-  margin-top: 0;
-}
-@media (max-width: 600px) {
-  .experience-page .game-steps,
-  .experience-page .match-columns {
-    grid-template-columns: 1fr;
-  }
-  .experience-page .match-columns {
-    grid-gap: 0;
-  }
-  .experience-page .match-columns fieldset {
-    margin: 12px 0;
-  }
-  .experience-page .friends-box {
-    padding: 24px 12px;
-  }
-  .experience-page .friends-box th,
-  .experience-page .friends-box td {
-    padding: 8px 6px;
-  }
+.practice-page .game-screen { position: relative; }
+.practice-page .answer-button {
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out, background-color 120ms ease-out;
 }
 
-/* PIXEL ADVENTURE EFFECTS
-   A transition smoothly changes a property (like a button's shadow).
-   @keyframes describes the steps of a short animation.
-   CSS supplies the tile transitions and the gate and bridge scenery.
-   Everything is scoped to .experience-page so other pages keep their own styles. */
-.experience-page .game-screen {
-  position: relative;
-}
-.experience-page .game-tile {
-  transition:
-    transform 120ms ease-out,
-    box-shadow 120ms ease-out,
-    background-color 120ms ease-out;
-}
-/* Only available tiles lift. Touch users still get the pressed effect below. */
 @media (hover: hover) {
-  .experience-page .game-tile:not(:disabled):hover {
+  .practice-page .answer-button:not(:disabled):hover {
     transform: translateY(-3px);
     box-shadow: 3px 6px 0 #9165ce;
   }
 }
-.experience-page .game-tile:not(:disabled):active {
-  transform: translate(3px, 3px);
-  box-shadow: none;
-}
-.experience-page .game-tile[aria-pressed="true"] {
-  animation: rune-pulse 300ms ease-out;
-}
-.experience-page .game-tile.rune-matched {
-  background-color: #8acb82;
-  border-color: #44216f;
-  color: #44216f;
-}
-
-/* Stagger just the entrance. Later answer animations replace this animation. */
-.experience-page .screen-enter .game-tile {
-  animation: tile-appear 240ms ease-out backwards;
-}
-.experience-page .screen-enter .game-tile:nth-of-type(2) {
-  animation-delay: 50ms;
-}
-.experience-page .screen-enter .game-tile:nth-of-type(3) {
-  animation-delay: 100ms;
-}
-.experience-page .screen-enter .game-tile[aria-pressed="true"] {
-  animation: rune-pulse 300ms ease-out;
-}
-.experience-page .game-tile.rune-success {
-  animation: rune-bounce 360ms ease-out;
-}
-.experience-page .answer-shake,
-.experience-page .game-tile.answer-shake {
-  animation: game-shake 240ms ease-out;
-}
-.experience-page .bridge-order li {
-  animation: stone-land 300ms ease-out;
-}
-
-/* The two gate doors slide apart inside a clipped doorway. No image is needed. */
-.experience-page .temple-scene {
-  padding: 16px;
-  background-color: rgba(68, 33, 111, 0.06);
-  text-align: center;
-}
-.experience-page .temple-scene p {
-  margin: 10px 0 0;
-  color: #44216f;
-  font-weight: bold;
-}
-.experience-page .temple-gate {
+.practice-page .answer-button:not(:disabled):active { transform: translate(3px, 3px); box-shadow: none; }
+.practice-page .answer-button[aria-pressed="true"] { animation: rune-pulse 300ms ease-out; }
+.practice-page .answer-button.matched-answer { background-color: #8acb82; border-color: #44216f; color: #44216f; }
+.practice-page .bridge-order li { animation: stone-land 300ms ease-out; }
+.practice-page .temple-picture { padding: 16px; background-color: rgba(68, 33, 111, 0.06); text-align: center; }
+.practice-page .temple-picture p { margin: 10px 0 0; color: #44216f; font-weight: bold; }
+.practice-page .temple-gate {
   display: flex;
   width: 120px;
   height: 88px;
@@ -1091,244 +513,80 @@ thead {
   border: 6px solid #44216f;
   background-color: #8acb82;
 }
-.experience-page .temple-gate span {
+.practice-page .temple-gate span {
   width: 50%;
   height: 100%;
   border: 3px solid #9165ce;
-  background: repeating-linear-gradient(
-    0deg,
-    #44216f 0 16px,
-    rgba(68, 33, 111, 0.06) 16px, rgba(68, 33, 111, 0.06) 19px
-  );
+  background: repeating-linear-gradient( 0deg, #44216f 0 16px, rgba(68, 33, 111, 0.06) 16px, rgba(68, 33, 111, 0.06) 19px );
   transition: transform 400ms ease-out;
 }
-.experience-page .gate-open span:first-child {
-  transform: translateX(-100%);
-}
-.experience-page .gate-open span:last-child {
-  transform: translateX(100%);
-}
-
-/* The banks stay visible; hidden planks leave gaps over the purple river. */
-.experience-page .bridge-scene {
+.practice-page .gate-open span:first-child { transform: translateX(-100%); }
+.practice-page .gate-open span:last-child { transform: translateX(100%); }
+.practice-page .bridge-picture {
   display: flex;
   align-items: center;
-
   min-height: 96px;
   padding: 12px;
   border: 2px solid #44216f;
   background-color: rgba(68, 33, 111, 0.06);
 }
-.experience-page .bridge-bank {
+.practice-page .bridge-bank {
   flex: 1;
   height: 54px;
   border: 2px solid #44216f;
   background-color: #8acb82;
 }
-.experience-page .bridge-plank {
+.practice-page .bridge-plank {
   flex: 1;
   height: 22px;
   border: 2px solid #44216f;
   background-color: #9165ce;
   opacity: 0;
 }
-.experience-page .plank-placed {
-  opacity: 1;
-  animation: stone-land 300ms ease-out;
-}
-.experience-page .bridge-complete .bridge-plank {
-  background-color: #8acb82;
-}
+.practice-page .plank-placed { opacity: 1; animation: stone-land 300ms ease-out; }
+.practice-page #game-finished { overflow: hidden; }
 
-/* Absolute positioning lets the reward float without moving the question text.
-   aria-hidden in HTML/JS keeps decoration out of screen reader announcements. */
-.experience-page #complete-screen {
-  overflow: hidden;
-}
-.experience-page .pixel-confetti {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.experience-page .pixel-confetti span {
-  position: absolute;
-  top: -16px;
-  left: 10%;
-  width: 10px;
-  height: 10px;
-  background-color: #44216f;
-  animation: confetti-fall 950ms ease-in both;
-}
-/* Different positions and delays make eight simple squares look like a burst. */
-.experience-page .pixel-confetti span:nth-child(2) {
-  left: 22%;
-  animation-delay: 100ms;
-  background-color: #8acb82;
-}
-.experience-page .pixel-confetti span:nth-child(3) {
-  left: 34%;
-  animation-delay: 40ms;
-}
-.experience-page .pixel-confetti span:nth-child(4) {
-  left: 46%;
-  animation-delay: 170ms;
-  background-color: #9165ce;
-}
-.experience-page .pixel-confetti span:nth-child(5) {
-  left: 58%;
-  animation-delay: 80ms;
-  background-color: #8acb82;
-}
-.experience-page .pixel-confetti span:nth-child(6) {
-  left: 70%;
-  animation-delay: 130ms;
-}
-.experience-page .pixel-confetti span:nth-child(7) {
-  left: 82%;
-  animation-delay: 20ms;
-  background-color: #9165ce;
-}
-.experience-page .pixel-confetti span:nth-child(8) {
-  left: 92%;
-  animation-delay: 200ms;
-  background-color: #8acb82;
-}
-
-/* transform and opacity animate without changing the space elements occupy. */
-
-@keyframes tile-appear {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 @keyframes rune-pulse {
-  50% {
-    box-shadow: 0 0 0 4px #9165ce;
-  }
+  50% { box-shadow: 0 0 0 4px #9165ce; }
 }
-
 
 @keyframes stone-land {
-  from {
-    opacity: 0;
-    transform: translateY(-14px);
-  }
-  70% {
-    opacity: 1;
-    transform: translateY(3px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-14px); }
+  70% { opacity: 1; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-
-@keyframes confetti-fall {
-  from {
-    opacity: 1;
-    transform: translateY(0) rotate(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(340px) rotate(180deg);
-  }
-}
-
-/* Keep decorative motion brief using the animation properties in Chapter 18. */
-.experience-page .game-screen,
-.experience-page .game-screen *,
-.experience-page #game-panthy {
+.practice-page .game-screen, .practice-page .game-screen *, .practice-page #game-mascot {
   animation-duration: 0.01ms;
   animation-delay: 0ms;
   transition-duration: 0.01ms;
 }
-.experience-page .pixel-confetti { display: none; }
 
-/* Peer tutoring only: labelled controls (Chapter 9), styling (11-14), Grid/Flexbox (16). */
-.tutoring-page button,
-.tutoring-page select,
-.tutoring-page input {
+.tutoring-page button, .tutoring-page select, .tutoring-page input {
   font-family: inherit;
   font-size: 16px;
   line-height: 1.5;
 }
-.tutoring-page button {
-  cursor: pointer;
-}
+.tutoring-page button { cursor: pointer; }
 .tutoring-page button:disabled {
   cursor: default;
   background-color: rgba(68, 33, 111, 0.06);
   color: #44216f;
   border-color: #9165ce;
 }
-.tutoring-page button:focus,
-.tutoring-page select:focus,
-.tutoring-page input:focus,
-.tutoring-page [tabindex="-1"]:focus {
-  outline: 3px solid #44216f;
-  outline-offset: 4px;
-}
-.tutoring-page .game-help {
-  display: flex;
-  align-items: center;
-  margin: 24px 0;
-}
-.tutoring-page .tutor-panel {
-  padding: 32px;
-  border: 1px solid #9165ce;
-  background-color: #fff3d9;
-}
-.tutoring-page .tutor-panel h2 {
-  margin-top: 0;
-  color: #44216f;
-}
 .tutoring-page .tutor-card {
   padding: 24px;
   border-top: 4px solid #44216f;
   background-color: rgba(68, 33, 111, 0.06);
 }
-.tutoring-page .tutor-card h3 {
-  margin-top: 0;
-  color: #44216f;
-  font-size: 24px;
-}
-.tutoring-page .tutor-card p:last-child {
-  margin-bottom: 0;
-}
+.tutoring-page .tutor-card h3 { margin-top: 0; color: #44216f; font-size: 24px; }
 .tutoring-page fieldset {
   min-width: 0;
   margin: 20px 0;
   padding: 20px;
   border: 1px solid #9165ce;
 }
-.tutoring-page legend {
-  padding: 0 8px;
-  font-weight: bold;
-  color: #44216f;
-}
-.tutoring-page .request-inputs {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
-}
-.tutoring-page .request-inputs > div {
-  min-width: 0;
-}
-.tutoring-page label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
+.tutoring-page legend { padding: 0 8px; font-weight: bold; color: #44216f; }
+.tutoring-page label { display: block; margin-bottom: 8px; font-weight: bold; }
 .tutoring-page select {
   width: 100%;
   max-width: 100%;
@@ -1337,8 +595,7 @@ thead {
   background-color: #fff3d9;
   color: #252037;
 }
-.tutoring-page #tutor-application input[type="text"],
-.tutoring-page #tutor-application input[type="file"] {
+.tutoring-page #tutor-form input[type="text"], .tutoring-page #tutor-form input[type="file"] {
   width: 100%;
   min-width: 0;
   padding: 12px 8px;
@@ -1349,7 +606,6 @@ thead {
 .tutoring-page .subject-options label {
   display: flex;
   align-items: center;
-
   min-height: 44px;
   margin: 0;
   cursor: pointer;
@@ -1359,424 +615,66 @@ thead {
   width: 20px;
   height: 20px;
   margin: 0;
+}
+.tutoring-page #tutor-form { margin-top: 24px; }
+.tutoring-page .form-field { margin-top: 20px; }
+.tutoring-page .wallet-note { padding: 16px 20px; border-left: 4px solid #8acb82; background-color: #8acb82; }
 
-}
-.tutoring-page #tutor-application {
-  margin-top: 24px;
-}
-.tutoring-page .form-field {
-  margin-top: 20px;
-}
-.tutoring-page select[aria-invalid="true"] {
-  border-color: #44216f;
-}
-.tutoring-page #request-message {
-  padding: 12px 16px;
-  background-color: #8acb82;
-}
-.tutoring-page .request-summary,
-.tutoring-page .request-result {
-  display: none;
-  margin-top: 28px;
-  padding: 24px;
-  border-left: 4px solid #44216f;
-  background-color: rgba(68, 33, 111, 0.06);
-}
-.tutoring-page .request-summary h3,
-.tutoring-page .request-result h3 {
-  margin-top: 0;
-}
-.tutoring-page .request-summary dt {
-  font-weight: bold;
-}
-.tutoring-page .request-summary dd {
-  margin: 0 0 12px;
-}
-.tutoring-page .request-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 16px -6px 0;
-}
-.tutoring-page .request-buttons button {
-  margin: 6px;
-}
-.tutoring-page .request-result {
-  border-color: #44216f;
-  background-color: #8acb82;
-}
-.tutoring-page .wallet-approved {
-  background-color: #8acb82;
-}
-.tutoring-page .wallet-pending {
-  background-color: rgba(68, 33, 111, 0.06);
-}
-.tutoring-page .wallet-note {
-  padding: 16px 20px;
-  border-left: 4px solid #8acb82;
-  background-color: #8acb82;
-}
-
-/* Responsive layouts and flexible images: Chapter 17. */
-@media (max-width: 1000px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .brand {
-    margin-bottom: 12px;
-  }
-  .header nav {
-    max-width: none;
-  }
-  .header nav ul {
-    justify-content: flex-start;
-  }
-}
-@media (max-width: 700px) {
-  body {
-    padding: 0 16px;
-  }
-  .header {
-    padding: 20px 0 16px;
-  }
-  .header nav a {
-    padding: 10px;
-  }
-  main {
-    margin-top: 24px;
-  }
-  .lead {
-    font-size: 20px;
-  }
-  th,
-  td {
-    padding: 6px;
-  }
-  .experience-page .game-box {
-    padding: 24px 16px;
-  }
-  .experience-page .world-list {
-    grid-template-columns: 1fr;
-  }
-  .experience-page .world-card {
-    padding: 20px;
-  }
-  .experience-page .game-help img {
-    width: 64px;
-    margin-right: 16px;
-  }
-  .experience-page .worked-example {
-    padding: 16px;
-  }
-  .tutoring-page .tutor-panel {
-    padding: 24px 16px;
-  }
-  .tutoring-page .request-inputs {
-    grid-template-columns: 1fr;
-  }
-  .tutoring-page .tutor-card,
-  .tutoring-page .request-summary,
-  .tutoring-page .request-result {
-    padding: 20px;
-  }
-  .tutoring-page fieldset {
-    padding: 16px;
-  }
-  .tutoring-page .game-help img {
-    width: 64px;
-    margin-right: 16px;
-  }
-}
-
-/* Information pages: shared home palette, simple sections, and responsive tables. */
-.info-page main {
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-.info-page .page-intro {
+.content-page .page-heading {
   display: grid;
   grid-template-columns: 1fr 180px;
   grid-gap: 48px;
   align-items: center;
-  padding: 64px 0 40px;
 }
-
-.info-page .page-intro h1 {
-  margin: 0 0 24px;
-  color: #44216f;
-  font-size: 64px;
-  line-height: 1.05;
-  letter-spacing: -3px;
-}
-
-.info-page .page-intro img {
-  width: 160px;
-  margin: 0 auto;
-}
-.info-page .page-intro .intro-message {
-  max-width: 65ch;
-  margin-bottom: 0;
-}
-
-.info-page .page-links ul {
+.content-page .page-heading img { width: 160px; margin: 0 auto; }
+.content-page .page-heading .intro-message { max-width: 65ch; margin-bottom: 0; }
+.content-page .page-menu ul {
   display: flex;
   flex-wrap: wrap;
-
   margin: 0;
   padding: 16px 0;
   border-top: 1px solid #9165ce;
   border-bottom: 1px solid #9165ce;
   list-style: none;
 }
-
-.info-page .page-links a {
-  display: block;
-  padding: 8px 0;
-  font-weight: bold;
-}
-
-.info-page .assessment {
+.content-page .page-menu a { display: block; padding: 8px 0; font-weight: bold; }
+.content-page .assessment {
   margin: 28px 0 0;
   padding: 24px;
   border-radius: 12px;
   background-color: #8acb82;
 }
-
-.info-page main > section {
-  margin-top: 48px;
-  padding-top: 32px;
-  border-top: 1px solid #9165ce;
-}
-
-.info-page main > section h2 {
-  max-width: 26ch;
-  font-size: 32px;
-}
-.info-page main > section h3 {
-  margin: 32px 0 12px;
-  color: #44216f;
-  font-size: 22px;
-}
-.info-page main > section > p {
-  max-width: 75ch;
-}
-.info-page main > section blockquote {
-  margin: 0 0 32px;
-  padding: 24px 28px;
-  border: 0;
-  border-radius: 12px;
-  background-color: rgba(68, 33, 111, 0.06);
-}
-
-.info-page main > section blockquote p {
-  max-width: 70ch;
-}
-.info-page .missing-info {
+.content-page main > section > p, .sources main > p { max-width: 75ch; }
+.content-page main > section blockquote p { max-width: 70ch; }
+.content-page .missing-info {
   padding: 20px 24px;
   border: 1px dashed #9165ce;
   border-radius: 8px;
   font-size: 14px;
 }
-
-.info-page .table-wrap {
-  margin: 24px 0;
-}
-.info-page .table-wrap:focus {
-  outline: 3px solid #44216f;
-  outline-offset: 4px;
-}
-.info-page table {
-  margin: 0;
-  font-size: 15px;
-}
-.info-page caption {
-  padding: 0 0 12px;
-  color: #44216f;
-  font-size: 18px;
-}
-.info-page th,
-.info-page td {
-  padding: 18px 20px;
-}
-.info-page thead {
-  background-color: #44216f;
-  color: #fff3d9;
-}
-.info-page tbody th {
-  width: 32%;
-  color: #44216f;
-}
-.info-page tbody tr:nth-child(even) {
-  background-color: rgba(68, 33, 111, 0.06);
-}
-.info-page .decision {
+.content-page .table-box { margin: 24px 0; }
+.content-page tbody th { width: 32%; color: #44216f; }
+.content-page .decision {
   padding: 32px;
   border: 0;
   border-radius: 16px;
   background-color: rgba(68, 33, 111, 0.06);
 }
-
-/* External image markup: Chapter 7. Responsive sizing: Chapter 17. */
-.home .mascot > img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Business model options use ordinary articles inside a flexible grid. */
-.info-page .model-list {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.info-page .model-card,
-.info-page .topic {
-  min-width: 0;
-}
-.info-page .model-card h3,
-.info-page .topic h3 {
-  margin-top: 0;
-}
-.info-page .model-card .small-heading {
-  font-size: 11px;
-}
-.info-page .prices {
-  padding-left: 24px;
-}
-.info-page .prices li {
-  padding: 12px 0;
-}
-.info-page .decision li {
-  margin-bottom: 12px;
-}
-
-/* Market and launch: two-column topics and a simple numbered launch plan. */
-.info-page .model-list,
-.info-page .topics {
-  display: grid;
-  grid-gap: 28px;
-  margin: 28px 0;
-}
-
-.info-page .topics {
-  grid-template-columns: 1fr 1fr;
-}
-
-.info-page .launch-plan {
-  padding-left: 28px;
-}
-.info-page .launch-plan li {
-  padding: 12px 0;
-}
-.info-page .launch-plan h3 {
-  margin-top: 0;
-}
-.info-page .source-link {
-  margin-top: 32px;
-}
-
-/* About and team: member roles and a readable reference list. */
-.info-page .team-role {
-  color: #44216f;
-  font-weight: bold;
-}
-.info-page .references {
-  max-width: 85ch;
-  padding-left: 24px;
-}
-.info-page .references li {
-  margin: 20px 0;
-  padding-left: 4px;
-}
-.info-page .references .missing-info {
-  display: block;
-  margin-top: 12px;
-}
-
-/* Sources: longer response labels need more room than counts and percentages. */
-.sources .page-intro h1 {
-  font-size: 48px;
-}
-.sources main > h2 {
-  margin-top: 48px;
-  font-size: 32px;
-}
-.sources main > h3 {
-  margin-top: 32px;
-  color: #44216f;
-}
-.sources main > p {
-  max-width: 75ch;
-}
-.sources tbody th {
-  width: 60%;
-}
-.sources caption {
-  font-size: 16px;
-}
-
-/* Information pages on smaller screens. */
-@media (max-width: 700px) {
-  .info-page .page-intro {
-    grid-template-columns: 1fr 90px;
-    grid-gap: 20px;
-    padding: 40px 0 28px;
-  }
-  .info-page .page-intro h1 {
-    font-size: 42px;
-    letter-spacing: -2px;
-  }
-  .info-page .page-intro .intro-message {
-    font-size: 18px;
-  }
-  .info-page .page-links ul {
-
-  }
-  .info-page .assessment {
-    padding: 20px;
-  }
-  .info-page main > section {
-    margin-top: 36px;
-    padding-top: 24px;
-  }
-  .info-page main > section h2 {
-    font-size: 28px;
-  }
-  .info-page main > section blockquote,
-  .info-page .decision {
-    padding: 24px 20px;
-  }
-  .info-page th,
-  .info-page td {
-    padding: 12px;
-  }
-  .info-page table {
-    min-width: 480px;
-  }
-  .info-page .model-list,
-  .info-page .topics {
-    grid-template-columns: 1fr;
-    grid-gap: 16px;
-  }
-  .sources .page-intro h1 {
-    font-size: 36px;
-  }
-}
-
-@media (max-width: 420px) {
-  .info-page .page-intro {
-    grid-template-columns: 1fr;
-  }
-  .info-page .page-intro img {
-    width: 90px;
-    margin: 0;
-  }
-}
-
-/* Flexbox spacing uses margins rather than the newer flex gap property. */
-.experience-page .bridge-scene > * + * { margin-left: 6px; }
+.home .mascot-picture > img { display: block; width: 100%; height: auto; }
+.content-page .model-list { grid-template-columns: repeat(3, 1fr); }
+.content-page .model-card .heading-label { font-size: 11px; }
+.content-page .prices { padding-left: 24px; }
+.content-page .prices li, .content-page .launch-plan li { padding: 12px 0; }
+.content-page .decision li { margin-bottom: 12px; }
+.content-page .model-list, .content-page .topics { display: grid; grid-gap: 28px; margin: 28px 0; }
+.content-page .topics { grid-template-columns: 1fr 1fr; }
+.content-page .launch-plan { padding-left: 28px; }
+.content-page .source-link { margin-top: 32px; }
+.content-page .team-role { color: #44216f; font-weight: bold; }
+.content-page .references { max-width: 85ch; padding-left: 24px; }
+.content-page .references li { margin: 20px 0; padding-left: 4px; }
+.content-page .references .missing-info { display: block; margin-top: 12px; }
+.sources tbody th { width: 60%; }
+.practice-page .bridge-picture > * + * { margin-left: 6px; }
 .tutoring-page .subject-options input { margin-right: 12px; }
-.info-page .page-links li { margin: 4px 24px 4px 0; }
-@media (max-width: 700px) {
-  .info-page .page-links li { margin: 2px 20px 2px 0; }
-}
+.content-page .page-menu li { margin: 4px 24px 4px 0; }

@@ -1,6 +1,6 @@
 Quizzness - COMP1170 Group Proposal
 
-Open index.html in a browser. Keep styles.css, script.js, images and the HTML
+Open index.html in a browser. Keep styles.css, games.js, tutoring.js, images and the HTML
 pages together. This is a front-end demonstration; it needs no account or server.
 
 Pages:
@@ -18,9 +18,9 @@ Textbook scope: Learning Web Design, Fifth Edition, Chapters 4-22.
 - Chapters 11-19: ordinary CSS values, box model, Flexbox, Grid, responsive
   layouts, transitions and form/table styling. Grid uses grid-gap; Flexbox
   spacing uses margins. Newer CSS colour variables and accent-color are removed.
-- Chapters 21-22: variables, arrays, loops, functions, events and DOM methods.
-  changeText uses createTextNode, removeChild and appendChild. changeClass uses
-  loops and className. Animation events, forced layout reads and matchMedia
+- Chapters 21-22: variables, conditions, functions, events and DOM methods.
+  Each JavaScript file has its own changeText function, using createTextNode
+  and appendChild. Game styles use className. Animation events, forced layout reads and matchMedia
   are removed; short decorative motion is limited through ordinary CSS.
 
 The homepage illustration is now images/panthy-percent-path.svg, referenced
@@ -38,3 +38,6 @@ No pilot results are claimed.
 
 The separate quizzness-game directory is a separate application and is outside
 the supplied static-site file list. Its source and dependencies are unchanged.
+
+JavaScript files: games.js runs the games; tutoring.js runs the simple form review
+and demo confirmations. Both work independently, without a shared script file.
