@@ -171,12 +171,10 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   align-items: center;
   margin-top: 0;
   padding: 64px 0 72px;
-}
-.home .intro-content,
+}.home .intro-content,
 .home .problem,
 .practice-page .match-columns fieldset,
-.content-page .model-card,
-.content-page .topic {
+.content-page .topic  {
   min-width: 0;
 }
 .home .introduction h1 {
@@ -402,11 +400,9 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   font-weight: bold;
 }
 .game-preview { background-color: #fff3d9; }
-.worked-example { padding: 20px 24px; border-left: 4px solid #8acb82; background-color: #8acb82; }
-.worked-example h3,
-.content-page .model-card h3,
+.worked-example { padding: 20px 24px; border-left: 4px solid #8acb82; background-color: #8acb82; }.worked-example h3,
 .content-page .topic h3,
-.content-page .launch-plan h3 {
+.content-page .launch-plan h3  {
   margin-top: 0;
 }
 .game-source { font-size: 14px; }
@@ -608,12 +604,6 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
 }
 .content-page main > section > p, .sources main > p { max-width: 75ch; }
 .content-page main > section blockquote p { max-width: 70ch; }
-.content-page .missing-info {
-  padding: 20px 24px;
-  border: 1px dashed #9165ce;
-  border-radius: 8px;
-  font-size: 14px;
-}
 .content-page .table-box { margin: 24px 0; }
 .content-page tbody th { width: 32%; color: #44216f; }
 .content-page .decision {
@@ -622,19 +612,15 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   border-radius: 16px;
   background-color: rgba(68, 33, 111, 0.06);
 }
-.content-page .model-list { grid-template-columns: repeat(3, 1fr); }
-.content-page .model-card .heading-label { font-size: 11px; }
 .content-page .prices { padding-left: 24px; }
 .content-page .prices li, .content-page .launch-plan li { padding: 12px 0; }
-.content-page .decision li { margin-bottom: 12px; }
-.content-page .model-list, .content-page .topics { display: grid; grid-gap: 28px; margin: 28px 0; }
+.content-page .decision li { margin-bottom: 12px; } .content-page .topics  { display: grid; grid-gap: 28px; margin: 28px 0; }
 .content-page .topics { grid-template-columns: 1fr 1fr; }
 .content-page .launch-plan { padding-left: 28px; }
 .content-page .source-link { margin-top: 32px; }
 .content-page .team-role { color: #44216f; font-weight: bold; }
 .content-page .references { max-width: 85ch; padding-left: 24px; }
 .content-page .references li { margin: 20px 0; padding-left: 4px; }
-.content-page .references .missing-info { display: block; margin-top: 12px; }
 .sources tbody th { width: 60%; }
 .practice-page .bridge-picture > * + * { margin-left: 6px; }
 .tutoring-page .subject-options input { margin-right: 12px; }
@@ -709,8 +695,7 @@ thead, .tutoring-page .pending-hours, .content-page tbody tr:nth-child(even) {
   .practice-page .worked-example, .tutoring-page fieldset { padding: 16px; }
   .content-page .page-heading { grid-template-columns: 1fr 90px; grid-gap: 20px; }
   .content-page .assessment { padding: 20px; }
-  .content-page main > section blockquote, .content-page .decision { padding: 24px 20px; }
-  .content-page .model-list, .content-page .topics { grid-template-columns: 1fr; grid-gap: 16px; }
+  .content-page main > section blockquote, .content-page .decision { padding: 24px 20px; } .content-page .topics  { grid-template-columns: 1fr; grid-gap: 16px; }
   .content-page .page-menu li { margin: 2px 20px 2px 0; }
 }
 

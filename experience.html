@@ -1,14 +1,5 @@
 <!doctype html>
-<!--
-  Web textbook reference: Jennifer Niederst Robbins (2018), Learning Web Design,
-  5th edition, O'Reilly.
-  Chapter 4, "Creating a Simple Page" (p. 49): HTML document structure.
-  Chapter 5, "Marking Up Text" (p. 71): headings, paragraphs and semantic sections.
-  Chapter 6, "Adding Links" (p. 113): local navigation and section anchors.
-  Chapter 5, "Marking Up Text": preformatted code and organised practice content.
-  Chapter 7, "Adding Images" (p. 131): the SVG mascot and image alternative text.
-  Page numbers refer to chapter openings in the supplied textbook.
--->
+
 <html lang="en">
 
 <head>
@@ -20,7 +11,8 @@
 
 <body>
   <header class="header">
-    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64" height="64"> QUIZZNESS</a></p>
+    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64" height="64">
+        QUIZZNESS</a></p>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -46,7 +38,8 @@
         <p id="game-progress" role="status">0 of 2 checkpoints complete this visit.</p>
         <p id="game-points" role="status">0 XP earned this demo.</p>
       </div>
-      <a class="button button-light" id="reset-demo" href="#course-menu" onclick="return resetDemo()">Reset demonstration</a>
+      <a class="button button-light" id="reset-demo" href="#course-menu" onclick="return resetDemo()">Reset
+        demonstration</a>
     </div>
     <ol class="game-steps" aria-label="Percent Path checkpoints">
       <li><strong>1. Match the runes</strong><span id="matching-status">Locked</span></li>
@@ -58,130 +51,149 @@
     </noscript>
 
     <div id="game-demo">
-    <div id="learn">
-      <section class="game-screen game-box game-overview is-open" id="course-menu">
-        <h2 id="course-title">1. Choose your learning world</h2>
-        <p>Explore our sample course selection. Start with Percent Path in Puzzle Temple.</p>
-        <div class="world-list">
-          <article class="world-card">
-            <p class="section-note">Working demonstration</p>
-            <h3>Mathematics</h3>
-            <p class="world-name">Puzzle Temple</p>
-            <p>Percent Path: match the percentage runes, then build a bridge by ordering calculations.</p>
-            <a class="button" id="select-maths" href="#lesson-page" onclick="return openLesson()">Select Mathematics</a>
-          </article>
-          <article class="world-card game-preview">
-            <p class="section-note">Preview only</p>
-            <h3>Programming</h3>
-            <p class="world-name">Code Kingdom</p>
-            <p>A planned second course. No lesson or activity is available in this demonstration.</p>
-            <p><strong>Not playable yet</strong></p>
-          </article>
-        </div>
-      </section>
+      <div id="learn">
+        <section class="game-screen game-box game-overview is-open" id="course-menu">
+          <h2 id="course-title">1. Choose your learning world</h2>
+          <p>Explore our sample course selection. Start with Percent Path in Puzzle Temple.</p>
+          <div class="world-list">
+            <article class="world-card">
+              <p class="section-note">Working demonstration</p>
+              <h3>Mathematics</h3>
+              <p class="world-name">Puzzle Temple</p>
+              <p>Percent Path: match the percentage runes, then build a bridge by ordering calculations.</p>
+              <a class="button" id="select-maths" href="#lesson-page" onclick="return openLesson()">Select
+                Mathematics</a>
+            </article>
+            <article class="world-card game-preview">
+              <p class="section-note">Preview only</p>
+              <h3>Programming</h3>
+              <p class="world-name">Code Kingdom</p>
+              <p>A planned second course. No lesson or activity is available in this demonstration.</p>
+              <p><strong>Not playable yet</strong></p>
+            </article>
+          </div>
+        </section>
 
-      <section class="game-screen game-box" id="lesson-page">
-        <h2 id="lesson-title">2. Percent Path: learn the idea</h2>
-        <p class="section-note">Mathematics / Puzzle Temple</p>
-        <p>A percentage means &ldquo;per hundred.&rdquo; To find 20% of an amount, write 20/100 = 0.20 and multiply
-          the amount by 0.20.</p>
-        <div class="worked-example">
-          <h3>A worked example</h3>
-          <p><strong>What is 20% of BBD 40?</strong></p>
-          <ol>
-            <li>Convert the percentage: 20 &divide; 100 = 0.20.</li>
-            <li>Multiply: 0.20 &times; 40 = 8.</li>
-            <li>The answer is <strong>BBD 8</strong>.</li>
+        <section class="game-screen game-box" id="lesson-page">
+          <h2 id="lesson-title">2. Percent Path: learn the idea</h2>
+          <p class="section-note">Mathematics / Puzzle Temple</p>
+          <p>A percentage means &ldquo;per hundred.&rdquo; To find 20% of an amount, write 20/100 = 0.20 and multiply
+            the amount by 0.20.</p>
+          <div class="worked-example">
+            <h3>A worked example</h3>
+            <p><strong>What is 20% of BBD 40?</strong></p>
+            <ol>
+              <li>Convert the percentage: 20 &divide; 100 = 0.20.</li>
+              <li>Multiply: 0.20 &times; 40 = 8.</li>
+              <li>The answer is <strong>BBD 8</strong>.</li>
+            </ol>
+          </div>
+          <p>For 25%, use 25/100 = 0.25. This is the same as one quarter, so you can also divide the amount by 4.</p>
+          <p>Useful equivalents: 20% = 1/5, 25% = 1/4, and 50% = 1/2.</p>
+          <p class="game-source">Learning source: OpenStax (2020), <cite>Prealgebra 2e</cite>, Section 6.1.
+            <a href="team.html#source-openstax">See the source details</a>.
+          </p>
+          <div class="game-buttons">
+            <a class="button" id="start-quiz" href="#matching-game" onclick="return startMatching()">Enter Percent
+              Path</a>
+            <a class="button button-light" href="#course-menu">Back to course selection</a>
+          </div>
+        </section>
+
+        <div class="game-help game-guide">
+          <img id="game-mascot" src="mascot/tiger-pixel.svg" alt="Panthy, your purple pixel learning guide." width="88"
+            height="84">
+          <p><strong>Panthy's tip:</strong> <span id="panthy-tip">Choose a subject to begin. There is no timer, so take
+              your time!</span></p>
+        </div>
+
+        <section class="game-screen game-box game-area" id="matching-game">
+          <p class="section-note">Checkpoint 1 / +50 demo XP</p>
+          <h2>Match the runes</h2>
+          <p>Open the temple gate: match all three percentages with their equivalent fractions.</p>
+
+          <div class="temple-picture" aria-hidden="true">
+            <div class="temple-gate" id="temple-gate"><span></span><span></span></div>
+            <p id="gate-caption">Match the runes to open the gate</p>
+          </div>
+          <div class="match-columns">
+            <fieldset class="game-answers">
+              <legend>Percentage runes</legend>
+              <button type="button" class="answer-button percent-button" id="percent20" aria-pressed="false"
+                onclick="pickPercent(20, 'percent20')">20%</button>
+              <button type="button" class="answer-button percent-button" id="percent25" aria-pressed="false"
+                onclick="pickPercent(25, 'percent25')">25%</button>
+              <button type="button" class="answer-button percent-button" id="percent50" aria-pressed="false"
+                onclick="pickPercent(50, 'percent50')">50%</button>
+            </fieldset>
+            <fieldset class="game-answers">
+              <legend>Fraction runes</legend>
+              <button type="button" class="answer-button fraction-button" id="fraction-half"
+                onclick="pickFraction(50, 'fraction-half', '1/2')">1/2</button>
+              <button type="button" class="answer-button fraction-button" id="fraction-fifth"
+                onclick="pickFraction(20, 'fraction-fifth', '1/5')">1/5</button>
+              <button type="button" class="answer-button fraction-button" id="fraction-quarter"
+                onclick="pickFraction(25, 'fraction-quarter', '1/4')">1/4</button>
+            </fieldset>
+          </div>
+          <p id="match-message" class="game-message" role="status">Choose a percentage first, then a fraction.</p>
+          <div class="game-buttons">
+            <a class="button" id="next-game" href="#ordering-game" onclick="return startOrdering()">Continue to the
+              bridge</a>
+          </div>
+          <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
+        </section>
+
+        <section class="game-screen game-box game-area" id="ordering-game">
+          <p class="section-note">Checkpoint 2 / +50 demo XP</p>
+          <h2>Build the bridge</h2>
+          <p>Calculate each amount. Place the stones from the smallest result to the largest to cross the bridge.</p>
+          <!-- Each span is one bridge plank. JavaScript reveals them as stones are chosen. -->
+          <div class="bridge-picture" id="bridge-picture" aria-hidden="true">
+            <span class="bridge-bank"></span>
+            <span class="bridge-plank" id="plank1"></span><span class="bridge-plank" id="plank2"></span><span
+              class="bridge-plank" id="plank3"></span>
+            <span class="bridge-bank"></span>
+          </div>
+          <div class="stone-buttons">
+            <button type="button" class="answer-button stone-button" id="stone20"
+              onclick="pickStone(20, 'stone20', '25% of BBD 80')">25% of BBD 80</button>
+            <button type="button" class="answer-button stone-button" id="stone6"
+              onclick="pickStone(6, 'stone6', '10% of BBD 60')">10% of BBD 60</button>
+            <button type="button" class="answer-button stone-button" id="stone10"
+              onclick="pickStone(10, 'stone10', '20% of BBD 50')">20% of BBD 50</button>
+          </div>
+          <h3>Your bridge: smallest to largest</h3>
+          <ol id="stone-order" class="bridge-order" aria-label="Selected stone order">
+            <li id="stone-slot-1" class="stone-slot"></li>
+            <li id="stone-slot-2" class="stone-slot"></li>
+            <li id="stone-slot-3" class="stone-slot"></li>
           </ol>
-        </div>
-        <p>For 25%, use 25/100 = 0.25. This is the same as one quarter, so you can also divide the amount by 4.</p>
-        <p>Useful equivalents: 20% = 1/5, 25% = 1/4, and 50% = 1/2.</p>
-        <p class="game-source">Learning source: OpenStax (2020), <cite>Prealgebra 2e</cite>, Section 6.1.
-          <a href="team.html#source-openstax">See the source details</a>.</p>
-        <div class="game-buttons">
-          <a class="button" id="start-quiz" href="#matching-game" onclick="return startMatching()">Enter Percent Path</a>
-          <a class="button button-light" href="#course-menu">Back to course selection</a>
-        </div>
-      </section>
+          <p id="order-message" class="game-message" role="status">Choose the stone with the smallest result first.</p>
+          <div class="game-buttons">
+            <button type="button" class="button button-light" id="clear-order" onclick="restartOrder()">Clear
+              order</button>
+            <button type="button" class="button" id="check-order" onclick="checkOrder()">Check order</button>
+            <a class="button" id="finish-level" href="#game-finished" onclick="return finishLevel()">View level
+              results</a>
+          </div>
+          <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
+        </section>
 
-      <div class="game-help game-guide">
-        <img id="game-mascot" src="mascot/tiger-pixel.svg" alt="Panthy, your purple pixel learning guide." width="88" height="84">
-        <p><strong>Panthy's tip:</strong> <span id="panthy-tip">Choose a subject to begin. There is no timer, so take your time!</span></p>
+        <section class="game-screen game-box" id="game-finished">
+
+          <p class="section-note">Percent Path / quest complete</p>
+          <h2 id="finish-title">Percent Path cleared!</h2>
+          <p>You opened the temple gate and crossed the bridge. Both checkpoints are complete!</p>
+          <p class="game-reward"><strong>+100 XP earned this demo</strong></p>
+          <p><strong>2 of 2 checkpoints complete this visit.</strong> This is demonstration completion, not a course
+            grade
+            or a measure of mastery.</p>
+          <p>You matched percentages to fractions and compared the results of percentage calculations.</p>
+          <p><a class="button" href="tutoring.html#booking">Explore peer support</a></p>
+          <p>Want another try? Use &ldquo;Reset demonstration&rdquo; above to return to course selection.</p>
+        </section>
       </div>
-
-      <section class="game-screen game-box game-area" id="matching-game">
-        <p class="section-note">Checkpoint 1 / +50 demo XP</p>
-        <h2>Match the runes</h2>
-        <p>Open the temple gate: match all three percentages with their equivalent fractions.</p>
-
-        <div class="temple-picture" aria-hidden="true">
-          <div class="temple-gate" id="temple-gate"><span></span><span></span></div>
-          <p id="gate-caption">Match the runes to open the gate</p>
-        </div>
-        <div class="match-columns">
-          <fieldset class="game-answers">
-            <legend>Percentage runes</legend>
-            <button type="button" class="answer-button percent-button" id="percent20" aria-pressed="false" onclick="pickPercent(20, 'percent20')">20%</button>
-            <button type="button" class="answer-button percent-button" id="percent25" aria-pressed="false" onclick="pickPercent(25, 'percent25')">25%</button>
-            <button type="button" class="answer-button percent-button" id="percent50" aria-pressed="false" onclick="pickPercent(50, 'percent50')">50%</button>
-          </fieldset>
-          <fieldset class="game-answers">
-            <legend>Fraction runes</legend>
-            <button type="button" class="answer-button fraction-button" id="fraction-half" onclick="pickFraction(50, 'fraction-half', '1/2')">1/2</button>
-            <button type="button" class="answer-button fraction-button" id="fraction-fifth" onclick="pickFraction(20, 'fraction-fifth', '1/5')">1/5</button>
-            <button type="button" class="answer-button fraction-button" id="fraction-quarter" onclick="pickFraction(25, 'fraction-quarter', '1/4')">1/4</button>
-          </fieldset>
-        </div>
-        <p id="match-message" class="game-message" role="status">Choose a percentage first, then a fraction.</p>
-        <div class="game-buttons">
-          <a class="button" id="next-game" href="#ordering-game" onclick="return startOrdering()">Continue to the bridge</a>
-        </div>
-        <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
-      </section>
-
-      <section class="game-screen game-box game-area" id="ordering-game">
-        <p class="section-note">Checkpoint 2 / +50 demo XP</p>
-        <h2>Build the bridge</h2>
-        <p>Calculate each amount. Place the stones from the smallest result to the largest to cross the bridge.</p>
-        <!-- Each span is one bridge plank. JavaScript reveals them as stones are chosen. -->
-        <div class="bridge-picture" id="bridge-picture" aria-hidden="true">
-          <span class="bridge-bank"></span>
-          <span class="bridge-plank" id="plank1"></span><span class="bridge-plank" id="plank2"></span><span class="bridge-plank" id="plank3"></span>
-          <span class="bridge-bank"></span>
-        </div>
-        <div class="stone-buttons">
-          <button type="button" class="answer-button stone-button" id="stone20" onclick="pickStone(20, 'stone20', '25% of BBD 80')">25% of BBD 80</button>
-          <button type="button" class="answer-button stone-button" id="stone6" onclick="pickStone(6, 'stone6', '10% of BBD 60')">10% of BBD 60</button>
-          <button type="button" class="answer-button stone-button" id="stone10" onclick="pickStone(10, 'stone10', '20% of BBD 50')">20% of BBD 50</button>
-        </div>
-        <h3>Your bridge: smallest to largest</h3>
-        <ol id="stone-order" class="bridge-order" aria-label="Selected stone order">
-          <li id="stone-slot-1" class="stone-slot"></li>
-          <li id="stone-slot-2" class="stone-slot"></li>
-          <li id="stone-slot-3" class="stone-slot"></li>
-        </ol>
-        <p id="order-message" class="game-message" role="status">Choose the stone with the smallest result first.</p>
-        <div class="game-buttons">
-          <button type="button" class="button button-light" id="clear-order" onclick="restartOrder()">Clear order</button>
-          <button type="button" class="button" id="check-order" onclick="checkOrder()">Check order</button>
-          <a class="button" id="finish-level" href="#game-finished" onclick="return finishLevel()">View level results</a>
-        </div>
-        <p><a href="tutoring.html#booking">Need another explanation? Explore peer tutoring.</a></p>
-      </section>
-
-      <section class="game-screen game-box" id="game-finished">
-
-        <p class="section-note">Percent Path / quest complete</p>
-        <h2 id="finish-title">Percent Path cleared!</h2>
-        <p>You opened the temple gate and crossed the bridge. Both checkpoints are complete!</p>
-        <p class="game-reward"><strong>+100 XP earned this demo</strong></p>
-        <p><strong>2 of 2 checkpoints complete this visit.</strong> This is demonstration completion, not a course grade
-          or a measure of mastery.</p>
-        <p>You matched percentages to fractions and compared the results of percentage calculations.</p>
-        <p><a class="button" href="tutoring.html#booking">Explore peer support</a></p>
-        <p>Want another try? Use &ldquo;Reset demonstration&rdquo; above to return to course selection.</p>
-      </section>
-    </div>
     </div>
 
     <section class="game-box friends-box">
@@ -190,13 +202,33 @@
       <table>
         <caption>Sample lifetime XP</caption>
         <thead>
-          <tr><th scope="col">Rank</th><th scope="col">Student</th><th scope="col">XP</th></tr>
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Student</th>
+            <th scope="col">XP</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td>1</td><th scope="row">Maya</th><td>400</td></tr>
-          <tr><td>2</td><th scope="row">Jordan</th><td>350</td></tr>
-          <tr><td>3</td><th scope="row">You</th><td>320</td></tr>
-          <tr><td>4</td><th scope="row">Alex</th><td>280</td></tr>
+          <tr>
+            <td>1</td>
+            <th scope="row">Maya</th>
+            <td>400</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <th scope="row">Jordan</th>
+            <td>350</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <th scope="row">You</th>
+            <td>320</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <th scope="row">Alex</th>
+            <td>280</td>
+          </tr>
         </tbody>
       </table>
     </section>

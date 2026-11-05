@@ -10,7 +10,8 @@
 
 <body>
   <header class="header">
-    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64" height="64"> QUIZZNESS</a></p>
+    <p class="site-name"><a href="index.html"><img src="images/quizzness-logo.png" alt="" width="64" height="64">
+        QUIZZNESS</a></p>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -36,9 +37,11 @@
       <p>(Barringer &amp; Ireland, 2019, Ch. 3, p. 109)</p>
     </blockquote>
 
-    <p class="demo-note">All tutors, requests, sessions, and wallet records on this page are fictional prototype examples. No personal information is collected and no booking is made.</p>
+    <p class="demo-note">All tutors, requests, sessions, and wallet records on this page are fictional prototype
+      examples. No personal information is collected and no booking is made.</p>
 
-    <p>Want to help other students? <a href="#become-tutor">Apply to become a peer tutor</a> and work toward school GiveBack hours.</p>
+    <p>Want to help other students? <a href="#become-tutor">Apply to become a peer tutor</a> and work toward school
+      GiveBack hours.</p>
     <div class="game-help">
       <img src="mascot/tiger-pixel.svg" alt="Panthy, the purple learning companion holding a study card." width="88"
         height="84">
@@ -49,15 +52,21 @@
       <h2>Sample tutor</h2>
       <div class="tutor-card">
         <p class="section-note">Fictional tutor / sample profile</p>
+
         <h3>Marcus Clarke</h3>
+
         <p><strong>Course:</strong> Mathematics (sample MATH 101 course)<br>
           <strong>Topics:</strong> percentages, ratios and solving equations
         </p>
+
         <p>Marcus is a fictional tutor used for this example. In the proposed service, a coordinator would check course
           results, training and the tutor's agreement to the code of conduct.</p>
+
       </div>
+
       <p>A student could request a short explanation or a longer worked example. The tutor would accept the request
         or suggest another time. No actual tutor availability is shown here.</p>
+
       <p>These are example forms only. No request is actually sent. Peer GiveBack sessions
         would be free to students in the proposed university programme.</p>
 
@@ -66,20 +75,29 @@
         <fieldset>
           <legend>Sample topic (choose one)</legend>
           <div class="form-columns request-choices">
-            <button type="button" class="button button-light" id="topic-percentages" aria-pressed="false" onclick="chooseTopic('Percentages', 'topic-percentages')">Percentages</button>
-            <button type="button" class="button button-light" id="topic-ratios" aria-pressed="false" onclick="chooseTopic('Ratios', 'topic-ratios')">Ratios</button>
-            <button type="button" class="button button-light" id="topic-equations" aria-pressed="false" onclick="chooseTopic('Solving equations', 'topic-equations')">Solving equations</button>
+
+            <button type="button" class="button button-light" id="topic-percentages" aria-pressed="false"
+              onclick="chooseTopic('Percentages', 'topic-percentages')">Percentages</button>
+            <button type="button" class="button button-light" id="topic-ratios" aria-pressed="false"
+              onclick="chooseTopic('Ratios', 'topic-ratios')">Ratios</button>
+            <button type="button" class="button button-light" id="topic-equations" aria-pressed="false"
+              onclick="chooseTopic('Solving equations', 'topic-equations')">Solving equations</button>
+
           </div>
         </fieldset>
         <fieldset>
           <legend>Sample session length (choose one)</legend>
           <div class="form-columns request-choices">
-            <button type="button" class="button button-light" id="session-30" aria-pressed="false" onclick="chooseSession('30 minutes', 'session-30')">30 minutes</button>
-            <button type="button" class="button button-light" id="session-60" aria-pressed="false" onclick="chooseSession('1 hour', 'session-60')">1 hour</button>
-            <button type="button" class="button button-light" id="session-120" aria-pressed="false" onclick="chooseSession('2 hours', 'session-120')">2 hours</button>
+            <button type="button" class="button button-light" id="session-30" aria-pressed="false"
+              onclick="chooseSession('30 minutes', 'session-30')">30 minutes</button>
+            <button type="button" class="button button-light" id="session-60" aria-pressed="false"
+              onclick="chooseSession('1 hour', 'session-60')">1 hour</button>
+            <button type="button" class="button button-light" id="session-120" aria-pressed="false"
+              onclick="chooseSession('2 hours', 'session-120')">2 hours</button>
           </div>
         </fieldset>
-        <p id="request-message" role="status">Choose a topic and session, then review the example. Nothing will be sent or saved.</p>
+        <p id="request-message" role="status">Choose a topic and session, then review the example. Nothing will be sent
+          or saved.</p>
         <button type="button" class="button" id="review-button" onclick="reviewRequest()">Review request</button>
         <button type="button" class="button button-light" onclick="resetRequest()">Reset request demo</button>
       </div>
@@ -99,11 +117,15 @@
 
     <section id="become-tutor" class="tutor-section">
       <p class="section-note">Help others / GiveBack programme</p>
+
       <h2 id="tutor-form-title">Become a peer tutor</h2>
+
       <p>Share what you know and support other students. Approved tutoring sessions could count toward your
         school's GiveBack hours, subject to school approval and programme rules.</p>
+
       <p id="form-note" class="demo-note">This is an unvalidated prototype application preview. A real application would
-        require a name, CV and two recommendation letters. Nothing entered here is uploaded, sent or saved. Use sample details and documents.</p>
+        require a name, CV and two recommendation letters. Nothing entered here is uploaded, sent or saved. Use sample
+        details and documents.</p>
 
       <form id="tutor-form" aria-describedby="form-note" onsubmit="return false;">
         <fieldset>
@@ -157,28 +179,36 @@
         </fieldset>
 
         <p>This is a demonstration. Nothing will be sent or uploaded.</p>
-        <button type="button" class="button" id="apply-button" onclick="finishApplication()">Preview demo application</button>
-        <p id="application-done" class="demo-note request-confirmation" role="status">Demo complete. Your application and files have not been sent or saved.</p>
+        <button type="button" class="button" id="apply-button" onclick="finishApplication()">Preview demo
+          application</button>
+        <p id="application-done" class="demo-note request-confirmation" role="status">Demo complete. Your application
+          and files have not been sent or saved.</p>
         <button type="reset" class="button button-light" onclick="resetApplication()">Reset</button>
       </form>
     </section>
 
     <section id="session">
       <h2>After a session</h2>
+
       <p>For a separate fictional completed-session example, imagine that the student and Marcus have finished a
         30-minute session on equations.
         They practised doing the same operation to both sides of an equation.</p>
+
       <p>Both people would confirm the session time. The student could give feedback, and the tutor could send the time
         for coordinator review.</p>
+
       <p>Research supports this kind of structured help. A meta-analysis of 37 studies found a moderately strong
         positive relationship between formal peer learning approaches and course performance in higher education
         (Bengesai et al., 2023).</p>
+
       <p><a href="experience.html#game-demo">Return to the sample practice activity</a></p>
     </section>
 
     <section id="wallet">
       <h2>GiveBack Wallet</h2>
+
       <p>The wallet would keep a record of tutoring time. Pending time would be separate from approved time.</p>
+
       <table>
         <caption>Marcus's fictional record - separate from the request demonstration</caption>
         <thead>
@@ -200,15 +230,19 @@
       </table>
       <p class="wallet-note">The pending 0.5 hours are not part of the 24 approved hours. These fixed sample records do
         not change when you fill in the sample forms or refresh the page.</p>
+
       <h3>How time would be approved</h3>
+
       <ol>
         <li>The student and tutor confirm the session.</li>
         <li>A coordinator checks the time and programme rules.</li>
         <li>Approved time is added to the tutor's verified total.</li>
         <li>The university issues a report or certificate under its rules.</li>
       </ol>
+
       <p>We would need a formal university agreement before claiming that tutoring counts toward GiveBack requirements.
         The totals above are sample data.</p>
+        
       <p><strong>No pilot results are claimed; GiveBack recognition requires formal approval by a university
           partner.</strong></p>
     </section>
